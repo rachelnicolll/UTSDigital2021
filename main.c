@@ -2,8 +2,15 @@
 * UART Communication
 */
 #include <stdint.h>
-#include <stdio.h>
 #include <stm8l15x.h>
+#include <stdio.h>
+#include <spi.h>
+#include <LCD.h>
+#include <delay.h>
+#include "stm8l15x_gpio.h"
+#include "stm8l15x_clk.h"
+#include "stm8l15x_spi.h"
+
 
 #define CS_PIN 1
 
