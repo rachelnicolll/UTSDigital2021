@@ -67,7 +67,7 @@ void main(void)
 		}
 		chip_deselect();
 
-		GPIOB->ODR &= 0x00;
+		GPIOB->ODR &= ~0x01;
 		if (clock() % 1000 <= 500)
 			GPIOB->ODR |= 0x01;
 		GPIOC->ODR &= 0x01;

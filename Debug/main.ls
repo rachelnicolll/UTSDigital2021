@@ -95,8 +95,8 @@
  207  0090 25ef          	jrult	L15
  208                     ; 68 		chip_deselect();
  210  0092 cd0000        	call	_chip_deselect
- 212                     ; 70 		GPIOB->ODR &= 0x00;
- 214  0095 725f5005      	clr	20485
+ 212                     ; 70 		GPIOB->ODR &= ~0x01;
+ 214  0095 72115005      	bres	20485,#0
  215                     ; 71 		if (clock() % 1000 <= 500)
  217  0099 cd0000        	call	_clock
  219  009c 90ae03e8      	ldw	y,#1000
