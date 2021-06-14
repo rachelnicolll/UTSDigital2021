@@ -5,12 +5,18 @@
 #define FONT_WIDTH 5
 
 void LCD_init() {
+    // set up pins
     LCD_gpio_init();
+
+    // unselect chip enable
     LCD_CE_clear();
     LCD_RST_clear();
-    //LCD_delay_ms(50);
+    
+    LCD_delay_ms(50);
+   
     LCD_RST_set();
     LCD_CE_set();
+
     LCD_cmd(0x21); // extended commands
     LCD_cmd(0xc0); // contrast Vop=6.4V
     LCD_cmd(0x04); // temperature coefficient

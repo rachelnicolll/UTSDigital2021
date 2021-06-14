@@ -25,8 +25,7 @@
  
 #define LCD_DC_PIN      2       // data/command mode
 #define LCD_CE_PIN      3       // chip-select
-#define LCD_RST_PIN     4       // reset
-#define SCK             5
+#define LCD_RST_PIN     0       // reset
 
 static void LCD_gpio_init() {
     GPIOB->DDR |= (1 << LCD_CE_PIN) | (1 << LCD_RST_PIN) | (1 << LCD_DC_PIN);
@@ -42,7 +41,7 @@ static void LCD_DC_clear() {
 }
 
 static void LCD_CE_set() {
-    while ((SPI1->SR & (1 << SPI_SR_BSY)));
+    while (SPI1->SR &  SPI_SR_BSY);
     GPIOB->ODR |= (1 << LCD_CE_PIN);
 }
 

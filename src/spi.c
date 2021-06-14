@@ -1,6 +1,8 @@
 #include <stm8l15x.h>
 #include <spi.h>
 #include <stm8l15x_clk.h>
+#include <stm8l15x_spi.h>
+#include <stm8l15x_gpio.h>
 
 #define CS_PIN 1
 #define SCK_PIN 5
@@ -14,30 +16,32 @@ void SPI_init(void)
     // 5. Set the MSTR and SPE bits (they remain set only if the NSS pin is connected to a high-level signal).
     // In this configuration the MOSI pin is a data output and to the MISO pin is a data input.
 
-    // ″ SPI1_MIS0 is mapped on PB7
-    // ″ SPI1_MOSI is mapped on PB6
-    // ″ SPI1_SCK is mapped on PB5
-    // ″ SPI1_NSS is mapped on PB4
 
-	//CLK_PeripheralClockConfig(CLK_PCKENR1_SPI1, ENABLE);
-	CLK->CKDIVR = 0x00;
 	CLK->PCKENR1 |= CLK_PCKENR1_SPI1;
 
-	// CLK->PCKENR1 |= (1 << CLK_PCKENR1_SPI1);
 	/* Initialize CS pin */
-	//GPIOB->DDR |= (1 << CS_PIN);
-	//GPIOB->CR1 |= (1 << CS_PIN);
-	//GPIOB->ODR |= (1 << CS_PIN);
+	GPIOB->DDR |= (1 << CS_PIN);
+	GPIOB->CR1 |= (1 << CS_PIN);
+	GPIOB->ODR |= (1 << CS_PIN);
 
-
+    // ″ SPI1_MIS0 is mapped on PB7 : input
+    // ″ SPI1_MOSI is mapped on PB6 : output
+    // ″ SPI1_SCK is mapped on PB5  : output
+    // ″ SPI1_NSS is mapped on PB4  : output
+	GPIO_Init(GPIOB, GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_4, GPIO_Mode_Out_PP_High_Fast);
+	GPIO_ExternalPullUpConfig(GPIOB, GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_4 , ENABLE);
 
 	/* Initialize SPI master at 500kHz  */ 
     //CR1 = LSBFIRST|SPE|BR|BR|BR|MSTR|CPOL|CPHA|
     //0b11100111 
-
+	SPI_DeInit(SPI1);
 	SPI1->CR2 |= (SPI_CR2_SSM) | (SPI_CR2_SSI);
-	SPI1->CR1 |= 0b11100111;
-	// SPI1->CR1 |= (SPI_CR1_MSTR) | (SPI_CR1_SPE);
+	SPI1->CR1 |= (SPI_BaudRatePrescaler_32) | SPI_CR1_MSTR;
+	//	| SPI_CR1_CPOL | SPI_CR1_CPHA;
+	SPI1->CR1 |= (SPI_CR1_SPE);
+
+	//initialise 
+
 }
 
 void SPI_write(uint8_t data)

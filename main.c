@@ -13,6 +13,7 @@
 
 
 #define CS_PIN 1
+const char text[] = "Greenhouse Data Logger";
 
 unsigned int clock(void)
 {
@@ -27,10 +28,10 @@ void main(void)
 
 	// Configure timer
 	// 1000 ticks per second
-	TIM1->PSCRH = 0x3e; // 0011 1110
-	TIM1->PSCRL = 0x80; // 0111 0000
+	// TIM1->PSCRH = 0x3e; // 0011 1110
+	// TIM1->PSCRL = 0x80; // 0111 0000
 	// Enable timer
-	TIM1->CR1 = TIM1_CR1_CEN;
+	// TIM1->CR1 = TIM1_CR1_CEN;
 
 	// Configure LED pins
 	GPIOB->DDR |= 0x03;
@@ -46,32 +47,38 @@ void main(void)
 	USART1->BRR2 = 0x03;
 	USART1->BRR1 = 0x68; // 9600 baud
 
-	GPIOB->ODR |= (1 << CS_PIN);
+	// Initialise spi
+	SPI_init();
+	LCD_init();
 
-	SPI1->CR2 |= (SPI_CR2_SSM) | (SPI_CR2_SSI);
-	SPI1->CR1 |= 0b10100111;
-	SPI1->CR1 |= 0x40; // Enable SPI peripheral
+	LCD_goto(12, 2);
+    {int i ;for (i = 0; i < sizeof(text) - 1; i++)
+			LCD_putc(text[i]);}
+    delay_ms(2000);
 
 	for (;;)
 	{
+		
 		//Transmit data
-		while (!(USART1->SR & USART_SR_TXE))
-			;
-		USART1->DR = 'A';
+		//while (!(USART1->SR & USART_SR_TXE))
+		//	;
+		//USART1->DR = 'A';
 
-		chip_select();
-		{
-			uint8_t i;
-			for (i = 0xAA; i < 0xFA; i += 0x10)
-				SPI_write(i);
-		}
-		chip_deselect();
+		//chip_select();
+		//{
+		//	uint8_t i;
+		//	for (i = 0xAA; i < 0xFA; i += 0x10)
+		//		SPI_write(i);
+		//}
+		
+		SPI_write(0xFF);
+		//chip_deselect();
 
-		GPIOB->ODR &= ~0x01;
-		if (clock() % 1000 <= 500)
-			GPIOB->ODR |= 0x01;
-		GPIOC->ODR &= 0x01;
-		if (clock() % 2000 <= 1000)
-			GPIOC->ODR |= 0x02;
+		//GPIOB->ODR &= ~0x01;
+		//if (clock() % 1000 <= 500)
+		//	GPIOB->ODR |= 0x01;
+		//GPIOC->ODR &= 0x01;
+		//if (clock() % 2000 <= 1000)
+		//	GPIOC->ODR |= 0x02;
 	}
 }
