@@ -1,5 +1,5 @@
-#ifndef UART_H
-#define UART_H
+#ifndef LED_H
+#define LED_H
 
 #include <stdint.h>
 
@@ -15,7 +15,4 @@ void led_blink_init();
 void led_blink();
 
 
-
-//uint8_t UART_read();
-
-#endif /* UART_H */
+#endif /* LED_H */

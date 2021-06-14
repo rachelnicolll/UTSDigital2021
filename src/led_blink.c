@@ -21,7 +21,9 @@ void led_blink_init()
 
 void led_blink()
 {
-	
+	GPIOB->ODR &= ~0x01;
+		if (clock() % 1000 <= 500)
+			GPIOB->ODR |= 0x01;
 }
 
 

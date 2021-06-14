@@ -23,12 +23,28 @@
   69  001d c75008        	ld	20488,a
   70                     ; 20 }
   73  0020 81            	ret
-  96                     ; 22 void led_blink()
-  96                     ; 23 {
-  97                     	switch	.text
-  98  0021               _led_blink:
- 102                     ; 25 }
- 105  0021 81            	ret
- 118                     	xdef	_led_blink
- 119                     	xdef	_led_blink_init
- 138                     	end
+  76                     	xref	_clock
+  98                     ; 22 void led_blink()
+  98                     ; 23 {
+  99                     	switch	.text
+ 100  0021               _led_blink:
+ 104                     ; 24 	GPIOB->ODR &= ~0x01;
+ 106  0021 72115005      	bres	20485,#0
+ 107                     ; 25 		if (clock() % 1000 <= 500)
+ 109  0025 9c            	rvf
+ 110  0026 cd0000        	call	_clock
+ 112  0029 9c            	rvf
+ 113  002a 90ae03e8      	ldw	y,#1000
+ 114  002e cd0000        	call	c_idiv
+ 116  0031 51            	exgw	x,y
+ 117  0032 a301f5        	cpw	x,#501
+ 118  0035 2e04          	jrsge	L13
+ 119                     ; 26 			GPIOB->ODR |= 0x01;
+ 121  0037 72105005      	bset	20485,#0
+ 122  003b               L13:
+ 123                     ; 27 }
+ 126  003b 81            	ret
+ 139                     	xdef	_led_blink
+ 140                     	xdef	_led_blink_init
+ 159                     	xref	c_idiv
+ 160                     	end

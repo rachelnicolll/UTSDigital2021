@@ -20,11 +20,8 @@ void main(void)
 	
 	for(;;)
 	{
-		//led_blink();
-		GPIOB->ODR &= ~0x01;
-		if (clock() % 1000 <= 10)
-			GPIOB->ODR |= 0x01;
-		if (clock() % 1000 == 0)
-			UART_write();
+		led_blink();
+		UART_Test();
+		
 	}
 }
