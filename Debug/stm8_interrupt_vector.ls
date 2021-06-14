@@ -1,11 +1,11 @@
    1                     ; C Compiler for STM8 (COSMIC Software)
    2                     ; Parser V4.12.4 - 04 Feb 2021
    3                     ; Generator (Limited) V4.5.2 - 04 Feb 2021
-  43                     ; 12 @far @interrupt void NonHandledInterrupt (void)
-  43                     ; 13 {
+  43                     ; 13 @far @interrupt void NonHandledInterrupt (void)
+  43                     ; 14 {
   44                     	switch	.text
   45  0000               f_NonHandledInterrupt:
-  49                     ; 17 	return;
+  49                     ; 18 	return;
   52  0000 80            	iret
   54                     .const:	section	.text
   55  0000               __vectab:
@@ -31,14 +31,14 @@
   82  0019 00            	dc.b	page(f_NonHandledInterrupt)
   83  001a 0000          	dc.w	f_NonHandledInterrupt
   84  001c 82            	dc.b	130
-  86  001d 00            	dc.b	page(f_NonHandledInterrupt)
-  87  001e 0000          	dc.w	f_NonHandledInterrupt
+  86  001d 00            	dc.b	page(f_EXTID_IRQHandler)
+  87  001e 0000          	dc.w	f_EXTID_IRQHandler
   88  0020 82            	dc.b	130
   90  0021 00            	dc.b	page(f_NonHandledInterrupt)
   91  0022 0000          	dc.w	f_NonHandledInterrupt
   92  0024 82            	dc.b	130
-  94  0025 00            	dc.b	page(f_NonHandledInterrupt)
-  95  0026 0000          	dc.w	f_NonHandledInterrupt
+  94  0025 00            	dc.b	page(f_EXTID_IRQHandler)
+  95  0026 0000          	dc.w	f_EXTID_IRQHandler
   96  0028 82            	dc.b	130
   98  0029 00            	dc.b	page(f_NonHandledInterrupt)
   99  002a 0000          	dc.w	f_NonHandledInterrupt
@@ -108,4 +108,5 @@
  234                     	xdef	__vectab
  235                     	xref	__stext
  236                     	xdef	f_NonHandledInterrupt
- 255                     	end
+ 237                     	xref	f_EXTID_IRQHandler
+ 256                     	end

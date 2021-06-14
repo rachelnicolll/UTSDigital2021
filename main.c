@@ -7,13 +7,14 @@
 #include <spi.h>
 #include <LCD.h>
 #include <delay.h>
+#include <buttons.h>
 #include "stm8l15x_gpio.h"
 #include "stm8l15x_clk.h"
 #include "stm8l15x_spi.h"
 
-
-#define CS_PIN 1
-const char text[] = "Greenhouse Data Logger";
+const char op[] = "hehe!";
+const char pressMSG[] = "PRESSED ME!";
+bool state = FALSE; 
 
 unsigned int clock(void)
 {
@@ -49,16 +50,11 @@ void main(void)
 
 	// Initialise spi
 	SPI_init();
+	BTN_init();
 	LCD_init();
-
-	LCD_goto(12, 2);
-    {int i ;for (i = 0; i < sizeof(text) - 1; i++)
-			LCD_putc(text[i]);}
-    delay_ms(2000);
 
 	for (;;)
 	{
-		
 		//Transmit data
 		//while (!(USART1->SR & USART_SR_TXE))
 		//	;
@@ -70,7 +66,17 @@ void main(void)
 		//	for (i = 0xAA; i < 0xFA; i += 0x10)
 		//		SPI_write(i);
 		//}
-		
+		//if (state == TRUE)
+		//{
+		//	{int i; for (i = 0; i < sizeof(pressMSG) - 1; i++)
+		//		LCD_putc(pressMSG[i]);}
+		//	delay_ms(10000);
+		//	state = FALSE;
+		//}
+		//else
+		//{
+			//LCD_clear();
+		//}
 		SPI_write(0xFF);
 		//chip_deselect();
 

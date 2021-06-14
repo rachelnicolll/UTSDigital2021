@@ -30,6 +30,8 @@
 #ifndef __STM8L15x_ITC_H
 #define __STM8L15x_ITC_H
 
+@far @interrupt void EXTID_IRQHandler(void);
+
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x.h"
 

@@ -29,6 +29,18 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x_itc.h"
+#include <stm8l15x.h>
+#include <LCD.h>
+#include <delay.h>
+
+#define STM8L15X_MD
+extern bool state;
+
+
+void EXTID_IRQHandler(void)
+{
+	state ^= 1;
+}
 
 /** @addtogroup STM8L15x_StdPeriph_Driver
   * @{

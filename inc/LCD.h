@@ -35,4 +35,10 @@ void LCD_putc(char c);
  */
 void LCD_write(uint8_t data);
 
+/*
+ * Write msg to display
+ * col: 0 ... 83
+ * row: 0 ..  5
+ */
+void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row);
 #endif /* LCD_H */
