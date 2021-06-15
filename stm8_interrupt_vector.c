@@ -2,9 +2,10 @@
  *	Copyright (c) 2007 STMicroelectronics
  */
 #include "stm8l15x_itc.h"
+#include <stm8l15x.h>
 typedef void @far (*interrupt_handler_t)(void);
 
-
+extern bool state;
 struct interrupt_vector {
 	unsigned char interrupt_instruction;
 	interrupt_handler_t interrupt_handler;
@@ -18,6 +19,14 @@ struct interrupt_vector {
 	return;
 }
 
+@far @interrupt void EXTID0_IRQHandler(void)
+{
+	if(EXTI->SR1 == 0)
+		EXTI->SR1 |= 0x01;
+		
+	state ^= 1;
+}
+
 extern void _stext();     /* startup routine */
 
 struct interrupt_vector const _vectab[] = {
@@ -28,10 +37,10 @@ struct interrupt_vector const _vectab[] = {
 	{0x82, NonHandledInterrupt}, /* irq2  */
 	{0x82, NonHandledInterrupt}, /* irq3  */
 	{0x82, NonHandledInterrupt}, /* irq4  */
-	{0x82, (interrupt_handler_t)EXTID_IRQHandler}, /* irq5  */
+	{0x82, NonHandledInterrupt}, /* irq5  */
 	{0x82, NonHandledInterrupt}, /* irq6  */
-	{0x82, (interrupt_handler_t)EXTID_IRQHandler}, /* irq7  */
-	{0x82, NonHandledInterrupt}, /* irq8  */
+	{0x82, NonHandledInterrupt}, /* irq7  */
+	{0x82, (interrupt_handler_t)EXTID0_IRQHandler}, /* irq8  */
 	{0x82, NonHandledInterrupt}, /* irq9  */
 	{0x82, NonHandledInterrupt}, /* irq10 */
 	{0x82, NonHandledInterrupt}, /* irq11 */

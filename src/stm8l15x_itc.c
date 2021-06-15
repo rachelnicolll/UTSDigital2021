@@ -37,11 +37,6 @@
 extern bool state;
 
 
-void EXTID_IRQHandler(void)
-{
-	state ^= 1;
-}
-
 /** @addtogroup STM8L15x_StdPeriph_Driver
   * @{
   */

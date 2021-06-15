@@ -10,6 +10,28 @@
 #define OK   3 //PD2
 #define BACK 2 //PD3
 
+typedef enum
+{
+  DISPLAY_DORMANT,
+  DISPLAY_WELCOME,
+  DISPLAY_HOME,
+  DISPLAY_MENU,
+  DISPLAY_MIN_MAX,
+  DISPLAY_SETTINGS,
+  DISPLAY_SEND_DATA 
+} THMIDisplayStates;
+
+typedef struct State
+{
+  THMIDisplayStates  outState;
+  const struct State* next;
+}TState;
+
+//FSM for the HMI
+extern TState* HMIStatePtr;
+extern TState HMIFSM[5];
+
+
 /*
  * Initialize BUTTONS and corresponding IO pins
  */

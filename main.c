@@ -66,18 +66,16 @@ void main(void)
 		//	for (i = 0xAA; i < 0xFA; i += 0x10)
 		//		SPI_write(i);
 		//}
-		//if (state == TRUE)
-		//{
-		//	{int i; for (i = 0; i < sizeof(pressMSG) - 1; i++)
-		//		LCD_putc(pressMSG[i]);}
-		//	delay_ms(10000);
-		//	state = FALSE;
-		//}
-		//else
-		//{
-			//LCD_clear();
-		//}
-		SPI_write(0xFF);
+		if (state == 1)
+		{
+			LCD_clear();
+			{int i; for (i = 0; i < sizeof(pressMSG) - 1; i++)
+				LCD_putc(pressMSG[i]);}
+			delay_ms(1000);
+			state = FALSE;
+		}
+
+		//SPI_write(0xFF);
 		//chip_deselect();
 
 		//GPIOB->ODR &= ~0x01;
