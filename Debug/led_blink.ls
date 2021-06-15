@@ -13,38 +13,34 @@
   56  0008 358052c2      	mov	21186,#128
   57                     ; 16 	TIM1->CR1 = TIM1_CR1_CEN;
   59  000c 350152b0      	mov	21168,#1
-  60                     ; 18 	GPIOB->DDR |= 0x03;
-  62  0010 c65007        	ld	a,20487
-  63  0013 aa03          	or	a,#3
-  64  0015 c75007        	ld	20487,a
-  65                     ; 19 	GPIOB->CR1 |= 0x03;
-  67  0018 c65008        	ld	a,20488
-  68  001b aa03          	or	a,#3
-  69  001d c75008        	ld	20488,a
-  70                     ; 20 }
-  73  0020 81            	ret
-  76                     	xref	_clock
-  98                     ; 22 void led_blink()
-  98                     ; 23 {
-  99                     	switch	.text
- 100  0021               _led_blink:
- 104                     ; 24 	GPIOB->ODR &= ~0x01;
- 106  0021 72115005      	bres	20485,#0
- 107                     ; 25 		if (clock() % 1000 <= 500)
- 109  0025 9c            	rvf
- 110  0026 cd0000        	call	_clock
- 112  0029 9c            	rvf
- 113  002a 90ae03e8      	ldw	y,#1000
- 114  002e cd0000        	call	c_idiv
- 116  0031 51            	exgw	x,y
- 117  0032 a301f5        	cpw	x,#501
- 118  0035 2e04          	jrsge	L13
- 119                     ; 26 			GPIOB->ODR |= 0x01;
- 121  0037 72105005      	bset	20485,#0
- 122  003b               L13:
- 123                     ; 27 }
- 126  003b 81            	ret
- 139                     	xdef	_led_blink
- 140                     	xdef	_led_blink_init
- 159                     	xref	c_idiv
- 160                     	end
+  60                     ; 18 	GPIOE->DDR |= 0x80;
+  62  0010 721e5016      	bset	20502,#7
+  63                     ; 19 	GPIOE->CR1 |= 0x80;
+  65  0014 721e5017      	bset	20503,#7
+  66                     ; 20 }
+  69  0018 81            	ret
+  72                     	xref	_clock
+  94                     ; 22 void led_blink()
+  94                     ; 23 {
+  95                     	switch	.text
+  96  0019               _led_blink:
+ 100                     ; 24 	GPIOE->ODR &= 0x7f; //0b0111 1111
+ 102  0019 721f5014      	bres	20500,#7
+ 103                     ; 25 	if (clock() % 1000 <= 500)
+ 105  001d 9c            	rvf
+ 106  001e cd0000        	call	_clock
+ 108  0021 9c            	rvf
+ 109  0022 90ae03e8      	ldw	y,#1000
+ 110  0026 cd0000        	call	c_idiv
+ 112  0029 51            	exgw	x,y
+ 113  002a a301f5        	cpw	x,#501
+ 114  002d 2e04          	jrsge	L13
+ 115                     ; 26 			GPIOE->ODR |= 0x80; //0b1000 000
+ 117  002f 721e5014      	bset	20500,#7
+ 118  0033               L13:
+ 119                     ; 27 }
+ 122  0033 81            	ret
+ 135                     	xdef	_led_blink
+ 136                     	xdef	_led_blink_init
+ 155                     	xref	c_idiv
+ 156                     	end

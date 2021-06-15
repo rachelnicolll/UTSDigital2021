@@ -61,7 +61,7 @@ String.100.2=STM8 Cosmic
 String.100.3=ST7 Metrowerks V1.1
 String.100.4=Raisonance
 String.101.0=STM8 Cosmic
-String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers
+String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8
 String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
@@ -142,7 +142,7 @@ String.100.2=STM8 Cosmic
 String.100.3=ST7 Metrowerks V1.1
 String.100.4=Raisonance
 String.101.0=STM8 Cosmic
-String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers
+String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8
 String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
@@ -216,7 +216,7 @@ String.6.0=2021,6,13,21,27,16
 [Root.Source Files]
 ElemType=Folder
 PathName=Source Files
-Child=Root.Source Files.main.c
+Child=Root.Source Files.src\file.c
 Next=Root.Include Files
 Config.0=Root.Source Files.Config.0
 Config.1=Root.Source Files.Config.1
@@ -286,6 +286,26 @@ String.3.0=
 String.4.0=
 String.5.0=
 String.6.0=2021,6,13,21,27,16
+
+[Root.Source Files.src\file.c]
+ElemType=File
+PathName=src\file.c
+Next=Root.Source Files.src\uart.c
+
+[Root.Source Files.src\uart.c]
+ElemType=File
+PathName=src\uart.c
+Next=Root.Source Files.src\led_blink.c
+
+[Root.Source Files.src\led_blink.c]
+ElemType=File
+PathName=src\led_blink.c
+Next=Root.Source Files.src\fifo.c
+
+[Root.Source Files.src\fifo.c]
+ElemType=File
+PathName=src\fifo.c
+Next=Root.Source Files.main.c
 
 [Root.Source Files.main.c]
 ElemType=File
@@ -454,7 +474,7 @@ PathName=stm8_interrupt_vector.c
 [Root.Include Files]
 ElemType=Folder
 PathName=Include Files
-Child=Root.Include Files.inc\delay.h
+Child=Root.Include Files.inc\file.h
 Config.0=Root.Include Files.Config.0
 Config.1=Root.Include Files.Config.1
 
@@ -523,6 +543,26 @@ String.3.0=
 String.4.0=
 String.5.0=
 String.6.0=2021,6,13,21,27,16
+
+[Root.Include Files.inc\file.h]
+ElemType=File
+PathName=inc\file.h
+Next=Root.Include Files.inc\uart.h
+
+[Root.Include Files.inc\uart.h]
+ElemType=File
+PathName=inc\uart.h
+Next=Root.Include Files.inc\led_blink.h
+
+[Root.Include Files.inc\led_blink.h]
+ElemType=File
+PathName=inc\led_blink.h
+Next=Root.Include Files.inc\fifo.h
+
+[Root.Include Files.inc\fifo.h]
+ElemType=File
+PathName=inc\fifo.h
+Next=Root.Include Files.inc\delay.h
 
 [Root.Include Files.inc\delay.h]
 ElemType=File

@@ -15,15 +15,13 @@ void led_blink_init()
 	// Enable timer
 	TIM1->CR1 = TIM1_CR1_CEN;
 	// Configure LED pins
-	GPIOB->DDR |= 0x03;
-	GPIOB->CR1 |= 0x03;
+	GPIOE->DDR |= 0x80;
+	GPIOE->CR1 |= 0x80;
 }
 
 void led_blink()
 {
-	GPIOB->ODR &= ~0x01;
-		if (clock() % 1000 <= 500)
-			GPIOB->ODR |= 0x01;
+	GPIOE->ODR &= 0x7f; //0b0111 1111
+	if (clock() % 1000 <= 500)
+			GPIOE->ODR |= 0x80; //0b1000 000
 }
-
-

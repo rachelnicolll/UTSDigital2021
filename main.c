@@ -21,7 +21,7 @@ void main(void)
 	for(;;)
 	{
 		led_blink();
-		UART_Test();
-		
+		UART_Poll();
+		UART_Welcome();
 	}
 }
