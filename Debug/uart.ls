@@ -4,212 +4,218 @@
   13                     	bsct
   14  0000               _welcome:
   15  0000 0000          	dc.w	0
-  45                     ; 12 void UART_init()
-  45                     ; 13 {
+  45                     ; 16 void UART_init()
+  45                     ; 17 {
   47                     	switch	.text
   48  0000               _UART_init:
-  52                     ; 14 	CLK->PCKENR1 |= CLK_PCKENR1_USART1; // Enable USART1 clock
-  54  0000 721a50c3      	bset	20675,#5
-  55                     ; 16 	GPIOC->DDR |= 0x08; // Put TX line on (0b0000 1000)
-  57  0004 7216500c      	bset	20492,#3
-  58                     ; 17 	GPIOC->CR1 |= 0x08; // USART Wakeup method (0b0000 1000)
-  60  0008 7216500d      	bset	20493,#3
-  61                     ; 18 	GPIOB->DDR &= 0xfe; //ensure GPIOB pin 0 is input mode (0b1111 1110)
-  63  000c 72115007      	bres	20487,#0
-  64                     ; 19 	GPIOB->CR1 |= GPIO_Mode_In_FL_No_IT; //Set GPIO mode to be input floating, no external interrupt
-  66  0010 c65008        	ld	a,20488
-  67                     ; 20 	USART1->CR2 |= USART_CR2_TEN | USART_CR2_REN;	  // Allow TX & RX
-  69  0013 c65235        	ld	a,21045
-  70  0016 aa0c          	or	a,#12
-  71  0018 c75235        	ld	21045,a
-  72                     ; 21 	USART1->CR3 &= ~(USART_CR3_STOP); // 1 stop bit (0b0011 0000)
-  74  001b c65236        	ld	a,21046
-  75  001e a4cf          	and	a,#207
-  76  0020 c75236        	ld	21046,a
-  77                     ; 22 	USART1->BRR2 = 0x03; //setting 
-  79  0023 35035233      	mov	21043,#3
-  80                     ; 23 	USART1->BRR1 = 0x68; // 9600 baud
-  82  0027 35685232      	mov	21042,#104
-  83                     ; 24 	GPIO_Init(GPIOB, GPIO_Pin_0, GPIO_Mode_In_FL_No_IT); //Initialise GPIOB Pin 0 to sense of the USB is plugged in or not.
-  85  002b 4b00          	push	#0
-  86  002d 4b01          	push	#1
-  87  002f ae5005        	ldw	x,#20485
-  88  0032 cd0000        	call	_GPIO_Init
-  90  0035 85            	popw	x
-  91                     ; 25 }
-  94  0036 81            	ret
- 128                     ; 27 char putchar(char c)
- 128                     ; 28 {
- 129                     	switch	.text
- 130  0037               _putchar:
- 132  0037 88            	push	a
- 133       00000000      OFST:	set	0
- 136  0038               L14:
- 137                     ; 29 	while(!(USART1->SR & USART_SR_TXE));
- 139  0038 c65230        	ld	a,21040
- 140  003b a580          	bcp	a,#128
- 141  003d 27f9          	jreq	L14
- 142                     ; 30 	USART1->DR = c;
- 144  003f 7b01          	ld	a,(OFST+1,sp)
- 145  0041 c75231        	ld	21041,a
- 146                     ; 31 	return(c);
- 148  0044 7b01          	ld	a,(OFST+1,sp)
- 151  0046 5b01          	addw	sp,#1
- 152  0048 81            	ret
- 186                     ; 34 char getchar(void)
- 186                     ; 35 {
- 187                     	switch	.text
- 188  0049               _getchar:
- 190  0049 88            	push	a
- 191       00000001      OFST:	set	1
- 194  004a               L56:
- 195                     ; 37 	while(!(USART1->SR & USART_SR_RXNE));
- 197  004a c65230        	ld	a,21040
- 198  004d a520          	bcp	a,#32
- 199  004f 27f9          	jreq	L56
- 200                     ; 38 	c = USART1->DR;
- 202  0051 c65231        	ld	a,21041
- 203  0054 6b01          	ld	(OFST+0,sp),a
- 205                     ; 39 	return(c);
- 207  0056 7b01          	ld	a,(OFST+0,sp)
- 210  0058 5b01          	addw	sp,#1
- 211  005a 81            	ret
- 245                     ; 42 void UART_TX(unsigned char val)
- 245                     ; 43 {
- 246                     	switch	.text
- 247  005b               _UART_TX:
- 249  005b 88            	push	a
- 250       00000000      OFST:	set	0
- 253  005c               L111:
- 254                     ; 44 	while(!(USART1->SR & USART_SR_TXE));
- 256  005c c65230        	ld	a,21040
- 257  005f a580          	bcp	a,#128
- 258  0061 27f9          	jreq	L111
- 259                     ; 45 	USART1->DR = val;
- 261  0063 7b01          	ld	a,(OFST+1,sp)
- 262  0065 c75231        	ld	21041,a
- 263                     ; 47 }
- 266  0068 84            	pop	a
- 267  0069 81            	ret
- 290                     ; 49 unsigned char UART_RX(void)
- 290                     ; 50 {
- 291                     	switch	.text
- 292  006a               _UART_RX:
- 296  006a               L721:
- 297                     ; 51 	while(!(USART1->SR & USART_SR_RXNE));
- 299  006a c65230        	ld	a,21040
- 300  006d a520          	bcp	a,#32
- 301  006f 27f9          	jreq	L721
- 302                     ; 52 	return USART1->DR;
- 304  0071 c65231        	ld	a,21041
- 307  0074 81            	ret
- 343                     ; 55 void UART_Poll(void)
- 343                     ; 56 {
- 344                     	switch	.text
- 345  0075               _UART_Poll:
- 347  0075 88            	push	a
- 348       00000001      OFST:	set	1
- 351                     ; 58 	unsigned char inChar = 0;
- 353                     ; 59 	if (USART1->SR & USART_SR_RXNE) //check status register is ready to receive
- 355  0076 c65230        	ld	a,21040
- 356  0079 a520          	bcp	a,#32
- 357  007b 2708          	jreq	L151
- 358                     ; 61 		inChar = UART_RX();
- 360  007d adeb          	call	_UART_RX
- 362  007f 6b01          	ld	(OFST+0,sp),a
- 364                     ; 62 		UART_TX(inChar);
- 366  0081 7b01          	ld	a,(OFST+0,sp)
- 367  0083 add6          	call	_UART_TX
- 369  0085               L151:
- 370                     ; 67 }	
- 373  0085 84            	pop	a
- 374  0086 81            	ret
- 377                     	xref	_printf
- 378                     	xref	_clock
- 379                     	xref	_printf
- 380                     	xref	_scanf
- 419                     ; 69 void UART_Welcome()
- 419                     ; 70 {
- 420                     	switch	.text
- 421  0087               _UART_Welcome:
- 423  0087 52ff          	subw	sp,#255
- 424  0089 5211          	subw	sp,#17
- 425       00000110      OFST:	set	272
- 428                     ; 71 	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0) == SET && welcome == 0)
- 430  008b 4b01          	push	#1
- 431  008d ae5005        	ldw	x,#20485
- 432  0090 cd0000        	call	_GPIO_ReadInputDataBit
- 434  0093 5b01          	addw	sp,#1
- 435  0095 a101          	cp	a,#1
- 436  0097 262f          	jrne	L171
- 438  0099 be00          	ldw	x,_welcome
- 439  009b 262b          	jrne	L171
- 440                     ; 74 		printf("Welcome to the Greenhouse Datalogger\n");
- 442  009d ae006c        	ldw	x,#L371
- 443  00a0 cd0000        	call	_printf
- 445                     ; 75 		printf("Please enter the file name in which you would like to save today's data: \n");
- 447  00a3 ae0021        	ldw	x,#L571
- 448  00a6 cd0000        	call	_printf
- 450                     ; 76 		scanf("%s", &filename);
- 452  00a9 96            	ldw	x,sp
- 453  00aa 1c0011        	addw	x,#OFST-255
- 454  00ad 89            	pushw	x
- 455  00ae ae001e        	ldw	x,#L771
- 456  00b1 cd0000        	call	_scanf
- 458  00b4 85            	popw	x
- 459                     ; 77 		printf("Writing to %s\n", filename);
- 461  00b5 96            	ldw	x,sp
- 462  00b6 1c0011        	addw	x,#OFST-255
- 463  00b9 89            	pushw	x
- 464  00ba ae000f        	ldw	x,#L102
- 465  00bd cd0000        	call	_printf
- 467  00c0 85            	popw	x
- 468                     ; 78   	welcome++;
- 470  00c1 be00          	ldw	x,_welcome
- 471  00c3 1c0001        	addw	x,#1
- 472  00c6 bf00          	ldw	_welcome,x
- 473  00c8               L171:
- 474                     ; 81 	if (clock() % 1000 == 10)
- 476  00c8 cd0000        	call	_clock
- 478  00cb 90ae03e8      	ldw	y,#1000
- 479  00cf cd0000        	call	c_idiv
- 481  00d2 51            	exgw	x,y
- 482  00d3 a3000a        	cpw	x,#10
- 483  00d6 2606          	jrne	L302
- 484                     ; 82 		printf("Hello World! \n");
- 486  00d8 ae0000        	ldw	x,#L502
- 487  00db cd0000        	call	_printf
- 489  00de               L302:
- 490                     ; 83 }
- 493  00de 5bff          	addw	sp,#255
- 494  00e0 5b11          	addw	sp,#17
- 495  00e2 81            	ret
- 519                     	xdef	_getchar
- 520                     	xdef	_putchar
- 521                     	xdef	_welcome
- 522                     	xdef	_UART_Welcome
- 523                     	xdef	_UART_Poll
- 524                     	xdef	_UART_RX
- 525                     	xdef	_UART_TX
- 526                     	xdef	_UART_init
- 527                     	xref	_GPIO_ReadInputDataBit
- 528                     	xref	_GPIO_Init
- 529                     .const:	section	.text
- 530  0000               L502:
- 531  0000 48656c6c6f20  	dc.b	"Hello World! ",10,0
- 532  000f               L102:
- 533  000f 57726974696e  	dc.b	"Writing to %s",10,0
- 534  001e               L771:
- 535  001e 257300        	dc.b	"%s",0
- 536  0021               L571:
- 537  0021 506c65617365  	dc.b	"Please enter the f"
- 538  0033 696c65206e61  	dc.b	"ile name in which "
- 539  0045 796f7520776f  	dc.b	"you would like to "
- 540  0057 736176652074  	dc.b	"save today's data:"
- 541  0069 200a00        	dc.b	" ",10,0
- 542  006c               L371:
- 543  006c 57656c636f6d  	dc.b	"Welcome to the Gre"
- 544  007e 656e686f7573  	dc.b	"enhouse Datalogger"
- 545  0090 0a00          	dc.b	10,0
- 565                     	xref	c_idiv
- 566                     	end
+  52                     ; 21 	USART1->CR2 |= USART_CR2_REN;	  // Allow RX
+  54  0000 72145235      	bset	21045,#2
+  55                     ; 24 	CLK->PCKENR1 |= CLK_PCKENR1_USART1; // Enable USART1 clock
+  57  0004 721a50c3      	bset	20675,#5
+  58                     ; 27 	GPIOC->DDR |= 0x08; // Put TX line on (0b0000 1000)
+  60  0008 7216500c      	bset	20492,#3
+  61                     ; 28 	GPIOC->CR1 |= 0x08; // USART Wakeup method (0b0000 1000)
+  63  000c 7216500d      	bset	20493,#3
+  64                     ; 29 	GPIOB->DDR &= 0xfe; //ensure GPIOB pin 0 is input mode (0b1111 1110)
+  66  0010 72115007      	bres	20487,#0
+  67                     ; 30 	GPIOB->CR1 |= GPIO_Mode_In_FL_No_IT; //Set GPIO mode to be input floating, no external interrupt
+  69  0014 c65008        	ld	a,20488
+  70                     ; 31 	USART1->CR2 |= USART_CR2_TEN | USART_CR2_REN;
+  72  0017 c65235        	ld	a,21045
+  73  001a aa0c          	or	a,#12
+  74  001c c75235        	ld	21045,a
+  75                     ; 32 	USART1->CR3 &= ~(USART_CR3_STOP); // 1 stop bit (0b0011 0000)
+  77  001f c65236        	ld	a,21046
+  78  0022 a4cf          	and	a,#207
+  79  0024 c75236        	ld	21046,a
+  80                     ; 33 	USART1->BRR2 = 0x03; //setting 
+  82  0027 35035233      	mov	21043,#3
+  83                     ; 34 	USART1->BRR1 = 0x68; // 9600 baud
+  85  002b 35685232      	mov	21042,#104
+  86                     ; 35 	GPIO_Init(GPIOB, GPIO_Pin_0, GPIO_Mode_In_FL_No_IT); //Initialise GPIOB Pin 0 to sense of the USB is plugged in or not. SLEEP#
+  88  002f 4b00          	push	#0
+  89  0031 4b01          	push	#1
+  90  0033 ae5005        	ldw	x,#20485
+  91  0036 cd0000        	call	_GPIO_Init
+  93  0039 85            	popw	x
+  94                     ; 36 }
+  97  003a 81            	ret
+ 131                     ; 38 char putchar(char c)
+ 131                     ; 39 {
+ 132                     	switch	.text
+ 133  003b               _putchar:
+ 135  003b 88            	push	a
+ 136       00000000      OFST:	set	0
+ 139  003c               L14:
+ 140                     ; 40 	while(!(USART1->SR & USART_SR_TXE));
+ 142  003c c65230        	ld	a,21040
+ 143  003f a580          	bcp	a,#128
+ 144  0041 27f9          	jreq	L14
+ 145                     ; 41 	USART1->DR = c;
+ 147  0043 7b01          	ld	a,(OFST+1,sp)
+ 148  0045 c75231        	ld	21041,a
+ 149                     ; 42 	return(c);
+ 151  0048 7b01          	ld	a,(OFST+1,sp)
+ 154  004a 5b01          	addw	sp,#1
+ 155  004c 81            	ret
+ 189                     ; 45 char getchar(void)
+ 189                     ; 46 {
+ 190                     	switch	.text
+ 191  004d               _getchar:
+ 193  004d 88            	push	a
+ 194       00000001      OFST:	set	1
+ 197  004e               L56:
+ 198                     ; 48 	while(!(USART1->SR & USART_SR_RXNE));
+ 200  004e c65230        	ld	a,21040
+ 201  0051 a520          	bcp	a,#32
+ 202  0053 27f9          	jreq	L56
+ 203                     ; 49 	c = USART1->DR;
+ 205  0055 c65231        	ld	a,21041
+ 206  0058 6b01          	ld	(OFST+0,sp),a
+ 208                     ; 50 	return(c);
+ 210  005a 7b01          	ld	a,(OFST+0,sp)
+ 213  005c 5b01          	addw	sp,#1
+ 214  005e 81            	ret
+ 248                     ; 53 void UART_TX(unsigned char val)
+ 248                     ; 54 {
+ 249                     	switch	.text
+ 250  005f               _UART_TX:
+ 252  005f 88            	push	a
+ 253       00000000      OFST:	set	0
+ 256  0060               L111:
+ 257                     ; 55 	while(!(USART1->SR & USART_SR_TXE));
+ 259  0060 c65230        	ld	a,21040
+ 260  0063 a580          	bcp	a,#128
+ 261  0065 27f9          	jreq	L111
+ 262                     ; 56 	USART1->DR = val;
+ 264  0067 7b01          	ld	a,(OFST+1,sp)
+ 265  0069 c75231        	ld	21041,a
+ 266                     ; 58 }
+ 269  006c 84            	pop	a
+ 270  006d 81            	ret
+ 293                     ; 60 unsigned char UART_RX(void)
+ 293                     ; 61 {
+ 294                     	switch	.text
+ 295  006e               _UART_RX:
+ 299  006e               L721:
+ 300                     ; 62 	while(!(USART1->SR & USART_SR_RXNE));
+ 302  006e c65230        	ld	a,21040
+ 303  0071 a520          	bcp	a,#32
+ 304  0073 27f9          	jreq	L721
+ 305                     ; 63 	return USART1->DR;
+ 307  0075 c65231        	ld	a,21041
+ 310  0078 81            	ret
+ 346                     ; 66 void UART_Poll(void)
+ 346                     ; 67 {
+ 347                     	switch	.text
+ 348  0079               _UART_Poll:
+ 350  0079 88            	push	a
+ 351       00000001      OFST:	set	1
+ 354                     ; 69 	unsigned char inChar = 0;
+ 356                     ; 70 	if (USART1->SR & USART_SR_RXNE) //check status register is ready to receive
+ 358  007a c65230        	ld	a,21040
+ 359  007d a520          	bcp	a,#32
+ 360  007f 2708          	jreq	L151
+ 361                     ; 72 		inChar = UART_RX();
+ 363  0081 adeb          	call	_UART_RX
+ 365  0083 6b01          	ld	(OFST+0,sp),a
+ 367                     ; 73 		UART_TX(inChar);
+ 369  0085 7b01          	ld	a,(OFST+0,sp)
+ 370  0087 add6          	call	_UART_TX
+ 372  0089               L151:
+ 373                     ; 78 }	
+ 376  0089 84            	pop	a
+ 377  008a 81            	ret
+ 380                     	xref	_printf
+ 381                     	xref	_clock
+ 382                     	xref	_printf
+ 383                     	xref	_scanf
+ 452                     ; 80 void UART_Welcome()
+ 452                     ; 81 {
+ 453                     	switch	.text
+ 454  008b               _UART_Welcome:
+ 456  008b 5239          	subw	sp,#57
+ 457       00000039      OFST:	set	57
+ 460                     ; 84 	val = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0);
+ 462  008d 4b01          	push	#1
+ 463  008f ae5005        	ldw	x,#20485
+ 464  0092 cd0000        	call	_GPIO_ReadInputDataBit
+ 466  0095 5b01          	addw	sp,#1
+ 467  0097 6b01          	ld	(OFST-56,sp),a
+ 469                     ; 85 	if (val == SET && welcome == 0)
+ 471  0099 7b01          	ld	a,(OFST-56,sp)
+ 472  009b a101          	cp	a,#1
+ 473  009d 262f          	jrne	L502
+ 475  009f be00          	ldw	x,_welcome
+ 476  00a1 262b          	jrne	L502
+ 477                     ; 87 		printf("Welcome to the Greenhouse Datalogger\n");
+ 479  00a3 ae0066        	ldw	x,#L702
+ 480  00a6 cd0000        	call	_printf
+ 482                     ; 88 		printf("Please enter the text file name where today's data will be saved: \n");
+ 484  00a9 ae0022        	ldw	x,#L112
+ 485  00ac cd0000        	call	_printf
+ 487                     ; 90 		scanf("%s", &filename);
+ 489  00af 96            	ldw	x,sp
+ 490  00b0 1c0002        	addw	x,#OFST-55
+ 491  00b3 89            	pushw	x
+ 492  00b4 ae001f        	ldw	x,#L312
+ 493  00b7 cd0000        	call	_scanf
+ 495  00ba 85            	popw	x
+ 496                     ; 91 		printf("Writing to: %s\n", filename);
+ 498  00bb 96            	ldw	x,sp
+ 499  00bc 1c0002        	addw	x,#OFST-55
+ 500  00bf 89            	pushw	x
+ 501  00c0 ae000f        	ldw	x,#L512
+ 502  00c3 cd0000        	call	_printf
+ 504  00c6 85            	popw	x
+ 505                     ; 95   	welcome++;
+ 507  00c7 be00          	ldw	x,_welcome
+ 508  00c9 1c0001        	addw	x,#1
+ 509  00cc bf00          	ldw	_welcome,x
+ 510  00ce               L502:
+ 511                     ; 98 	if (clock() % 1000 == 10)
+ 513  00ce cd0000        	call	_clock
+ 515  00d1 90ae03e8      	ldw	y,#1000
+ 516  00d5 cd0000        	call	c_idiv
+ 518  00d8 51            	exgw	x,y
+ 519  00d9 a3000a        	cpw	x,#10
+ 520  00dc 2606          	jrne	L712
+ 521                     ; 99 		printf("Hello World! \n");
+ 523  00de ae0000        	ldw	x,#L122
+ 524  00e1 cd0000        	call	_printf
+ 526  00e4               L712:
+ 527                     ; 100 }
+ 530  00e4 5b39          	addw	sp,#57
+ 531  00e6 81            	ret
+ 565                     	xdef	_getchar
+ 566                     	xdef	_putchar
+ 567                     	switch	.ubsct
+ 568  0000               _filemsg:
+ 569  0000 000000000000  	ds.b	56
+ 570                     	xdef	_filemsg
+ 571                     	xdef	_welcome
+ 572                     	xdef	_UART_Welcome
+ 573                     	xdef	_UART_Poll
+ 574                     	xdef	_UART_RX
+ 575                     	xdef	_UART_TX
+ 576                     	xdef	_UART_init
+ 577                     	xref	_GPIO_ReadInputDataBit
+ 578                     	xref	_GPIO_Init
+ 579                     .const:	section	.text
+ 580  0000               L122:
+ 581  0000 48656c6c6f20  	dc.b	"Hello World! ",10,0
+ 582  000f               L512:
+ 583  000f 57726974696e  	dc.b	"Writing to: %s",10,0
+ 584  001f               L312:
+ 585  001f 257300        	dc.b	"%s",0
+ 586  0022               L112:
+ 587  0022 506c65617365  	dc.b	"Please enter the t"
+ 588  0034 657874206669  	dc.b	"ext file name wher"
+ 589  0046 6520746f6461  	dc.b	"e today's data wil"
+ 590  0058 6c2062652073  	dc.b	"l be saved: ",10,0
+ 591  0066               L702:
+ 592  0066 57656c636f6d  	dc.b	"Welcome to the Gre"
+ 593  0078 656e686f7573  	dc.b	"enhouse Datalogger"
+ 594  008a 0a00          	dc.b	10,0
+ 614                     	xref	c_idiv
+ 615                     	end

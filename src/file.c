@@ -9,9 +9,9 @@
 
 void file_write ()
 {
-	FILE *fp;
+	//FILE *fp;
 	
-	fp = fopen(filename, "w");
+	//fp = fopen(filename, "w");
 	
 	//if (fp == NULL)
 	//{
@@ -19,6 +19,6 @@ void file_write ()
 	//	exit(1);
 	//}
 	
-	fprintf(fp, "%s", filemsg);
-	fclose(fp);
+	//fprintf(fp, "%s", filemsg);
+	//fclose(fp);
 }

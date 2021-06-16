@@ -3,9 +3,8 @@
 
 #include <stdint.h>
 
-#define MAX_STR_LENGTH 256 //max file name
-char filename[MAX_STR_LENGTH]; //text file name where data will be saved
-char filemsg[MAX_STR_LENGTH]; //file message to be saved in text file
+#define MAX_STR_LENGTH 56 //max file name
+
 /*
  * Initialize UART.
  *

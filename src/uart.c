@@ -3,26 +3,36 @@
 *	 Allows user to collect data via PC
 */
 #include <stm8l15x.h>
+#include <stm8l15x_usart.h>
+#include <stm8l15x_gpio.h>
 #include <uart.h>
 #include <stm8l15x_gpio.h>
-#include <file.h>
+//#include <file.h>
 
 int welcome = 0;//counter to ensure uart only transmits welcome message once
-
+//
+char filemsg[MAX_STR_LENGTH]; //file message to be saved in text file
 
 void UART_init()
 {
+	//USART_DeInit(USART1);
+	
+	//USART_Init(USART1, 9600, USART_WordLength_8b, USART_StopBits_1, USART_Parity_No, USART_Mode_Tx);
+	USART1->CR2 |= USART_CR2_REN;	  // Allow RX
+	//USART_Cmd(USART1, ENABLE); //Waheup USART1
+	
 	CLK->PCKENR1 |= CLK_PCKENR1_USART1; // Enable USART1 clock
+	
 	//Configure UART Pins
 	GPIOC->DDR |= 0x08; // Put TX line on (0b0000 1000)
 	GPIOC->CR1 |= 0x08; // USART Wakeup method (0b0000 1000)
 	GPIOB->DDR &= 0xfe; //ensure GPIOB pin 0 is input mode (0b1111 1110)
 	GPIOB->CR1 |= GPIO_Mode_In_FL_No_IT; //Set GPIO mode to be input floating, no external interrupt
-	USART1->CR2 |= USART_CR2_TEN | USART_CR2_REN;	  // Allow TX & RX
+	USART1->CR2 |= USART_CR2_TEN | USART_CR2_REN;
 	USART1->CR3 &= ~(USART_CR3_STOP); // 1 stop bit (0b0011 0000)
 	USART1->BRR2 = 0x03; //setting 
 	USART1->BRR1 = 0x68; // 9600 baud
-	GPIO_Init(GPIOB, GPIO_Pin_0, GPIO_Mode_In_FL_No_IT); //Initialise GPIOB Pin 0 to sense of the USB is plugged in or not.
+	GPIO_Init(GPIOB, GPIO_Pin_0, GPIO_Mode_In_FL_No_IT); //Initialise GPIOB Pin 0 to sense of the USB is plugged in or not. SLEEP#
 }
 
 char putchar(char c)
@@ -69,14 +79,18 @@ void UART_Poll(void)
 
 void UART_Welcome()
 {
-	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0) == SET && welcome == 0)
+	BitStatus val;
+	char filename[MAX_STR_LENGTH]; //text file name where data will be saved
+	val = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0);
+	if (val == SET && welcome == 0)
 	{
 		printf("Welcome to the Greenhouse Datalogger\n");
 		printf("Please enter the text file name where today's data will be saved: \n");
-		printf("Note: if the filename already exists in the current directory, it will be overwritten.");
+		//printf("Note: if the filename already exists in the current directory, it will be overwritten.\n");
 		scanf("%s", &filename);
-		printf("What would you like to write to %s:\n", filename);
-		scanf("%s", &filemsg);
+		printf("Writing to: %s\n", filename);
+		//printf("What would you like to write to %s:\n", filename);
+		//scanf("%s", &filemsg);
 		
   	welcome++;
 	}
