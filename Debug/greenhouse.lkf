@@ -50,6 +50,7 @@ crtsi0.sm8
 
 # Object files list - section reserved for STVD
 #<BEGIN OBJECT_FILES>
+Debug\rtc.o
 Debug\buttons.o
 Debug\main.o
 Debug\delay.o

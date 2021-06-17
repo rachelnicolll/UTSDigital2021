@@ -7,6 +7,7 @@
 #include <spi.h>
 #include <LCD.h>
 #include <delay.h>
+#include <RTC.h>
 #include <buttons.h>
 #include <stm8l15x_gpio.h>
 #include <stm8l15x_clk.h>
@@ -16,7 +17,7 @@ const char op[] = "hehe!";
 const char pressMSG[] = "PRESSED ME!";
 const char settingMsg[] = "Editable!";
 const char sendDataMsg[] = "Plug me in!";
-bool state = FALSE;
+bool editMode = FALSE;
 
 // HMI varables
 uint8_t buttonPressed;
@@ -25,11 +26,15 @@ TState HMIFSM[6] =
 	{
 		{DISPLAY_DORMANT, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_WELCOME]},
 		{DISPLAY_WELCOME, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
-		{DISPLAY_HOME, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_MIN_MAX]},
-		{DISPLAY_MIN_MAX, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SETTINGS]},
-		{DISPLAY_SETTINGS, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
+		{DISPLAY_HOME, &HMIFSM[DISPLAY_SETTINGS], &HMIFSM[DISPLAY_MIN_MAX]},
+		{DISPLAY_MIN_MAX, &HMIFSM[DISPLAY_HOME], &HMIFSM[DISPLAY_SETTINGS]},
+		{DISPLAY_SETTINGS, &HMIFSM[DISPLAY_MIN_MAX], &HMIFSM[DISPLAY_HOME]},
 		{DISPLAY_SEND_DATA, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SEND_DATA]},
 };
+
+// RTC variable declaration
+RTC_TimeTypeDef SRTC_TimeRead;
+RTC_DateTypeDef SRTC_DateRead;
 
 unsigned int clock(void)
 {
@@ -68,19 +73,29 @@ void main(void)
 
 	// Initialise spi
 	SPI_init();
+	// Initicalise RTC
+	RTC_init();
 	// Initialise buttons
 	BTN_init();
 	// Initialise LCD
 	LCD_init();
 	// Initialise HMI to first state
 	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
-				  for (;;)
-	{
+	for (;;)
+	{	
 		// get temp and humidity readings, pass them into flash and also lcd dispaly
-
+		// read time and date every 1 second
+		if (clock() % 1000 == 0)
+		{
+			//Read Time
+			RTC_GetTime(RTC_Format_BIN,&SRTC_TimeRead);
+			//Read Date
+			RTC_GetDate(RTC_Format_BIN, &SRTC_DateRead);  
+		}
 		switch (HMIStatePtr->outState)
 		{
 		case DISPLAY_DORMANT:
+			LCD_clear();
 			// If button press, wake up
 			if (buttonPressed != 0)
 				HMIStatePtr = HMIStatePtr->next;
@@ -93,8 +108,9 @@ void main(void)
 			// disable buttons?
 			break;
 		case DISPLAY_HOME:
+
 			// Showing temp and humidity and menu option
-			LCD_homescreen("18", "70");
+			LCD_homescreen(SRTC_DateRead, SRTC_TimeRead, "18", "70");
 			// If button is pressed, increment cursor pos
 			if (buttonPressed == DOWN)
 			{
@@ -120,23 +136,43 @@ void main(void)
 			buttonPressed = NO;
 			break;
 		case DISPLAY_SETTINGS:
-		// Show settings to change frequency. Need to press ok to engage with screen
+			// Show settings to change frequency. Need to press ok to engage with screen
 			LCD_display_settings();
-			if (buttonPressed == DOWN)
+
+			if (editMode == FALSE)
 			{
-				HMIStatePtr = HMIStatePtr->next;
-				LCD_clear();
+				if (buttonPressed == DOWN)
+				{
+					HMIStatePtr = HMIStatePtr->next;
+					LCD_clear();
+				}
+				else if (buttonPressed == UP)
+				{
+					HMIStatePtr = HMIStatePtr->previous;
+					LCD_clear();
+				}
+				else if (buttonPressed == OK)
+					editMode ^= editMode;
 			}
-			else if (buttonPressed == UP)
+			else // Edit mode is true
 			{
-				HMIStatePtr = HMIStatePtr->previous;
+				// Configure settings
 				LCD_clear();
-			}
-			else if (buttonPressed == OK)
-			{
-				LCD_clear();
-				
 				LCD_writemsg(settingMsg, sizeof(settingMsg), 20, 3);
+				
+				if (buttonPressed == DOWN)
+				{
+					// Decrement minutes
+				}
+				else if (buttonPressed == UP)
+				{
+					// Increment minutes
+				}
+				else if (buttonPressed == OK)
+				{
+					// Save settings
+					editMode ^= editMode;
+				}
 			}
 
 			buttonPressed = NO;
@@ -155,7 +191,6 @@ void main(void)
 				LCD_clear();
 			}
 
-			
 			LCD_writemsg(sendDataMsg, sizeof(sendDataMsg), 20, 3);
 			buttonPressed = NO;
 			break;

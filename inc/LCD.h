@@ -2,6 +2,7 @@
 #define LCD_H
 
 #include <stdint.h>
+#include <stm8l15x_conf.h>
 
 #define TOP_SCREEN 0
 #define BOTTOM_SCREEN 5
@@ -47,7 +48,7 @@ void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row);
 
 void LCD_welcome();
 
-void LCD_homescreen(char temperature[], char humidity[]);
+void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, char temperature[], char humidity[]);
 
 void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity);
 

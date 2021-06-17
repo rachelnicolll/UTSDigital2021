@@ -2,11 +2,16 @@
 #include <LCD_config.h>
 #include <font_5x8.h>
 #include <string.h>
+#include <stdio.h>
 
 #define FONT_WIDTH 5
 
 const char welcomeMSG[] = "Greenhouse Data Logger";
 
+extern RTC_TimeTypeDef SRTC_TimeRead;
+extern RTC_DateTypeDef SRTC_DateRead;
+
+extern 
 void LCD_init()
 {
     // set up pins
@@ -50,11 +55,31 @@ void LCD_welcome()
     LCD_clear();
 }
 
-void LCD_homescreen(char temperature[], char humidity[])
+LCD_showdate(RTC_DateTypeDef SDate)
 {
-    char homeMsg[] = "home";
+    
+    char displayDate[50];
+    int i = sprintf(displayDate, "20%02d-%02d-%02d", SDate.RTC_Year, SDate.RTC_Month, SDate.RTC_Date);
+
+    LCD_writemsg(displayDate, sizeof(displayDate), 0, 0);
+}
+
+LCD_showtime(RTC_TimeTypeDef STime)
+{
+    char displayTime[10];
+    int i = sprintf(displayTime, "%02d:%02d", STime.RTC_Hours, STime.RTC_Minutes);
+
+    LCD_writemsg(displayTime, sizeof(displayTime), 40, 0);
+}
+
+void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, char temperature[], char humidity[])
+{
+		char homeMsg[] = "home";
     char tempMsg[] = "temp      : ";
     char humMsg[] = "humidity : ";
+
+    LCD_showdate(SDate);
+    LCD_showtime(STime);
 
     strcat(tempMsg, temperature);
     strcat(humMsg, humidity);

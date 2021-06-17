@@ -28,7 +28,7 @@ struct interrupt_vector {
 
 @far @interrupt void EXTID4_IRQHandler(void)
 {
-	// if the interrupt has occurred, clear flag
+	// if the interrupt has occurred, clear flag  -- SHOULD ALSO CHECK PORT D bit is low
 	if(EXTI->SR1 == 0x10)
 		EXTI->SR1 |= 0x10;
 		
