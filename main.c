@@ -7,9 +7,12 @@
 #include <spi.h>
 #include <LCD.h>
 #include <delay.h>
+#include <clk.h>
+#include <i2c.h>
 #include "stm8l15x_gpio.h"
 #include "stm8l15x_clk.h"
 #include "stm8l15x_spi.h"
+
 
 
 #define CS_PIN 1
