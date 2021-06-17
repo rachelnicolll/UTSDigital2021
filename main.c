@@ -16,10 +16,19 @@ const char op[] = "hehe!";
 const char pressMSG[] = "PRESSED ME!";
 bool state = FALSE;
 
-//HMI varables
+// HMI varables
 uint8_t buttonPressed;
-extern TState* HMIStatePtr;
-extern TState HMIFSM[5];
+TState* HMIStatePtr;
+TState HMIFSM[7] =
+{
+  {DISPLAY_DORMANT, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_WELCOME]},
+  {DISPLAY_WELCOME, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
+  {DISPLAY_HOME, 		&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_MENU]},
+  {DISPLAY_MENU, 		&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_MIN_MAX]},
+  {DISPLAY_MIN_MAX, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SETTINGS]},
+  {DISPLAY_SETTINGS,	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
+  {DISPLAY_SEND_DATA, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SEND_DATA]}, 
+};
 
 unsigned int clock(void)
 {
@@ -28,7 +37,7 @@ unsigned int clock(void)
 
 void main(void)
 {
-	// initialise local variables
+	// Initialise local variables
 	uint8_t cursorPos = 0;
 
 	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
@@ -46,11 +55,11 @@ void main(void)
 	GPIOB->DDR |= 0x03;
 	GPIOB->CR1 |= 0x03;
 
-	//Configure UART Pins
+	// Configure UART Pins
 	GPIOC->DDR = 0x08; // Put TX line on 0b0000 1000
 	GPIOC->CR1 = 0x08; // 0b0000 1000
 
-	//Enable and Configure UART
+	// Enable and Configure UART
 	USART1->CR2 = USART_CR2_TEN;	  // Allow TX and RX
 	USART1->CR3 &= ~(USART_CR3_STOP); // 1 stop bit
 	USART1->BRR2 = 0x03;
@@ -58,29 +67,33 @@ void main(void)
 
 	// Initialise spi
 	SPI_init();
+	// Initialise buttons
 	BTN_init();
+	// Initialise LCD
 	LCD_init();
+	// Initialise HMI to first state
+	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT]
 
 	for (;;)
 	{
 		// get temp and humidity readings, pass them into flash and also lcd dispaly
-		switch (HMIFSM)
+		switch (StatePtr->outState)
 		{
 		case DISPLAY_DORMANT:
-			//if button press, wake up
+			// If button press, wake up
 			if (buttonPressed != 0)
-				HMIStatePtr = &HMIFSM[DISPLAY_WELCOME];
-			//Wake up
+				HMIStatePtr = HMIStatePtr->next;
+			// Wake up
 			break;
 		case DISPLAY_WELCOME:
 			LCD_welcome();
-			HMIStatePtr = &HMIFSM[DISPLAY_HOME];
-			//disable buttons?
+			HMIStatePtr = HMIStatePtr->next;
+			// disable buttons?
 			break;
 		case DISPLAY_HOME:
-			// showing temp and humidity and menu option
+			// Showing temp and humidity and menu option
 			LCD_homescreen("18", "70");
-			// if button is pressed, increment cursor pos
+			// If button is pressed, increment cursor pos
 			if (buttonPressed == DOWN)
 			{
 				cursorPos++;
@@ -97,55 +110,55 @@ void main(void)
 			}
 			else if (buttonPressed == BACK)
 			{
-				// sleep?
+				// Sleep?
 			}
 
-			// if ok is pressed go to display menu
+			// If ok is pressed go to display menu
 			if (cursorPos == 1)
 			{
 				LCD_writemsg(".", sizeof("."), 0, BOTTOM_SCREEN);
 				if (buttonPressed == OK)
 				{
 					LCD_menu();
-					HMIStatePtr = &HMIFSM[DISPLAY_MENU];
+					HMIStatePtr = HMIStatePtr->next;
 				}
 			}
 			else
 				LCD_writemsg(" ", sizeof(" "), 0, BOTTOM_SCREEN);
 
-			// if back is pressed, do nothing
+			// If back is pressed, do nothing
 			break;
 		case DISPLAY_MENU:
-			// navigation 1 - 3 min max
-			// op 1: min max
+			// Navigation 1 - 3 min max
+			// Op 1: min max
 			// OK is pressed, go to display min max
-			// op 2:
+			// Op 2:
 			// OK is pressed, go to settings
-			//if back is pressed go to display home
+			// If back is pressed go to display home
 
 		case DISPLAY_MIN_MAX:
-			// back is pressed/ OK is pressed, go to display home
+			// Back is pressed/ OK is pressed, go to display home
 			break;
 		case DISPLAY_SETTINGS:
 
 			break;
 		case DISPLAY_SEND_DATA:
-			// show instructions to send data
+			// Show instructions to send data
 			break;
 		}
 
-		//Transmit data
-		//while (!(USART1->SR & USART_SR_TXE))
-		//	;
-		//USART1->DR = 'A';
+		// Transmit data
+		// while (!(USART1->SR & USART_SR_TXE))
+		// 	;
+		// USART1->DR = 'A';
 
-		//chip_select();
-		//{
-		//	uint8_t i;
-		//	for (i = 0xAA; i < 0xFA; i += 0x10)
-		//		SPI_write(i);
-		//}
-		// if (state == 1)
+		// Chip_select();
+		// {
+		// 	uint8_t i;
+		// 	for (i = 0xAA; i < 0xFA; i += 0x10)
+		// 		SPI_write(i);
+		// }
+		// If (state == 1)
 		// {
 		// 	LCD_clear();
 		// 	{
@@ -157,14 +170,14 @@ void main(void)
 		// 	state = FALSE;
 		// }
 
-		//SPI_write(0xFF);
-		//chip_deselect();
+		// SPI_write(0xFF);
+		// Chip_deselect();
 
-		//GPIOB->ODR &= ~0x01;
-		//if (clock() % 1000 <= 500)
-		//	GPIOB->ODR |= 0x01;
-		//GPIOC->ODR &= 0x01;
-		//if (clock() % 2000 <= 1000)
-		//	GPIOC->ODR |= 0x02;
+		// GPIOB->ODR &= ~0x01;
+		// If (clock() % 1000 <= 500)
+		// 	GPIOB->ODR |= 0x01;
+		// GPIOC->ODR &= 0x01;
+		// If (clock() % 2000 <= 1000)
+		// 	GPIOC->ODR |= 0x02;
 	}
 }

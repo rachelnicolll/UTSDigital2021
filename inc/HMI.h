@@ -1,5 +1,5 @@
-#ifndef BUTTONS_H
-#define BUTTONS_H
+#ifndef HMI_H
+#define HMI_H
 
 #include <stdint.h>
 #include <stm8l15x.h>
@@ -33,15 +33,13 @@ typedef struct State
 extern TState* HMIStatePtr;
 extern TState HMIFSM[7];
 
+/*
+ * Initialize HMI
+ */
+void HMI_init();
 
 /*
- * Initialize BUTTONS and corresponding IO pins
+ * Initialize HMI
  */
-void BTN_init();
-
-/*
- * Initialize interrupts for buttons
- */
-void EXTI_setup(void);
-
+void HMI_init();
 #endif /* BUTTONS_H */
