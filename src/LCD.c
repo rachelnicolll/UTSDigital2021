@@ -77,12 +77,26 @@ void LCD_menu()
     LCD_writemsg(op3, sizeof(op3), 1, 3);
 }
 
-void LCD_min_max()
+void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity)
 {
     static char tempHeader[] = "Temperature";
     static char humidityHeader[] = "Humidity";
+    static char minHeader[] = "Min: ";
+    static char maxHeader[] = "Max: ";
 
-    //LCD_writemsg()
+    LCD_writemsg(tempHeader, sizeof(tempHeader), 20, 0);
+    LCD_writemsg(minHeader, sizeof(minHeader), 1, 1);
+    LCD_writemsg(maxHeader, sizeof(maxHeader), 30, 1);
+
+    LCD_writemsg(humidityHeader, sizeof(humidityHeader), 20, 4);
+    LCD_writemsg(minHeader, sizeof(minHeader), 1, 5);
+    LCD_writemsg(maxHeader, sizeof(maxHeader), 30, 5);
+}
+
+void LCD_display_settings()
+{
+    static char settingsHeader[] = "Press OK to change settings";
+    LCD_writemsg(settingsHeader, sizeof(settingsHeader), 20, 0);
 }
 
 void LCD_cmd(uint8_t cmd)
@@ -141,5 +155,5 @@ void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row)
         for (i = 0; i < msgSize - 1; i++)
             LCD_putc(msg[i]);
     }
-    LCD_delay_ms(1000);
+    // LCD_delay_ms(1000);
 }

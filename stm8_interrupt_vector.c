@@ -13,7 +13,7 @@ struct interrupt_vector {
 	interrupt_handler_t interrupt_handler;
 };
 
-#define UP   5 //PD0 - EXTI0
+#define UP   5 //PD4 - EXTI4
 #define DOWN 4 //PD1 - EXTI1
 #define OK   3 //PD2 - EXTI2
 #define BACK 2 //PD3 - EXTI3
@@ -26,11 +26,11 @@ struct interrupt_vector {
 	return;
 }
 
-@far @interrupt void EXTID0_IRQHandler(void)
+@far @interrupt void EXTID4_IRQHandler(void)
 {
 	// if the interrupt has occurred, clear flag
-	if(EXTI->SR1 == 0x01)
-		EXTI->SR1 |= 0x01;
+	if(EXTI->SR1 == 0x10)
+		EXTI->SR1 |= 0x10;
 		
 	buttonPressed = UP;
 	return;
@@ -76,11 +76,11 @@ struct interrupt_vector const _vectab[] = {
 	{0x82, NonHandledInterrupt}, /* irq5  */
 	{0x82, NonHandledInterrupt}, /* irq6  */
 	{0x82, NonHandledInterrupt}, /* irq7  */
-	{0x82, (interrupt_handler_t)EXTID0_IRQHandler}, /* irq8  */
+	{0x82, NonHandledInterrupt}, /* irq8  */
 	{0x82, (interrupt_handler_t)EXTID1_IRQHandler}, /* irq9  */
 	{0x82, (interrupt_handler_t)EXTID2_IRQHandler}, /* irq10 */
 	{0x82, (interrupt_handler_t)EXTID3_IRQHandler}, /* irq11 */
-	{0x82, NonHandledInterrupt}, /* irq12 */
+	{0x82, (interrupt_handler_t)EXTID4_IRQHandler}, /* irq12 */
 	{0x82, NonHandledInterrupt}, /* irq13 */
 	{0x82, NonHandledInterrupt}, /* irq14 */
 	{0x82, NonHandledInterrupt}, /* irq15 */

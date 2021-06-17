@@ -8,26 +8,27 @@
 #include <LCD.h>
 #include <delay.h>
 #include <buttons.h>
-#include "stm8l15x_gpio.h"
-#include "stm8l15x_clk.h"
-#include "stm8l15x_spi.h"
+#include <stm8l15x_gpio.h>
+#include <stm8l15x_clk.h>
+#include <stm8l15x_spi.h>
 
 const char op[] = "hehe!";
 const char pressMSG[] = "PRESSED ME!";
+const char settingMsg[] = "Editable!";
+const char sendDataMsg[] = "Plug me in!";
 bool state = FALSE;
 
 // HMI varables
 uint8_t buttonPressed;
-TState* HMIStatePtr;
-TState HMIFSM[7] =
-{
-  {DISPLAY_DORMANT, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_WELCOME]},
-  {DISPLAY_WELCOME, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
-  {DISPLAY_HOME, 		&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_MENU]},
-  {DISPLAY_MENU, 		&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_MIN_MAX]},
-  {DISPLAY_MIN_MAX, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SETTINGS]},
-  {DISPLAY_SETTINGS,	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
-  {DISPLAY_SEND_DATA, 	&HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SEND_DATA]}, 
+TState *HMIStatePtr;
+TState HMIFSM[6] =
+	{
+		{DISPLAY_DORMANT, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_WELCOME]},
+		{DISPLAY_WELCOME, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
+		{DISPLAY_HOME, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_MIN_MAX]},
+		{DISPLAY_MIN_MAX, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SETTINGS]},
+		{DISPLAY_SETTINGS, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
+		{DISPLAY_SEND_DATA, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SEND_DATA]},
 };
 
 unsigned int clock(void)
@@ -51,9 +52,9 @@ void main(void)
 	// Enable timer
 	// TIM1->CR1 = TIM1_CR1_CEN;
 
-	// Configure LED pins
-	GPIOB->DDR |= 0x03;
-	GPIOB->CR1 |= 0x03;
+	// // Configure LED pins
+	// GPIOB->DDR |= 0x03;
+	// GPIOB->CR1 |= 0x03;
 
 	// Configure UART Pins
 	GPIOC->DDR = 0x08; // Put TX line on 0b0000 1000
@@ -72,17 +73,18 @@ void main(void)
 	// Initialise LCD
 	LCD_init();
 	// Initialise HMI to first state
-	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT]
-
-	for (;;)
+	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
+				  for (;;)
 	{
 		// get temp and humidity readings, pass them into flash and also lcd dispaly
-		switch (StatePtr->outState)
+
+		switch (HMIStatePtr->outState)
 		{
 		case DISPLAY_DORMANT:
 			// If button press, wake up
 			if (buttonPressed != 0)
 				HMIStatePtr = HMIStatePtr->next;
+			buttonPressed = NO;
 			// Wake up
 			break;
 		case DISPLAY_WELCOME:
@@ -96,54 +98,66 @@ void main(void)
 			// If button is pressed, increment cursor pos
 			if (buttonPressed == DOWN)
 			{
-				cursorPos++;
-				buttonPressed = NO;
-				if (cursorPos > 1)
-					cursorPos = 1;
+				HMIStatePtr = HMIStatePtr->next;
+				LCD_clear();
+			}
+			buttonPressed = NO;
+			break;
+
+		case DISPLAY_MIN_MAX:
+			LCD_min_max(12, 14, 8, 90);
+			if (buttonPressed == DOWN)
+			{
+				HMIStatePtr = HMIStatePtr->next;
+				LCD_clear();
 			}
 			else if (buttonPressed == UP)
 			{
-				cursorPos--;
-				buttonPressed = NO;
-				if (cursorPos < 0)
-					cursorPos = 0;
-			}
-			else if (buttonPressed == BACK)
-			{
-				// Sleep?
+				HMIStatePtr = HMIStatePtr->previous;
+				LCD_clear();
 			}
 
-			// If ok is pressed go to display menu
-			if (cursorPos == 1)
-			{
-				LCD_writemsg(".", sizeof("."), 0, BOTTOM_SCREEN);
-				if (buttonPressed == OK)
-				{
-					LCD_menu();
-					HMIStatePtr = HMIStatePtr->next;
-				}
-			}
-			else
-				LCD_writemsg(" ", sizeof(" "), 0, BOTTOM_SCREEN);
-
-			// If back is pressed, do nothing
-			break;
-		case DISPLAY_MENU:
-			// Navigation 1 - 3 min max
-			// Op 1: min max
-			// OK is pressed, go to display min max
-			// Op 2:
-			// OK is pressed, go to settings
-			// If back is pressed go to display home
-
-		case DISPLAY_MIN_MAX:
-			// Back is pressed/ OK is pressed, go to display home
+			buttonPressed = NO;
 			break;
 		case DISPLAY_SETTINGS:
+		// Show settings to change frequency. Need to press ok to engage with screen
+			LCD_display_settings();
+			if (buttonPressed == DOWN)
+			{
+				HMIStatePtr = HMIStatePtr->next;
+				LCD_clear();
+			}
+			else if (buttonPressed == UP)
+			{
+				HMIStatePtr = HMIStatePtr->previous;
+				LCD_clear();
+			}
+			else if (buttonPressed == OK)
+			{
+				LCD_clear();
+				
+				LCD_writemsg(settingMsg, sizeof(settingMsg), 20, 3);
+			}
 
+			buttonPressed = NO;
 			break;
+
 		case DISPLAY_SEND_DATA:
 			// Show instructions to send data
+			if (buttonPressed == DOWN)
+			{
+				HMIStatePtr = HMIStatePtr->next;
+				LCD_clear();
+			}
+			else if (buttonPressed == UP)
+			{
+				HMIStatePtr = HMIStatePtr->previous;
+				LCD_clear();
+			}
+
+			
+			LCD_writemsg(sendDataMsg, sizeof(sendDataMsg), 20, 3);
+			buttonPressed = NO;
 			break;
 		}
 

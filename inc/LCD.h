@@ -49,5 +49,9 @@ void LCD_welcome();
 
 void LCD_homescreen(char temperature[], char humidity[]);
 
+void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity);
+
 void LCD_menu();
+
+void LCD_display_settings();
 #endif /* LCD_H */
