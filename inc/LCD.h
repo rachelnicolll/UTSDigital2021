@@ -2,6 +2,9 @@
 #define LCD_H
 
 #include <stdint.h>
+
+#define TOP_SCREEN 0
+#define BOTTOM_SCREEN 5
 // #include <stm8s.h>
 
 /*
@@ -41,4 +44,10 @@ void LCD_write(uint8_t data);
  * row: 0 ..  5
  */
 void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row);
+
+void LCD_welcome();
+
+void LCD_homescreen(char temperature[], char humidity[]);
+
+void LCD_menu();
 #endif /* LCD_H */

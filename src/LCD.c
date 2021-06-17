@@ -4,6 +4,7 @@
 #include <string.h>
 
 #define FONT_WIDTH 5
+
 const char welcomeMSG[] = "Greenhouse Data Logger";
 
 void LCD_init()
@@ -27,13 +28,13 @@ void LCD_init()
 
     LCD_cmd(0x20); // standard commands
     LCD_cmd(0x0C); // normal mode
-		
-		LCD_clear();
-    LCD_welcome();
-    LCD_homescreen("18", "70");
-		LCD_clear();
-		LCD_delay_ms(2000);
-		LCD_menu();
+
+    LCD_clear();
+    // LCD_welcome();
+    // LCD_homescreen("18", "70");
+    // 	LCD_clear();
+    // 	LCD_delay_ms(2000);
+    // 	LCD_menu();
     // LCD_clear();
 }
 
@@ -53,28 +54,27 @@ void LCD_homescreen(char temperature[], char humidity[])
 {
     char homeMsg[] = "home";
     char tempMsg[] = "temp      : ";
-    char humMsg[]  = "humidity : ";
+    char humMsg[] = "humidity : ";
 
     strcat(tempMsg, temperature);
     strcat(humMsg, humidity);
-    
+
     LCD_writemsg(tempMsg, sizeof(tempMsg), 0, 1);
     LCD_writemsg(humMsg, sizeof(humMsg), 0, 2);
     LCD_writemsg(homeMsg, sizeof(homeMsg), 0, 5);
-
 }
 
 void LCD_menu()
 {
     static char menuMsg[] = "Menu";
-    static char op1[]     = "1. Daily Min/Max"; 
-    static char op2[]     = "2. Send Data"; 
-    static char op3[]     = "3. Settings"; 
+    static char op1[] = "1. Daily Min/Max";
+    static char op2[] = "2. Send Data";
+    static char op3[] = "3. Settings";
 
-    LCD_writemsg(menuMsg, sizeof(menuMsg), 0,0);
-    LCD_writemsg(op1, sizeof(op1), 1,1);
-    LCD_writemsg(op2, sizeof(op2), 1,2);
-    LCD_writemsg(op3, sizeof(op3), 1,3);
+    LCD_writemsg(menuMsg, sizeof(menuMsg), 0, 0);
+    LCD_writemsg(op1, sizeof(op1), 1, 1);
+    LCD_writemsg(op2, sizeof(op2), 1, 2);
+    LCD_writemsg(op3, sizeof(op3), 1, 3);
 }
 
 void LCD_min_max()
@@ -82,7 +82,6 @@ void LCD_min_max()
     static char tempHeader[] = "Temperature";
     static char humidityHeader[] = "Humidity";
 
-    
     //LCD_writemsg()
 }
 
@@ -143,5 +142,4 @@ void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row)
             LCD_putc(msg[i]);
     }
     LCD_delay_ms(1000);
-
 }

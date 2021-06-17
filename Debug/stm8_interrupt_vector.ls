@@ -11,15 +11,15 @@
   75                     ; 23 {
   76                     	switch	.text
   77  0001               f_EXTID0_IRQHandler:
-  81                     ; 24 	if(EXTI->SR1 == 0)
+  81                     ; 24 	if(EXTI->SR1 != 0x00)
   83  0001 725d50a3      	tnz	20643
-  84  0005 2604          	jrne	L13
+  84  0005 2704          	jreq	L13
   85                     ; 25 		EXTI->SR1 |= 0x01;
   87  0007 721050a3      	bset	20643,#0
   88  000b               L13:
   89                     ; 27 	state ^= 1;
   91  000b 90100000      	bcpl	_state,#0
-  92                     ; 28 }
+  92                     ; 28 	return;
   95  000f 80            	iret
   97                     .const:	section	.text
   98  0000               __vectab:
@@ -57,14 +57,14 @@
  141  0029 01            	dc.b	page(f_EXTID0_IRQHandler)
  142  002a 0001          	dc.w	f_EXTID0_IRQHandler
  143  002c 82            	dc.b	130
- 145  002d 00            	dc.b	page(f_NonHandledInterrupt)
- 146  002e 0000          	dc.w	f_NonHandledInterrupt
+ 145  002d 01            	dc.b	page(f_EXTID0_IRQHandler)
+ 146  002e 0001          	dc.w	f_EXTID0_IRQHandler
  147  0030 82            	dc.b	130
- 149  0031 00            	dc.b	page(f_NonHandledInterrupt)
- 150  0032 0000          	dc.w	f_NonHandledInterrupt
+ 149  0031 01            	dc.b	page(f_EXTID0_IRQHandler)
+ 150  0032 0001          	dc.w	f_EXTID0_IRQHandler
  151  0034 82            	dc.b	130
- 153  0035 00            	dc.b	page(f_NonHandledInterrupt)
- 154  0036 0000          	dc.w	f_NonHandledInterrupt
+ 153  0035 01            	dc.b	page(f_EXTID0_IRQHandler)
+ 154  0036 0001          	dc.w	f_EXTID0_IRQHandler
  155  0038 82            	dc.b	130
  157  0039 00            	dc.b	page(f_NonHandledInterrupt)
  158  003a 0000          	dc.w	f_NonHandledInterrupt
