@@ -110,7 +110,7 @@ void main(void)
 		case DISPLAY_HOME:
 
 			// Showing temp and humidity and menu option
-			LCD_homescreen(SRTC_DateRead, SRTC_TimeRead, "18", "70");
+			LCD_homescreen(SRTC_DateRead, SRTC_TimeRead, 18, 70);
 			// If button is pressed, increment cursor pos
 			if (buttonPressed == DOWN)
 			{

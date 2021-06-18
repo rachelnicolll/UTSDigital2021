@@ -1,5 +1,5 @@
 
-Map of Debug\greenhouse.sm8 from link file Debug\greenhouse.lkf - Thu Jun 17 17:53:28 2021
+Map of Debug\greenhouse.sm8 from link file Debug\greenhouse.lkf - Sat Jun 19 08:58:07 2021
 
 
                                --------
@@ -7,7 +7,7 @@ Map of Debug\greenhouse.sm8 from link file Debug\greenhouse.lkf - Thu Jun 17 17:
                                --------
 
 start 00008080 end 000083b0 length   816 segment .const
-start 0000844f end 0000a7c7 length  9080 segment .text
+start 0000844f end 0000a762 length  8979 segment .text
 start 00001000 end 00001000 length     0 segment .eeprom
 start 00000000 end 00000097 length   151 segment .bsct, initialized
 start 000083b8 end 0000844f length   151 segment .bsct, from
@@ -16,8 +16,8 @@ start 000000ac end 000000ac length     0 segment .bit
 start 000000ac end 000000ac length     0 segment .share
 start 00000100 end 00000100 length     0 segment .data
 start 00000100 end 00000100 length     0 segment .bss
-start 00000000 end 000016a4 length  5796 segment .info.
-start 00000000 end 00028408 length 164872 segment .debug
+start 00000000 end 00001645 length  5701 segment .info.
+start 00000000 end 0002840d length 164877 segment .debug
 start 00008000 end 00008080 length   128 segment .const
 start 000083b0 end 000083b8 length     8 segment .init
 
@@ -44,311 +44,303 @@ start 0000070e end 000007ff length   241 section .debug
 start 0000009a end 00000104 length   106 section .info.
 
 Debug\main.o:
-start 0000852e end 000086d3 length   421 section .text
+start 0000852e end 000086cf length   417 section .text
 start 0000000c end 0000002b length    31 section .bsct
 start 00000097 end 000000a2 length    11 section .ubsct
 start 000007ff end 00000ff8 length  2041 section .debug
 start 00000104 end 0000016b length   103 section .info.
-start 00008080 end 000080ae length    46 section .const
+start 00008080 end 000080a8 length    40 section .const
 
 Debug\delay.o:
 start 00000ff8 end 0000103c length    68 section .debug
 start 0000016b end 000001d3 length   104 section .info.
 
 Debug\lcd.o:
-start 000086d3 end 000089d9 length   774 section .text
+start 000086cf end 000089c7 length   760 section .text
 start 0000002b end 00000097 length   108 section .bsct
-start 0000103c end 00001fdf length  4003 section .debug
+start 0000103c end 00001fe4 length  4008 section .debug
 start 000001d3 end 00000239 length   102 section .info.
-start 000080ae end 000082d9 length   555 section .const
+start 000080a8 end 000082d9 length   561 section .const
 
 Debug\spi.o:
-start 000089d9 end 00008a45 length   108 section .text
-start 00001fdf end 0000219f length   448 section .debug
+start 000089c7 end 00008a33 length   108 section .text
+start 00001fe4 end 000021a4 length   448 section .debug
 start 00000239 end 0000029f length   102 section .info.
 
 Debug\stm8l15x_adc.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000219f end 000040d9 length  7994 section .debug
+start 000021a4 end 000040de length  7994 section .debug
 start 0000029f end 0000030e length   111 section .info.
 
 Debug\stm8l15x_aes.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000040d9 end 000048ec length  2067 section .debug
+start 000040de end 000048f1 length  2067 section .debug
 start 0000030e end 0000037d length   111 section .info.
 
 Debug\stm8l15x_beep.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000048ec end 00004c3d length   849 section .debug
+start 000048f1 end 00004c42 length   849 section .debug
 start 0000037d end 000003ed length   112 section .info.
 start ******** end ******** length     0 section .const *** removed ***
 
 Debug\stm8l15x_clk.o:
-start 00008a45 end 00008da2 length   861 section .text
-start 00004c3d end 0000661c length  6623 section .debug
+start 00008a33 end 00008d90 length   861 section .text
+start 00004c42 end 00006621 length  6623 section .debug
 start 000003ed end 0000045c length   111 section .info.
 start 000082d9 end 000082de length     5 section .const
 
 Debug\stm8l15x_comp.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000661c end 00007320 length  3332 section .debug
+start 00006621 end 00007325 length  3332 section .debug
 start 0000045c end 000004cc length   112 section .info.
 
 Debug\stm8l15x_dac.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00007320 end 000086c8 length  5032 section .debug
+start 00007325 end 000086cd length  5032 section .debug
 start 000004cc end 0000053b length   111 section .info.
 
 Debug\stm8l15x_dma.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000086c8 end 00009720 length  4184 section .debug
+start 000086cd end 00009725 length  4184 section .debug
 start 0000053b end 000005aa length   111 section .info.
 
 Debug\stm8l15x_exti.o:
-start 00008da2 end 000090c5 length   803 section .text
-start 00009720 end 0000a27e length  2910 section .debug
+start 00008d90 end 000090b3 length   803 section .text
+start 00009725 end 0000a283 length  2910 section .debug
 start 000005aa end 0000061a length   112 section .info.
 
 Debug\stm8l15x_flash.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000a27e end 0000b169 length  3819 section .debug
+start 0000a283 end 0000b16e length  3819 section .debug
 start 0000061a end 0000068b length   113 section .info.
 
 Debug\stm8l15x_gpio.o:
-start 000090c5 end 00009191 length   204 section .text
-start 0000b169 end 0000bcaa length  2881 section .debug
+start 000090b3 end 0000917f length   204 section .text
+start 0000b16e end 0000bcaf length  2881 section .debug
 start 0000068b end 000006fb length   112 section .info.
 
 Debug\stm8l15x_i2c.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000bcaa end 0000e0f8 length  9294 section .debug
+start 0000bcaf end 0000e0fd length  9294 section .debug
 start 000006fb end 0000076a length   111 section .info.
 start ******** end ******** length     0 section .const *** removed ***
 
 Debug\stm8l15x_irtim.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000e0f8 end 0000e353 length   603 section .debug
+start 0000e0fd end 0000e358 length   603 section .debug
 start 0000076a end 000007db length   113 section .info.
 
 Debug\stm8l15x_itc.o:
-start 00009191 end 00009304 length   371 section .text
-start 0000e353 end 0000ea45 length  1778 section .debug
+start 0000917f end 000092f2 length   371 section .text
+start 0000e358 end 0000ea4a length  1778 section .debug
 start 000007db end 0000084a length   111 section .info.
 start 000082de end 00008352 length   116 section .const
 
 Debug\stm8l15x_iwdg.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000ea45 end 0000edea length   933 section .debug
+start 0000ea4a end 0000edef length   933 section .debug
 start 0000084a end 000008ba length   112 section .info.
 
 Debug\stm8l15x_lcd.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000edea end 00010611 length  6183 section .debug
+start 0000edef end 00010616 length  6183 section .debug
 start 000008ba end 00000929 length   111 section .info.
 
 Debug\stm8l15x_pwr.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00010611 end 00010ca9 length  1688 section .debug
+start 00010616 end 00010cae length  1688 section .debug
 start 00000929 end 00000998 length   111 section .info.
 
 Debug\stm8l15x_rst.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00010ca9 end 00010f3e length   661 section .debug
+start 00010cae end 00010f43 length   661 section .debug
 start 00000998 end 00000a07 length   111 section .info.
 
 Debug\stm8l15x_rtc.o:
-start 00009304 end 00009ccd length  2505 section .text
-start 00010f3e end 00013de1 length 11939 section .debug
+start 000092f2 end 00009cbb length  2505 section .text
+start 00010f43 end 00013de6 length 11939 section .debug
 start 00000a07 end 00000a76 length   111 section .info.
 
 Debug\stm8l15x_spi.o:
-start 00009ccd end 00009e8b length   446 section .text
-start 00013de1 end 0001512b length  4938 section .debug
+start 00009cbb end 00009e79 length   446 section .text
+start 00013de6 end 00015130 length  4938 section .debug
 start 00000a76 end 00000ae5 length   111 section .info.
 
 Debug\stm8l15x_syscfg.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0001512b end 00016572 length  5191 section .debug
+start 00015130 end 00016577 length  5191 section .debug
 start 00000ae5 end 00000b57 length   114 section .info.
 
 Debug\stm8l15x_tim1.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00016572 end 0001b288 length 19734 section .debug
+start 00016577 end 0001b28d length 19734 section .debug
 start 00000b57 end 00000bc7 length   112 section .info.
 
 Debug\stm8l15x_tim2.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0001b288 end 0001e62b length 13219 section .debug
+start 0001b28d end 0001e630 length 13219 section .debug
 start 00000bc7 end 00000c37 length   112 section .info.
 
 Debug\stm8l15x_tim3.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0001e62b end 000219ce length 13219 section .debug
+start 0001e630 end 000219d3 length 13219 section .debug
 start 00000c37 end 00000ca7 length   112 section .info.
 
 Debug\stm8l15x_tim4.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000219ce end 00022c6f length  4769 section .debug
+start 000219d3 end 00022c74 length  4769 section .debug
 start 00000ca7 end 00000d17 length   112 section .info.
 
 Debug\stm8l15x_tim5.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00022c6f end 00026012 length 13219 section .debug
+start 00022c74 end 00026017 length 13219 section .debug
 start 00000d17 end 00000d87 length   112 section .info.
 
 Debug\stm8l15x_usart.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00026012 end 000277ef length  6109 section .debug
+start 00026017 end 000277f4 length  6109 section .debug
 start 00000d87 end 00000df8 length   113 section .info.
 
 Debug\stm8l15x_wfe.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000277ef end 00027ece length  1759 section .debug
+start 000277f4 end 00027ed3 length  1759 section .debug
 start 00000df8 end 00000e67 length   111 section .info.
 
 Debug\stm8l15x_wwdg.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00027ece end 00028191 length   707 section .debug
+start 00027ed3 end 00028196 length   707 section .debug
 start 00000e67 end 00000ed7 length   112 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)sprnt.o:
-start 00009e8b end 00009e9f length    20 section .text
+start 00009e79 end 00009e8d length    20 section .text
 start 00000ed7 end 00000f48 length   113 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o:
-start 00009e9f end 0000a3fa length  1371 section .text
+start 00009e8d end 0000a3e8 length  1371 section .text
 start 00000f48 end 00000fba length   114 section .info.
 start 00008352 end 0000838b length    57 section .const
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o:
-start 0000a3fa end 0000a50a length   272 section .text
+start 0000a3e8 end 0000a4f8 length   272 section .text
 start 00000fba end 0000102a length   112 section .info.
 start 0000838b end 000083b0 length    37 section .const
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)idiv0.o:
-start 0000a50a end 0000a515 length    11 section .text
+start 0000a4f8 end 0000a503 length    11 section .text
 start 0000102a end 00001057 length    45 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)ildiv0.o:
-start 0000a515 end 0000a530 length    27 section .text
+start 0000a503 end 0000a51e length    27 section .text
 start 00001057 end 00001085 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)putchr.o:
-start 0000a530 end 0000a533 length     3 section .text
+start 0000a51e end 0000a521 length     3 section .text
 start 00001085 end 000010f7 length   114 section .info.
 
-(C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)strcat0.o:
-start 0000a533 end 0000a547 length    20 section .text
+(C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)strlen0.o:
+start 0000a521 end 0000a52d length    12 section .text
 start 000010f7 end 00001126 length    47 section .info.
 
-(C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)strlen0.o:
-start 0000a547 end 0000a553 length    12 section .text
-start 00001126 end 00001155 length    47 section .info.
-
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)toup0.o:
-start 0000a553 end 0000a55e length    11 section .text
-start 00001155 end 00001182 length    45 section .info.
+start 0000a52d end 0000a538 length    11 section .text
+start 00001126 end 00001153 length    45 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)bmulx.o:
-start 0000a55e end 0000a56c length    14 section .text
-start 00001182 end 000011b2 length    48 section .info.
+start 0000a538 end 0000a546 length    14 section .text
+start 00001153 end 00001183 length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)cmulx.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000011b2 end 000011e2 length    48 section .info.
+start 00001183 end 000011b3 length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o:
-start 0000a56c end 0000a657 length   235 section .text
-start 000011e2 end 00001211 length    47 section .info.
+start 0000a546 end 0000a631 length   235 section .text
+start 000011b3 end 000011e2 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)imul.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00001211 end 00001240 length    47 section .info.
+start 000011e2 end 00001211 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)itolx.o:
-start 0000a657 end 0000a665 length    14 section .text
-start 00001240 end 00001270 length    48 section .info.
+start 0000a631 end 0000a63f length    14 section .text
+start 00001211 end 00001241 length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ladd.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00001270 end 0000129f length    47 section .info.
+start 00001241 end 00001270 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lcmp.o:
-start 0000a665 end 0000a685 length    32 section .text
-start 0000129f end 000012ce length    47 section .info.
+start 0000a63f end 0000a65f length    32 section .text
+start 00001270 end 0000129f length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgadc.o:
-start 0000a685 end 0000a695 length    16 section .text
-start 000012ce end 000012fe length    48 section .info.
+start 0000a65f end 0000a66f length    16 section .text
+start 0000129f end 000012cf length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgadd.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000012fe end 0000132e length    48 section .info.
+start 000012cf end 000012ff length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgneg.o:
-start 0000a695 end 0000a6a8 length    19 section .text
-start 0000132e end 0000135e length    48 section .info.
+start 0000a66f end 0000a682 length    19 section .text
+start 000012ff end 0000132f length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lmul.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000135e end 0000138d length    47 section .info.
+start 0000132f end 0000135e length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lneg.o:
-start 0000a6a8 end 0000a6bd length    21 section .text
-start 0000138d end 000013bc length    47 section .info.
+start 0000a682 end 0000a697 length    21 section .text
+start 0000135e end 0000138d length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lreg.o:
 start 000000a2 end 000000a6 length     4 section .ubsct
-start 000013bc end 000013eb length    47 section .info.
+start 0000138d end 000013bc length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ltor.o:
-start 0000a6bd end 0000a6cf length    18 section .text
-start 000013eb end 0000141a length    47 section .info.
+start 0000a697 end 0000a6a9 length    18 section .text
+start 000013bc end 000013eb length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ludiv.o:
-start 0000a6cf end 0000a6e3 length    20 section .text
-start 0000141a end 0000144a length    48 section .info.
+start 0000a6a9 end 0000a6bd length    20 section .text
+start 000013eb end 0000141b length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lursh.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 0000144a end 0000147a length    48 section .info.
+start 0000141b end 0000144b length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lzmp.o:
-start 0000a6e3 end 0000a6f6 length    19 section .text
-start 0000147a end 000014a9 length    47 section .info.
+start 0000a6bd end 0000a6d0 length    19 section .text
+start 0000144b end 0000147a length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)rtol.o:
-start 0000a6f6 end 0000a708 length    18 section .text
-start 000014a9 end 000014d8 length    47 section .info.
+start 0000a6d0 end 0000a6e2 length    18 section .text
+start 0000147a end 000014a9 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)sdivx.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 000014d8 end 00001508 length    48 section .info.
+start 000014a9 end 000014d9 length    48 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)smul.o:
-start 0000a708 end 0000a747 length    63 section .text
-start 00001508 end 00001537 length    47 section .info.
+start 0000a6e2 end 0000a721 length    63 section .text
+start 000014d9 end 00001508 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)utol.o:
 start ******** end ******** length     0 section .text *** removed ***
-start 00001537 end 00001566 length    47 section .info.
+start 00001508 end 00001537 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)xreg.o:
 start 000000a6 end 000000a9 length     3 section .ubsct
-start 00001566 end 00001595 length    47 section .info.
-
-(C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)xymov.o:
-start 0000a747 end 0000a786 length    63 section .text
-start 00001595 end 000015c5 length    48 section .info.
+start 00001537 end 00001566 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)yreg.o:
 start 000000a9 end 000000ac length     3 section .ubsct
-start 000015c5 end 000015f4 length    47 section .info.
+start 00001566 end 00001595 length    47 section .info.
 
 Debug\stm8_interrupt_vector.o:
-start 0000a786 end 0000a7c7 length    65 section .text
-start 00028191 end 00028408 length   631 section .debug
-start 000015f4 end 0000166c length   120 section .info.
+start 0000a721 end 0000a762 length    65 section .text
+start 00028196 end 0002840d length   631 section .debug
+start 00001595 end 0000160d length   120 section .info.
 start 00008000 end 00008080 length   128 section .const
 
 
@@ -374,7 +366,7 @@ _LCD_clear                               15   (4)
 _LCD_cmd                                  7   (3)
 _LCD_display_settings                    24   (2)
 _LCD_goto                                11   (4)
-_LCD_homescreen                         190   (44)
+_LCD_homescreen                         222   (76)
 _LCD_init                                18   (2)
 _LCD_menu                            >   24   (2)
 _LCD_min_max                             26   (4)
@@ -387,7 +379,7 @@ _LCD_writemsg                            22   (9)
 
 Debug\main.o:
 _clock                                    2   (2)
-_main                                >  193   (3)
+_main                                >  225   (3)
 
 Debug\rtc.o:
 _RTC_init                                16   (2)
@@ -546,11 +538,10 @@ __itob                                   19   (15)
 __ltob                                   23   (17)
 _putchar                                  3   (3)
 _sprintf                                 88   (14)
-_strcat                                   6   (6)
 _strlen                                   2   (2)
 _toupper                                  2   (2)
 
-Stack size: 199
+Stack size: 231
 
 
                               ---------
@@ -804,7 +795,7 @@ Stack size: 199
  136      + _LCD_display_settings: (2)
  137      |    + _LCD_writemsg --> 46
           | 
- 138      + _LCD_homescreen: (44)
+ 138      + _LCD_homescreen: (76)
  139      |    + _LCD_showdate: (58)
  140      |    |    + _LCD_writemsg --> 46
  141      |    |    + _sprintf: (14)
@@ -831,7 +822,7 @@ Stack size: 199
  155      |    |    + _sprintf --> 141
           |    | 
  156      |    + _LCD_writemsg --> 46
- 157      |    + _strcat: (6)
+ 157      |    + _sprintf --> 141
           | 
  158      + _LCD_init: (2)
  159      |    + L101_LCD_RST_set: (2)
@@ -1020,11 +1011,9 @@ Stack size: 199
 
  266   _sprintf --> 141
 
- 267   _strcat --> 157
+ 267   _strlen --> 152
 
- 268   _strlen --> 152
-
- 269   _toupper --> 144
+ 268   _toupper --> 144
 
 
 
@@ -1072,36 +1061,36 @@ _BEEP_LSClockToTIMConnectCmd          ********   *** removed from Debug\stm8l15x
 _BEEP_LSICalibrationConfig            ********   *** removed from Debug\stm8l15x_beep.o ***
 _BTN_init                             000084db   defined in Debug\buttons.o section .text
                                                  used in Debug\main.o
-_CLK_AdjustHSICalibrationValue        00008a94   defined in Debug\stm8l15x_clk.o section .text
-_CLK_BEEPClockConfig                  00008b90   defined in Debug\stm8l15x_clk.o section .text
-_CLK_CCOConfig                        00008adf   defined in Debug\stm8l15x_clk.o section .text
-_CLK_ClearFlag                        00008d47   defined in Debug\stm8l15x_clk.o section .text
-_CLK_ClearITPendingBit                00008d91   defined in Debug\stm8l15x_clk.o section .text
-_CLK_ClockSecuritySystemEnable        00008acc   defined in Debug\stm8l15x_clk.o section .text
-_CLK_ClockSecuritySytemDeglitchCmd    00008ad1   defined in Debug\stm8l15x_clk.o section .text
-_CLK_DeInit                           00008a45   defined in Debug\stm8l15x_clk.o section .text
-_CLK_GetClockFreq                     00008af0   defined in Debug\stm8l15x_clk.o section .text
+_CLK_AdjustHSICalibrationValue        00008a82   defined in Debug\stm8l15x_clk.o section .text
+_CLK_BEEPClockConfig                  00008b7e   defined in Debug\stm8l15x_clk.o section .text
+_CLK_CCOConfig                        00008acd   defined in Debug\stm8l15x_clk.o section .text
+_CLK_ClearFlag                        00008d35   defined in Debug\stm8l15x_clk.o section .text
+_CLK_ClearITPendingBit                00008d7f   defined in Debug\stm8l15x_clk.o section .text
+_CLK_ClockSecuritySystemEnable        00008aba   defined in Debug\stm8l15x_clk.o section .text
+_CLK_ClockSecuritySytemDeglitchCmd    00008abf   defined in Debug\stm8l15x_clk.o section .text
+_CLK_DeInit                           00008a33   defined in Debug\stm8l15x_clk.o section .text
+_CLK_GetClockFreq                     00008ade   defined in Debug\stm8l15x_clk.o section .text
                                                  used in Debug\stm8l15x_i2c.o
                                                          Debug\stm8l15x_usart.o
-_CLK_GetFlagStatus                    00008cb2   defined in Debug\stm8l15x_clk.o section .text
-_CLK_GetITStatus                      00008d4c   defined in Debug\stm8l15x_clk.o section .text
-_CLK_GetSYSCLKSource                  00008aec   defined in Debug\stm8l15x_clk.o section .text
-_CLK_HSEConfig                        00008aae   defined in Debug\stm8l15x_clk.o section .text
-_CLK_HSICmd                           00008a86   defined in Debug\stm8l15x_clk.o section .text
-_CLK_HaltConfig                       00008c4b   defined in Debug\stm8l15x_clk.o section .text
-_CLK_ITConfig                         00008c72   defined in Debug\stm8l15x_clk.o section .text
-_CLK_LSEClockSecuritySystemEnable     00008c41   defined in Debug\stm8l15x_clk.o section .text
-_CLK_LSEConfig                        00008abd   defined in Debug\stm8l15x_clk.o section .text
-_CLK_LSICmd                           00008aa0   defined in Debug\stm8l15x_clk.o section .text
-_CLK_MainRegulatorCmd                 00008c64   defined in Debug\stm8l15x_clk.o section .text
-_CLK_PeripheralClockConfig            00008b94   defined in Debug\stm8l15x_clk.o section .text
+_CLK_GetFlagStatus                    00008ca0   defined in Debug\stm8l15x_clk.o section .text
+_CLK_GetITStatus                      00008d3a   defined in Debug\stm8l15x_clk.o section .text
+_CLK_GetSYSCLKSource                  00008ada   defined in Debug\stm8l15x_clk.o section .text
+_CLK_HSEConfig                        00008a9c   defined in Debug\stm8l15x_clk.o section .text
+_CLK_HSICmd                           00008a74   defined in Debug\stm8l15x_clk.o section .text
+_CLK_HaltConfig                       00008c39   defined in Debug\stm8l15x_clk.o section .text
+_CLK_ITConfig                         00008c60   defined in Debug\stm8l15x_clk.o section .text
+_CLK_LSEClockSecuritySystemEnable     00008c2f   defined in Debug\stm8l15x_clk.o section .text
+_CLK_LSEConfig                        00008aab   defined in Debug\stm8l15x_clk.o section .text
+_CLK_LSICmd                           00008a8e   defined in Debug\stm8l15x_clk.o section .text
+_CLK_MainRegulatorCmd                 00008c52   defined in Debug\stm8l15x_clk.o section .text
+_CLK_PeripheralClockConfig            00008b82   defined in Debug\stm8l15x_clk.o section .text
                                                  used in Debug\rtc.o
-_CLK_RTCCLKSwitchOnLSEFailureEnable   00008c46   defined in Debug\stm8l15x_clk.o section .text
-_CLK_RTCClockConfig                   00008b87   defined in Debug\stm8l15x_clk.o section .text
+_CLK_RTCCLKSwitchOnLSEFailureEnable   00008c34   defined in Debug\stm8l15x_clk.o section .text
+_CLK_RTCClockConfig                   00008b75   defined in Debug\stm8l15x_clk.o section .text
                                                  used in Debug\rtc.o
-_CLK_SYSCLKDivConfig                  00008b75   defined in Debug\stm8l15x_clk.o section .text
-_CLK_SYSCLKSourceConfig               00008ae8   defined in Debug\stm8l15x_clk.o section .text
-_CLK_SYSCLKSourceSwitchCmd            00008b79   defined in Debug\stm8l15x_clk.o section .text
+_CLK_SYSCLKDivConfig                  00008b63   defined in Debug\stm8l15x_clk.o section .text
+_CLK_SYSCLKSourceConfig               00008ad6   defined in Debug\stm8l15x_clk.o section .text
+_CLK_SYSCLKSourceSwitchCmd            00008b67   defined in Debug\stm8l15x_clk.o section .text
 _COMP_ClearFlag                       ********   *** removed from Debug\stm8l15x_comp.o ***
 _COMP_ClearITPendingBit               ********   *** removed from Debug\stm8l15x_comp.o ***
 _COMP_DeInit                          ********   *** removed from Debug\stm8l15x_comp.o ***
@@ -1147,16 +1136,16 @@ _DMA_ITConfig                         ********   *** removed from Debug\stm8l15x
 _DMA_Init                             ********   *** removed from Debug\stm8l15x_dma.o ***
 _DMA_SetCurrDataCounter               ********   *** removed from Debug\stm8l15x_dma.o ***
 _DMA_SetTimeOut                       ********   *** removed from Debug\stm8l15x_dma.o ***
-_EXTI_ClearITPendingBit               000090a1   defined in Debug\stm8l15x_exti.o section .text
-_EXTI_DeInit                          00008da2   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_ClearITPendingBit               0000908f   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_DeInit                          00008d90   defined in Debug\stm8l15x_exti.o section .text
                                                  used in Debug\buttons.o
-_EXTI_GetITStatus                     0000907a   defined in Debug\stm8l15x_exti.o section .text
-_EXTI_GetPinSensitivity               00008fc5   defined in Debug\stm8l15x_exti.o section .text
-_EXTI_GetPortSensitivity              00009048   defined in Debug\stm8l15x_exti.o section .text
-_EXTI_SelectPort                      00008eed   defined in Debug\stm8l15x_exti.o section .text
-_EXTI_SetHalfPortSelection            00008f2d   defined in Debug\stm8l15x_exti.o section .text
-_EXTI_SetPinSensitivity               00008dc3   defined in Debug\stm8l15x_exti.o section .text
-_EXTI_SetPortSensitivity              00008f69   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_GetITStatus                     00009068   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_GetPinSensitivity               00008fb3   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_GetPortSensitivity              00009036   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_SelectPort                      00008edb   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_SetHalfPortSelection            00008f1b   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_SetPinSensitivity               00008db1   defined in Debug\stm8l15x_exti.o section .text
+_EXTI_SetPortSensitivity              00008f57   defined in Debug\stm8l15x_exti.o section .text
 _EXTI_setup                           000084fa   defined in Debug\buttons.o section .text
 _FLASH_DeInit                         ********   *** removed from Debug\stm8l15x_flash.o ***
 _FLASH_EraseBlock                     ********   *** removed from Debug\stm8l15x_flash.o ***
@@ -1180,23 +1169,23 @@ _FLASH_ReadByte                       ********   *** removed from Debug\stm8l15x
 _FLASH_SetProgrammingTime             ********   *** removed from Debug\stm8l15x_flash.o ***
 _FLASH_Unlock                         ********   *** removed from Debug\stm8l15x_flash.o ***
 _FLASH_WaitForLastOperation           ********   *** removed from Debug\stm8l15x_flash.o ***
-_GPIO_DeInit                          000090c5   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_DeInit                          000090b3   defined in Debug\stm8l15x_gpio.o section .text
                                                  used in Debug\buttons.o
-_GPIO_ExternalPullUpConfig            00009135   defined in Debug\stm8l15x_gpio.o section .text
-                                                 used in Debug\buttons.o
-                                                         Debug\spi.o
-_GPIO_Init                            000090cd   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_ExternalPullUpConfig            00009123   defined in Debug\stm8l15x_gpio.o section .text
                                                  used in Debug\buttons.o
                                                          Debug\spi.o
-_GPIO_ReadInputData                   0000917f   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_ReadInputDataBit                00009184   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_ReadOutputData                  00009182   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_ReadOutputDataBit               0000918b   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_ResetBits                       00009170   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_SetBits                         00009169   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_ToggleBits                      00009178   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_Write                           0000914d   defined in Debug\stm8l15x_gpio.o section .text
-_GPIO_WriteBit                        00009155   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_Init                            000090bb   defined in Debug\stm8l15x_gpio.o section .text
+                                                 used in Debug\buttons.o
+                                                         Debug\spi.o
+_GPIO_ReadInputData                   0000916d   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_ReadInputDataBit                00009172   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_ReadOutputData                  00009170   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_ReadOutputDataBit               00009179   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_ResetBits                       0000915e   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_SetBits                         00009157   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_ToggleBits                      00009166   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_Write                           0000913b   defined in Debug\stm8l15x_gpio.o section .text
+_GPIO_WriteBit                        00009143   defined in Debug\stm8l15x_gpio.o section .text
 _HMIFSM                               0000000d   defined in Debug\main.o section .bsct, initialized
 _HMIStatePtr                          000000a0   defined in Debug\main.o section .ubsct
 _I2C_ARPCmd                           ********   *** removed from Debug\stm8l15x_i2c.o ***
@@ -1236,12 +1225,12 @@ _IRTIM_DeInit                         ********   *** removed from Debug\stm8l15x
 _IRTIM_GetHighSinkODStatus            ********   *** removed from Debug\stm8l15x_irtim.o ***
 _IRTIM_GetStatus                      ********   *** removed from Debug\stm8l15x_irtim.o ***
 _IRTIM_HighSinkODCmd                  ********   *** removed from Debug\stm8l15x_irtim.o ***
-_ITC_DeInit                           00009194   defined in Debug\stm8l15x_itc.o section .text
+_ITC_DeInit                           00009182   defined in Debug\stm8l15x_itc.o section .text
                                                  used in Debug\buttons.o
-_ITC_GetCPUCC                         00009191   defined in Debug\stm8l15x_itc.o section .text
-_ITC_GetSoftIntStatus                 000091b5   defined in Debug\stm8l15x_itc.o section .text
-_ITC_GetSoftwarePriority              000091ba   defined in Debug\stm8l15x_itc.o section .text
-_ITC_SetSoftwarePriority              0000923b   defined in Debug\stm8l15x_itc.o section .text
+_ITC_GetCPUCC                         0000917f   defined in Debug\stm8l15x_itc.o section .text
+_ITC_GetSoftIntStatus                 000091a3   defined in Debug\stm8l15x_itc.o section .text
+_ITC_GetSoftwarePriority              000091a8   defined in Debug\stm8l15x_itc.o section .text
+_ITC_SetSoftwarePriority              00009229   defined in Debug\stm8l15x_itc.o section .text
                                                  used in Debug\buttons.o
 _IWDG_Enable                          ********   *** removed from Debug\stm8l15x_iwdg.o ***
 _IWDG_ReloadCounter                   ********   *** removed from Debug\stm8l15x_iwdg.o ***
@@ -1264,26 +1253,26 @@ _LCD_PageSelect                       ********   *** removed from Debug\stm8l15x
 _LCD_PortMaskConfig                   ********   *** removed from Debug\stm8l15x_lcd.o ***
 _LCD_PulseOnDurationConfig            ********   *** removed from Debug\stm8l15x_lcd.o ***
 _LCD_WriteRAM                         ********   *** removed from Debug\stm8l15x_lcd.o ***
-_LCD_clear                            00008943   defined in Debug\lcd.o section .text
+_LCD_clear                            00008931   defined in Debug\lcd.o section .text
                                                  used in Debug\main.o
-_LCD_cmd                              00008921   defined in Debug\lcd.o section .text
-_LCD_display_settings                 00008912   defined in Debug\lcd.o section .text
+_LCD_cmd                              0000890f   defined in Debug\lcd.o section .text
+_LCD_display_settings                 00008900   defined in Debug\lcd.o section .text
                                                  used in Debug\main.o
-_LCD_goto                             00008962   defined in Debug\lcd.o section .text
-_LCD_homescreen                       000087f4   defined in Debug\lcd.o section .text
+_LCD_goto                             00008950   defined in Debug\lcd.o section .text
+_LCD_homescreen                       00008802   defined in Debug\lcd.o section .text
                                                  used in Debug\main.o
-_LCD_init                             00008747   defined in Debug\lcd.o section .text
+_LCD_init                             00008743   defined in Debug\lcd.o section .text
                                                  used in Debug\main.o
-_LCD_menu                             00008884   defined in Debug\lcd.o section .text
-_LCD_min_max                          000088bd   defined in Debug\lcd.o section .text
+_LCD_menu                             00008872   defined in Debug\lcd.o section .text
+_LCD_min_max                          000088ab   defined in Debug\lcd.o section .text
                                                  used in Debug\main.o
-_LCD_putc                             00008970   defined in Debug\lcd.o section .text
-_LCD_showdate                         000087a3   defined in Debug\lcd.o section .text
-_LCD_showtime                         000087cd   defined in Debug\lcd.o section .text
-_LCD_welcome                          00008778   defined in Debug\lcd.o section .text
+_LCD_putc                             0000895e   defined in Debug\lcd.o section .text
+_LCD_showdate                         0000879f   defined in Debug\lcd.o section .text
+_LCD_showtime                         000087d3   defined in Debug\lcd.o section .text
+_LCD_welcome                          00008774   defined in Debug\lcd.o section .text
                                                  used in Debug\main.o
-_LCD_write                            00008932   defined in Debug\lcd.o section .text
-_LCD_writemsg                         000089ae   defined in Debug\lcd.o section .text
+_LCD_write                            00008920   defined in Debug\lcd.o section .text
+_LCD_writemsg                         0000899c   defined in Debug\lcd.o section .text
                                                  used in Debug\main.o
 _PWR_DeInit                           ********   *** removed from Debug\stm8l15x_pwr.o ***
 _PWR_FastWakeUpCmd                    ********   *** removed from Debug\stm8l15x_pwr.o ***
@@ -1298,84 +1287,84 @@ _PWR_UltraLowPowerCmd                 ********   *** removed from Debug\stm8l15x
 _RST_ClearFlag                        ********   *** removed from Debug\stm8l15x_rst.o ***
 _RST_GPOutputEnable                   ********   *** removed from Debug\stm8l15x_rst.o ***
 _RST_GetFlagStatus                    ********   *** removed from Debug\stm8l15x_rst.o ***
-_RTC_AlarmCmd                         000098e8   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_AlarmStructInit                  00009835   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_AlarmSubSecondConfig             00009939   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_BypassShadowCmd                  00009503   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_CalibOutputCmd                   00009b1f   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_CalibOutputConfig                00009b05   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_ClearFlag                        00009c55   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_ClearITPendingBit                00009c8e   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_DateStructInit                   000096e8   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_DayLightSavingConfig             00009a1d   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_DeInit                           00009304   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_AlarmCmd                         000098d6   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_AlarmStructInit                  00009823   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_AlarmSubSecondConfig             00009927   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_BypassShadowCmd                  000094f1   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_CalibOutputCmd                   00009b0d   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_CalibOutputConfig                00009af3   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_ClearFlag                        00009c43   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_ClearITPendingBit                00009c7c   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_DateStructInit                   000096d6   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_DayLightSavingConfig             00009a0b   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_DeInit                           000092f2   defined in Debug\stm8l15x_rtc.o section .text
                                                  used in Debug\rtc.o
-_RTC_EnterInitMode                    00009465   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_ExitInitMode                     000094a0   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_EnterInitMode                    00009453   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_ExitInitMode                     0000948e   defined in Debug\stm8l15x_rtc.o section .text
                                                  used in Debug\rtc.o
-_RTC_GetAlarm                         00009847   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_GetDate                          000096f6   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetAlarm                         00009835   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetDate                          000096e4   defined in Debug\stm8l15x_rtc.o section .text
                                                  used in Debug\rtc.o Debug\main.o
-_RTC_GetFlagStatus                    00009c20   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_GetITStatus                      00009c65   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_GetStoreOperation                00009a39   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_GetSubSecond                     00009612   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_GetTime                          000095c6   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetFlagStatus                    00009c0e   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetITStatus                      00009c53   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetStoreOperation                00009a27   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetSubSecond                     00009600   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetTime                          000095b4   defined in Debug\stm8l15x_rtc.o section .text
                                                  used in Debug\rtc.o Debug\main.o
-_RTC_GetWakeUpCounter                 000099b3   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_ITConfig                         00009be2   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_Init                             000093fe   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_GetWakeUpCounter                 000099a1   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_ITConfig                         00009bd0   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_Init                             000093ec   defined in Debug\stm8l15x_rtc.o section .text
                                                  used in Debug\rtc.o
-_RTC_OutputConfig                     00009a3f   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_RatioCmd                         000094e9   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_SetAlarm                         00009748   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_SetDate                          0000963b   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_OutputConfig                     00009a2d   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_RatioCmd                         000094d7   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_SetAlarm                         00009736   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_SetDate                          00009629   defined in Debug\stm8l15x_rtc.o section .text
                                                  used in Debug\rtc.o
-_RTC_SetTime                          0000951d   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_SetTime                          0000950b   defined in Debug\stm8l15x_rtc.o section .text
                                                  used in Debug\rtc.o
-_RTC_SetWakeUpCounter                 0000999e   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_SetWakeUpCounter                 0000998c   defined in Debug\stm8l15x_rtc.o section .text
 _RTC_Settings                         00000000   defined in Debug\rtc.o section .bsct, initialized
-_RTC_SmoothCalibConfig                00009ab3   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_StructInit                       00009447   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_SynchroShiftConfig               00009a5f   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_TamperCmd                        00009bbd   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_TamperFilterConfig               00009b60   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_TamperLevelConfig                00009b39   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_TamperPinsPrechargeDuration      00009b9e   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_TamperSamplingFreqConfig         00009b7f   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_TimeStructInit                   000095be   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_WaitForSynchro                   000094a5   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_WakeUpClockConfig                0000997b   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_WakeUpCmd                        000099d0   defined in Debug\stm8l15x_rtc.o section .text
-_RTC_WriteProtectionCmd               00009453   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_SmoothCalibConfig                00009aa1   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_StructInit                       00009435   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_SynchroShiftConfig               00009a4d   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_TamperCmd                        00009bab   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_TamperFilterConfig               00009b4e   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_TamperLevelConfig                00009b27   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_TamperPinsPrechargeDuration      00009b8c   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_TamperSamplingFreqConfig         00009b6d   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_TimeStructInit                   000095ac   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_WaitForSynchro                   00009493   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_WakeUpClockConfig                00009969   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_WakeUpCmd                        000099be   defined in Debug\stm8l15x_rtc.o section .text
+_RTC_WriteProtectionCmd               00009441   defined in Debug\stm8l15x_rtc.o section .text
 _RTC_init                             0000849f   defined in Debug\rtc.o section .text
                                                  used in Debug\main.o
 _RTC_read_date                        000084cd   defined in Debug\rtc.o section .text
 _RTC_read_time                        000084d4   defined in Debug\rtc.o section .text
 _RTC_set_time                         000084b7   defined in Debug\rtc.o section .text
-_SPI_BiDirectionalLineConfig          00009d45   defined in Debug\stm8l15x_spi.o section .text
-_SPI_CalculateCRCCmd                  00009d6f   defined in Debug\stm8l15x_spi.o section .text
-_SPI_ClearFlag                        00009e14   defined in Debug\stm8l15x_spi.o section .text
-_SPI_ClearITPendingBit                00009e6b   defined in Debug\stm8l15x_spi.o section .text
-_SPI_Cmd                              00009d1b   defined in Debug\stm8l15x_spi.o section .text
-_SPI_DMACmd                           00009dba   defined in Debug\stm8l15x_spi.o section .text
-_SPI_DeInit                           00009ccd   defined in Debug\stm8l15x_spi.o section .text
+_SPI_BiDirectionalLineConfig          00009d33   defined in Debug\stm8l15x_spi.o section .text
+_SPI_CalculateCRCCmd                  00009d5d   defined in Debug\stm8l15x_spi.o section .text
+_SPI_ClearFlag                        00009e02   defined in Debug\stm8l15x_spi.o section .text
+_SPI_ClearITPendingBit                00009e59   defined in Debug\stm8l15x_spi.o section .text
+_SPI_Cmd                              00009d09   defined in Debug\stm8l15x_spi.o section .text
+_SPI_DMACmd                           00009da8   defined in Debug\stm8l15x_spi.o section .text
+_SPI_DeInit                           00009cbb   defined in Debug\stm8l15x_spi.o section .text
                                                  used in Debug\spi.o
-_SPI_GetCRC                           00009d90   defined in Debug\stm8l15x_spi.o section .text
-_SPI_GetCRCPolynomial                 00009db7   defined in Debug\stm8l15x_spi.o section .text
-_SPI_GetFlagStatus                    00009dff   defined in Debug\stm8l15x_spi.o section .text
-_SPI_GetITStatus                      00009e1e   defined in Debug\stm8l15x_spi.o section .text
-_SPI_ITConfig                         00009dd2   defined in Debug\stm8l15x_spi.o section .text
-_SPI_Init                             00009cdb   defined in Debug\stm8l15x_spi.o section .text
-_SPI_NSSInternalSoftwareCmd           00009d2e   defined in Debug\stm8l15x_spi.o section .text
-_SPI_ReceiveData                      00009d65   defined in Debug\stm8l15x_spi.o section .text
-_SPI_ResetCRC                         00009da7   defined in Debug\stm8l15x_spi.o section .text
-_SPI_SendData                         00009d5c   defined in Debug\stm8l15x_spi.o section .text
-_SPI_TransmitCRC                      00009d68   defined in Debug\stm8l15x_spi.o section .text
-_SPI_init                             000089d9   defined in Debug\spi.o section .text
+_SPI_GetCRC                           00009d7e   defined in Debug\stm8l15x_spi.o section .text
+_SPI_GetCRCPolynomial                 00009da5   defined in Debug\stm8l15x_spi.o section .text
+_SPI_GetFlagStatus                    00009ded   defined in Debug\stm8l15x_spi.o section .text
+_SPI_GetITStatus                      00009e0c   defined in Debug\stm8l15x_spi.o section .text
+_SPI_ITConfig                         00009dc0   defined in Debug\stm8l15x_spi.o section .text
+_SPI_Init                             00009cc9   defined in Debug\stm8l15x_spi.o section .text
+_SPI_NSSInternalSoftwareCmd           00009d1c   defined in Debug\stm8l15x_spi.o section .text
+_SPI_ReceiveData                      00009d53   defined in Debug\stm8l15x_spi.o section .text
+_SPI_ResetCRC                         00009d95   defined in Debug\stm8l15x_spi.o section .text
+_SPI_SendData                         00009d4a   defined in Debug\stm8l15x_spi.o section .text
+_SPI_TransmitCRC                      00009d56   defined in Debug\stm8l15x_spi.o section .text
+_SPI_init                             000089c7   defined in Debug\spi.o section .text
                                                  used in Debug\main.o
-_SPI_read                             00008a25   defined in Debug\spi.o section .text
-_SPI_write                            00008a1a   defined in Debug\spi.o section .text
+_SPI_read                             00008a13   defined in Debug\spi.o section .text
+_SPI_write                            00008a08   defined in Debug\spi.o section .text
                                                  used in Debug\lcd.o
 _SRTC_DateNow                         00000008   defined in Debug\rtc.o section .bsct, initialized
 _SRTC_DateRead                        00000097   defined in Debug\main.o section .ubsct
@@ -1694,13 +1683,13 @@ __endzp                               000000ac   defined in command file section
                                                  used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
 __idesc__                             000083b0   defined in linker section .init
                                                  used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
-__itob                                0000a3fa   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o section .text
+__itob                                0000a3e8   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o
-__ltob                                0000a474   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o section .text
+__ltob                                0000a462   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o
 __memory                              00000100   defined in command file section .bss
                                                  used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
-__print                               00009f96   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o section .text
+__print                               00009f84   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)sprnt.o
 __stack                               000007ff   defined in command file
                                                  used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
@@ -1708,59 +1697,57 @@ __startmem                            00000100   defined in command file section
                                                  *** not used ***
 __stext                               0000844f   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8 section .text
                                                  used in Debug\stm8_interrupt_vector.o
-__udiv                                0000a50a   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)idiv0.o section .text
+__udiv                                0000a4f8   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)idiv0.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o
-__uldiv                               0000a515   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)ildiv0.o section .text
+__uldiv                               0000a503   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)ildiv0.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o
 __vectab                              00008000   defined in Debug\stm8_interrupt_vector.o section .const
 _buttonPressed                        0000009f   defined in Debug\main.o section .ubsct
                                                  used in Debug\stm8_interrupt_vector.o
-_chip_deselect                        00008a39   defined in Debug\spi.o section .text
-_chip_select                          00008a34   defined in Debug\spi.o section .text
+_chip_deselect                        00008a27   defined in Debug\spi.o section .text
+_chip_select                          00008a22   defined in Debug\spi.o section .text
 _clock                                0000852e   defined in Debug\main.o section .text
 _editMode                             0000000c   defined in Debug\main.o section .bsct, initialized
 _exit                                 0000849d   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8 section .text
-_font                                 000080ae   defined in Debug\lcd.o section .const
+_font                                 000080a8   defined in Debug\lcd.o section .const
 _main                                 00008538   defined in Debug\main.o section .text
                                                  used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
 _op                                   00008080   defined in Debug\main.o section .const
 _pressMSG                             00008086   defined in Debug\main.o section .const
-_putchar                              0000a530   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)putchr.o section .text
+_putchar                              0000a51e   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)putchr.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o
 _sendDataMsg                          0000809c   defined in Debug\main.o section .const
 _settingMsg                           00008092   defined in Debug\main.o section .const
-_sprintf                              00009e8b   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)sprnt.o section .text
+_sprintf                              00009e79   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)sprnt.o section .text
                                                  used in Debug\lcd.o
-_strcat                               0000a533   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)strcat0.o section .text
-                                                 used in Debug\lcd.o
-_strlen                               0000a547   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)strlen0.o section .text
+_strlen                               0000a521   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)strlen0.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o
-_toupper                              0000a553   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)toup0.o section .text
+_toupper                              0000a52d   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)toup0.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o
-_welcomeMSG                           00008289   defined in Debug\lcd.o section .const
-c_bmulx                               0000a55e   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)bmulx.o section .text
+_welcomeMSG                           00008283   defined in Debug\lcd.o section .const
+c_bmulx                               0000a538   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)bmulx.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)cprint.o
 c_cmulx                               ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)cmulx.o ***
-c_divsl                               0000a56c   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o section .text
+c_divsl                               0000a546   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o section .text
                                                  *** not used ***
-c_divul                               0000a583   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o section .text
+c_divul                               0000a55d   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)ildiv0.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ludiv.o
 c_imul                                ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)imul.o ***
-c_itolx                               0000a657   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)itolx.o section .text
+c_itolx                               0000a631   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)itolx.o section .text
                                                  used in Debug\lcd.o
 c_ladd                                ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ladd.o ***
-c_lcmp                                0000a665   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lcmp.o section .text
+c_lcmp                                0000a63f   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lcmp.o section .text
                                                  used in Debug\lcd.o
                                                          Debug\stm8l15x_i2c.o
-c_lgadc                               0000a685   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgadc.o section .text
+c_lgadc                               0000a65f   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgadc.o section .text
                                                  used in Debug\lcd.o
 c_lgadd                               ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgadd.o ***
-c_lgneg                               0000a695   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgneg.o section .text
+c_lgneg                               0000a66f   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lgneg.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o
 c_lmul                                ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lmul.o ***
 c_lmulc                               ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lmul.o ***
-c_lneg                                0000a6a8   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lneg.o section .text
+c_lneg                                0000a682   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lneg.o section .text
                                                  used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o
 c_lreg                                000000a2   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lreg.o section .ubsct
@@ -1783,7 +1770,7 @@ c_lreg                                000000a2   defined in (C:\Program Files (x
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)rtol.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)smul.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)utol.o
-c_ltor                                0000a6bd   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ltor.o section .text
+c_ltor                                0000a697   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ltor.o section .text
                                                  used in Debug\lcd.o
                                                          Debug\stm8l15x_beep.o
                                                          Debug\stm8l15x_clk.o
@@ -1791,16 +1778,16 @@ c_ltor                                0000a6bd   defined in (C:\Program Files (x
                                                          Debug\stm8l15x_usart.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)ildiv0.o
-c_ludv                                0000a6cf   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ludiv.o section .text
+c_ludv                                0000a6a9   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ludiv.o section .text
                                                  used in Debug\stm8l15x_beep.o
                                                          Debug\stm8l15x_clk.o
                                                          Debug\stm8l15x_i2c.o
                                                          Debug\stm8l15x_usart.o
 c_lursh                               ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lursh.o ***
-c_lzmp                                0000a6e3   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lzmp.o section .text
+c_lzmp                                0000a6bd   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lzmp.o section .text
                                                  used in Debug\stm8l15x_i2c.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)itob.o
-c_rtol                                0000a6f6   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)rtol.o section .text
+c_rtol                                0000a6d0   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)rtol.o section .text
                                                  used in Debug\lcd.o
                                                          Debug\stm8l15x_clk.o
                                                          Debug\stm8l15x_i2c.o
@@ -1810,7 +1797,7 @@ c_rtol                                0000a6f6   defined in (C:\Program Files (x
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libis0.sm8)ildiv0.o
 c_sdivx                               ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)sdivx.o ***
 c_smodx                               ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)sdivx.o ***
-c_smul                                0000a708   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)smul.o section .text
+c_smul                                0000a6e2   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)smul.o section .text
                                                  used in Debug\lcd.o
                                                          Debug\stm8l15x_i2c.o
 c_uitol                               ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)utol.o ***
@@ -1823,13 +1810,10 @@ c_x                                   000000a6   defined in (C:\Program Files (x
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)imul.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)lmul.o
                                                          (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)sdivx.o
-                                                         (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)xymov.o
-c_xymov                               0000a747   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)xymov.o section .text
-                                                 used in Debug\lcd.o
 c_y                                   000000a9   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)yreg.o section .ubsct
                                                  used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
-f_EXTID1_IRQHandler                   0000a797   defined in Debug\stm8_interrupt_vector.o section .text
-f_EXTID2_IRQHandler                   0000a7a7   defined in Debug\stm8_interrupt_vector.o section .text
-f_EXTID3_IRQHandler                   0000a7b7   defined in Debug\stm8_interrupt_vector.o section .text
-f_EXTID4_IRQHandler                   0000a787   defined in Debug\stm8_interrupt_vector.o section .text
-f_NonHandledInterrupt                 0000a786   defined in Debug\stm8_interrupt_vector.o section .text
+f_EXTID1_IRQHandler                   0000a732   defined in Debug\stm8_interrupt_vector.o section .text
+f_EXTID2_IRQHandler                   0000a742   defined in Debug\stm8_interrupt_vector.o section .text
+f_EXTID3_IRQHandler                   0000a752   defined in Debug\stm8_interrupt_vector.o section .text
+f_EXTID4_IRQHandler                   0000a722   defined in Debug\stm8_interrupt_vector.o section .text
+f_NonHandledInterrupt                 0000a721   defined in Debug\stm8_interrupt_vector.o section .text

@@ -59,34 +59,32 @@ LCD_showdate(RTC_DateTypeDef SDate)
 {
     
     char displayDate[50];
-    int i = sprintf(displayDate, "20%02d-%02d-%02d", SDate.RTC_Year, SDate.RTC_Month, SDate.RTC_Date);
+    int i = sprintf(displayDate, "20%02d-%02d-%02d", (int)SDate.RTC_Year, (int)SDate.RTC_Month, (int)SDate.RTC_Date);
 
-    LCD_writemsg(displayDate, sizeof(displayDate), 0, 0);
+    LCD_writemsg(displayDate, i+1, 0, 0);
 }
 
 LCD_showtime(RTC_TimeTypeDef STime)
 {
     char displayTime[10];
-    int i = sprintf(displayTime, "%02d:%02d", STime.RTC_Hours, STime.RTC_Minutes);
+    int i = sprintf(displayTime, "%02d:%02d", (int)STime.RTC_Hours, (int)STime.RTC_Minutes);
 
-    LCD_writemsg(displayTime, sizeof(displayTime), 40, 0);
+    LCD_writemsg(displayTime, i+1, 45, 0);
 }
 
-void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, char temperature[], char humidity[])
+void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, uint8_t temperature, uint8_t humidity)
 {
-		char homeMsg[] = "home";
-    char tempMsg[] = "temp      : ";
-    char humMsg[] = "humidity : ";
+	
+    char tempMsg[30];
+    int i = sprintf(tempMsg, "temperature: %02d", (int)temperature);
+    char humMsg[30];
+    int j = sprintf(humMsg, "humidity: %02d %%", (int)humidity);
 
     LCD_showdate(SDate);
     LCD_showtime(STime);
 
-    strcat(tempMsg, temperature);
-    strcat(humMsg, humidity);
-
-    LCD_writemsg(tempMsg, sizeof(tempMsg), 0, 1);
-    LCD_writemsg(humMsg, sizeof(humMsg), 0, 2);
-    LCD_writemsg(homeMsg, sizeof(homeMsg), 0, 5);
+    LCD_writemsg(tempMsg, i+1, 0, 1);
+    LCD_writemsg(humMsg, j+1, 0, 2);
 }
 
 void LCD_menu()
