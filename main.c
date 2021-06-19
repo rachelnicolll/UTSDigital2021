@@ -138,6 +138,7 @@ void main(void)
 		case DISPLAY_SETTINGS:
 			// Show settings to change frequency. Need to press ok to engage with screen
 			LCD_display_settings();
+			
 			if (buttonPressed == OK)
 					editMode ^= editMode;
 

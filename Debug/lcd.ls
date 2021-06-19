@@ -605,24 +605,24 @@
 1028  0081 ad98          	call	L74_LCD_CE_set
 1030                     ; 29     LCD_cmd(0x21); // extended commands
 1032  0083 a621          	ld	a,#33
-1033  0085 cd0240        	call	_LCD_cmd
+1033  0085 cd023e        	call	_LCD_cmd
 1035                     ; 30     LCD_cmd(0xc0); // contrast Vop=6.4V
 1037  0088 a6c0          	ld	a,#192
-1038  008a cd0240        	call	_LCD_cmd
+1038  008a cd023e        	call	_LCD_cmd
 1040                     ; 31     LCD_cmd(0x04); // temperature coefficient
 1042  008d a604          	ld	a,#4
-1043  008f cd0240        	call	_LCD_cmd
+1043  008f cd023e        	call	_LCD_cmd
 1045                     ; 32     LCD_cmd(0x13); // bias = 1:48
 1047  0092 a613          	ld	a,#19
-1048  0094 cd0240        	call	_LCD_cmd
+1048  0094 cd023e        	call	_LCD_cmd
 1050                     ; 34     LCD_cmd(0x20); // standard commands
 1052  0097 a620          	ld	a,#32
-1053  0099 cd0240        	call	_LCD_cmd
+1053  0099 cd023e        	call	_LCD_cmd
 1055                     ; 35     LCD_cmd(0x0C); // normal mode
 1057  009c a60c          	ld	a,#12
-1058  009e cd0240        	call	_LCD_cmd
+1058  009e cd023e        	call	_LCD_cmd
 1060                     ; 37     LCD_clear();
-1062  00a1 cd0262        	call	_LCD_clear
+1062  00a1 cd0260        	call	_LCD_clear
 1064                     ; 44 }
 1067  00a4 81            	ret
 1106                     ; 46 void LCD_welcome()
@@ -633,7 +633,7 @@
 1111       00000002      OFST:	set	2
 1114                     ; 48     LCD_goto(0, 2);
 1116  00a6 ae0002        	ldw	x,#2
-1117  00a9 cd0281        	call	_LCD_goto
+1117  00a9 cd027f        	call	_LCD_goto
 1119                     ; 51         for (i = 0; i < sizeof(welcomeMSG) - 1; i++)
 1121  00ac 5f            	clrw	x
 1122  00ad 1f01          	ldw	(OFST-1,sp),x
@@ -641,7 +641,7 @@
 1125                     ; 52             LCD_putc(welcomeMSG[i]);
 1127  00af 1e01          	ldw	x,(OFST-1,sp)
 1128  00b1 d601db        	ld	a,(_welcomeMSG,x)
-1129  00b4 cd028f        	call	_LCD_putc
+1129  00b4 cd028d        	call	_LCD_putc
 1131                     ; 51         for (i = 0; i < sizeof(welcomeMSG) - 1; i++)
 1133  00b7 1e01          	ldw	x,(OFST-1,sp)
 1134  00b9 1c0001        	addw	x,#1
@@ -653,7 +653,7 @@
 1144  00c5 ae0bb8        	ldw	x,#3000
 1145  00c8 cd003a        	call	L541_LCD_delay_ms
 1147                     ; 55     LCD_clear();
-1149  00cb cd0262        	call	_LCD_clear
+1149  00cb cd0260        	call	_LCD_clear
 1151                     ; 56 }
 1154  00ce 85            	popw	x
 1155  00cf 81            	ret
@@ -683,7 +683,7 @@
 1428  00e9 cd0000        	call	_sprintf
 1430  00ec 5b08          	addw	sp,#8
 1431  00ee 1f33          	ldw	(OFST-1,sp),x
-1433                     ; 64     LCD_writemsg(displayDate, i+1, 0, 0);
+1433                     ; 64     LCD_writemsg(displayDate, i + 1, 0, 0);
 1435  00f0 4b00          	push	#0
 1436  00f2 4b00          	push	#0
 1437  00f4 7b36          	ld	a,(OFST+2,sp)
@@ -691,7 +691,7 @@
 1439  00f7 88            	push	a
 1440  00f8 96            	ldw	x,sp
 1441  00f9 1c0004        	addw	x,#OFST-48
-1442  00fc cd02cd        	call	_LCD_writemsg
+1442  00fc cd02cb        	call	_LCD_writemsg
 1444  00ff 5b03          	addw	sp,#3
 1445                     ; 65 }
 1448  0101 5b34          	addw	sp,#52
@@ -718,7 +718,7 @@
 1585  0118 cd0000        	call	_sprintf
 1587  011b 5b06          	addw	sp,#6
 1588  011d 1f0b          	ldw	(OFST-1,sp),x
-1590                     ; 72     LCD_writemsg(displayTime, i+1, 45, 0);
+1590                     ; 72     LCD_writemsg(displayTime, i + 1, 45, 0);
 1592  011f 4b00          	push	#0
 1593  0121 4b2d          	push	#45
 1594  0123 7b0e          	ld	a,(OFST+2,sp)
@@ -726,7 +726,7 @@
 1596  0126 88            	push	a
 1597  0127 96            	ldw	x,sp
 1598  0128 1c0004        	addw	x,#OFST-8
-1599  012b cd02cd        	call	_LCD_writemsg
+1599  012b cd02cb        	call	_LCD_writemsg
 1601  012e 5b03          	addw	sp,#3
 1602                     ; 73 }
 1605  0130 5b0c          	addw	sp,#12
@@ -745,10 +745,10 @@
 1725  013a ae0204        	ldw	x,#L345
 1726  013d 89            	pushw	x
 1727  013e 96            	ldw	x,sp
-1728  013f 1c0005        	addw	x,#OFST-59
+1728  013f 1c0007        	addw	x,#OFST-57
 1729  0142 cd0000        	call	_sprintf
 1731  0145 5b04          	addw	sp,#4
-1732  0147 1f1f          	ldw	(OFST-33,sp),x
+1732  0147 1f3f          	ldw	(OFST-1,sp),x
 1734                     ; 81     int j = sprintf(humMsg, "humidity: %02d %%", (int)humidity);
 1736  0149 7b4c          	ld	a,(OFST+12,sp)
 1737  014b 5f            	clrw	x
@@ -760,372 +760,371 @@
 1743  0153 1c0025        	addw	x,#OFST-27
 1744  0156 cd0000        	call	_sprintf
 1746  0159 5b04          	addw	sp,#4
-1747  015b 1f3f          	ldw	(OFST-1,sp),x
-1749                     ; 83     LCD_showdate(SDate);
-1751  015d 7b46          	ld	a,(OFST+6,sp)
-1752  015f 88            	push	a
-1753  0160 7b46          	ld	a,(OFST+6,sp)
-1754  0162 88            	push	a
-1755  0163 7b46          	ld	a,(OFST+6,sp)
-1756  0165 88            	push	a
-1757  0166 7b46          	ld	a,(OFST+6,sp)
-1758  0168 88            	push	a
-1759  0169 cd00d0        	call	_LCD_showdate
-1761  016c 5b04          	addw	sp,#4
-1762                     ; 84     LCD_showtime(STime);
-1764  016e 7b4a          	ld	a,(OFST+10,sp)
-1765  0170 88            	push	a
-1766  0171 7b4a          	ld	a,(OFST+10,sp)
-1767  0173 88            	push	a
-1768  0174 7b4a          	ld	a,(OFST+10,sp)
-1769  0176 88            	push	a
-1770  0177 7b4a          	ld	a,(OFST+10,sp)
-1771  0179 88            	push	a
-1772  017a ad88          	call	_LCD_showtime
-1774  017c 5b04          	addw	sp,#4
-1775                     ; 86     LCD_writemsg(tempMsg, i+1, 0, 1);
-1777  017e 4b01          	push	#1
-1778  0180 4b00          	push	#0
-1779  0182 7b22          	ld	a,(OFST-30,sp)
-1780  0184 4c            	inc	a
-1781  0185 88            	push	a
-1782  0186 96            	ldw	x,sp
-1783  0187 1c0004        	addw	x,#OFST-60
-1784  018a cd02cd        	call	_LCD_writemsg
-1786  018d 5b03          	addw	sp,#3
-1787                     ; 87     LCD_writemsg(humMsg, j+1, 0, 2);
-1789  018f 4b02          	push	#2
-1790  0191 4b00          	push	#0
-1791  0193 7b42          	ld	a,(OFST+2,sp)
-1792  0195 4c            	inc	a
-1793  0196 88            	push	a
-1794  0197 96            	ldw	x,sp
-1795  0198 1c0024        	addw	x,#OFST-28
-1796  019b cd02cd        	call	_LCD_writemsg
-1798  019e 5b03          	addw	sp,#3
-1799                     ; 88 }
-1802  01a0 5b40          	addw	sp,#64
-1803  01a2 81            	ret
-1806                     	bsct
-1807  0000               L745_menuMsg:
-1808  0000 4d656e7500    	dc.b	"Menu",0
-1809  0005               L155_op1:
-1810  0005 312e20446169  	dc.b	"1. Daily Min/Max",0
-1811  0016               L355_op2:
-1812  0016 322e2053656e  	dc.b	"2. Send Data",0
-1813  0023               L555_op3:
-1814  0023 332e20536574  	dc.b	"3. Settings",0
-1878                     ; 90 void LCD_menu()
-1878                     ; 91 {
-1879                     	switch	.text
-1880  01a3               _LCD_menu:
-1884                     ; 97     LCD_writemsg(menuMsg, sizeof(menuMsg), 0, 0);
-1886  01a3 4b00          	push	#0
-1887  01a5 4b00          	push	#0
-1888  01a7 4b05          	push	#5
-1889  01a9 ae0000        	ldw	x,#L745_menuMsg
-1890  01ac cd02cd        	call	_LCD_writemsg
-1892  01af 5b03          	addw	sp,#3
-1893                     ; 98     LCD_writemsg(op1, sizeof(op1), 1, 1);
-1895  01b1 4b01          	push	#1
-1896  01b3 4b01          	push	#1
-1897  01b5 4b11          	push	#17
-1898  01b7 ae0005        	ldw	x,#L155_op1
-1899  01ba cd02cd        	call	_LCD_writemsg
-1901  01bd 5b03          	addw	sp,#3
-1902                     ; 99     LCD_writemsg(op2, sizeof(op2), 1, 2);
-1904  01bf 4b02          	push	#2
-1905  01c1 4b01          	push	#1
-1906  01c3 4b0d          	push	#13
-1907  01c5 ae0016        	ldw	x,#L355_op2
-1908  01c8 cd02cd        	call	_LCD_writemsg
-1910  01cb 5b03          	addw	sp,#3
-1911                     ; 100     LCD_writemsg(op3, sizeof(op3), 1, 3);
-1913  01cd 4b03          	push	#3
-1914  01cf 4b01          	push	#1
-1915  01d1 4b0c          	push	#12
-1916  01d3 ae0023        	ldw	x,#L555_op3
-1917  01d6 cd02cd        	call	_LCD_writemsg
-1919  01d9 5b03          	addw	sp,#3
-1920                     ; 101 }
-1923  01db 81            	ret
-1926                     	bsct
-1927  002f               L116_tempHeader:
-1928  002f 54656d706572  	dc.b	"Temperature",0
-1929  003b               L316_humidityHeader:
-1930  003b 48756d696469  	dc.b	"Humidity",0
-1931  0044               L516_minHeader:
-1932  0044 4d696e3a2000  	dc.b	"Min: ",0
-1933  004a               L716_maxHeader:
-1934  004a 4d61783a2000  	dc.b	"Max: ",0
-2007                     ; 103 void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity)
-2007                     ; 104 {
-2008                     	switch	.text
-2009  01dc               _LCD_min_max:
-2013                     ; 110     LCD_writemsg(tempHeader, sizeof(tempHeader), 20, 0);
-2015  01dc 4b00          	push	#0
-2016  01de 4b14          	push	#20
-2017  01e0 4b0c          	push	#12
-2018  01e2 ae002f        	ldw	x,#L116_tempHeader
-2019  01e5 cd02cd        	call	_LCD_writemsg
-2021  01e8 5b03          	addw	sp,#3
-2022                     ; 111     LCD_writemsg(minHeader, sizeof(minHeader), 1, 1);
-2024  01ea 4b01          	push	#1
-2025  01ec 4b01          	push	#1
-2026  01ee 4b06          	push	#6
-2027  01f0 ae0044        	ldw	x,#L516_minHeader
-2028  01f3 cd02cd        	call	_LCD_writemsg
-2030  01f6 5b03          	addw	sp,#3
-2031                     ; 112     LCD_writemsg(maxHeader, sizeof(maxHeader), 30, 1);
-2033  01f8 4b01          	push	#1
-2034  01fa 4b1e          	push	#30
-2035  01fc 4b06          	push	#6
-2036  01fe ae004a        	ldw	x,#L716_maxHeader
-2037  0201 cd02cd        	call	_LCD_writemsg
-2039  0204 5b03          	addw	sp,#3
-2040                     ; 114     LCD_writemsg(humidityHeader, sizeof(humidityHeader), 20, 4);
-2042  0206 4b04          	push	#4
-2043  0208 4b14          	push	#20
-2044  020a 4b09          	push	#9
-2045  020c ae003b        	ldw	x,#L316_humidityHeader
-2046  020f cd02cd        	call	_LCD_writemsg
-2048  0212 5b03          	addw	sp,#3
-2049                     ; 115     LCD_writemsg(minHeader, sizeof(minHeader), 1, 5);
-2051  0214 4b05          	push	#5
-2052  0216 4b01          	push	#1
-2053  0218 4b06          	push	#6
-2054  021a ae0044        	ldw	x,#L516_minHeader
-2055  021d cd02cd        	call	_LCD_writemsg
-2057  0220 5b03          	addw	sp,#3
-2058                     ; 116     LCD_writemsg(maxHeader, sizeof(maxHeader), 30, 5);
-2060  0222 4b05          	push	#5
-2061  0224 4b1e          	push	#30
-2062  0226 4b06          	push	#6
-2063  0228 ae004a        	ldw	x,#L716_maxHeader
-2064  022b cd02cd        	call	_LCD_writemsg
-2066  022e 5b03          	addw	sp,#3
-2067                     ; 117 }
-2070  0230 81            	ret
-2073                     	bsct
-2074  0050               L756_settingsHeader:
-2075  0050 507265737320  	dc.b	"Press OK to change"
-2076  0062 207365747469  	dc.b	" settings",0
-2111                     ; 119 void LCD_display_settings()
-2111                     ; 120 {
-2112                     	switch	.text
-2113  0231               _LCD_display_settings:
-2117                     ; 122     LCD_writemsg(settingsHeader, sizeof(settingsHeader), 20, 0);
-2119  0231 4b00          	push	#0
-2120  0233 4b14          	push	#20
-2121  0235 4b1c          	push	#28
-2122  0237 ae0050        	ldw	x,#L756_settingsHeader
-2123  023a cd02cd        	call	_LCD_writemsg
-2125  023d 5b03          	addw	sp,#3
-2126                     ; 123 }
-2129  023f 81            	ret
-2167                     ; 125 void LCD_cmd(uint8_t cmd)
-2167                     ; 126 {
-2168                     	switch	.text
-2169  0240               _LCD_cmd:
-2171  0240 88            	push	a
-2172       00000000      OFST:	set	0
-2175                     ; 127     LCD_CE_clear();
-2177  0241 cd0027        	call	L76_LCD_CE_clear
-2179                     ; 128     LCD_DC_clear();
-2181  0244 cd0016        	call	L53_LCD_DC_clear
-2183                     ; 129     LCD_SPI_write(cmd);
-2185  0247 7b01          	ld	a,(OFST+1,sp)
-2186  0249 cd0036        	call	L521_LCD_SPI_write
-2188                     ; 130     LCD_CE_set();
-2190  024c cd001b        	call	L74_LCD_CE_set
-2192                     ; 131 }
-2195  024f 84            	pop	a
-2196  0250 81            	ret
-2234                     ; 133 void LCD_write(uint8_t data)
-2234                     ; 134 {
-2235                     	switch	.text
-2236  0251               _LCD_write:
-2238  0251 88            	push	a
-2239       00000000      OFST:	set	0
-2242                     ; 135     LCD_CE_clear();
-2244  0252 cd0027        	call	L76_LCD_CE_clear
-2246                     ; 136     LCD_DC_set();
-2248  0255 cd0011        	call	L32_LCD_DC_set
-2250                     ; 137     LCD_SPI_write(data);
-2252  0258 7b01          	ld	a,(OFST+1,sp)
-2253  025a cd0036        	call	L521_LCD_SPI_write
-2255                     ; 138     LCD_CE_set();
-2257  025d cd001b        	call	L74_LCD_CE_set
-2259                     ; 139 }
-2262  0260 84            	pop	a
-2263  0261 81            	ret
-2299                     ; 141 void LCD_clear()
-2299                     ; 142 {
-2300                     	switch	.text
-2301  0262               _LCD_clear:
-2303  0262 89            	pushw	x
-2304       00000002      OFST:	set	2
-2307                     ; 143     uint16_t i = 84 * 6;
-2309  0263 ae01f8        	ldw	x,#504
-2310  0266 1f01          	ldw	(OFST-1,sp),x
-2312                     ; 144     LCD_goto(0, 0);
-2314  0268 5f            	clrw	x
-2315  0269 ad16          	call	_LCD_goto
-2318  026b 2003          	jra	L357
-2319  026d               L157:
-2320                     ; 146         LCD_write(0);
-2322  026d 4f            	clr	a
-2323  026e ade1          	call	_LCD_write
-2325  0270               L357:
-2326                     ; 145     while (i-- > 0)
-2328  0270 1e01          	ldw	x,(OFST-1,sp)
-2329  0272 1d0001        	subw	x,#1
-2330  0275 1f01          	ldw	(OFST-1,sp),x
-2331  0277 1c0001        	addw	x,#1
-2333  027a a30000        	cpw	x,#0
-2334  027d 26ee          	jrne	L157
-2335                     ; 147 }
-2338  027f 85            	popw	x
-2339  0280 81            	ret
-2383                     ; 149 void LCD_goto(uint8_t col, uint8_t row)
-2383                     ; 150 {
-2384                     	switch	.text
-2385  0281               _LCD_goto:
-2387  0281 89            	pushw	x
-2388       00000000      OFST:	set	0
-2391                     ; 151     LCD_cmd(0x80 | col);
-2393  0282 9e            	ld	a,xh
-2394  0283 aa80          	or	a,#128
-2395  0285 adb9          	call	_LCD_cmd
-2397                     ; 152     LCD_cmd(0x40 | row);
-2399  0287 7b02          	ld	a,(OFST+2,sp)
-2400  0289 aa40          	or	a,#64
-2401  028b adb3          	call	_LCD_cmd
-2403                     ; 153 }
-2406  028d 85            	popw	x
-2407  028e 81            	ret
-2462                     ; 155 void LCD_putc(char c)
-2462                     ; 156 {
-2463                     	switch	.text
-2464  028f               _LCD_putc:
-2466  028f 88            	push	a
-2467  0290 5203          	subw	sp,#3
-2468       00000003      OFST:	set	3
-2471                     ; 157     if (c == ' ')
-2473  0292 a120          	cp	a,#32
-2474  0294 2608          	jrne	L7201
-2475                     ; 159         LCD_write(0);
-2477  0296 4f            	clr	a
-2478  0297 adb8          	call	_LCD_write
-2480                     ; 160         LCD_write(0);
-2482  0299 4f            	clr	a
-2483  029a adb5          	call	_LCD_write
-2486  029c 202c          	jra	L1301
-2487  029e               L7201:
-2488                     ; 164         const char *ptr = &font[(c - 32) * FONT_WIDTH];
-2490  029e 7b04          	ld	a,(OFST+1,sp)
-2491  02a0 97            	ld	xl,a
-2492  02a1 a605          	ld	a,#5
-2493  02a3 42            	mul	x,a
-2494  02a4 1d00a0        	subw	x,#160
-2495  02a7 1c0000        	addw	x,#_font
-2496  02aa 1f02          	ldw	(OFST-1,sp),x
-2498                     ; 166         for (i = 0; i < FONT_WIDTH; i++, ptr++)
-2500  02ac 0f01          	clr	(OFST-2,sp)
-2502  02ae               L3301:
-2503                     ; 167             if (*ptr)
-2505  02ae 1e02          	ldw	x,(OFST-1,sp)
-2506  02b0 7d            	tnz	(x)
-2507  02b1 2705          	jreq	L1401
-2508                     ; 168                 LCD_write(*ptr);
-2510  02b3 1e02          	ldw	x,(OFST-1,sp)
-2511  02b5 f6            	ld	a,(x)
-2512  02b6 ad99          	call	_LCD_write
-2514  02b8               L1401:
-2515                     ; 166         for (i = 0; i < FONT_WIDTH; i++, ptr++)
-2517  02b8 0c01          	inc	(OFST-2,sp)
-2519  02ba 1e02          	ldw	x,(OFST-1,sp)
-2520  02bc 1c0001        	addw	x,#1
-2521  02bf 1f02          	ldw	(OFST-1,sp),x
-2525  02c1 7b01          	ld	a,(OFST-2,sp)
-2526  02c3 a105          	cp	a,#5
-2527  02c5 25e7          	jrult	L3301
-2528                     ; 169         LCD_write(0);
-2530  02c7 4f            	clr	a
-2531  02c8 ad87          	call	_LCD_write
-2533  02ca               L1301:
-2534                     ; 171 }
-2537  02ca 5b04          	addw	sp,#4
-2538  02cc 81            	ret
-2611                     ; 173 void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row)
-2611                     ; 174 {
-2612                     	switch	.text
-2613  02cd               _LCD_writemsg:
-2615  02cd 89            	pushw	x
-2616  02ce 89            	pushw	x
-2617       00000002      OFST:	set	2
-2620                     ; 175     LCD_goto(col, row);
-2622  02cf 7b09          	ld	a,(OFST+7,sp)
-2623  02d1 97            	ld	xl,a
-2624  02d2 7b08          	ld	a,(OFST+6,sp)
-2625  02d4 95            	ld	xh,a
-2626  02d5 adaa          	call	_LCD_goto
-2628                     ; 178         for (i = 0; i < msgSize - 1; i++)
-2630  02d7 5f            	clrw	x
-2631  02d8 1f01          	ldw	(OFST-1,sp),x
-2634  02da 200f          	jra	L5011
-2635  02dc               L1011:
-2636                     ; 179             LCD_putc(msg[i]);
-2638  02dc 1e01          	ldw	x,(OFST-1,sp)
-2639  02de 72fb03        	addw	x,(OFST+1,sp)
-2640  02e1 f6            	ld	a,(x)
-2641  02e2 adab          	call	_LCD_putc
-2643                     ; 178         for (i = 0; i < msgSize - 1; i++)
-2645  02e4 1e01          	ldw	x,(OFST-1,sp)
-2646  02e6 1c0001        	addw	x,#1
-2647  02e9 1f01          	ldw	(OFST-1,sp),x
-2649  02eb               L5011:
-2652  02eb 9c            	rvf
-2653  02ec 7b07          	ld	a,(OFST+5,sp)
-2654  02ee 5f            	clrw	x
-2655  02ef 97            	ld	xl,a
-2656  02f0 5a            	decw	x
-2657  02f1 1301          	cpw	x,(OFST-1,sp)
-2658  02f3 2ce7          	jrsgt	L1011
-2659                     ; 182 }
-2662  02f5 5b04          	addw	sp,#4
-2663  02f7 81            	ret
-2688                     	xdef	_LCD_showtime
-2689                     	xdef	_LCD_showdate
-2690                     	xdef	_welcomeMSG
-2691                     	xref	_sprintf
-2692                     	xdef	_font
-2693                     	xref	_SPI_write
-2694                     	xdef	_LCD_display_settings
-2695                     	xdef	_LCD_menu
-2696                     	xdef	_LCD_min_max
-2697                     	xdef	_LCD_homescreen
-2698                     	xdef	_LCD_welcome
-2699                     	xdef	_LCD_writemsg
-2700                     	xdef	_LCD_write
-2701                     	xdef	_LCD_putc
-2702                     	xdef	_LCD_goto
-2703                     	xdef	_LCD_cmd
-2704                     	xdef	_LCD_clear
-2705                     	xdef	_LCD_init
-2706                     	switch	.const
-2707  01f2               L545:
-2708  01f2 68756d696469  	dc.b	"humidity: %02d %%",0
-2709  0204               L345:
-2710  0204 74656d706572  	dc.b	"temperature: %02d",0
-2711  0216               L764:
-2712  0216 253032643a25  	dc.b	"%02d:%02d",0
-2713  0220               L114:
-2714  0220 323025303264  	dc.b	"20%02d-%02d-%02d",0
-2734                     	xref	c_lcmp
-2735                     	xref	c_smul
-2736                     	xref	c_ltor
-2737                     	xref	c_lgadc
-2738                     	xref	c_rtol
-2739                     	xref	c_itolx
-2740                     	end
+1747                     ; 83     LCD_showdate(SDate);
+1749  015b 7b46          	ld	a,(OFST+6,sp)
+1750  015d 88            	push	a
+1751  015e 7b46          	ld	a,(OFST+6,sp)
+1752  0160 88            	push	a
+1753  0161 7b46          	ld	a,(OFST+6,sp)
+1754  0163 88            	push	a
+1755  0164 7b46          	ld	a,(OFST+6,sp)
+1756  0166 88            	push	a
+1757  0167 cd00d0        	call	_LCD_showdate
+1759  016a 5b04          	addw	sp,#4
+1760                     ; 84     LCD_showtime(STime);
+1762  016c 7b4a          	ld	a,(OFST+10,sp)
+1763  016e 88            	push	a
+1764  016f 7b4a          	ld	a,(OFST+10,sp)
+1765  0171 88            	push	a
+1766  0172 7b4a          	ld	a,(OFST+10,sp)
+1767  0174 88            	push	a
+1768  0175 7b4a          	ld	a,(OFST+10,sp)
+1769  0177 88            	push	a
+1770  0178 ad8a          	call	_LCD_showtime
+1772  017a 5b04          	addw	sp,#4
+1773                     ; 86     LCD_writemsg(tempMsg, i + 1, 0, 2);
+1775  017c 4b02          	push	#2
+1776  017e 4b00          	push	#0
+1777  0180 7b42          	ld	a,(OFST+2,sp)
+1778  0182 4c            	inc	a
+1779  0183 88            	push	a
+1780  0184 96            	ldw	x,sp
+1781  0185 1c0006        	addw	x,#OFST-58
+1782  0188 cd02cb        	call	_LCD_writemsg
+1784  018b 5b03          	addw	sp,#3
+1785                     ; 87     LCD_writemsg(humMsg, i + 1, 0, 3);
+1787  018d 4b03          	push	#3
+1788  018f 4b00          	push	#0
+1789  0191 7b42          	ld	a,(OFST+2,sp)
+1790  0193 4c            	inc	a
+1791  0194 88            	push	a
+1792  0195 96            	ldw	x,sp
+1793  0196 1c0024        	addw	x,#OFST-28
+1794  0199 cd02cb        	call	_LCD_writemsg
+1796  019c 5b03          	addw	sp,#3
+1797                     ; 88 }
+1800  019e 5b40          	addw	sp,#64
+1801  01a0 81            	ret
+1804                     	bsct
+1805  0000               L745_menuMsg:
+1806  0000 4d656e7500    	dc.b	"Menu",0
+1807  0005               L155_op1:
+1808  0005 312e20446169  	dc.b	"1. Daily Min/Max",0
+1809  0016               L355_op2:
+1810  0016 322e2053656e  	dc.b	"2. Send Data",0
+1811  0023               L555_op3:
+1812  0023 332e20536574  	dc.b	"3. Settings",0
+1876                     ; 90 void LCD_menu()
+1876                     ; 91 {
+1877                     	switch	.text
+1878  01a1               _LCD_menu:
+1882                     ; 97     LCD_writemsg(menuMsg, sizeof(menuMsg), 0, 0);
+1884  01a1 4b00          	push	#0
+1885  01a3 4b00          	push	#0
+1886  01a5 4b05          	push	#5
+1887  01a7 ae0000        	ldw	x,#L745_menuMsg
+1888  01aa cd02cb        	call	_LCD_writemsg
+1890  01ad 5b03          	addw	sp,#3
+1891                     ; 98     LCD_writemsg(op1, sizeof(op1), 1, 1);
+1893  01af 4b01          	push	#1
+1894  01b1 4b01          	push	#1
+1895  01b3 4b11          	push	#17
+1896  01b5 ae0005        	ldw	x,#L155_op1
+1897  01b8 cd02cb        	call	_LCD_writemsg
+1899  01bb 5b03          	addw	sp,#3
+1900                     ; 99     LCD_writemsg(op2, sizeof(op2), 1, 2);
+1902  01bd 4b02          	push	#2
+1903  01bf 4b01          	push	#1
+1904  01c1 4b0d          	push	#13
+1905  01c3 ae0016        	ldw	x,#L355_op2
+1906  01c6 cd02cb        	call	_LCD_writemsg
+1908  01c9 5b03          	addw	sp,#3
+1909                     ; 100     LCD_writemsg(op3, sizeof(op3), 1, 3);
+1911  01cb 4b03          	push	#3
+1912  01cd 4b01          	push	#1
+1913  01cf 4b0c          	push	#12
+1914  01d1 ae0023        	ldw	x,#L555_op3
+1915  01d4 cd02cb        	call	_LCD_writemsg
+1917  01d7 5b03          	addw	sp,#3
+1918                     ; 101 }
+1921  01d9 81            	ret
+1924                     	bsct
+1925  002f               L116_tempHeader:
+1926  002f 54656d706572  	dc.b	"Temperature",0
+1927  003b               L316_humidityHeader:
+1928  003b 48756d696469  	dc.b	"Humidity",0
+1929  0044               L516_minHeader:
+1930  0044 4d696e3a2000  	dc.b	"Min: ",0
+1931  004a               L716_maxHeader:
+1932  004a 4d61783a2000  	dc.b	"Max: ",0
+2005                     ; 103 void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity)
+2005                     ; 104 {
+2006                     	switch	.text
+2007  01da               _LCD_min_max:
+2011                     ; 110     LCD_writemsg(tempHeader, sizeof(tempHeader), 20, 0);
+2013  01da 4b00          	push	#0
+2014  01dc 4b14          	push	#20
+2015  01de 4b0c          	push	#12
+2016  01e0 ae002f        	ldw	x,#L116_tempHeader
+2017  01e3 cd02cb        	call	_LCD_writemsg
+2019  01e6 5b03          	addw	sp,#3
+2020                     ; 111     LCD_writemsg(minHeader, sizeof(minHeader), 1, 1);
+2022  01e8 4b01          	push	#1
+2023  01ea 4b01          	push	#1
+2024  01ec 4b06          	push	#6
+2025  01ee ae0044        	ldw	x,#L516_minHeader
+2026  01f1 cd02cb        	call	_LCD_writemsg
+2028  01f4 5b03          	addw	sp,#3
+2029                     ; 112     LCD_writemsg(maxHeader, sizeof(maxHeader), 30, 1);
+2031  01f6 4b01          	push	#1
+2032  01f8 4b1e          	push	#30
+2033  01fa 4b06          	push	#6
+2034  01fc ae004a        	ldw	x,#L716_maxHeader
+2035  01ff cd02cb        	call	_LCD_writemsg
+2037  0202 5b03          	addw	sp,#3
+2038                     ; 114     LCD_writemsg(humidityHeader, sizeof(humidityHeader), 20, 4);
+2040  0204 4b04          	push	#4
+2041  0206 4b14          	push	#20
+2042  0208 4b09          	push	#9
+2043  020a ae003b        	ldw	x,#L316_humidityHeader
+2044  020d cd02cb        	call	_LCD_writemsg
+2046  0210 5b03          	addw	sp,#3
+2047                     ; 115     LCD_writemsg(minHeader, sizeof(minHeader), 1, 5);
+2049  0212 4b05          	push	#5
+2050  0214 4b01          	push	#1
+2051  0216 4b06          	push	#6
+2052  0218 ae0044        	ldw	x,#L516_minHeader
+2053  021b cd02cb        	call	_LCD_writemsg
+2055  021e 5b03          	addw	sp,#3
+2056                     ; 116     LCD_writemsg(maxHeader, sizeof(maxHeader), 30, 5);
+2058  0220 4b05          	push	#5
+2059  0222 4b1e          	push	#30
+2060  0224 4b06          	push	#6
+2061  0226 ae004a        	ldw	x,#L716_maxHeader
+2062  0229 cd02cb        	call	_LCD_writemsg
+2064  022c 5b03          	addw	sp,#3
+2065                     ; 117 }
+2068  022e 81            	ret
+2071                     	bsct
+2072  0050               L756_settingsHeader:
+2073  0050 507265737320  	dc.b	"Press OK to change"
+2074  0062 207365747469  	dc.b	" settings",0
+2109                     ; 119 void LCD_display_settings()
+2109                     ; 120 {
+2110                     	switch	.text
+2111  022f               _LCD_display_settings:
+2115                     ; 122     LCD_writemsg(settingsHeader, sizeof(settingsHeader), 20, 0);
+2117  022f 4b00          	push	#0
+2118  0231 4b14          	push	#20
+2119  0233 4b1c          	push	#28
+2120  0235 ae0050        	ldw	x,#L756_settingsHeader
+2121  0238 cd02cb        	call	_LCD_writemsg
+2123  023b 5b03          	addw	sp,#3
+2124                     ; 123 }
+2127  023d 81            	ret
+2165                     ; 125 void LCD_cmd(uint8_t cmd)
+2165                     ; 126 {
+2166                     	switch	.text
+2167  023e               _LCD_cmd:
+2169  023e 88            	push	a
+2170       00000000      OFST:	set	0
+2173                     ; 127     LCD_CE_clear();
+2175  023f cd0027        	call	L76_LCD_CE_clear
+2177                     ; 128     LCD_DC_clear();
+2179  0242 cd0016        	call	L53_LCD_DC_clear
+2181                     ; 129     LCD_SPI_write(cmd);
+2183  0245 7b01          	ld	a,(OFST+1,sp)
+2184  0247 cd0036        	call	L521_LCD_SPI_write
+2186                     ; 130     LCD_CE_set();
+2188  024a cd001b        	call	L74_LCD_CE_set
+2190                     ; 131 }
+2193  024d 84            	pop	a
+2194  024e 81            	ret
+2232                     ; 133 void LCD_write(uint8_t data)
+2232                     ; 134 {
+2233                     	switch	.text
+2234  024f               _LCD_write:
+2236  024f 88            	push	a
+2237       00000000      OFST:	set	0
+2240                     ; 135     LCD_CE_clear();
+2242  0250 cd0027        	call	L76_LCD_CE_clear
+2244                     ; 136     LCD_DC_set();
+2246  0253 cd0011        	call	L32_LCD_DC_set
+2248                     ; 137     LCD_SPI_write(data);
+2250  0256 7b01          	ld	a,(OFST+1,sp)
+2251  0258 cd0036        	call	L521_LCD_SPI_write
+2253                     ; 138     LCD_CE_set();
+2255  025b cd001b        	call	L74_LCD_CE_set
+2257                     ; 139 }
+2260  025e 84            	pop	a
+2261  025f 81            	ret
+2297                     ; 141 void LCD_clear()
+2297                     ; 142 {
+2298                     	switch	.text
+2299  0260               _LCD_clear:
+2301  0260 89            	pushw	x
+2302       00000002      OFST:	set	2
+2305                     ; 143     uint16_t i = 84 * 6;
+2307  0261 ae01f8        	ldw	x,#504
+2308  0264 1f01          	ldw	(OFST-1,sp),x
+2310                     ; 144     LCD_goto(0, 0);
+2312  0266 5f            	clrw	x
+2313  0267 ad16          	call	_LCD_goto
+2316  0269 2003          	jra	L357
+2317  026b               L157:
+2318                     ; 146         LCD_write(0);
+2320  026b 4f            	clr	a
+2321  026c ade1          	call	_LCD_write
+2323  026e               L357:
+2324                     ; 145     while (i-- > 0)
+2326  026e 1e01          	ldw	x,(OFST-1,sp)
+2327  0270 1d0001        	subw	x,#1
+2328  0273 1f01          	ldw	(OFST-1,sp),x
+2329  0275 1c0001        	addw	x,#1
+2331  0278 a30000        	cpw	x,#0
+2332  027b 26ee          	jrne	L157
+2333                     ; 147 }
+2336  027d 85            	popw	x
+2337  027e 81            	ret
+2381                     ; 149 void LCD_goto(uint8_t col, uint8_t row)
+2381                     ; 150 {
+2382                     	switch	.text
+2383  027f               _LCD_goto:
+2385  027f 89            	pushw	x
+2386       00000000      OFST:	set	0
+2389                     ; 151     LCD_cmd(0x80 | col);
+2391  0280 9e            	ld	a,xh
+2392  0281 aa80          	or	a,#128
+2393  0283 adb9          	call	_LCD_cmd
+2395                     ; 152     LCD_cmd(0x40 | row);
+2397  0285 7b02          	ld	a,(OFST+2,sp)
+2398  0287 aa40          	or	a,#64
+2399  0289 adb3          	call	_LCD_cmd
+2401                     ; 153 }
+2404  028b 85            	popw	x
+2405  028c 81            	ret
+2460                     ; 155 void LCD_putc(char c)
+2460                     ; 156 {
+2461                     	switch	.text
+2462  028d               _LCD_putc:
+2464  028d 88            	push	a
+2465  028e 5203          	subw	sp,#3
+2466       00000003      OFST:	set	3
+2469                     ; 157     if (c == ' ')
+2471  0290 a120          	cp	a,#32
+2472  0292 2608          	jrne	L7201
+2473                     ; 159         LCD_write(0);
+2475  0294 4f            	clr	a
+2476  0295 adb8          	call	_LCD_write
+2478                     ; 160         LCD_write(0);
+2480  0297 4f            	clr	a
+2481  0298 adb5          	call	_LCD_write
+2484  029a 202c          	jra	L1301
+2485  029c               L7201:
+2486                     ; 164         const char *ptr = &font[(c - 32) * FONT_WIDTH];
+2488  029c 7b04          	ld	a,(OFST+1,sp)
+2489  029e 97            	ld	xl,a
+2490  029f a605          	ld	a,#5
+2491  02a1 42            	mul	x,a
+2492  02a2 1d00a0        	subw	x,#160
+2493  02a5 1c0000        	addw	x,#_font
+2494  02a8 1f02          	ldw	(OFST-1,sp),x
+2496                     ; 166         for (i = 0; i < FONT_WIDTH; i++, ptr++)
+2498  02aa 0f01          	clr	(OFST-2,sp)
+2500  02ac               L3301:
+2501                     ; 167             if (*ptr)
+2503  02ac 1e02          	ldw	x,(OFST-1,sp)
+2504  02ae 7d            	tnz	(x)
+2505  02af 2705          	jreq	L1401
+2506                     ; 168                 LCD_write(*ptr);
+2508  02b1 1e02          	ldw	x,(OFST-1,sp)
+2509  02b3 f6            	ld	a,(x)
+2510  02b4 ad99          	call	_LCD_write
+2512  02b6               L1401:
+2513                     ; 166         for (i = 0; i < FONT_WIDTH; i++, ptr++)
+2515  02b6 0c01          	inc	(OFST-2,sp)
+2517  02b8 1e02          	ldw	x,(OFST-1,sp)
+2518  02ba 1c0001        	addw	x,#1
+2519  02bd 1f02          	ldw	(OFST-1,sp),x
+2523  02bf 7b01          	ld	a,(OFST-2,sp)
+2524  02c1 a105          	cp	a,#5
+2525  02c3 25e7          	jrult	L3301
+2526                     ; 169         LCD_write(0);
+2528  02c5 4f            	clr	a
+2529  02c6 ad87          	call	_LCD_write
+2531  02c8               L1301:
+2532                     ; 171 }
+2535  02c8 5b04          	addw	sp,#4
+2536  02ca 81            	ret
+2609                     ; 173 void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row)
+2609                     ; 174 {
+2610                     	switch	.text
+2611  02cb               _LCD_writemsg:
+2613  02cb 89            	pushw	x
+2614  02cc 89            	pushw	x
+2615       00000002      OFST:	set	2
+2618                     ; 175     LCD_goto(col, row);
+2620  02cd 7b09          	ld	a,(OFST+7,sp)
+2621  02cf 97            	ld	xl,a
+2622  02d0 7b08          	ld	a,(OFST+6,sp)
+2623  02d2 95            	ld	xh,a
+2624  02d3 adaa          	call	_LCD_goto
+2626                     ; 178         for (i = 0; i < msgSize - 1; i++)
+2628  02d5 5f            	clrw	x
+2629  02d6 1f01          	ldw	(OFST-1,sp),x
+2632  02d8 200f          	jra	L5011
+2633  02da               L1011:
+2634                     ; 179             LCD_putc(msg[i]);
+2636  02da 1e01          	ldw	x,(OFST-1,sp)
+2637  02dc 72fb03        	addw	x,(OFST+1,sp)
+2638  02df f6            	ld	a,(x)
+2639  02e0 adab          	call	_LCD_putc
+2641                     ; 178         for (i = 0; i < msgSize - 1; i++)
+2643  02e2 1e01          	ldw	x,(OFST-1,sp)
+2644  02e4 1c0001        	addw	x,#1
+2645  02e7 1f01          	ldw	(OFST-1,sp),x
+2647  02e9               L5011:
+2650  02e9 9c            	rvf
+2651  02ea 7b07          	ld	a,(OFST+5,sp)
+2652  02ec 5f            	clrw	x
+2653  02ed 97            	ld	xl,a
+2654  02ee 5a            	decw	x
+2655  02ef 1301          	cpw	x,(OFST-1,sp)
+2656  02f1 2ce7          	jrsgt	L1011
+2657                     ; 182 }
+2660  02f3 5b04          	addw	sp,#4
+2661  02f5 81            	ret
+2686                     	xdef	_LCD_showtime
+2687                     	xdef	_LCD_showdate
+2688                     	xdef	_welcomeMSG
+2689                     	xref	_sprintf
+2690                     	xdef	_font
+2691                     	xref	_SPI_write
+2692                     	xdef	_LCD_display_settings
+2693                     	xdef	_LCD_menu
+2694                     	xdef	_LCD_min_max
+2695                     	xdef	_LCD_homescreen
+2696                     	xdef	_LCD_welcome
+2697                     	xdef	_LCD_writemsg
+2698                     	xdef	_LCD_write
+2699                     	xdef	_LCD_putc
+2700                     	xdef	_LCD_goto
+2701                     	xdef	_LCD_cmd
+2702                     	xdef	_LCD_clear
+2703                     	xdef	_LCD_init
+2704                     	switch	.const
+2705  01f2               L545:
+2706  01f2 68756d696469  	dc.b	"humidity: %02d %%",0
+2707  0204               L345:
+2708  0204 74656d706572  	dc.b	"temperature: %02d",0
+2709  0216               L764:
+2710  0216 253032643a25  	dc.b	"%02d:%02d",0
+2711  0220               L114:
+2712  0220 323025303264  	dc.b	"20%02d-%02d-%02d",0
+2732                     	xref	c_lcmp
+2733                     	xref	c_smul
+2734                     	xref	c_ltor
+2735                     	xref	c_lgadc
+2736                     	xref	c_rtol
+2737                     	xref	c_itolx
+2738                     	end

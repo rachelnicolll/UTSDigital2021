@@ -61,7 +61,7 @@ LCD_showdate(RTC_DateTypeDef SDate)
     char displayDate[50];
     int i = sprintf(displayDate, "20%02d-%02d-%02d", (int)SDate.RTC_Year, (int)SDate.RTC_Month, (int)SDate.RTC_Date);
 
-    LCD_writemsg(displayDate, i+1, 0, 0);
+    LCD_writemsg(displayDate, i + 1, 0, 0);
 }
 
 LCD_showtime(RTC_TimeTypeDef STime)
@@ -69,7 +69,7 @@ LCD_showtime(RTC_TimeTypeDef STime)
     char displayTime[10];
     int i = sprintf(displayTime, "%02d:%02d", (int)STime.RTC_Hours, (int)STime.RTC_Minutes);
 
-    LCD_writemsg(displayTime, i+1, 45, 0);
+    LCD_writemsg(displayTime, i + 1, 45, 0);
 }
 
 void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, uint8_t temperature, uint8_t humidity)
@@ -83,8 +83,8 @@ void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, uint8_t temper
     LCD_showdate(SDate);
     LCD_showtime(STime);
 
-    LCD_writemsg(tempMsg, i+1, 0, 1);
-    LCD_writemsg(humMsg, j+1, 0, 2);
+    LCD_writemsg(tempMsg, i + 1, 0, 2);
+    LCD_writemsg(humMsg, i + 1, 0, 3);
 }
 
 void LCD_menu()

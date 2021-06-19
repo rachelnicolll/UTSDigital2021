@@ -108,7 +108,7 @@
  232  006b               L75:
  233                     ; 95 		switch (HMIStatePtr->outState)
  235  006b 92c609        	ld	a,[_HMIStatePtr.w]
- 237                     ; 196 			break;
+ 237                     ; 192 			break;
  238  006e 4d            	tnz	a
  239  006f 2717          	jreq	L12
  240  0071 4a            	dec	a
@@ -123,7 +123,7 @@
  249  0080               L01:
  250  0080 4a            	dec	a
  251  0081 2603          	jrne	L21
- 252  0083 cc0169        	jp	L33
+ 252  0083 cc015d        	jp	L33
  253  0086               L21:
  254  0086 20c4          	jra	L35
  255  0088               L12:
@@ -232,139 +232,131 @@
  382                     ; 139 			// Show settings to change frequency. Need to press ok to engage with screen
  382                     ; 140 			LCD_display_settings();
  384  010b cd0000        	call	_LCD_display_settings
- 386                     ; 142 			if (editMode == FALSE)
- 388  010e 3d00          	tnz	_editMode
- 389  0110 262c          	jrne	L77
- 390                     ; 144 				if (buttonPressed == DOWN)
- 392  0112 b608          	ld	a,_buttonPressed
- 393  0114 a104          	cp	a,#4
- 394  0116 260b          	jrne	L101
- 395                     ; 146 					HMIStatePtr = HMIStatePtr->next;
- 397  0118 be09          	ldw	x,_HMIStatePtr
- 398  011a ee03          	ldw	x,(3,x)
- 399  011c bf09          	ldw	_HMIStatePtr,x
- 400                     ; 147 					LCD_clear();
- 402  011e cd0000        	call	_LCD_clear
- 405  0121 2040          	jra	L311
- 406  0123               L101:
- 407                     ; 149 				else if (buttonPressed == UP)
- 409  0123 b608          	ld	a,_buttonPressed
- 410  0125 a105          	cp	a,#5
- 411  0127 260b          	jrne	L501
- 412                     ; 151 					HMIStatePtr = HMIStatePtr->previous;
- 414  0129 be09          	ldw	x,_HMIStatePtr
- 415  012b ee01          	ldw	x,(1,x)
- 416  012d bf09          	ldw	_HMIStatePtr,x
- 417                     ; 152 					LCD_clear();
- 419  012f cd0000        	call	_LCD_clear
- 422  0132 202f          	jra	L311
- 423  0134               L501:
- 424                     ; 154 				else if (buttonPressed == OK)
- 426  0134 b608          	ld	a,_buttonPressed
- 427  0136 a103          	cp	a,#3
- 428  0138 2629          	jrne	L311
- 429                     ; 155 					editMode ^= editMode;
- 431  013a 3f00          	clr	_editMode
- 432  013c 2025          	jra	L311
- 433  013e               L77:
- 434                     ; 160 				LCD_clear();
- 436  013e cd0000        	call	_LCD_clear
- 438                     ; 161 				LCD_writemsg(settingMsg, sizeof(settingMsg), 20, 3);
- 440  0141 4b03          	push	#3
- 441  0143 4b14          	push	#20
- 442  0145 4b0a          	push	#10
- 443  0147 ae0012        	ldw	x,#_settingMsg
- 444  014a cd0000        	call	_LCD_writemsg
- 446  014d 5b03          	addw	sp,#3
- 447                     ; 163 				if (buttonPressed == DOWN)
- 449  014f b608          	ld	a,_buttonPressed
- 450  0151 a104          	cp	a,#4
- 451  0153 270e          	jreq	L311
- 453                     ; 167 				else if (buttonPressed == UP)
- 455  0155 b608          	ld	a,_buttonPressed
- 456  0157 a105          	cp	a,#5
- 457  0159 2708          	jreq	L311
- 459                     ; 171 				else if (buttonPressed == OK)
- 461  015b b608          	ld	a,_buttonPressed
- 462  015d a103          	cp	a,#3
- 463  015f 2602          	jrne	L311
- 464                     ; 174 					editMode ^= editMode;
- 466  0161 3f00          	clr	_editMode
- 467  0163               L311:
- 468                     ; 178 			buttonPressed = NO;
- 470  0163 3f08          	clr	_buttonPressed
- 471                     ; 179 			break;
- 473  0165 ac4c004c      	jpf	L35
- 474  0169               L33:
- 475                     ; 181 		case DISPLAY_SEND_DATA:
- 475                     ; 182 			// Show instructions to send data
- 475                     ; 183 			if (buttonPressed == DOWN)
- 477  0169 b608          	ld	a,_buttonPressed
- 478  016b a104          	cp	a,#4
- 479  016d 260b          	jrne	L721
- 480                     ; 185 				HMIStatePtr = HMIStatePtr->next;
- 482  016f be09          	ldw	x,_HMIStatePtr
- 483  0171 ee03          	ldw	x,(3,x)
- 484  0173 bf09          	ldw	_HMIStatePtr,x
- 485                     ; 186 				LCD_clear();
- 487  0175 cd0000        	call	_LCD_clear
- 490  0178 200f          	jra	L131
- 491  017a               L721:
- 492                     ; 188 			else if (buttonPressed == UP)
- 494  017a b608          	ld	a,_buttonPressed
- 495  017c a105          	cp	a,#5
- 496  017e 2609          	jrne	L131
- 497                     ; 190 				HMIStatePtr = HMIStatePtr->previous;
- 499  0180 be09          	ldw	x,_HMIStatePtr
- 500  0182 ee01          	ldw	x,(1,x)
- 501  0184 bf09          	ldw	_HMIStatePtr,x
- 502                     ; 191 				LCD_clear();
- 504  0186 cd0000        	call	_LCD_clear
- 506  0189               L131:
- 507                     ; 194 			LCD_writemsg(sendDataMsg, sizeof(sendDataMsg), 20, 3);
- 509  0189 4b03          	push	#3
- 510  018b 4b14          	push	#20
- 511  018d 4b0c          	push	#12
- 512  018f ae001c        	ldw	x,#_sendDataMsg
- 513  0192 cd0000        	call	_LCD_writemsg
- 515  0195 5b03          	addw	sp,#3
- 516                     ; 195 			buttonPressed = NO;
- 518  0197 3f08          	clr	_buttonPressed
- 519                     ; 196 			break;
- 521  0199 ac4c004c      	jpf	L35
- 522  019d               L36:
- 524  019d ac4c004c      	jpf	L35
-1000                     	xdef	_main
-1001                     	xdef	_clock
-1002                     	switch	.ubsct
-1003  0000               _SRTC_DateRead:
-1004  0000 00000000      	ds.b	4
-1005                     	xdef	_SRTC_DateRead
-1006  0004               _SRTC_TimeRead:
-1007  0004 00000000      	ds.b	4
-1008                     	xdef	_SRTC_TimeRead
-1009  0008               _buttonPressed:
-1010  0008 00            	ds.b	1
-1011                     	xdef	_buttonPressed
-1012                     	xdef	_editMode
-1013                     	xdef	_sendDataMsg
-1014                     	xdef	_settingMsg
-1015                     	xdef	_pressMSG
-1016                     	xdef	_op
-1017                     	xref	_BTN_init
-1018                     	xdef	_HMIFSM
-1019  0009               _HMIStatePtr:
-1020  0009 0000          	ds.b	2
-1021                     	xdef	_HMIStatePtr
-1022                     	xref	_RTC_init
-1023                     	xref	_LCD_display_settings
-1024                     	xref	_LCD_min_max
-1025                     	xref	_LCD_homescreen
-1026                     	xref	_LCD_welcome
-1027                     	xref	_LCD_writemsg
-1028                     	xref	_LCD_clear
-1029                     	xref	_LCD_init
-1030                     	xref	_SPI_init
-1031                     	xref	_RTC_GetDate
-1032                     	xref	_RTC_GetTime
-1052                     	end
+ 386                     ; 142 			if (buttonPressed == OK)
+ 388  010e b608          	ld	a,_buttonPressed
+ 389  0110 a103          	cp	a,#3
+ 390  0112 2602          	jrne	L77
+ 391                     ; 143 					editMode ^= editMode;
+ 393  0114 3f00          	clr	_editMode
+ 394  0116               L77:
+ 395                     ; 145 			if (editMode == FALSE)
+ 397  0116 3d00          	tnz	_editMode
+ 398  0118 2622          	jrne	L101
+ 399                     ; 147 				if (buttonPressed == DOWN)
+ 401  011a b608          	ld	a,_buttonPressed
+ 402  011c a104          	cp	a,#4
+ 403  011e 260b          	jrne	L301
+ 404                     ; 149 					HMIStatePtr = HMIStatePtr->next;
+ 406  0120 be09          	ldw	x,_HMIStatePtr
+ 407  0122 ee03          	ldw	x,(3,x)
+ 408  0124 bf09          	ldw	_HMIStatePtr,x
+ 409                     ; 150 					LCD_clear();
+ 411  0126 cd0000        	call	_LCD_clear
+ 414  0129 202c          	jra	L111
+ 415  012b               L301:
+ 416                     ; 152 				else if (buttonPressed == UP)
+ 418  012b b608          	ld	a,_buttonPressed
+ 419  012d a105          	cp	a,#5
+ 420  012f 2626          	jrne	L111
+ 421                     ; 154 					HMIStatePtr = HMIStatePtr->previous;
+ 423  0131 be09          	ldw	x,_HMIStatePtr
+ 424  0133 ee01          	ldw	x,(1,x)
+ 425  0135 bf09          	ldw	_HMIStatePtr,x
+ 426                     ; 155 					LCD_clear();
+ 428  0137 cd0000        	call	_LCD_clear
+ 430  013a 201b          	jra	L111
+ 431  013c               L101:
+ 432                     ; 161 				LCD_clear();
+ 434  013c cd0000        	call	_LCD_clear
+ 436                     ; 162 				LCD_writemsg(settingMsg, sizeof(settingMsg), 20, 3);
+ 438  013f 4b03          	push	#3
+ 439  0141 4b14          	push	#20
+ 440  0143 4b0a          	push	#10
+ 441  0145 ae0012        	ldw	x,#_settingMsg
+ 442  0148 cd0000        	call	_LCD_writemsg
+ 444  014b 5b03          	addw	sp,#3
+ 445                     ; 164 				if (buttonPressed == DOWN)
+ 447  014d b608          	ld	a,_buttonPressed
+ 448  014f a104          	cp	a,#4
+ 449  0151 2704          	jreq	L111
+ 451                     ; 168 				else if (buttonPressed == UP)
+ 453  0153 b608          	ld	a,_buttonPressed
+ 454  0155 a105          	cp	a,#5
+ 455  0157               L111:
+ 456                     ; 174 			buttonPressed = NO;
+ 458  0157 3f08          	clr	_buttonPressed
+ 459                     ; 175 			break;
+ 461  0159 ac4c004c      	jpf	L35
+ 462  015d               L33:
+ 463                     ; 177 		case DISPLAY_SEND_DATA:
+ 463                     ; 178 			// Show instructions to send data
+ 463                     ; 179 			if (buttonPressed == DOWN)
+ 465  015d b608          	ld	a,_buttonPressed
+ 466  015f a104          	cp	a,#4
+ 467  0161 260b          	jrne	L121
+ 468                     ; 181 				HMIStatePtr = HMIStatePtr->next;
+ 470  0163 be09          	ldw	x,_HMIStatePtr
+ 471  0165 ee03          	ldw	x,(3,x)
+ 472  0167 bf09          	ldw	_HMIStatePtr,x
+ 473                     ; 182 				LCD_clear();
+ 475  0169 cd0000        	call	_LCD_clear
+ 478  016c 200f          	jra	L321
+ 479  016e               L121:
+ 480                     ; 184 			else if (buttonPressed == UP)
+ 482  016e b608          	ld	a,_buttonPressed
+ 483  0170 a105          	cp	a,#5
+ 484  0172 2609          	jrne	L321
+ 485                     ; 186 				HMIStatePtr = HMIStatePtr->previous;
+ 487  0174 be09          	ldw	x,_HMIStatePtr
+ 488  0176 ee01          	ldw	x,(1,x)
+ 489  0178 bf09          	ldw	_HMIStatePtr,x
+ 490                     ; 187 				LCD_clear();
+ 492  017a cd0000        	call	_LCD_clear
+ 494  017d               L321:
+ 495                     ; 190 			LCD_writemsg(sendDataMsg, sizeof(sendDataMsg), 20, 3);
+ 497  017d 4b03          	push	#3
+ 498  017f 4b14          	push	#20
+ 499  0181 4b0c          	push	#12
+ 500  0183 ae001c        	ldw	x,#_sendDataMsg
+ 501  0186 cd0000        	call	_LCD_writemsg
+ 503  0189 5b03          	addw	sp,#3
+ 504                     ; 191 			buttonPressed = NO;
+ 506  018b 3f08          	clr	_buttonPressed
+ 507                     ; 192 			break;
+ 509  018d ac4c004c      	jpf	L35
+ 510  0191               L36:
+ 512  0191 ac4c004c      	jpf	L35
+ 988                     	xdef	_main
+ 989                     	xdef	_clock
+ 990                     	switch	.ubsct
+ 991  0000               _SRTC_DateRead:
+ 992  0000 00000000      	ds.b	4
+ 993                     	xdef	_SRTC_DateRead
+ 994  0004               _SRTC_TimeRead:
+ 995  0004 00000000      	ds.b	4
+ 996                     	xdef	_SRTC_TimeRead
+ 997  0008               _buttonPressed:
+ 998  0008 00            	ds.b	1
+ 999                     	xdef	_buttonPressed
+1000                     	xdef	_editMode
+1001                     	xdef	_sendDataMsg
+1002                     	xdef	_settingMsg
+1003                     	xdef	_pressMSG
+1004                     	xdef	_op
+1005                     	xref	_BTN_init
+1006                     	xdef	_HMIFSM
+1007  0009               _HMIStatePtr:
+1008  0009 0000          	ds.b	2
+1009                     	xdef	_HMIStatePtr
+1010                     	xref	_RTC_init
+1011                     	xref	_LCD_display_settings
+1012                     	xref	_LCD_min_max
+1013                     	xref	_LCD_homescreen
+1014                     	xref	_LCD_welcome
+1015                     	xref	_LCD_writemsg
+1016                     	xref	_LCD_clear
+1017                     	xref	_LCD_init
+1018                     	xref	_SPI_init
+1019                     	xref	_RTC_GetDate
+1020                     	xref	_RTC_GetTime
+1040                     	end

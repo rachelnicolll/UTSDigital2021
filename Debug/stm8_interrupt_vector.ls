@@ -1,71 +1,71 @@
    1                     ; C Compiler for STM8 (COSMIC Software)
    2                     ; Parser V4.12.4 - 04 Feb 2021
    3                     ; Generator (Limited) V4.5.2 - 04 Feb 2021
-  43                     ; 21 @far @interrupt void NonHandledInterrupt (void)
-  43                     ; 22 {
+  43                     ; 26 @far @interrupt void NonHandledInterrupt(void)
+  43                     ; 27 {
   44                     	switch	.text
   45  0000               f_NonHandledInterrupt:
-  49                     ; 26 	return;
+  49                     ; 31 	return;
   52  0000 80            	iret
-  75                     ; 29 @far @interrupt void EXTID4_IRQHandler(void)
-  75                     ; 30 {
+  75                     ; 34 @far @interrupt void EXTID4_IRQHandler(void)
+  75                     ; 35 {
   76                     	switch	.text
   77  0001               f_EXTID4_IRQHandler:
-  81                     ; 32 	if(EXTI->SR1 == 0x10)
+  81                     ; 37 	if (EXTI->SR1 == 0x10 )//&& GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_4) == ON)
   83  0001 c650a3        	ld	a,20643
   84  0004 a110          	cp	a,#16
   85  0006 2604          	jrne	L13
-  86                     ; 33 		EXTI->SR1 |= 0x10;
+  86                     ; 38 		EXTI->SR1 |= 0x10;
   88  0008 721850a3      	bset	20643,#4
   89  000c               L13:
-  90                     ; 35 	buttonPressed = UP;
+  90                     ; 40 	buttonPressed = UP;
   92  000c 35050000      	mov	_buttonPressed,#5
-  93                     ; 36 	return;
+  93                     ; 41 	return;
   96  0010 80            	iret
- 119                     ; 38 @far @interrupt void EXTID1_IRQHandler(void)
- 119                     ; 39 {
+ 119                     ; 44 @far @interrupt void EXTID1_IRQHandler(void)
+ 119                     ; 45 {
  120                     	switch	.text
  121  0011               f_EXTID1_IRQHandler:
- 125                     ; 41 	if(EXTI->SR1 == 0x02)
+ 125                     ; 47 	if (EXTI->SR1 == 0x02) // && GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_1) == ON)
  127  0011 c650a3        	ld	a,20643
  128  0014 a102          	cp	a,#2
  129  0016 2604          	jrne	L34
- 130                     ; 42 		EXTI->SR1 |= 0x02;
+ 130                     ; 48 		EXTI->SR1 |= 0x02;
  132  0018 721250a3      	bset	20643,#1
  133  001c               L34:
- 134                     ; 44 	buttonPressed = DOWN;
+ 134                     ; 50 	buttonPressed = DOWN;
  136  001c 35040000      	mov	_buttonPressed,#4
- 137                     ; 45 	return;
+ 137                     ; 51 	return;
  140  0020 80            	iret
- 163                     ; 47 @far @interrupt void EXTID2_IRQHandler(void)
- 163                     ; 48 {
+ 163                     ; 54 @far @interrupt void EXTID2_IRQHandler(void)
+ 163                     ; 55 {
  164                     	switch	.text
  165  0021               f_EXTID2_IRQHandler:
- 169                     ; 50 	if(EXTI->SR1 == 0x04)
+ 169                     ; 57 	if (EXTI->SR1 == 0x04) // && GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_2) == ON)
  171  0021 c650a3        	ld	a,20643
  172  0024 a104          	cp	a,#4
  173  0026 2604          	jrne	L55
- 174                     ; 51 		EXTI->SR1 |= 0x04;
+ 174                     ; 58 		EXTI->SR1 |= 0x04;
  176  0028 721450a3      	bset	20643,#2
  177  002c               L55:
- 178                     ; 53 	buttonPressed = OK;
+ 178                     ; 60 	buttonPressed = OK;
  180  002c 35030000      	mov	_buttonPressed,#3
- 181                     ; 54 	return;
+ 181                     ; 61 	return;
  184  0030 80            	iret
- 207                     ; 56 @far @interrupt void EXTID3_IRQHandler(void)
- 207                     ; 57 {
+ 207                     ; 64 @far @interrupt void EXTID3_IRQHandler(void)
+ 207                     ; 65 {
  208                     	switch	.text
  209  0031               f_EXTID3_IRQHandler:
- 213                     ; 59 	if(EXTI->SR1 == 0x08)
+ 213                     ; 67 	if (EXTI->SR1 == 0x08) // && GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_3) == ON)
  215  0031 c650a3        	ld	a,20643
  216  0034 a108          	cp	a,#8
  217  0036 2604          	jrne	L76
- 218                     ; 60 		EXTI->SR1 |= 0x08;
+ 218                     ; 68 		EXTI->SR1 |= 0x08;
  220  0038 721650a3      	bset	20643,#3
  221  003c               L76:
- 222                     ; 62 	buttonPressed = BACK;
+ 222                     ; 70 	buttonPressed = BACK;
  224  003c 35020000      	mov	_buttonPressed,#2
- 225                     ; 63 	return;
+ 225                     ; 71 	return;
  228  0040 80            	iret
  230                     .const:	section	.text
  231  0000               __vectab:
