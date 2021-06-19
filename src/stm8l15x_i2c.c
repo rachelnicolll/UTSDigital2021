@@ -1144,8 +1144,8 @@ I2C_Event_TypeDef I2C_GetLastEvent(I2C_TypeDef* I2Cx)
   *            @arg I2C_FLAG_STOPF: Stop detection flag (Slave mode)
   *            @arg I2C_FLAG_ADD10: 10-bit header sent flag (Master mode)
   *            @arg I2C_FLAG_BTF: Byte transfer finished flag
-  *            @arg I2C_FLAG_ADDR: Address sent flag (Master mode) “ADSL”
-  *   Address matched flag (Slave mode)”ENDAD”
+  *            @arg I2C_FLAG_ADDR: Address sent flag (Master mode) ï¿½ADSLï¿½
+  *   Address matched flag (Slave mode)ï¿½ENDADï¿½
   *            @arg I2C_FLAG_SB: Start bit flag (Master mode)
   * @retval The new state of I2C_FLAG (SET or RESET).
   */
@@ -1256,8 +1256,8 @@ void I2C_ClearFlag(I2C_TypeDef* I2Cx, I2C_FLAG_TypeDef I2C_FLAG)
   *            @arg I2C_IT_STOPF: Stop detection flag (Slave mode)
   *            @arg I2C_IT_ADD10: 10-bit header sent flag (Master mode)
   *            @arg I2C_IT_BTF: Byte transfer finished flag
-  *            @arg I2C_IT_ADDR: Address sent flag (Master mode) “ADSL”
-  *                              Address matched flag (Slave mode)“ENDAD”
+  *            @arg I2C_IT_ADDR: Address sent flag (Master mode) ï¿½ADSLï¿½
+  *                              Address matched flag (Slave mode)ï¿½ENDADï¿½
   *            @arg I2C_IT_SB: Start bit flag (Master mode)
   * @retval The new state of I2C_IT
   */

@@ -50,6 +50,9 @@ crtsi0.sm8
 
 # Object files list - section reserved for STVD
 #<BEGIN OBJECT_FILES>
+Release\hdc2080.o
+Release\mcu.o
+Release\clk.o
 Release\main.o
 Release\delay.o
 Release\lcd.o

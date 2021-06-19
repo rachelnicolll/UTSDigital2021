@@ -13,7 +13,7 @@ void clk_init()
 	CLK_LSICmd(DISABLE);
 	//Enable HSI (high-speed internal), 16 MHz factory-trimmed RC used directly as System clock source.
 	CLK_HSICmd(ENABLE);
-	while(CLK_GetFlagStatus((CLK_FLAG_HSIRDY)== FALSE);
+	while(CLK_GetFlagStatus((CLK_FLAG_HSIRDY)== FALSE));
 	
 	CLK_PeripheralClockConfig(CLK_Peripheral_USART1, ENABLE);
 	CLK_PeripheralClockConfig(CLK_Peripheral_TIM1, ENABLE);
