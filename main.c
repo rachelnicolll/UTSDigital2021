@@ -138,6 +138,8 @@ void main(void)
 		case DISPLAY_SETTINGS:
 			// Show settings to change frequency. Need to press ok to engage with screen
 			LCD_display_settings();
+			if (buttonPressed == OK)
+					editMode ^= editMode;
 
 			if (editMode == FALSE)
 			{
@@ -151,8 +153,6 @@ void main(void)
 					HMIStatePtr = HMIStatePtr->previous;
 					LCD_clear();
 				}
-				else if (buttonPressed == OK)
-					editMode ^= editMode;
 			}
 			else // Edit mode is true
 			{
@@ -167,11 +167,6 @@ void main(void)
 				else if (buttonPressed == UP)
 				{
 					// Increment minutes
-				}
-				else if (buttonPressed == OK)
-				{
-					// Save settings
-					editMode ^= editMode;
 				}
 			}
 

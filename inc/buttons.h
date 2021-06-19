@@ -5,7 +5,7 @@
 #include <stm8l15x.h>
 #include <stm8l15x_gpio.h>
 
-#define UP   5 //PD0 - EXTI0
+#define UP   5 //PD4 - EXTI4
 #define DOWN 4 //PD1 - EXTI1
 #define OK   3 //PD2 - EXTI2
 #define BACK 2 //PD3 - EXTI3
