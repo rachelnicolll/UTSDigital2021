@@ -10,8 +10,8 @@
 #include <stddef.h>
 #include <string.h>
 #include <stm8l15x_conf.h>
-#include "HDC2080.h"
-#include "mcu.h"
+#include <HDC2080.h>
+#include <mcu.h>
 
 
 

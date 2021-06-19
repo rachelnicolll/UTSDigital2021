@@ -28,7 +28,8 @@ void mcu_i2cInit(uint8_t busId)
 
     GPIO_Init(GPIOC, GPIO_Pin_0, GPIO_Mode_Out_OD_HiZ_Fast); //is it high impedence?
     GPIO_Init(GPIOC, GPIO_Pin_1, GPIO_Mode_Out_OD_HiZ_Fast);
-    I2C_ITConfig(I2C1, I2C_IT_EVT | I2C_IT_BUF, ENABLE);
+    // I2C_ITConfig(I2C1, I2C_IT_EVT | I2C_IT_BUF, ENABLE);
+		// enableInterrupts();
 }
 
 int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,

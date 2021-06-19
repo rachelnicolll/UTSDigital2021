@@ -3,7 +3,7 @@
    3                     ; Generator (Limited) V4.5.2 - 04 Feb 2021
   13                     	bsct
   14  0000               L3_HDC2080_state:
-  15  0000 84            	dc.b	132
+  15  0000 80            	dc.b	128
   16  0001 00            	dc.b	0
   17  0002 f8            	dc.b	248
   18  0003 ff            	dc.b	255

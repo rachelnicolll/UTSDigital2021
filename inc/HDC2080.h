@@ -142,7 +142,7 @@ typedef struct HDC2080_State {
 #define HDC2080_CONFIG_VALUE (HDC2080_CONFIG_SOFT_RES_ENABLE |    \
                               HDC2080_CONFIG_AMM_DISABLED |       \
                               HDC2080_CONFIG_HEAT_EN_DISABLE |    \
-                              HDC2080_CONFIG_DRDY_INT_EN_ENABLE | \
+                              HDC2080_CONFIG_DRDY_INT_EN_DISABLE | \
                               HDC2080_CONFIG_INT_POL_LOW |        \
                               HDC2080_CONFIG_INT_MODE_LEVEL)
 #define HDC2080_MEAS_CONFIG_VALUE (HDC2080_MEAS_CONFIG_TRES_14BIT |   \

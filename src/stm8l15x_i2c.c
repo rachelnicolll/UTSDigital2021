@@ -974,18 +974,18 @@ void I2C_ITConfig(I2C_TypeDef* I2Cx, I2C_IT_TypeDef I2C_IT, FunctionalState NewS
   * @param  I2Cx: where x can be 1 to select the specified I2C peripheral.
   * @param  I2C_Register: specifies the register to read.
   *          This parameter can be one of the following values:
-  *            @arg I2C_Register_CR1: CR1 register.
-  *            @arg I2C_Register_CR2: CR2 register.
-  *            @arg I2C_Register_FREQR: Frequency register.
-  *            @arg I2C_Register_OARL: Own address register LSB.
-  *            @arg I2C_Register_OARH: Own address register MSB
-  *            @arg I2C_Register_DR: DR register.
-  *            @arg I2C_Register_SR1: SR1 register.
-  *            @arg I2C_Register_SR2: SR2 register.
-  *            @arg I2C_Register_SR3: SR3 register.
-  *            @arg I2C_Register_ITR: Interrupt and DMA register.
-  *            @arg I2C_Register_CCRL: Clock control register low.
-  *            @arg I2C_Register_CCRH: Clock control register high.
+  *            @arg I2C_Register_CR1:     CR1 register.
+  *            @arg I2C_Register_CR2:     CR2 register.
+  *            @arg I2C_Register_FREQR:   Frequency register.
+  *            @arg I2C_Register_OARL:    Own address register LSB.
+  *            @arg I2C_Register_OARH:    Own address register MSB
+  *            @arg I2C_Register_DR:      DR register.
+  *            @arg I2C_Register_SR1:     SR1 register.
+  *            @arg I2C_Register_SR2:     SR2 register.
+  *            @arg I2C_Register_SR3:     SR3 register.
+  *            @arg I2C_Register_ITR:     Interrupt and DMA register.
+  *            @arg I2C_Register_CCRL:    Clock control register low.
+  *            @arg I2C_Register_CCRH:    Clock control register high.
   *            @arg I2C_Register_TRISER: TRISE register.
   *            @arg I2C_Register_PECR: PEC register.
   * @retval The value of the read register.
