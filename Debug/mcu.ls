@@ -140,49 +140,57 @@
  303  00cb 4f            	clr	a
  306  00cc 85            	popw	x
  307  00cd 81            	ret
- 351                     .const:	section	.text
- 352  0000               L21:
- 353  0000 0000006f      	dc.l	111
- 354                     ; 76 void mcu_msWait(unsigned long msWait)
- 354                     ; 77 {
- 355                     	switch	.text
- 356  00ce               _mcu_msWait:
- 358  00ce 5204          	subw	sp,#4
- 359       00000004      OFST:	set	4
- 362                     ; 14     for (i = 0; i < ((F_CPU / 18 / 1000UL) * ms); i++) {
- 365  00d0 ae0000        	ldw	x,#0
- 366  00d3 1f03          	ldw	(OFST-1,sp),x
- 367  00d5 ae0000        	ldw	x,#0
- 368  00d8 1f01          	ldw	(OFST-3,sp),x
- 370  00da               L541:
- 373  00da 96            	ldw	x,sp
- 374  00db 1c0001        	addw	x,#OFST-3
- 375  00de a601          	ld	a,#1
- 376  00e0 cd0000        	call	c_lgadc
- 381  00e3 96            	ldw	x,sp
- 382  00e4 1c0001        	addw	x,#OFST-3
- 383  00e7 cd0000        	call	c_ltor
- 385  00ea ae0000        	ldw	x,#L21
- 386  00ed cd0000        	call	c_lcmp
- 388  00f0 25e8          	jrult	L541
- 389                     ; 82 }
- 392  00f2 5b04          	addw	sp,#4
- 393  00f4 81            	ret
- 417                     	xdef	_SensorAddr
- 418                     	xdef	_mcu_msWait
- 419                     	xdef	_mcu_i2cTransfer
- 420                     	xdef	_mcu_i2cInit
- 421                     	xref	_I2C_CheckEvent
- 422                     	xref	_I2C_ReceiveData
- 423                     	xref	_I2C_SendData
- 424                     	xref	_I2C_Send7bitAddress
- 425                     	xref	_I2C_GenerateSTOP
- 426                     	xref	_I2C_GenerateSTART
- 427                     	xref	_I2C_Cmd
- 428                     	xref	_I2C_Init
- 429                     	xref	_I2C_DeInit
- 430                     	xref	_GPIO_Init
- 449                     	xref	c_lcmp
- 450                     	xref	c_ltor
- 451                     	xref	c_lgadc
- 452                     	end
+ 360                     ; 76 void mcu_msWait(unsigned long msWait)
+ 360                     ; 77 {
+ 361                     	switch	.text
+ 362  00ce               _mcu_msWait:
+ 364  00ce 5208          	subw	sp,#8
+ 365       00000008      OFST:	set	8
+ 368                     ; 81     delay_ms(msWait);
+ 371  00d0 1e0d          	ldw	x,(OFST+5,sp)
+ 372  00d2 1f03          	ldw	(OFST-5,sp),x
+ 373  00d4 1e0b          	ldw	x,(OFST+3,sp)
+ 374  00d6 1f01          	ldw	(OFST-7,sp),x
+ 376                     ; 14     for (i = 0; i < ((F_CPU / 18 / 1000UL) * ms); i++) {
+ 378  00d8 ae0000        	ldw	x,#0
+ 379  00db 1f07          	ldw	(OFST-1,sp),x
+ 380  00dd ae0000        	ldw	x,#0
+ 381  00e0 1f05          	ldw	(OFST-3,sp),x
+ 384  00e2 2009          	jra	L551
+ 385  00e4               L151:
+ 388  00e4 96            	ldw	x,sp
+ 389  00e5 1c0005        	addw	x,#OFST-3
+ 390  00e8 a601          	ld	a,#1
+ 391  00ea cd0000        	call	c_lgadc
+ 394  00ed               L551:
+ 397  00ed 96            	ldw	x,sp
+ 398  00ee 1c0001        	addw	x,#OFST-7
+ 399  00f1 cd0000        	call	c_ltor
+ 401  00f4 a66f          	ld	a,#111
+ 402  00f6 cd0000        	call	c_smul
+ 404  00f9 96            	ldw	x,sp
+ 405  00fa 1c0005        	addw	x,#OFST-3
+ 406  00fd cd0000        	call	c_lcmp
+ 408  0100 22e2          	jrugt	L151
+ 409                     ; 82 }
+ 412  0102 5b08          	addw	sp,#8
+ 413  0104 81            	ret
+ 437                     	xdef	_SensorAddr
+ 438                     	xdef	_mcu_msWait
+ 439                     	xdef	_mcu_i2cTransfer
+ 440                     	xdef	_mcu_i2cInit
+ 441                     	xref	_I2C_CheckEvent
+ 442                     	xref	_I2C_ReceiveData
+ 443                     	xref	_I2C_SendData
+ 444                     	xref	_I2C_Send7bitAddress
+ 445                     	xref	_I2C_GenerateSTOP
+ 446                     	xref	_I2C_GenerateSTART
+ 447                     	xref	_I2C_Cmd
+ 448                     	xref	_I2C_Init
+ 449                     	xref	_I2C_DeInit
+ 450                     	xref	_GPIO_Init
+ 469                     	xref	c_lcmp
+ 470                     	xref	c_smul
+ 471                     	xref	c_ltor
+ 472                     	xref	c_lgadc
+ 473                     	end

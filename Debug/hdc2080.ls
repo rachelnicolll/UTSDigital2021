@@ -13,7 +13,7 @@
   22  0007 00            	dc.b	0
   23  0008 00            	dc.b	0
   24  0009 00            	dc.b	0
-  25  000a 40            	dc.b	64
+  25  000a 80            	dc.b	128
   26  000b 0001          	dc.w	1
   27  000d 0001          	dc.w	1
  308                     ; 22 void HDC2080_config(HDC2080_Handle sensor)

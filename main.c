@@ -15,7 +15,8 @@
 
 
 const HDC2080_Handle HDC2080 = &HDC2080_state;
-uint32_t ReadingResult[4];
+uint16_t RawResult;
+float ReadingResult;
 
 void main(void)
 {
@@ -27,6 +28,7 @@ void main(void)
 	
 	for(;;)
 	{
-		HDC2080_read(HDC2080, ReadingResult);
+		RawResult = HDC2080_tempRead(HDC2080);
+		ReadingResult = HDC2080_tempToFloatCelsius(RawResult)
 	}
 }

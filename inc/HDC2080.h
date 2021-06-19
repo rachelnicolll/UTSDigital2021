@@ -166,7 +166,7 @@ static HDC2080_State HDC2080_state = {
     0, 
 
     /* Sensor address on the I2C bus */
-    0x40U, 
+    0x80U, 
 
     /* Conversion time for temperature (in ms)  */
     1,

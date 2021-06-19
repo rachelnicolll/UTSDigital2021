@@ -78,6 +78,6 @@ void mcu_msWait(unsigned long msWait)
     /*
      *  Add MCU specific wait loop for msWait. The unit is in milli-seconds
      */
-    delay_ms(1);
+    delay_ms(msWait);
 }
 /********* MCU SPECIFIC DELAY CODE ENDS HERE************/
