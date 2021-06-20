@@ -315,6 +315,7 @@ BKR	inc\stm8l15x.h	1981;"	member	struct:TIM_struct
 BOR	inc\stm8l15x.h	1369;"	member	struct:OPT_struct
 BRR1	inc\stm8l15x.h	2226;"	member	struct:USART_struct
 BRR2	inc\stm8l15x.h	2227;"	member	struct:USART_struct
+BUFSIZ	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	26;"	macro
 BYTE_0	inc\stm8l15x.h	2992;"	macro
 BYTE_1	inc\stm8l15x.h	2993;"	macro
 BYTE_2	inc\stm8l15x.h	2994;"	macro
@@ -804,7 +805,6 @@ CSSLSE_CSR_SWITCHF	inc\stm8l15x.h	590;"	macro
 CSSLSE_TypeDef	inc\stm8l15x.h	574;"	typedef	typeref:struct:CSSLSE_struct
 CSSLSE_struct	inc\stm8l15x.h	570;"	struct
 CSSR	inc\stm8l15x.h	744;"	member	struct:CLK_struct
-CS_PIN	main.c	16;"	macro	file:
 CS_PIN	src\spi.c	5;"	macro	file:
 ChgBit	inc\stm8l15x.h	2984;"	macro
 ClrBit	inc\stm8l15x.h	2982;"	macro
@@ -1102,6 +1102,7 @@ EGR	inc\stm8l15x.h	1732;"	member	struct:TIM1_struct
 EGR	inc\stm8l15x.h	1968;"	member	struct:TIM_struct
 EGR	inc\stm8l15x.h	2148;"	member	struct:TIM4_struct
 ENABLE	inc\stm8l15x.h	247;"	enumerator	enum:__anon3
+EOF	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	27;"	macro
 ERROR	inc\stm8l15x.h	250;"	enumerator	enum:__anon4
 ETR	inc\stm8l15x.h	1727;"	member	struct:TIM1_struct
 ETR	inc\stm8l15x.h	1963;"	member	struct:TIM_struct
@@ -1449,18 +1450,18 @@ HDC2080_CONFIG_INT_POL_HIGH	inc\hdc2080.h	63;"	macro
 HDC2080_CONFIG_INT_POL_LOW	inc\hdc2080.h	62;"	macro
 HDC2080_CONFIG_SOFT_RES_DISABLE	inc\hdc2080.h	49;"	macro
 HDC2080_CONFIG_SOFT_RES_ENABLE	inc\hdc2080.h	48;"	macro
-HDC2080_CONFIG_VALUE	inc\hdc2080.h	142;"	macro
+HDC2080_CONFIG_VALUE	inc\hdc2080.h	143;"	macro
 HDC2080_DEVID_HIGH	inc\hdc2080.h	84;"	macro
 HDC2080_DEVID_LOW	inc\hdc2080.h	83;"	macro
 HDC2080_HUM_HIGH	inc\hdc2080.h	18;"	macro
 HDC2080_HUM_LOW	inc\hdc2080.h	17;"	macro
 HDC2080_HUM_MAX	inc\hdc2080.h	80;"	macro
 HDC2080_HUM_OFFSET	inc\hdc2080.h	42;"	macro
-HDC2080_HUM_OFFSET_VALUE	inc\hdc2080.h	137;"	macro
+HDC2080_HUM_OFFSET_VALUE	inc\hdc2080.h	138;"	macro
 HDC2080_HUM_THRES_HIGH	inc\hdc2080.h	46;"	macro
-HDC2080_HUM_THRES_HIGH_VALUE	inc\hdc2080.h	141;"	macro
+HDC2080_HUM_THRES_HIGH_VALUE	inc\hdc2080.h	142;"	macro
 HDC2080_HUM_THRES_LOW	inc\hdc2080.h	45;"	macro
-HDC2080_HUM_THRES_LOW_VALUE	inc\hdc2080.h	140;"	macro
+HDC2080_HUM_THRES_LOW_VALUE	inc\hdc2080.h	141;"	macro
 HDC2080_Handle	inc\hdc2080.h	183;"	typedef
 HDC2080_INT_CONFIG	inc\hdc2080.h	30;"	macro
 HDC2080_INT_CONFIG_DRDY_EN_DISABLE	inc\hdc2080.h	32;"	macro
@@ -1473,7 +1474,7 @@ HDC2080_INT_CONFIG_TH_EN_DISABLE	inc\hdc2080.h	34;"	macro
 HDC2080_INT_CONFIG_TH_EN_ENABLE	inc\hdc2080.h	33;"	macro
 HDC2080_INT_CONFIG_TL_EN_DISABLE	inc\hdc2080.h	36;"	macro
 HDC2080_INT_CONFIG_TL_EN_ENABLE	inc\hdc2080.h	35;"	macro
-HDC2080_INT_CONFIG_VALUE	inc\hdc2080.h	131;"	macro
+HDC2080_INT_CONFIG_VALUE	inc\hdc2080.h	132;"	macro
 HDC2080_INT_DRDY	inc\hdc2080.h	19;"	macro
 HDC2080_INT_DRDY_DRDY_STAT_DISABLE	inc\hdc2080.h	21;"	macro
 HDC2080_INT_DRDY_DRDY_STAT_ENABLE	inc\hdc2080.h	20;"	macro
@@ -1500,18 +1501,18 @@ HDC2080_MEAS_CONFIG_RES_ENABLE	inc\hdc2080.h	73;"	macro
 HDC2080_MEAS_CONFIG_TRES_11BIT	inc\hdc2080.h	68;"	macro
 HDC2080_MEAS_CONFIG_TRES_14BIT	inc\hdc2080.h	67;"	macro
 HDC2080_MEAS_CONFIG_TRES_9BIT	inc\hdc2080.h	69;"	macro
-HDC2080_MEAS_CONFIG_VALUE	inc\hdc2080.h	148;"	macro
+HDC2080_MEAS_CONFIG_VALUE	inc\hdc2080.h	149;"	macro
 HDC2080_State	inc\hdc2080.h	111;"	struct
 HDC2080_State	inc\hdc2080.h	129;"	typedef	typeref:struct:HDC2080_State
 HDC2080_TEMP_HIGH	inc\hdc2080.h	16;"	macro
 HDC2080_TEMP_LOW	inc\hdc2080.h	15;"	macro
 HDC2080_TEMP_MAX	inc\hdc2080.h	79;"	macro
 HDC2080_TEMP_OFFSET	inc\hdc2080.h	41;"	macro
-HDC2080_TEMP_OFFSET_VALUE	inc\hdc2080.h	136;"	macro
+HDC2080_TEMP_OFFSET_VALUE	inc\hdc2080.h	137;"	macro
 HDC2080_TEMP_THRES_HIGH	inc\hdc2080.h	44;"	macro
-HDC2080_TEMP_THRES_HIGH_VALUE	inc\hdc2080.h	139;"	macro
+HDC2080_TEMP_THRES_HIGH_VALUE	inc\hdc2080.h	140;"	macro
 HDC2080_TEMP_THRES_LOW	inc\hdc2080.h	43;"	macro
-HDC2080_TEMP_THRES_LOW_VALUE	inc\hdc2080.h	138;"	macro
+HDC2080_TEMP_THRES_LOW_VALUE	inc\hdc2080.h	139;"	macro
 HDC2080_config	inc\hdc2080.h	189;"	prototype	signature:(HDC2080_Handle sensor)
 HDC2080_config	src\hdc2080.c	22;"	function	signature:(HDC2080_Handle sensor)
 HDC2080_humRead	inc\hdc2080.h	225;"	prototype	signature:(HDC2080_Handle sensor)
@@ -1524,7 +1525,7 @@ HDC2080_humToPermille	inc\hdc2080.h	261;"	prototype	signature:(uint16_t raw)
 HDC2080_humToPermille	src\hdc2080.c	133;"	function	signature:(uint16_t x)
 HDC2080_read	inc\hdc2080.h	205;"	prototype	signature:(HDC2080_Handle sensor, uint32_t result[])
 HDC2080_read	src\hdc2080.c	52;"	function	signature:(HDC2080_Handle sensor, uint32_t result[])
-HDC2080_state	inc\hdc2080.h	153;"	variable
+HDC2080_state	inc\hdc2080.h	154;"	variable
 HDC2080_tempRead	inc\hdc2080.h	283;"	prototype	signature:(HDC2080_Handle sensor)
 HDC2080_tempRead	src\hdc2080.c	143;"	function	signature:(HDC2080_Handle sensor)
 HDC2080_tempToFloatCelsius	inc\hdc2080.h	293;"	prototype	signature:(uint16_t raw)
@@ -1694,6 +1695,7 @@ I2C_IT_TypeDef	inc\stm8l15x_i2c.h	240;"	typedef	typeref:enum:__anon82
 I2C_IT_WUFH	inc\stm8l15x_i2c.h	234;"	enumerator	enum:__anon82
 I2C_Init	inc\stm8l15x_i2c.h	658;"	prototype	signature:(I2C_TypeDef* I2Cx, uint32_t OutputClockFrequency, uint16_t OwnAddress, I2C_Mode_TypeDef I2C_Mode, I2C_DutyCycle_TypeDef I2C_DutyCycle, I2C_Ack_TypeDef I2C_Ack, I2C_AcknowledgedAddress_TypeDef I2C_AcknowledgedAddress)
 I2C_Init	src\stm8l15x_i2c.c	184;"	function	signature:(I2C_TypeDef* I2Cx, uint32_t OutputClockFrequency, uint16_t OwnAddress, I2C_Mode_TypeDef I2C_Mode, I2C_DutyCycle_TypeDef I2C_DutyCycle, I2C_Ack_TypeDef I2C_Ack, I2C_AcknowledgedAddress_TypeDef I2C_AcknowledgedAddress)
+I2C_Interrupt	stm8_interrupt_vector.c	22;"	function	signature:(void)
 I2C_MAX_FAST_FREQ	inc\stm8l15x_i2c.h	468;"	macro
 I2C_MAX_STANDARD_FREQ	inc\stm8l15x_i2c.h	467;"	macro
 I2C_Mode_I2C	inc\stm8l15x_i2c.h	53;"	enumerator	enum:__anon73
@@ -1792,15 +1794,15 @@ IER	inc\stm8l15x.h	1965;"	member	struct:TIM_struct
 IER	inc\stm8l15x.h	2146;"	member	struct:TIM4_struct
 INITF_TIMEOUT	src\stm8l15x_rtc.c	159;"	macro	file:
 INIT_TIMEOUT	src\stm8l15x_rtc.c	157;"	macro	file:
-INT16_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	97;"	macro
-INT16_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	50;"	macro
-INT16_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	47;"	macro
-INT32_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	98;"	macro
-INT32_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	51;"	macro
-INT32_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	48;"	macro
-INT8_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	96;"	macro
-INT8_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	49;"	macro
-INT8_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	46;"	macro
+INT16_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	97;"	macro
+INT16_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	50;"	macro
+INT16_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	47;"	macro
+INT32_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	98;"	macro
+INT32_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	51;"	macro
+INT32_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	48;"	macro
+INT8_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	96;"	macro
+INT8_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	49;"	macro
+INT8_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	46;"	macro
 INTERRUPT	inc\stm8l15x.h	2962;"	macro
 INTERRUPT	inc\stm8l15x.h	2964;"	macro
 INTERRUPT_HANDLER	inc\stm8l15x.h	2940;"	macro
@@ -1809,23 +1811,23 @@ INTERRUPT_HANDLER	inc\stm8l15x.h	2952;"	macro
 INTERRUPT_HANDLER_TRAP	inc\stm8l15x.h	2941;"	macro
 INTERRUPT_HANDLER_TRAP	inc\stm8l15x.h	2946;"	macro
 INTERRUPT_HANDLER_TRAP	inc\stm8l15x.h	2955;"	macro
-INTMAX_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	104;"	macro
-INTMAX_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	91;"	macro
-INTMAX_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	90;"	macro
-INTPTR_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	83;"	macro
-INTPTR_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	82;"	macro
-INT_FAST16_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	74;"	macro
-INT_FAST16_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	71;"	macro
-INT_FAST32_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	75;"	macro
-INT_FAST32_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	72;"	macro
-INT_FAST8_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	73;"	macro
-INT_FAST8_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	70;"	macro
-INT_LEAST16_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	62;"	macro
-INT_LEAST16_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	59;"	macro
-INT_LEAST32_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	63;"	macro
-INT_LEAST32_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	60;"	macro
-INT_LEAST8_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	61;"	macro
-INT_LEAST8_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	58;"	macro
+INTMAX_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	104;"	macro
+INTMAX_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	91;"	macro
+INTMAX_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	90;"	macro
+INTPTR_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	83;"	macro
+INTPTR_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	82;"	macro
+INT_FAST16_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	74;"	macro
+INT_FAST16_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	71;"	macro
+INT_FAST32_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	75;"	macro
+INT_FAST32_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	72;"	macro
+INT_FAST8_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	73;"	macro
+INT_FAST8_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	70;"	macro
+INT_LEAST16_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	62;"	macro
+INT_LEAST16_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	59;"	macro
+INT_LEAST32_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	63;"	macro
+INT_LEAST32_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	60;"	macro
+INT_LEAST8_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	61;"	macro
+INT_LEAST8_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	58;"	macro
 IN_RAM	inc\stm8l15x.h	183;"	macro
 IN_RAM	inc\stm8l15x.h	185;"	macro
 IN_RAM	inc\stm8l15x.h	187;"	macro
@@ -2556,9 +2558,10 @@ NEAR	inc\stm8l15x.h	133;"	macro
 NEAR	inc\stm8l15x.h	139;"	macro
 NEAR	inc\stm8l15x.h	153;"	macro
 NOT_CORRECT_TAMPER	inc\stm8l15x_rtc.h	776;"	macro
-NULL	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	20;"	macro
-NULL	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	9;"	macro
-NonHandledInterrupt	stm8_interrupt_vector.c	12;"	function	signature:(void)
+NULL	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	20;"	macro
+NULL	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	30;"	macro
+NULL	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	9;"	macro
+NonHandledInterrupt	stm8_interrupt_vector.c	14;"	function	signature:(void)
 OAR1_ADD0_Reset	src\stm8l15x_i2c.c	109;"	macro	file:
 OAR1_ADD0_Set	src\stm8l15x_i2c.c	108;"	macro	file:
 OAR2	inc\stm8l15x.h	1087;"	member	struct:I2C_struct
@@ -2585,8 +2588,8 @@ PSCR	inc\stm8l15x.h	2150;"	member	struct:TIM4_struct
 PSCR	inc\stm8l15x.h	2234;"	member	struct:USART_struct
 PSCRH	inc\stm8l15x.h	1741;"	member	struct:TIM1_struct
 PSCRL	inc\stm8l15x.h	1742;"	member	struct:TIM1_struct
-PTRDIFF_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	86;"	macro
-PTRDIFF_MIN	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	85;"	macro
+PTRDIFF_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	86;"	macro
+PTRDIFF_MIN	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	85;"	macro
 PUKR	inc\stm8l15x.h	1026;"	member	struct:FLASH_struct
 PWR	inc\stm8l15x.h	2861;"	macro
 PWR_BASE	inc\stm8l15x.h	2813;"	macro
@@ -3290,7 +3293,8 @@ RTC_WriteProtectionCmd	src\stm8l15x_rtc.c	430;"	function	signature:(FunctionalSt
 RTC_Year	inc\stm8l15x_rtc.h	537;"	member	struct:__anon132
 RTC_struct	inc\stm8l15x.h	303;"	struct
 RXCRCR	inc\stm8l15x.h	1658;"	member	struct:SPI_struct
-ReadingResult	main.c	18;"	variable
+RawResult	main.c	18;"	variable
+ReadingResult	main.c	19;"	variable
 S16_MAX	inc\stm8l15x.h	256;"	macro
 S16_MIN	inc\stm8l15x.h	257;"	macro
 S32_MAX	inc\stm8l15x.h	259;"	macro
@@ -5122,21 +5126,21 @@ U16_MAX	inc\stm8l15x.h	255;"	macro
 U32_MAX	inc\stm8l15x.h	258;"	macro
 U8_MAX	inc\stm8l15x.h	252;"	macro
 UBC	inc\stm8l15x.h	1361;"	member	struct:OPT_struct
-UINT16_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	101;"	macro
-UINT16_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	53;"	macro
-UINT32_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	102;"	macro
-UINT32_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	54;"	macro
-UINT8_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	100;"	macro
-UINT8_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	52;"	macro
-UINTMAX_C	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	105;"	macro
-UINTMAX_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	92;"	macro
-UINTPTR_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	84;"	macro
-UINT_FAST16_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	77;"	macro
-UINT_FAST32_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	78;"	macro
-UINT_FAST8_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	76;"	macro
-UINT_LEAST16_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	65;"	macro
-UINT_LEAST32_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	66;"	macro
-UINT_LEAST8_MAX	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	64;"	macro
+UINT16_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	101;"	macro
+UINT16_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	53;"	macro
+UINT32_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	102;"	macro
+UINT32_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	54;"	macro
+UINT8_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	100;"	macro
+UINT8_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	52;"	macro
+UINTMAX_C	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	105;"	macro
+UINTMAX_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	92;"	macro
+UINTPTR_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	84;"	macro
+UINT_FAST16_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	77;"	macro
+UINT_FAST32_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	78;"	macro
+UINT_FAST8_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	76;"	macro
+UINT_LEAST16_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	65;"	macro
+UINT_LEAST32_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	66;"	macro
+UINT_LEAST8_MAX	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	64;"	macro
 USART1	inc\stm8l15x.h	2871;"	macro
 USART1_BASE	inc\stm8l15x.h	2823;"	macro
 USART1_RX_IRQn	inc\stm8l15x_itc.h	81;"	enumerator	enum:__anon85
@@ -5414,17 +5418,19 @@ WWDG_struct	inc\stm8l15x.h	2644;"	struct
 XTSTARTUP	inc\stm8l15x.h	1368;"	member	struct:OPT_struct
 _COSMIC_	inc\stm8l15x.h	87;"	macro
 _IAR_	inc\stm8l15x.h	91;"	macro
-_INLINE	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	13;"	macro
-_INLINE	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	15;"	macro
+_INLINE	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	13;"	macro
+_INLINE	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	15;"	macro
 _RAISONANCE_	inc\stm8l15x.h	89;"	macro
 __CONST	inc\stm8l15x.h	162;"	macro
 __I	inc\stm8l15x.h	218;"	macro
 __IO	inc\stm8l15x.h	220;"	macro
-__MODS0__	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\mods0.h	11;"	macro
+__MODS0__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\mods0.h	11;"	macro
 __O	inc\stm8l15x.h	219;"	macro
-__SIZE_T__	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	8;"	macro
-__STDDEF__	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	5;"	macro
-__STDINT__	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	5;"	macro
+__SIZE_T__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	8;"	macro
+__SIZE_T__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	9;"	macro
+__STDDEF__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	5;"	macro
+__STDINT__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	5;"	macro
+__STDIO__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	6;"	macro
 __STM8L15X_STDPERIPH_VERSION	inc\stm8l15x.h	198;"	macro
 __STM8L15X_STDPERIPH_VERSION_MAIN	inc\stm8l15x.h	194;"	macro
 __STM8L15X_STDPERIPH_VERSION_RC	inc\stm8l15x.h	197;"	macro
@@ -5461,10 +5467,10 @@ __STM8L15x_TIM5_H	inc\stm8l15x_tim5.h	31;"	macro
 __STM8L15x_USART_H	inc\stm8l15x_usart.h	31;"	macro
 __STM8L15x_WFE_H	inc\stm8l15x_wfe.h	31;"	macro
 __STM8L15x_WWDG_H	inc\stm8l15x_wwdg.h	31;"	macro
-__STRING__	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	6;"	macro
-__WCHAR_T__	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	13;"	macro
-_stext	stm8_interrupt_vector.c	20;"	prototype	file:
-_vectab	stm8_interrupt_vector.c	22;"	variable
+__STRING__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	6;"	macro
+__WCHAR_T__	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	13;"	macro
+_stext	stm8_interrupt_vector.c	75;"	prototype	file:
+_vectab	stm8_interrupt_vector.c	77;"	variable
 assert_failed	inc\stm8l15x_conf.h	84;"	prototype	signature:(uint8_t* file, uint32_t line)
 assert_param	inc\stm8l15x_conf.h	82;"	macro
 assert_param	inc\stm8l15x_conf.h	86;"	macro
@@ -5483,74 +5489,83 @@ devAddr	inc\hdc2080.h	124;"	member	struct:HDC2080_State
 disableInterrupts	inc\stm8l15x.h	2906;"	macro
 disableInterrupts	inc\stm8l15x.h	2916;"	macro
 disableInterrupts	inc\stm8l15x.h	2927;"	macro
-eepera	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	41;"	macro
+eepera	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	41;"	macro
 enableInterrupts	inc\stm8l15x.h	2905;"	macro
 enableInterrupts	inc\stm8l15x.h	2915;"	macro
 enableInterrupts	inc\stm8l15x.h	2926;"	macro
 font	inc\font_5x8.h	1;"	variable
+getchar	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	15;"	prototype	signature:(void)
+gets	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	16;"	prototype	signature:(char *s)
 hOffset	inc\hdc2080.h	115;"	member	struct:HDC2080_State
 hThresHigh	inc\hdc2080.h	118;"	member	struct:HDC2080_State
 hThresLow	inc\hdc2080.h	119;"	member	struct:HDC2080_State
 halt	inc\stm8l15x.h	2913;"	macro
 halt	inc\stm8l15x.h	2923;"	macro
 halt	inc\stm8l15x.h	2934;"	macro
-int16_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	10;"	typedef
-int32_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	11;"	typedef
-int8_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	9;"	typedef
+int16_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	10;"	typedef
+int32_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	11;"	typedef
+int8_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	9;"	typedef
 intConfig	inc\hdc2080.h	113;"	member	struct:HDC2080_State
-int_fast16_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	28;"	typedef
-int_fast32_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	29;"	typedef
-int_fast8_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	27;"	typedef
-int_least16_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	19;"	typedef
-int_least32_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	20;"	typedef
-int_least8_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	18;"	typedef
-interrupt_handler	stm8_interrupt_vector.c	9;"	member	struct:interrupt_vector	file:
-interrupt_handler_t	stm8_interrupt_vector.c	5;"	typedef	file:
-interrupt_instruction	stm8_interrupt_vector.c	8;"	member	struct:interrupt_vector	file:
-interrupt_vector	stm8_interrupt_vector.c	7;"	struct	file:
-intmax_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	41;"	typedef
-intptr_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	36;"	typedef
-main	main.c	20;"	function	signature:(void)
+int_fast16_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	28;"	typedef
+int_fast32_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	29;"	typedef
+int_fast8_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	27;"	typedef
+int_least16_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	19;"	typedef
+int_least32_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	20;"	typedef
+int_least8_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	18;"	typedef
+interrupt_handler	stm8_interrupt_vector.c	11;"	member	struct:interrupt_vector	file:
+interrupt_handler_t	stm8_interrupt_vector.c	7;"	typedef	file:
+interrupt_instruction	stm8_interrupt_vector.c	10;"	member	struct:interrupt_vector	file:
+interrupt_vector	stm8_interrupt_vector.c	9;"	struct	file:
+intmax_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	41;"	typedef
+intptr_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	36;"	typedef
+main	main.c	21;"	function	signature:(void)
 mcu_i2cInit	inc\mcu.h	19;"	prototype	signature:(uint8_t busId)
 mcu_i2cInit	src\mcu.c	18;"	function	signature:(uint8_t busId)
 mcu_i2cTransfer	inc\mcu.h	39;"	prototype	signature:(uint8_t busId, uint8_t sensorAddress, uint8_t *dataToWrite, uint8_t writeLength, uint8_t *dataToRead, uint8_t readLength)
-mcu_i2cTransfer	src\mcu.c	34;"	function	signature:(uint8_t busId, uint8_t i2cAddr, uint8_t *dataToWrite, uint8_t writeLength, uint8_t *dataToRead, uint8_t readLength)
+mcu_i2cTransfer	src\mcu.c	36;"	function	signature:(uint8_t busId, uint8_t i2cAddr, uint8_t *dataToWrite, uint8_t writeLength, uint8_t *dataToRead, uint8_t readLength)
 mcu_msWait	inc\mcu.h	52;"	prototype	signature:(unsigned long msWait)
-mcu_msWait	src\mcu.c	75;"	function	signature:(unsigned long msWait)
+mcu_msWait	src\mcu.c	168;"	function	signature:(unsigned long msWait)
 measConfig	inc\hdc2080.h	121;"	member	struct:HDC2080_State
-memchr	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	34;"	prototype	signature:(void *s, char c, unsigned int n)
-memcmp	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	28;"	prototype	signature:(void *s1, void *s2, unsigned int n)
-memcpy	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	35;"	prototype	signature:(void *s1, void *s2, unsigned int n)
-memmove	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	36;"	prototype	signature:(void *s1, void *s2, unsigned int n)
-memset	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	37;"	prototype	signature:(void *s, char c, unsigned int n)
+memchr	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	34;"	prototype	signature:(void *s, char c, unsigned int n)
+memcmp	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	28;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memcpy	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	35;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memmove	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	36;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memset	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	37;"	prototype	signature:(void *s, char c, unsigned int n)
 nop	inc\stm8l15x.h	2909;"	macro
 nop	inc\stm8l15x.h	2919;"	macro
 nop	inc\stm8l15x.h	2930;"	macro
-offsetof	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	23;"	macro
-ptrdiff_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	17;"	typedef
+offsetof	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	23;"	macro
+printf	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	17;"	prototype	signature:(char *format, ...)
+ptrdiff_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	17;"	typedef
+putchar	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	18;"	prototype	signature:(char c)
+puts	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	19;"	prototype	signature:(char *s)
 rim	inc\stm8l15x.h	2907;"	macro
 rim	inc\stm8l15x.h	2917;"	macro
 rim	inc\stm8l15x.h	2928;"	macro
 s16	inc\stm8l15x.h	235;"	typedef
 s32	inc\stm8l15x.h	234;"	typedef
 s8	inc\stm8l15x.h	236;"	typedef
+scanf	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	20;"	prototype	signature:(char *format, ...)
 sim	inc\stm8l15x.h	2908;"	macro
 sim	inc\stm8l15x.h	2918;"	macro
 sim	inc\stm8l15x.h	2929;"	macro
-size_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	9;"	typedef
-strcat	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	20;"	prototype	signature:(char *s1, char *s2)
-strchr	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	21;"	prototype	signature:(char *s, char c)
-strcmp	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	29;"	prototype	signature:(char *s1, char *s2)
-strcpy	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	22;"	prototype	signature:(char *s1, char *s2)
-strcspn	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	31;"	prototype	signature:(char *s1, char *s2)
-strlen	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	32;"	prototype	signature:(char *s)
-strncat	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	23;"	prototype	signature:(char *s1, char *s2, unsigned int n)
-strncmp	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	30;"	prototype	signature:(char *s1, char *s2, unsigned int n)
-strncpy	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	24;"	prototype	signature:(char *s1, char *s2, unsigned int n)
-strpbrk	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	25;"	prototype	signature:(char *s1, char *s2)
-strrchr	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	26;"	prototype	signature:(char *s, char c)
-strspn	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	33;"	prototype	signature:(char *s1, char *s2)
-strstr	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	27;"	prototype	signature:(char *s1, char *s2)
+size_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h	9;"	typedef
+size_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	10;"	typedef
+sprintf	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	22;"	prototype	signature:(char *s, char *format, ...)
+sscanf	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h	21;"	prototype	signature:(char *s, char *format, ...)
+strcat	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	20;"	prototype	signature:(char *s1, char *s2)
+strchr	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	21;"	prototype	signature:(char *s, char c)
+strcmp	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	29;"	prototype	signature:(char *s1, char *s2)
+strcpy	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	22;"	prototype	signature:(char *s1, char *s2)
+strcspn	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	31;"	prototype	signature:(char *s1, char *s2)
+strlen	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	32;"	prototype	signature:(char *s)
+strncat	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	23;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncmp	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	30;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncpy	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	24;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strpbrk	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	25;"	prototype	signature:(char *s1, char *s2)
+strrchr	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	26;"	prototype	signature:(char *s, char c)
+strspn	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	33;"	prototype	signature:(char *s1, char *s2)
+strstr	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h	27;"	prototype	signature:(char *s1, char *s2)
 tOffset	inc\hdc2080.h	114;"	member	struct:HDC2080_State
 tThresHigh	inc\hdc2080.h	116;"	member	struct:HDC2080_State
 tThresLow	inc\hdc2080.h	117;"	member	struct:HDC2080_State
@@ -5562,17 +5577,17 @@ trap	inc\stm8l15x.h	2931;"	macro
 u16	inc\stm8l15x.h	239;"	typedef
 u32	inc\stm8l15x.h	238;"	typedef
 u8	inc\stm8l15x.h	240;"	typedef
-uint16_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	13;"	typedef
-uint32_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	14;"	typedef
-uint8_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	12;"	typedef
-uint_fast16_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	31;"	typedef
-uint_fast32_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	32;"	typedef
-uint_fast8_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	30;"	typedef
-uint_least16_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	22;"	typedef
-uint_least32_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	23;"	typedef
-uint_least8_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	21;"	typedef
-uintmax_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	42;"	typedef
-uintptr_t	..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	37;"	typedef
+uint16_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	13;"	typedef
+uint32_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	14;"	typedef
+uint8_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	12;"	typedef
+uint_fast16_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	31;"	typedef
+uint_fast32_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	32;"	typedef
+uint_fast8_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	30;"	typedef
+uint_least16_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	22;"	typedef
+uint_least32_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	23;"	typedef
+uint_least8_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	21;"	typedef
+uintmax_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	42;"	typedef
+uintptr_t	..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h	37;"	typedef
 wfe	inc\stm8l15x.h	2912;"	macro
 wfe	inc\stm8l15x.h	2922;"	macro
 wfe	inc\stm8l15x.h	2933;"	macro

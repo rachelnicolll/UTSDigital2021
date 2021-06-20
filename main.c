@@ -29,6 +29,6 @@ void main(void)
 	for(;;)
 	{
 		RawResult = HDC2080_tempRead(HDC2080);
-		ReadingResult = HDC2080_tempToFloatCelsius(RawResult)
+		ReadingResult = HDC2080_tempToFloatCelsius(RawResult);
 	}
 }

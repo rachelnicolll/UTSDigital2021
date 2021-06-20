@@ -1,5 +1,5 @@
-src\mcu.c
 src\hdc2080.c
+src\mcu.c
 src\clk.c
 main.c
 src\delay.c
@@ -34,6 +34,7 @@ src\stm8l15x_usart.c
 src\stm8l15x_wfe.c
 src\stm8l15x_wwdg.c
 stm8_interrupt_vector.c
+inc\hdc2080.h
 inc\mcu.h
 inc\clk.h
 inc\delay.h
@@ -71,9 +72,9 @@ inc\stm8l15x_tim5.h
 inc\stm8l15x_usart.h
 inc\stm8l15x_wfe.h
 inc\stm8l15x_wwdg.h
-..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\mods0.h
-..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h
-..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h
-..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h
-inc\hdc2080.h
+..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\mods0.h
+..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stddef.h
+..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdint.h
+..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdio.h
+..\..\..\..\..\..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h
 stm8l15x_spi.h

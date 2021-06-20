@@ -128,11 +128,12 @@ typedef struct HDC2080_State {
 
 } HDC2080_State;
 
-#define HDC2080_INT_CONFIG_VALUE (HDC2080_INT_CONFIG_DRDY_EN_ENABLE | \
-                                  HDC2080_INT_CONFIG_TH_EN_ENABLE |   \
-                                  HDC2080_INT_CONFIG_TL_EN_ENABLE |   \
-                                  HDC2080_INT_CONFIG_HH_EN_ENABLE |   \
-                                  HDC2080_INT_CONFIG_HL_EN_ENABLE)
+
+#define HDC2080_INT_CONFIG_VALUE (HDC2080_INT_CONFIG_DRDY_EN_DISABLE | \
+                                  HDC2080_INT_CONFIG_TH_EN_DISABLE |   \
+                                  HDC2080_INT_CONFIG_TL_EN_DISABLE |   \
+                                  HDC2080_INT_CONFIG_HH_EN_DISABLE |   \
+                                  HDC2080_INT_CONFIG_HL_EN_DISABLE)
 #define HDC2080_TEMP_OFFSET_VALUE 0x00U
 #define HDC2080_HUM_OFFSET_VALUE 0x00U
 #define HDC2080_TEMP_THRES_LOW_VALUE 0x00U
@@ -152,21 +153,21 @@ typedef struct HDC2080_State {
 
 static HDC2080_State HDC2080_state = {
 
-    HDC2080_CONFIG_VALUE,
-    HDC2080_MEAS_CONFIG_VALUE,
     HDC2080_INT_CONFIG_VALUE,
+    HDC2080_TEMP_OFFSET_VALUE,
+    HDC2080_HUM_OFFSET_VALUE,
     HDC2080_TEMP_THRES_HIGH_VALUE,
     HDC2080_TEMP_THRES_LOW_VALUE,
     HDC2080_HUM_THRES_HIGH_VALUE,
     HDC2080_HUM_THRES_LOW_VALUE,
-    HDC2080_TEMP_OFFSET_VALUE,
-    HDC2080_HUM_OFFSET_VALUE,
+    HDC2080_CONFIG_VALUE,
+    HDC2080_MEAS_CONFIG_VALUE,
 
     /* I2C bus ID */
     0, 
 
     /* Sensor address on the I2C bus */
-    0x80U, 
+    0x40U, 
 
     /* Conversion time for temperature (in ms)  */
     1,
@@ -174,7 +175,6 @@ static HDC2080_State HDC2080_state = {
     /* Conversion time for humidity (in ms)  */
     1
 };
-
 
 /*
  *  ======== HDC2080_Handle ========

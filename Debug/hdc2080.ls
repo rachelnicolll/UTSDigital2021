@@ -3,17 +3,17 @@
    3                     ; Generator (Limited) V4.5.2 - 04 Feb 2021
   13                     	bsct
   14  0000               L3_HDC2080_state:
-  15  0000 80            	dc.b	128
+  15  0000 00            	dc.b	0
   16  0001 00            	dc.b	0
-  17  0002 f8            	dc.b	248
+  17  0002 00            	dc.b	0
   18  0003 ff            	dc.b	255
   19  0004 00            	dc.b	0
   20  0005 ff            	dc.b	255
   21  0006 00            	dc.b	0
-  22  0007 00            	dc.b	0
+  22  0007 80            	dc.b	128
   23  0008 00            	dc.b	0
   24  0009 00            	dc.b	0
-  25  000a 80            	dc.b	128
+  25  000a 40            	dc.b	64
   26  000b 0001          	dc.w	1
   27  000d 0001          	dc.w	1
  308                     ; 22 void HDC2080_config(HDC2080_Handle sensor)
