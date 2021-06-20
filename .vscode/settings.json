@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cstdint": "c",
-        "stm8l15x_spi.h": "c"
+        "stm8l15x_spi.h": "c",
+        "cstdio": "c"
     }
 }

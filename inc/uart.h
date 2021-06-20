@@ -3,7 +3,6 @@
 
 #include <stdint.h>
 
-#define MAX_STR_LENGTH 56 //max file name
 
 /*
  * Initialize UART.
@@ -20,7 +19,7 @@ unsigned char UART_RX(void);
 
 void UART_Poll(void);
 
-void UART_Welcome(void);
+void UART_Welcome(int nbReadings, float readingResults[]);
 
 
 
