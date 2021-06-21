@@ -849,7 +849,7 @@
 3310  038e 1e07          	ldw	x,(OFST+1,sp)
 3311  0390 e609          	ld	a,(9,x)
 3312  0392 6b06          	ld	(OFST+0,sp),a
-3314                     ; 1062     lastevent = ((uint16_t)((uint16_t)flag2 << (uint16_t)8) | (uint16_t)flag1);
+3314                     ; 1062      lastevent = ((uint16_t)((uint16_t)flag2 << (uint16_t)8) | (uint16_t)flag1);
 3316  0394 7b03          	ld	a,(OFST-3,sp)
 3317  0396 5f            	clrw	x
 3318  0397 97            	ld	xl,a

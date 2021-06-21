@@ -1059,7 +1059,7 @@ ErrorStatus I2C_CheckEvent(I2C_TypeDef* I2Cx, I2C_Event_TypeDef I2C_Event)
   {
     flag1 = I2Cx->SR1;
     flag2 = I2Cx->SR3;
-    lastevent = ((uint16_t)((uint16_t)flag2 << (uint16_t)8) | (uint16_t)flag1);
+     lastevent = ((uint16_t)((uint16_t)flag2 << (uint16_t)8) | (uint16_t)flag1);
   }
   /* Check whether the last event is equal to I2C_EVENT */
   if (((uint16_t)lastevent & (uint16_t)I2C_Event) == (uint16_t)I2C_Event)
