@@ -13,15 +13,20 @@
  */
 void UART_init();
 
+
+void reverse(char* str, int len);
+
+int intToStr(int x, char str[], int d);
+
+void ftoa(float n, char* res, int afterpoint);
+
 void UART_TX(unsigned char val);
 
 unsigned char UART_RX(void);
 
 void UART_Poll(void);
 
-void UART_Welcome(int nbReadings, float readingResults[]);
-
-
+void UART_2PC(uint16_t nbReadings, float readingResults[]);
 
 /*_Bool UART_InChar(uint8_t *const dataPtr);
 

@@ -3,5 +3,6 @@
         "cstdint": "c",
         "stm8l15x_spi.h": "c",
         "cstdio": "c"
-    }
+    },
+    "EIDE.SerialPortMonitor.BaudRate": 9600
 }

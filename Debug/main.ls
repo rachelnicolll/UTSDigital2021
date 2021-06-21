@@ -3,55 +3,60 @@
    3                     ; Generator (Limited) V4.5.2 - 04 Feb 2021
   13                     	bsct
   14  0000               _readingResults:
-  15  0000 40000000      	dc.w	16384,0
-  16  0004 40133333      	dc.w	16403,13107
-  17  0008 42306666      	dc.w	16944,26214
-  46                     ; 13 unsigned int clock(void)
-  46                     ; 14 {
-  48                     	switch	.text
-  49  0000               _clock:
-  53                     ; 15 	return ((unsigned int)(TIM1->CNTRH) << 8 | TIM1->CNTRL);
-  55  0000 c652bf        	ld	a,21183
-  56  0003 5f            	clrw	x
-  57  0004 97            	ld	xl,a
-  58  0005 c652c0        	ld	a,21184
-  59  0008 02            	rlwa	x,a
-  62  0009 81            	ret
-  92                     ; 18 void main(void)
-  92                     ; 19 {
-  93                     	switch	.text
-  94  000a               _main:
-  98                     ; 20 	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
- 100  000a 725f50c0      	clr	20672
- 101                     ; 21 	led_blink_init();
- 103  000e cd0000        	call	_led_blink_init
- 105                     ; 22 	UART_init();
- 107  0011 cd0000        	call	_UART_init
- 109                     ; 23 	nbReadings = 3; //arbitrary number, will be passed in via I2C
- 111  0014 ae0003        	ldw	x,#3
- 112  0017 bf00          	ldw	_nbReadings,x
- 113  0019               L13:
- 114                     ; 26 		led_blink();
- 116  0019 cd0000        	call	_led_blink
- 118                     ; 27 		UART_Poll();
- 120  001c cd0000        	call	_UART_Poll
- 122                     ; 28 		UART_Welcome(nbReadings, readingResults);
- 124  001f ae0000        	ldw	x,#_readingResults
- 125  0022 89            	pushw	x
- 126  0023 be00          	ldw	x,_nbReadings
- 127  0025 cd0000        	call	_UART_Welcome
- 129  0028 85            	popw	x
- 131  0029 20ee          	jra	L13
- 165                     	xdef	_main
- 166                     	xdef	_clock
- 167                     	xdef	_readingResults
- 168                     	switch	.ubsct
- 169  0000               _nbReadings:
- 170  0000 0000          	ds.b	2
- 171                     	xdef	_nbReadings
- 172                     	xref	_led_blink
- 173                     	xref	_led_blink_init
- 174                     	xref	_UART_Welcome
- 175                     	xref	_UART_Poll
- 176                     	xref	_UART_init
- 196                     	end
+  15  0000 41a99999      	dc.w	16809,-26215
+  16  0004 41ba6666      	dc.w	16826,26214
+  17  0008 41c0cccc      	dc.w	16832,-13108
+  18  000c 41b26666      	dc.w	16818,26214
+  19  0010 41b40000      	dc.w	16820,0
+  20  0014 41ae6666      	dc.w	16814,26214
+  21  0018 41e59999      	dc.w	16869,-26215
+  22  001c 41d59999      	dc.w	16853,-26215
+  23  0020               _nbReadings:
+  24  0020 41000000      	dc.w	16640,0
+  53                     ; 14 unsigned int clock(void)
+  53                     ; 15 {
+  55                     	switch	.text
+  56  0000               _clock:
+  60                     ; 16 	return ((unsigned int)(TIM1->CNTRH) << 8 | TIM1->CNTRL);
+  62  0000 c652bf        	ld	a,21183
+  63  0003 5f            	clrw	x
+  64  0004 97            	ld	xl,a
+  65  0005 c652c0        	ld	a,21184
+  66  0008 02            	rlwa	x,a
+  69  0009 81            	ret
+  99                     ; 19 void main(void)
+  99                     ; 20 {
+ 100                     	switch	.text
+ 101  000a               _main:
+ 105                     ; 21 	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
+ 107  000a 725f50c0      	clr	20672
+ 108                     ; 22 	led_blink_init();
+ 110  000e cd0000        	call	_led_blink_init
+ 112                     ; 23 	UART_init();
+ 114  0011 cd0000        	call	_UART_init
+ 116  0014               L13:
+ 117                     ; 26 		led_blink();
+ 119  0014 cd0000        	call	_led_blink
+ 121                     ; 27 		UART_Poll();
+ 123  0017 cd0000        	call	_UART_Poll
+ 125                     ; 28 		UART_2PC(nbReadings, readingResults);
+ 127  001a ae0000        	ldw	x,#_readingResults
+ 128  001d 89            	pushw	x
+ 129  001e ae0020        	ldw	x,#_nbReadings
+ 130  0021 cd0000        	call	c_ltor
+ 132  0024 cd0000        	call	c_ftoi
+ 134  0027 cd0000        	call	_UART_2PC
+ 136  002a 85            	popw	x
+ 138  002b 20e7          	jra	L13
+ 172                     	xdef	_main
+ 173                     	xdef	_clock
+ 174                     	xdef	_nbReadings
+ 175                     	xdef	_readingResults
+ 176                     	xref	_led_blink
+ 177                     	xref	_led_blink_init
+ 178                     	xref	_UART_2PC
+ 179                     	xref	_UART_Poll
+ 180                     	xref	_UART_init
+ 199                     	xref	c_ftoi
+ 200                     	xref	c_ltor
+ 201                     	end

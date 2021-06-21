@@ -7,8 +7,9 @@
 #include "led_blink.h"
 #include "stm8l15x.h"
 
-int nbReadings;
-float readingResults[] = {2, 2.3, 44.1};
+float readingResults[] = {21.2, 23.3, 24.1, 22.3, 22.5, 21.8, 28.7, 26.7};
+float nbReadings = sizeof(readingResults)/sizeof(readingResults[0]);
+
 //int readingResults[] = {22, 2, 25, 22, 22, 22, 22, 2, 32, 22};
 unsigned int clock(void)
 {
@@ -20,11 +21,10 @@ void main(void)
 	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
 	led_blink_init();
 	UART_init();
-	nbReadings = 3; //arbitrary number, will be passed in via I2C
 	for(;;)
 	{
 		led_blink();
 		UART_Poll();
-		UART_Welcome(nbReadings, readingResults);
+		UART_2PC(nbReadings, readingResults);
 	}
 }
