@@ -6,6 +6,8 @@
         "stm8l15x_itc.h": "c",
         "delay.h": "c",
         "mcu.h": "c",
-        "stm8l15x_i2c.h": "c"
+        "stm8l15x_i2c.h": "c",
+        "hdc2080.h": "c",
+        "stm8l15x_conf.h": "c"
     }
 }

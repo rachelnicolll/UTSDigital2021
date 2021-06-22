@@ -13,16 +13,19 @@
 #include "stm8l15x_conf.h"
 #include <stm8l15x_clk.h>
 
-
 const HDC2080_Handle HDC2080 = &HDC2080_state;
+
 uint16_t RawResult;
 float ReadingResult;
 
 void main(void)
 {
 	CLK->CKDIVR = 0x00;
-
 	CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
+	/*for(;;)
+	{
+			delay_ms(5);
+	}*/
 	
 	delay_ms(4);
 	HDC2080_config(HDC2080);
@@ -31,5 +34,6 @@ void main(void)
 	{
 		RawResult = HDC2080_tempRead(HDC2080);
 		ReadingResult = HDC2080_tempToFloatCelsius(RawResult);
+		delay_ms(1000);
 	}
 }
