@@ -10,12 +10,12 @@
   19  0004 00            	dc.b	0
   20  0005 ff            	dc.b	255
   21  0006 00            	dc.b	0
-  22  0007 80            	dc.b	128
+  22  0007 00            	dc.b	0
   23  0008 00            	dc.b	0
   24  0009 00            	dc.b	0
   25  000a 40            	dc.b	64
-  26  000b 0001          	dc.w	1
-  27  000d 0001          	dc.w	1
+  26  000b 0003          	dc.w	3
+  27  000d 0003          	dc.w	3
  308                     ; 22 void HDC2080_config(HDC2080_Handle sensor)
  308                     ; 23 {
  310                     	switch	.text
@@ -406,7 +406,7 @@
 1147                     ; 175 {
 1148                     	switch	.text
 1149  022e               _HDC2080_tempToFloatCelsius:
-1153                     ; 176     return ((float)x * (165.0f / 65536.0f) - 40.0f);
+1153                     ; 176     return ((float)x * (165.0 / 65536.0) - 40.0);
 1155  022e cd0000        	call	c_uitof
 1157  0231 ae0018        	ldw	x,#L714
 1158  0234 cd0000        	call	c_fmul

@@ -6,7 +6,7 @@
 #include <stdio.h>
 //#include <spi.h>
 //#include <LCD.h>
-//#include <delay.h>
+#include <delay.h>
 //#include <clk.h>
 #include <mcu.h>
 #include <HDC2080.h>
@@ -23,9 +23,10 @@ void main(void)
 	CLK->CKDIVR = 0x00;
 
 	CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
-
-	HDC2080_config(HDC2080);
 	
+	delay_ms(4);
+	HDC2080_config(HDC2080);
+	delay_ms(4);
 	for(;;)
 	{
 		RawResult = HDC2080_tempRead(HDC2080);

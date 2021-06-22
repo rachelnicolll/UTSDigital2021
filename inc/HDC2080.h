@@ -140,7 +140,7 @@ typedef struct HDC2080_State {
 #define HDC2080_TEMP_THRES_HIGH_VALUE 0xFFU
 #define HDC2080_HUM_THRES_LOW_VALUE 0x00U
 #define HDC2080_HUM_THRES_HIGH_VALUE 0xFFU
-#define HDC2080_CONFIG_VALUE (HDC2080_CONFIG_SOFT_RES_ENABLE |    \
+#define HDC2080_CONFIG_VALUE (HDC2080_CONFIG_SOFT_RES_DISABLE |    \
                               HDC2080_CONFIG_AMM_DISABLED |       \
                               HDC2080_CONFIG_HEAT_EN_DISABLE |    \
                               HDC2080_CONFIG_DRDY_INT_EN_DISABLE | \
@@ -170,10 +170,10 @@ static HDC2080_State HDC2080_state = {
     0x40U, 
 
     /* Conversion time for temperature (in ms)  */
-    1,
+    3,
 
     /* Conversion time for humidity (in ms)  */
-    1
+    3
 };
 
 /*

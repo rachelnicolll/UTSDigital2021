@@ -173,7 +173,7 @@ uint16_t HDC2080_tempRead(HDC2080_Handle sensor)
  */
 float HDC2080_tempToFloatCelsius(uint16_t x)
 {
-    return ((float)x * (165.0f / 65536.0f) - 40.0f);
+    return ((float)x * (165.0 / 65536.0) - 40.0);
 }
 
 /*
