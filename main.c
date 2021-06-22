@@ -82,15 +82,15 @@ void main(void)
 	// Initialise HMI to first state
 	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
 	for (;;)
-	{	
+	{
 		// get temp and humidity readings, pass them into flash and also lcd dispaly
 		// read time and date every 1 second
 		if (clock() % 1000 == 0)
 		{
 			//Read Time
-			RTC_GetTime(RTC_Format_BIN,&SRTC_TimeRead);
+			RTC_GetTime(RTC_Format_BIN, &SRTC_TimeRead);
 			//Read Date
-			RTC_GetDate(RTC_Format_BIN, &SRTC_DateRead);  
+			RTC_GetDate(RTC_Format_BIN, &SRTC_DateRead);
 		}
 		switch (HMIStatePtr->outState)
 		{
@@ -117,6 +117,11 @@ void main(void)
 				HMIStatePtr = HMIStatePtr->next;
 				LCD_clear();
 			}
+			else if (buttonPressed == UP)
+			{
+				HMIStatePtr = HMIStatePtr->previous;
+				LCD_clear();
+			}
 			buttonPressed = NO;
 			break;
 
@@ -137,13 +142,10 @@ void main(void)
 			break;
 		case DISPLAY_SETTINGS:
 			// Show settings to change frequency. Need to press ok to engage with screen
-			LCD_display_settings();
-			
-			if (buttonPressed == OK)
-					editMode ^= editMode;
 
 			if (editMode == FALSE)
 			{
+				LCD_display_settings();
 				if (buttonPressed == DOWN)
 				{
 					HMIStatePtr = HMIStatePtr->next;
@@ -154,13 +156,17 @@ void main(void)
 					HMIStatePtr = HMIStatePtr->previous;
 					LCD_clear();
 				}
+				if (buttonPressed == OK)
+				{
+					editMode = !editMode;
+					LCD_clear();
+				}
 			}
 			else // Edit mode is true
 			{
 				// Configure settings
-				LCD_clear();
 				LCD_writemsg(settingMsg, sizeof(settingMsg), 20, 3);
-				
+
 				if (buttonPressed == DOWN)
 				{
 					// Decrement minutes
@@ -168,6 +174,11 @@ void main(void)
 				else if (buttonPressed == UP)
 				{
 					// Increment minutes
+				}
+				if (buttonPressed == OK)
+				{
+					editMode = !editMode;
+					LCD_clear();
 				}
 			}
 

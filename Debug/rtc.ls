@@ -4,8 +4,8 @@
   13                     	bsct
   14  0000               _RTC_Settings:
   15  0000 40            	dc.b	64
-  16  0001 bd            	dc.b	189
-  17  0002 00c7          	dc.w	199
+  16  0001 7c            	dc.b	124
+  17  0002 07cf          	dc.w	1999
   18  0004               _SRTC_TimeNow:
   19  0004 04            	dc.b	4
   20  0005 00            	dc.b	0
@@ -22,8 +22,8 @@
   65  0000               _RTC_init:
   69                     ; 20     RTC_DeInit();
   71  0000 cd0000        	call	_RTC_DeInit
-  73                     ; 23     CLK_RTCClockConfig(CLK_RTCCLKSource_LSI, CLK_RTCCLKDiv_1);
-  75  0003 ae0400        	ldw	x,#1024
+  73                     ; 23     CLK_RTCClockConfig(CLK_RTCCLKSource_HSI, CLK_RTCCLKDiv_64);
+  75  0003 ae02c0        	ldw	x,#704
   76  0006 cd0000        	call	_CLK_RTCClockConfig
   78                     ; 26     CLK_PeripheralClockConfig(CLK_Peripheral_RTC, ENABLE);
   80  0009 ae1201        	ldw	x,#4609

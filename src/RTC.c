@@ -4,7 +4,7 @@
 #include <rtc.h>
 
 //  190 *  200 = 38 kHz
-RTC_InitTypeDef RTC_Settings = {RTC_HourFormat_12, 0xBD, 0xC7};
+RTC_InitTypeDef RTC_Settings = {RTC_HourFormat_12, 0x7C, 0x7CF};
 
 // Set Time
 RTC_TimeTypeDef SRTC_TimeNow = {4, 00, 00, RTC_H12_PM};
@@ -20,7 +20,7 @@ void RTC_init()
     RTC_DeInit();
 
     // Select clock to feed RTC
-    CLK_RTCClockConfig(CLK_RTCCLKSource_LSI, CLK_RTCCLKDiv_1);
+    CLK_RTCClockConfig(CLK_RTCCLKSource_HSI, CLK_RTCCLKDiv_64);
 
     // Enable clock
     CLK_PeripheralClockConfig(CLK_Peripheral_RTC, ENABLE);

@@ -55,4 +55,6 @@ void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumi
 void LCD_menu();
 
 void LCD_display_settings();
+
+void LCD_draw_logo(const unsigned char *logo);
 #endif /* LCD_H */
