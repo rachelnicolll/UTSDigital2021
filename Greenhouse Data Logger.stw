@@ -6,7 +6,3 @@ Keyword=ST7Workspace-V0.7
 [Project0]
 Filename=greenhouse.stp
 Dependencies=
-[Options]
-ActiveProject=greenhouse
-ActiveConfig=Debug
-AddSortedElements=0
