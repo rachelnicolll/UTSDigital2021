@@ -8,8 +8,7 @@
 #include <delay.h>
 #include <HDC2080.h>
 
-#define OUTPUT_CLOCK_FREQ_I2C 100000UL
-extern const HDC2080_Handle HDC2080;
+#define OUTPUT_CLOCK_FREQ_I2C 50000UL
 uint8_t SensorAddr = 0x80; // (0 - write), (1 - read)
 int errCnt = 0;
 /*
@@ -37,7 +36,8 @@ void mcu_i2cInit(uint8_t busId)
     GPIO_Init(GPIOC, GPIO_Pin_0, GPIO_Mode_Out_OD_HiZ_Slow);
     GPIO_Init(GPIOC, GPIO_Pin_1, GPIO_Mode_Out_OD_HiZ_Slow);
 
-    // I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY);
+    I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY);
+    I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT);
     // I2C_ITConfig(I2C1, I2C_IT_EVT | I2C_IT_BUF, ENABLE);
     // enableInterrupts();
 }
@@ -72,6 +72,7 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
         I2C1->CR2 |= I2C_CR2_ACK;
         //reset POS
         I2C1->CR2 &= ~I2C_CR2_POS;
+
         //I2C1->CR2 |= I2C_CR2_SWRST;
         while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
         {
@@ -157,25 +158,50 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
         // check receiver mode selected
         while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
             ;
+
+        I2C1->CR2 |= I2C_CR2_ACK;
+        // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
+        // ;
+
         while (numReadBytes)
         {
-            while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
-                ;
-            I2C1->CR2 |= I2C_CR2_POS;  // Set POS bit (NACK at next received byte)
-            disableInterrupts();       // Errata workaround (Disable interrupt)
-            I2C1->SR3;                 // Clear ADDR Flag
-            I2C1->CR2 &= ~I2C_CR2_ACK; // Clear ACK
-            enableInterrupts();        // Errata workaround (Enable interrupt)
-            while (!(I2C1->SR1 & I2C_SR1_BTF))
-                ;                           // Wait for BTF
-            disableInterrupts();            // Errata workaround (Disable interrupt)
-            I2C_GenerateSTOP(I2C1, ENABLE); // Generate stop here (STOP=1)
-            *(dataToRead++) = I2C1->DR;
-            // Read 1st Data byte
-            numReadBytes--;
-            enableInterrupts();       // Errata workaround (Enable interrupt)
-            *(dataToRead) = I2C1->DR; // Read 2nd Data byte
-            numReadBytes--;
+            while (numReadBytes-- > 1)
+            {
+                I2C1->CR2 |= I2C_CR2_ACK;
+                while (!(I2C1->SR1 & I2C_SR1_RXNE));
+                *(dataToRead++) = I2C1->DR;
+            }
+
+            I2C1->CR2 &=~ I2C_CR2_ACK;
+            I2C_GenerateSTOP(I2C1, ENABLE);
+                    while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
+            ;
+            *(dataToRead) = I2C1->DR;
+
+            //--
+            // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
+            // ;
+            // I2C1->CR2 |= I2C_CR2_POS;  // Set POS bit (NACK at next received byte)
+            // disableInterrupts();       // Errata workaround (Disable interrupt)
+            // I2C1->SR3;                 // Clear ADDR Flag
+            // I2C1->CR2 &= ~I2C_CR2_ACK; // Clear ACK
+            // enableInterrupts();        // Errata workaround (Enable interrupt)
+            // while (!(I2C1->SR1 & I2C_SR1_BTF))
+            //     ;                           // Wait for BTF
+            // disableInterrupts();            // Errata workaround (Disable interrupt)
+            // I2C_GenerateSTOP(I2C1, ENABLE); // Generate stop here (STOP=1)
+            // while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
+            //     ;
+
+            // *(dataToRead++) = I2C1->DR;
+            // // Read 1st Data byte
+            // numReadBytes--;
+            // enableInterrupts();       // Errata workaround (Enable interrupt)
+            // *(dataToRead) = I2C1->DR; // Read 2nd Data byte
+            // numReadBytes--;
+
+            //--
+
             //while nothing received, just wait
             // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
             //     ;
@@ -194,10 +220,10 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
             //dataToRead++;
         }
 
-        // I2C_AcknowledgeConfig(I2C1, DISABLE);
-        // I2C_GenerateSTOP(I2C1, ENABLE);
-        // while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
-        //     ;
+        //I2C_AcknowledgeConfig(I2C1, DISABLE);
+        //I2C_GenerateSTOP(I2C1, ENABLE);
+        //while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
+        //;
     }
 
     /*

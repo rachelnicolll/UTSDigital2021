@@ -33,7 +33,11 @@
  235       00000004      OFST:	set	4
  238                     ; 23 	CLK->CKDIVR = 0x00;
  240  0002 725f50c0      	clr	20672
+<<<<<<< HEAD
  241                     ; 24 	CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
+=======
+ 241                     ; 25 	CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
+>>>>>>> I2C_new
  243  0006 ae0301        	ldw	x,#769
  244  0009 cd0000        	call	_CLK_PeripheralClockConfig
  246                     ; 14     for (i = 0; i < ((F_CPU / 18 / 1000UL) * ms); i++) {
@@ -52,7 +56,11 @@
  269  0026 ae0002        	ldw	x,#L6
  270  0029 cd0000        	call	c_lcmp
  272  002c 25e8          	jrult	L121
+<<<<<<< HEAD
  273                     ; 31 	HDC2080_config(HDC2080);
+=======
+ 273                     ; 28 	HDC2080_config(HDC2080);
+>>>>>>> I2C_new
  275  002e ae0000        	ldw	x,#L3_HDC2080_state
  276  0031 cd0000        	call	_HDC2080_config
  278                     ; 14     for (i = 0; i < ((F_CPU / 18 / 1000UL) * ms); i++) {
@@ -72,11 +80,19 @@
  302  0051 cd0000        	call	c_lcmp
  304  0054 25e8          	jrult	L721
  305  0056               L531:
+<<<<<<< HEAD
  306                     ; 35 		RawResult = HDC2080_tempRead(HDC2080);
  308  0056 ae0000        	ldw	x,#L3_HDC2080_state
  309  0059 cd0000        	call	_HDC2080_tempRead
  311  005c bf04          	ldw	_RawResult,x
  312                     ; 36 		ReadingResult = HDC2080_tempToFloatCelsius(RawResult);
+=======
+ 306                     ; 32 		RawResult = HDC2080_tempRead(HDC2080);
+ 308  0056 ae0000        	ldw	x,#L3_HDC2080_state
+ 309  0059 cd0000        	call	_HDC2080_tempRead
+ 311  005c bf04          	ldw	_RawResult,x
+ 312                     ; 33 		ReadingResult = HDC2080_tempToFloatCelsius(RawResult);	
+>>>>>>> I2C_new
  314  005e be04          	ldw	x,_RawResult
  315  0060 cd0000        	call	_HDC2080_tempToFloatCelsius
  317  0063 ae0000        	ldw	x,#_ReadingResult
