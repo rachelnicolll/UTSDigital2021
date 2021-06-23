@@ -11,6 +11,7 @@
 #include <uart.h>
 #include <mcu.h>
 #include <HDC2080.h>
+#include <eeprom.h>
 #include <buttons.h>
 #include <stm8l15x_gpio.h>
 #include <stm8l15x_clk.h>
@@ -41,6 +42,7 @@ RTC_DateTypeDef SRTC_DateRead;
 
 // Temp reading
 const HDC2080_Handle HDC2080 = &HDC2080_state;
+const EEPROM_Handle EEPROM_struct = &EEPROM_state;
 
 uint16_t TempRawResult;
 float TempReadingResult;
@@ -59,7 +61,9 @@ void main(void)
 	// Initialise local variables
 	uint8_t cursorPos = 0;
 	bool toggleReading = TRUE;
-
+	uint8_t value = 5;
+	uint8_t subADDR [2] = {0};
+	uint8_t eepromReadBuf [1] = {0};
 	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
 	CLK->PCKENR2 |= 0xff; // Enable clock to timer
 	CLK->PCKENR1 |= 0xff; // Enable all clocks
@@ -103,6 +107,10 @@ void main(void)
 	HumReadingResult = HDC2080_humToFloatRelative(HumRawResult);
 	HumIntResult = HDC2080_humToIntRelative(HumRawResult);
 	//delay_ms(5000);
+	//writeEEPROM(EEPROM_struct->devAddr, &value, 1);
+	//mcu_i2cTransfer(EEPROM_struct->busId, EEPROM_struct->devAddr, &value, 1,NULL, 0);
+	//readEEPROM(EEPROM_struct->devAddr, subADDR, 2, eepromReadBuf, 1);
+	
 	enableInterrupts();
 
 	for (;;)
