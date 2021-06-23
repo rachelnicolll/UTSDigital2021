@@ -113,10 +113,10 @@ typedef struct HDC2080_State {
     uint8_t intConfig;     /* INT_CONFIG      (0x07) */
     uint8_t tOffset;       /* TEMP_OFFSET     (0x08) */
     uint8_t hOffset;       /* HUM_OFFSET      (0x09) */
-    uint8_t tThresHigh;    /* TEMP_THRES_HIGH (0x0A) */
-    uint8_t tThresLow;     /* TEMP_THRES_LOW  (0x0B) */
-    uint8_t hThresHigh;    /* HUM_THRES_HIGH  (0x0C) */
-    uint8_t hThresLow;     /* HUM_THRES_LOW   (0x0D) */
+    uint8_t tThresLow;     /* TEMP_THRES_LOW  (0x0A) */
+    uint8_t tThresHigh;    /* TEMP_THRES_HIGH (0x0B) */
+    uint8_t hThresLow;     /* HUM_THRES_LOW   (0x0C) */
+    uint8_t hThresHigh;    /* HUM_THRES_HIGH  (0x0D) */
     uint8_t config;        /* CONFIG          (0x0E) */
     uint8_t measConfig;    /* MEAS_CONFIG     (0x0F) */
 
@@ -156,10 +156,10 @@ static HDC2080_State HDC2080_state = {
     HDC2080_INT_CONFIG_VALUE,
     HDC2080_TEMP_OFFSET_VALUE,
     HDC2080_HUM_OFFSET_VALUE,
-    HDC2080_TEMP_THRES_HIGH_VALUE,
     HDC2080_TEMP_THRES_LOW_VALUE,
-    HDC2080_HUM_THRES_HIGH_VALUE,
+    HDC2080_TEMP_THRES_HIGH_VALUE,
     HDC2080_HUM_THRES_LOW_VALUE,
+    HDC2080_HUM_THRES_HIGH_VALUE,
     HDC2080_CONFIG_VALUE,
     HDC2080_MEAS_CONFIG_VALUE,
 

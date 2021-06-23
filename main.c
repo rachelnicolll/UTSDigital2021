@@ -59,7 +59,8 @@ void main(void)
 	// Initialise local variables
 	uint8_t cursorPos = 0;
 	bool toggleReading = TRUE;
-
+	uint8_t value = 5;
+	
 	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
 	CLK->PCKENR2 |= 0xff; // Enable clock to timer
 	CLK->PCKENR1 |= 0xff; // Enable all clocks
@@ -73,6 +74,7 @@ void main(void)
 
 	// Initailise sensor
 	delay_ms(4);
+	//mcu_i2cInit(0x00);
 	HDC2080_config(HDC2080);
 	delay_ms(4);
 	// Initialise spi
@@ -103,6 +105,7 @@ void main(void)
 	HumReadingResult = HDC2080_humToFloatRelative(HumRawResult);
 	HumIntResult = HDC2080_humToIntRelative(HumRawResult);
 	//delay_ms(5000);
+	//mcu_i2cTransfer(0, 0x50, &value, 1, NULL, 0);
 	enableInterrupts();
 
 	for (;;)

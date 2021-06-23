@@ -7,7 +7,7 @@
 #include <mcu.h>
 #include <delay.h>
 
-#define OUTPUT_CLOCK_FREQ_I2C 50000UL
+#define OUTPUT_CLOCK_FREQ_I2C 100000UL
 
 /*
  *  Include MCU Specific Header Files Here
@@ -112,10 +112,10 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
 
     if ((dataToRead != NULL) && (readLength != 0))
     {
-
         // check busy flag...
         while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
             ;
+        I2C1->CR2 |= I2C_CR2_ACK;
 
         // generate start
         I2C_GenerateSTART(I2C1, ENABLE);
@@ -126,76 +126,73 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
 
         // send address
         I2C_Send7bitAddress(I2C1, slaveDevAddr, I2C_Direction_Receiver);
-
+				
+				I2C1->CR2 |= I2C_CR2_POS;
         // check receiver mode selected
-        while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+        while (!(I2C1->SR1 & I2C_SR1_ADDR))
             ;
 
-        I2C1->CR2 |= I2C_CR2_ACK;
+        delay_ms(1);
+        // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
+        // ;
+
         // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
         // ;
 
-        while (numReadBytes)
+        if (numReadBytes > 2)
         {
-            while (numReadBytes-- > 1)
+            I2C1->SR3;
+            while (numReadBytes > 3) // not last three bytes?
             {
-                I2C1->CR2 |= I2C_CR2_ACK;
-                while (!(I2C1->SR1 & (I2C_SR1_RXNE | I2C_SR1_BTF)));
-                *(dataToRead++) = (uint8_t) I2C1->DR;
+                while (!(I2C1->SR1 & I2C_SR1_BTF))
+                    ;                       // Wait for BTF
+                *(dataToRead++) = I2C1->DR; // Reading next data byte
+                --numReadBytes;             // Decrease Numbyte to reade by 1
             }
+            //last three bytes should be read
+            while (!(I2C1->SR1 & I2C_SR1_BTF))
+                ;                      // Wait for BTF
+            I2C1->CR2 &= ~I2C_CR2_ACK; // Clear ACK
 
-            I2C1->CR2 &=~ I2C_CR2_ACK;
-            I2C_GenerateSTOP(I2C1, ENABLE);
-                    while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
-            ;
-            *(dataToRead) = (uint8_t) I2C1->DR;
+            *(dataToRead++) = I2C1->DR; // Read 1st byte
+            I2C1->CR2 |= I2C_CR2_STOP;  // Generate stop here (STOP=1)
+            *(dataToRead++) = I2C1->DR; // Read 2nd byte
 
-            //--
-            // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
-            // ;
-            // I2C1->CR2 |= I2C_CR2_POS;  // Set POS bit (NACK at next received byte)
-            // disableInterrupts();       // Errata workaround (Disable interrupt)
-            // I2C1->SR3;                 // Clear ADDR Flag
-            // I2C1->CR2 &= ~I2C_CR2_ACK; // Clear ACK
-            // enableInterrupts();        // Errata workaround (Enable interrupt)
-            // while (!(I2C1->SR1 & I2C_SR1_BTF))
-            //     ;                           // Wait for BTF
-            // disableInterrupts();            // Errata workaround (Disable interrupt)
-            // I2C_GenerateSTOP(I2C1, ENABLE); // Generate stop here (STOP=1)
-            // while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
-            //     ;
-
-            // *(dataToRead++) = I2C1->DR;
-            // // Read 1st Data byte
-            // numReadBytes--;
-            // enableInterrupts();       // Errata workaround (Enable interrupt)
-            // *(dataToRead) = I2C1->DR; // Read 2nd Data byte
-            // numReadBytes--;
-
-            //--
-
-            //while nothing received, just wait
-            // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
-            //     ;
-            // if (numReadBytes == 1)
-            // {
-            //     I2C_AcknowledgeConfig(I2C1, DISABLE);
-            //     I2C_GenerateSTOP(I2C1, ENABLE);
-            //     while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
-            //         ;
-            // }
-            //else
-            //I2C_AcknowledgeConfig(I2C1, ENABLE);
-
-            // *(dataToRead++) = I2C_ReceiveData(I2C1);
-            // numReadBytes--;
-            //dataToRead++;
+            while (!(I2C1->SR1 & I2C_SR1_RXNE))
+                ;                       // Wait for RXNE
+            *(dataToRead++) = I2C1->DR; // Read 3rd Data byte
         }
 
-        //I2C_AcknowledgeConfig(I2C1, DISABLE);
-        //I2C_GenerateSTOP(I2C1, ENABLE);
-        //while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
-        //;
+        else if (numReadBytes == 2)
+        {
+            //I2C1->CR2 |= I2C_CR2_POS;
+						//I2C1->CR2 &= ~I2C_CR2_ACK;
+            I2C1->SR3;
+						//I2C1->CR2 |= I2C_CR2_POS;
+            I2C1->CR2 &= ~I2C_CR2_ACK;
+            while (!(I2C1->SR1 & (I2C_SR1_RXNE | I2C_SR1_BTF)))
+                ;
+            I2C_GenerateSTOP(I2C1, ENABLE);
+            *(dataToRead++) = (uint8_t)I2C1->DR;
+            delay_ms(1);
+            *(dataToRead) = (uint8_t)I2C1->DR;
+
+        }
+
+        else
+        {
+            I2C1->CR2 &= ~I2C_CR2_ACK;
+            ; // Clear ACK
+            I2C1->SR3;                 // Clear ADDR Flag
+            I2C1->CR2 |= I2C_CR2_STOP; // generate stop here (STOP=1)
+            while (!(I2C1->SR1 & I2C_SR1_RXNE))
+                ;                      // test EV7, wait for RxNE
+            *(dataToRead) = I2C1->DR; // Read Data byte
+        }
+
+            while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
+                ;
+            I2C1->CR2 &= ~I2C_CR2_POS;
     }
 
     /*
