@@ -1,760 +1,1730 @@
    1                     ; C Compiler for STM8 (COSMIC Software)
    2                     ; Parser V4.12.4 - 04 Feb 2021
    3                     ; Generator (Limited) V4.5.2 - 04 Feb 2021
-  41                     ; 31 static void LCD_gpio_init() {
+  41                     ; 30 static void LCD_gpio_init() {
   43                     	switch	.text
   44  0000               L3_LCD_gpio_init:
-  48                     ; 32     GPIOB->DDR |= (1 << LCD_CE_PIN) | (1 << LCD_RST_PIN) | (1 << LCD_DC_PIN);
+  48                     ; 31     GPIOB->DDR |= (1 << LCD_CE_PIN) | (1 << LCD_RST_PIN) | (1 << LCD_DC_PIN);
   50  0000 c65007        	ld	a,20487
-  51  0003 aa1c          	or	a,#28
+  51  0003 aa0d          	or	a,#13
   52  0005 c75007        	ld	20487,a
-  53                     ; 33     GPIOB->CR1 |= (1 << LCD_CE_PIN) | (1 << LCD_RST_PIN) | (1 << LCD_DC_PIN);
+  53                     ; 32     GPIOB->CR1 |= (1 << LCD_CE_PIN) | (1 << LCD_RST_PIN) | (1 << LCD_DC_PIN);
   55  0008 c65008        	ld	a,20488
-  56  000b aa1c          	or	a,#28
+  56  000b aa0d          	or	a,#13
   57  000d c75008        	ld	20488,a
-  58                     ; 34 }
+  58                     ; 33 }
   61  0010 81            	ret
-  84                     ; 36 static void LCD_DC_set() {
+  84                     ; 35 static void LCD_DC_set() {
   85                     	switch	.text
   86  0011               L32_LCD_DC_set:
-  90                     ; 37     GPIOB->ODR |= (1 << LCD_DC_PIN);
+  90                     ; 36     GPIOB->ODR |= (1 << LCD_DC_PIN);
   92  0011 72145005      	bset	20485,#2
-  93                     ; 38 }
+  93                     ; 37 }
   96  0015 81            	ret
- 119                     ; 40 static void LCD_DC_clear() {
+ 119                     ; 39 static void LCD_DC_clear() {
  120                     	switch	.text
  121  0016               L53_LCD_DC_clear:
- 125                     ; 41     GPIOB->ODR &= ~(1 << LCD_DC_PIN);
+ 125                     ; 40     GPIOB->ODR &= ~(1 << LCD_DC_PIN);
  127  0016 72155005      	bres	20485,#2
- 128                     ; 42 }
+ 128                     ; 41 }
  131  001a 81            	ret
- 154                     ; 44 static void LCD_CE_set() {
+ 154                     ; 43 static void LCD_CE_set() {
  155                     	switch	.text
  156  001b               L74_LCD_CE_set:
  160  001b               L36:
- 161                     ; 45     while ((SPI1->SR & (1 << SPI_SR_BSY)));
+ 161                     ; 44     while (SPI1->SR &  SPI_SR_BSY);
  163  001b c65203        	ld	a,20995
- 164  001e a501          	bcp	a,#1
+ 164  001e a580          	bcp	a,#128
  165  0020 26f9          	jrne	L36
- 166                     ; 46     GPIOB->ODR |= (1 << LCD_CE_PIN);
+ 166                     ; 45     GPIOB->ODR |= (1 << LCD_CE_PIN);
  168  0022 72165005      	bset	20485,#3
- 169                     ; 47 }
+ 169                     ; 46 }
  172  0026 81            	ret
- 195                     ; 49 static void LCD_CE_clear() {
+ 195                     ; 48 static void LCD_CE_clear() {
  196                     	switch	.text
  197  0027               L76_LCD_CE_clear:
- 201                     ; 50     GPIOB->ODR &= ~(1 << LCD_CE_PIN);
+ 201                     ; 49     GPIOB->ODR &= ~(1 << LCD_CE_PIN);
  203  0027 72175005      	bres	20485,#3
- 204                     ; 51 }
+ 204                     ; 50 }
  207  002b 81            	ret
- 230                     ; 53 static void LCD_RST_set() {
+ 230                     ; 52 static void LCD_RST_set() {
  231                     	switch	.text
  232  002c               L101_LCD_RST_set:
- 236                     ; 54     GPIOB->ODR |= (1 << LCD_RST_PIN);
- 238  002c 72185005      	bset	20485,#4
- 239                     ; 55 }
+ 236                     ; 53     GPIOB->ODR |= (1 << LCD_RST_PIN);
+ 238  002c 72105005      	bset	20485,#0
+ 239                     ; 54 }
  242  0030 81            	ret
- 265                     ; 57 static void LCD_RST_clear() {
+ 265                     ; 56 static void LCD_RST_clear() {
  266                     	switch	.text
  267  0031               L311_LCD_RST_clear:
- 271                     ; 58     GPIOB->ODR &= ~(1 << LCD_RST_PIN);
- 273  0031 72195005      	bres	20485,#4
- 274                     ; 59 }
+ 271                     ; 57     GPIOB->ODR &= ~(1 << LCD_RST_PIN);
+ 273  0031 72115005      	bres	20485,#0
+ 274                     ; 58 }
  277  0035 81            	ret
- 312                     ; 61 static void LCD_SPI_write(uint8_t word) {
+ 312                     ; 60 static void LCD_SPI_write(uint8_t word) {
  313                     	switch	.text
  314  0036               L521_LCD_SPI_write:
- 318                     ; 62     SPI_write(word);
+ 318                     ; 61     SPI_write(word);
  320  0036 cd0000        	call	_SPI_write
- 322                     ; 63 }
+ 322                     ; 62 }
  325  0039 81            	ret
- 378                     ; 65 static void LCD_delay_ms(int ms) {
- 379                     	switch	.text
- 380  003a               L541_LCD_delay_ms:
- 382  003a 5208          	subw	sp,#8
- 383       00000008      OFST:	set	8
- 386                     ; 66     delay_ms(ms);
- 389  003c cd0000        	call	c_itolx
- 391  003f 96            	ldw	x,sp
- 392  0040 1c0001        	addw	x,#OFST-7
- 393  0043 cd0000        	call	c_rtol
- 396                     ; 14     for (i = 0; i < ((F_CPU / 18 / 1000UL) * ms); i++) {
- 398  0046 ae0000        	ldw	x,#0
- 399  0049 1f07          	ldw	(OFST-1,sp),x
- 400  004b ae0000        	ldw	x,#0
- 401  004e 1f05          	ldw	(OFST-3,sp),x
- 404  0050 2009          	jra	L302
- 405  0052               L771:
- 408  0052 96            	ldw	x,sp
- 409  0053 1c0005        	addw	x,#OFST-3
- 410  0056 a601          	ld	a,#1
- 411  0058 cd0000        	call	c_lgadc
- 414  005b               L302:
- 417  005b 96            	ldw	x,sp
- 418  005c 1c0001        	addw	x,#OFST-7
- 419  005f cd0000        	call	c_ltor
- 421  0062 a66f          	ld	a,#111
- 422  0064 cd0000        	call	c_smul
- 424  0067 96            	ldw	x,sp
- 425  0068 1c0005        	addw	x,#OFST-3
- 426  006b cd0000        	call	c_lcmp
- 428  006e 22e2          	jrugt	L771
- 429                     ; 67 }
- 432  0070 5b08          	addw	sp,#8
- 433  0072 81            	ret
- 446                     .const:	section	.text
- 447  0000               _font:
- 448  0000 00            	dc.b	0
- 449  0001 00            	dc.b	0
- 450  0002 00            	dc.b	0
- 451  0003 00            	dc.b	0
- 452  0004 00            	dc.b	0
- 453  0005 00            	dc.b	0
- 454  0006 5e            	dc.b	94
- 455  0007 00            	dc.b	0
- 456  0008 00            	dc.b	0
- 457  0009 00            	dc.b	0
- 458  000a 06            	dc.b	6
- 459  000b 06            	dc.b	6
- 460  000c 00            	dc.b	0
- 461  000d 00            	dc.b	0
- 462  000e 00            	dc.b	0
- 463  000f 28            	dc.b	40
- 464  0010 fe            	dc.b	254
- 465  0011 28            	dc.b	40
- 466  0012 fe            	dc.b	254
- 467  0013 28            	dc.b	40
- 468  0014 08            	dc.b	8
- 469  0015 54            	dc.b	84
- 470  0016 fe            	dc.b	254
- 471  0017 54            	dc.b	84
- 472  0018 20            	dc.b	32
- 473  0019 40            	dc.b	64
- 474  001a 2c            	dc.b	44
- 475  001b 54            	dc.b	84
- 476  001c 68            	dc.b	104
- 477  001d 04            	dc.b	4
- 478  001e 70            	dc.b	112
- 479  001f 4e            	dc.b	78
- 480  0020 7a            	dc.b	122
- 481  0021 26            	dc.b	38
- 482  0022 40            	dc.b	64
- 483  0023 06            	dc.b	6
- 484  0024 00            	dc.b	0
- 485  0025 00            	dc.b	0
- 486  0026 00            	dc.b	0
- 487  0027 00            	dc.b	0
- 488  0028 00            	dc.b	0
- 489  0029 7e            	dc.b	126
- 490  002a 81            	dc.b	129
- 491  002b 00            	dc.b	0
- 492  002c 00            	dc.b	0
- 493  002d 81            	dc.b	129
- 494  002e 7e            	dc.b	126
- 495  002f 00            	dc.b	0
- 496  0030 00            	dc.b	0
- 497  0031 00            	dc.b	0
- 498  0032 08            	dc.b	8
- 499  0033 04            	dc.b	4
- 500  0034 02            	dc.b	2
- 501  0035 04            	dc.b	4
- 502  0036 08            	dc.b	8
- 503  0037 10            	dc.b	16
- 504  0038 10            	dc.b	16
- 505  0039 7c            	dc.b	124
- 506  003a 10            	dc.b	16
- 507  003b 10            	dc.b	16
- 508  003c 00            	dc.b	0
- 509  003d c0            	dc.b	192
- 510  003e 00            	dc.b	0
- 511  003f 00            	dc.b	0
- 512  0040 00            	dc.b	0
- 513  0041 20            	dc.b	32
- 514  0042 20            	dc.b	32
- 515  0043 00            	dc.b	0
- 516  0044 00            	dc.b	0
- 517  0045 00            	dc.b	0
- 518  0046 00            	dc.b	0
- 519  0047 40            	dc.b	64
- 520  0048 00            	dc.b	0
- 521  0049 00            	dc.b	0
- 522  004a 00            	dc.b	0
- 523  004b 70            	dc.b	112
- 524  004c 0e            	dc.b	14
- 525  004d 00            	dc.b	0
- 526  004e 00            	dc.b	0
- 527  004f 00            	dc.b	0
- 528  0050 3c            	dc.b	60
- 529  0051 42            	dc.b	66
- 530  0052 42            	dc.b	66
- 531  0053 3c            	dc.b	60
- 532  0054 00            	dc.b	0
- 533  0055 44            	dc.b	68
- 534  0056 7e            	dc.b	126
- 535  0057 40            	dc.b	64
- 536  0058 00            	dc.b	0
- 537  0059 00            	dc.b	0
- 538  005a 62            	dc.b	98
- 539  005b 52            	dc.b	82
- 540  005c 4e            	dc.b	78
- 541  005d 00            	dc.b	0
- 542  005e 00            	dc.b	0
- 543  005f 62            	dc.b	98
- 544  0060 4a            	dc.b	74
- 545  0061 7e            	dc.b	126
- 546  0062 00            	dc.b	0
- 547  0063 00            	dc.b	0
- 548  0064 18            	dc.b	24
- 549  0065 14            	dc.b	20
- 550  0066 7e            	dc.b	126
- 551  0067 10            	dc.b	16
- 552  0068 00            	dc.b	0
- 553  0069 4e            	dc.b	78
- 554  006a 4a            	dc.b	74
- 555  006b 7a            	dc.b	122
- 556  006c 00            	dc.b	0
- 557  006d 00            	dc.b	0
- 558  006e 7e            	dc.b	126
- 559  006f 52            	dc.b	82
- 560  0070 72            	dc.b	114
- 561  0071 00            	dc.b	0
- 562  0072 00            	dc.b	0
- 563  0073 02            	dc.b	2
- 564  0074 62            	dc.b	98
- 565  0075 1a            	dc.b	26
- 566  0076 06            	dc.b	6
- 567  0077 00            	dc.b	0
- 568  0078 76            	dc.b	118
- 569  0079 4a            	dc.b	74
- 570  007a 76            	dc.b	118
- 571  007b 00            	dc.b	0
- 572  007c 00            	dc.b	0
- 573  007d 4c            	dc.b	76
- 574  007e 52            	dc.b	82
- 575  007f 52            	dc.b	82
- 576  0080 3c            	dc.b	60
- 577  0081 00            	dc.b	0
- 578  0082 00            	dc.b	0
- 579  0083 48            	dc.b	72
- 580  0084 00            	dc.b	0
- 581  0085 00            	dc.b	0
- 582  0086 00            	dc.b	0
- 583  0087 00            	dc.b	0
- 584  0088 c8            	dc.b	200
- 585  0089 00            	dc.b	0
- 586  008a 00            	dc.b	0
- 587  008b 00            	dc.b	0
- 588  008c 10            	dc.b	16
- 589  008d 28            	dc.b	40
- 590  008e 28            	dc.b	40
- 591  008f 44            	dc.b	68
- 592  0090 00            	dc.b	0
- 593  0091 28            	dc.b	40
- 594  0092 28            	dc.b	40
- 595  0093 28            	dc.b	40
- 596  0094 28            	dc.b	40
- 597  0095 00            	dc.b	0
- 598  0096 44            	dc.b	68
- 599  0097 28            	dc.b	40
- 600  0098 28            	dc.b	40
- 601  0099 10            	dc.b	16
- 602  009a 00            	dc.b	0
- 603  009b 04            	dc.b	4
- 604  009c 52            	dc.b	82
- 605  009d 0a            	dc.b	10
- 606  009e 0e            	dc.b	14
- 607  009f 00            	dc.b	0
- 608  00a0 7c            	dc.b	124
- 609  00a1 82            	dc.b	130
- 610  00a2 ba            	dc.b	186
- 611  00a3 aa            	dc.b	170
- 612  00a4 be            	dc.b	190
- 613  00a5 7c            	dc.b	124
- 614  00a6 12            	dc.b	18
- 615  00a7 12            	dc.b	18
- 616  00a8 7c            	dc.b	124
- 617  00a9 00            	dc.b	0
- 618  00aa 7e            	dc.b	126
- 619  00ab 4a            	dc.b	74
- 620  00ac 4a            	dc.b	74
- 621  00ad 34            	dc.b	52
- 622  00ae 00            	dc.b	0
- 623  00af 3c            	dc.b	60
- 624  00b0 42            	dc.b	66
- 625  00b1 42            	dc.b	66
- 626  00b2 42            	dc.b	66
- 627  00b3 24            	dc.b	36
- 628  00b4 7e            	dc.b	126
- 629  00b5 42            	dc.b	66
- 630  00b6 42            	dc.b	66
- 631  00b7 42            	dc.b	66
- 632  00b8 3c            	dc.b	60
- 633  00b9 7e            	dc.b	126
- 634  00ba 4a            	dc.b	74
- 635  00bb 4a            	dc.b	74
- 636  00bc 4a            	dc.b	74
- 637  00bd 00            	dc.b	0
- 638  00be 7e            	dc.b	126
- 639  00bf 0a            	dc.b	10
- 640  00c0 0a            	dc.b	10
- 641  00c1 0a            	dc.b	10
- 642  00c2 00            	dc.b	0
- 643  00c3 3c            	dc.b	60
- 644  00c4 42            	dc.b	66
- 645  00c5 42            	dc.b	66
- 646  00c6 52            	dc.b	82
- 647  00c7 34            	dc.b	52
- 648  00c8 7e            	dc.b	126
- 649  00c9 08            	dc.b	8
- 650  00ca 08            	dc.b	8
- 651  00cb 08            	dc.b	8
- 652  00cc 7e            	dc.b	126
- 653  00cd 42            	dc.b	66
- 654  00ce 7e            	dc.b	126
- 655  00cf 42            	dc.b	66
- 656  00d0 00            	dc.b	0
- 657  00d1 00            	dc.b	0
- 658  00d2 60            	dc.b	96
- 659  00d3 42            	dc.b	66
- 660  00d4 7e            	dc.b	126
- 661  00d5 00            	dc.b	0
- 662  00d6 00            	dc.b	0
- 663  00d7 7e            	dc.b	126
- 664  00d8 08            	dc.b	8
- 665  00d9 18            	dc.b	24
- 666  00da 24            	dc.b	36
- 667  00db 42            	dc.b	66
- 668  00dc 7e            	dc.b	126
- 669  00dd 40            	dc.b	64
- 670  00de 40            	dc.b	64
- 671  00df 40            	dc.b	64
- 672  00e0 00            	dc.b	0
- 673  00e1 7e            	dc.b	126
- 674  00e2 04            	dc.b	4
- 675  00e3 08            	dc.b	8
- 676  00e4 04            	dc.b	4
- 677  00e5 7e            	dc.b	126
- 678  00e6 7e            	dc.b	126
- 679  00e7 04            	dc.b	4
- 680  00e8 18            	dc.b	24
- 681  00e9 20            	dc.b	32
- 682  00ea 7e            	dc.b	126
- 683  00eb 3c            	dc.b	60
- 684  00ec 42            	dc.b	66
- 685  00ed 42            	dc.b	66
- 686  00ee 42            	dc.b	66
- 687  00ef 3c            	dc.b	60
- 688  00f0 7e            	dc.b	126
- 689  00f1 12            	dc.b	18
- 690  00f2 12            	dc.b	18
- 691  00f3 0c            	dc.b	12
- 692  00f4 00            	dc.b	0
- 693  00f5 3c            	dc.b	60
- 694  00f6 42            	dc.b	66
- 695  00f7 c2            	dc.b	194
- 696  00f8 c2            	dc.b	194
- 697  00f9 bc            	dc.b	188
- 698  00fa 7e            	dc.b	126
- 699  00fb 12            	dc.b	18
- 700  00fc 12            	dc.b	18
- 701  00fd 32            	dc.b	50
- 702  00fe 4c            	dc.b	76
- 703  00ff 4c            	dc.b	76
- 704  0100 52            	dc.b	82
- 705  0101 52            	dc.b	82
- 706  0102 22            	dc.b	34
- 707  0103 00            	dc.b	0
- 708  0104 02            	dc.b	2
- 709  0105 02            	dc.b	2
- 710  0106 7e            	dc.b	126
- 711  0107 02            	dc.b	2
- 712  0108 02            	dc.b	2
- 713  0109 3e            	dc.b	62
- 714  010a 40            	dc.b	64
- 715  010b 40            	dc.b	64
- 716  010c 40            	dc.b	64
- 717  010d 3e            	dc.b	62
- 718  010e 06            	dc.b	6
- 719  010f 38            	dc.b	56
- 720  0110 40            	dc.b	64
- 721  0111 38            	dc.b	56
- 722  0112 06            	dc.b	6
- 723  0113 3e            	dc.b	62
- 724  0114 60            	dc.b	96
- 725  0115 18            	dc.b	24
- 726  0116 60            	dc.b	96
- 727  0117 3e            	dc.b	62
- 728  0118 42            	dc.b	66
- 729  0119 24            	dc.b	36
- 730  011a 18            	dc.b	24
- 731  011b 24            	dc.b	36
- 732  011c 42            	dc.b	66
- 733  011d 02            	dc.b	2
- 734  011e 0c            	dc.b	12
- 735  011f 70            	dc.b	112
- 736  0120 0c            	dc.b	12
- 737  0121 02            	dc.b	2
- 738  0122 62            	dc.b	98
- 739  0123 52            	dc.b	82
- 740  0124 4a            	dc.b	74
- 741  0125 46            	dc.b	70
- 742  0126 00            	dc.b	0
- 743  0127 00            	dc.b	0
- 744  0128 ff            	dc.b	255
- 745  0129 81            	dc.b	129
- 746  012a 00            	dc.b	0
- 747  012b 00            	dc.b	0
- 748  012c 0e            	dc.b	14
- 749  012d 70            	dc.b	112
- 750  012e 00            	dc.b	0
- 751  012f 00            	dc.b	0
- 752  0130 00            	dc.b	0
- 753  0131 81            	dc.b	129
- 754  0132 ff            	dc.b	255
- 755  0133 00            	dc.b	0
- 756  0134 00            	dc.b	0
- 757  0135 00            	dc.b	0
- 758  0136 0c            	dc.b	12
- 759  0137 02            	dc.b	2
- 760  0138 0c            	dc.b	12
- 761  0139 00            	dc.b	0
- 762  013a 00            	dc.b	0
- 763  013b 80            	dc.b	128
- 764  013c 80            	dc.b	128
- 765  013d 80            	dc.b	128
- 766  013e 80            	dc.b	128
- 767  013f 80            	dc.b	128
- 768  0140 01            	dc.b	1
- 769  0141 02            	dc.b	2
- 770  0142 00            	dc.b	0
- 771  0143 00            	dc.b	0
- 772  0144 00            	dc.b	0
- 773  0145 68            	dc.b	104
- 774  0146 58            	dc.b	88
- 775  0147 78            	dc.b	120
- 776  0148 40            	dc.b	64
- 777  0149 00            	dc.b	0
- 778  014a 7e            	dc.b	126
- 779  014b 48            	dc.b	72
- 780  014c 30            	dc.b	48
- 781  014d 00            	dc.b	0
- 782  014e 00            	dc.b	0
- 783  014f 78            	dc.b	120
- 784  0150 48            	dc.b	72
- 785  0151 48            	dc.b	72
- 786  0152 00            	dc.b	0
- 787  0153 00            	dc.b	0
- 788  0154 78            	dc.b	120
- 789  0155 48            	dc.b	72
- 790  0156 7e            	dc.b	126
- 791  0157 00            	dc.b	0
- 792  0158 00            	dc.b	0
- 793  0159 30            	dc.b	48
- 794  015a 68            	dc.b	104
- 795  015b 50            	dc.b	80
- 796  015c 00            	dc.b	0
- 797  015d 00            	dc.b	0
- 798  015e 08            	dc.b	8
- 799  015f 7c            	dc.b	124
- 800  0160 0a            	dc.b	10
- 801  0161 00            	dc.b	0
- 802  0162 00            	dc.b	0
- 803  0163 b8            	dc.b	184
- 804  0164 a8            	dc.b	168
- 805  0165 f8            	dc.b	248
- 806  0166 00            	dc.b	0
- 807  0167 00            	dc.b	0
- 808  0168 7e            	dc.b	126
- 809  0169 08            	dc.b	8
- 810  016a 70            	dc.b	112
- 811  016b 00            	dc.b	0
- 812  016c 00            	dc.b	0
- 813  016d 7a            	dc.b	122
- 814  016e 00            	dc.b	0
- 815  016f 00            	dc.b	0
- 816  0170 00            	dc.b	0
- 817  0171 00            	dc.b	0
- 818  0172 40            	dc.b	64
- 819  0173 7a            	dc.b	122
- 820  0174 00            	dc.b	0
- 821  0175 00            	dc.b	0
- 822  0176 00            	dc.b	0
- 823  0177 7e            	dc.b	126
- 824  0178 30            	dc.b	48
- 825  0179 48            	dc.b	72
- 826  017a 00            	dc.b	0
- 827  017b 00            	dc.b	0
- 828  017c 7e            	dc.b	126
- 829  017d 00            	dc.b	0
- 830  017e 00            	dc.b	0
- 831  017f 00            	dc.b	0
- 832  0180 00            	dc.b	0
- 833  0181 78            	dc.b	120
- 834  0182 08            	dc.b	8
- 835  0183 70            	dc.b	112
- 836  0184 08            	dc.b	8
- 837  0185 78            	dc.b	120
- 838  0186 78            	dc.b	120
- 839  0187 08            	dc.b	8
- 840  0188 70            	dc.b	112
- 841  0189 00            	dc.b	0
- 842  018a 00            	dc.b	0
- 843  018b 30            	dc.b	48
- 844  018c 48            	dc.b	72
- 845  018d 48            	dc.b	72
- 846  018e 30            	dc.b	48
- 847  018f 00            	dc.b	0
- 848  0190 f8            	dc.b	248
- 849  0191 48            	dc.b	72
- 850  0192 30            	dc.b	48
- 851  0193 00            	dc.b	0
- 852  0194 00            	dc.b	0
- 853  0195 38            	dc.b	56
- 854  0196 28            	dc.b	40
- 855  0197 f8            	dc.b	248
- 856  0198 00            	dc.b	0
- 857  0199 00            	dc.b	0
- 858  019a 78            	dc.b	120
- 859  019b 08            	dc.b	8
- 860  019c 08            	dc.b	8
- 861  019d 00            	dc.b	0
- 862  019e 00            	dc.b	0
- 863  019f 58            	dc.b	88
- 864  01a0 58            	dc.b	88
- 865  01a1 68            	dc.b	104
- 866  01a2 00            	dc.b	0
- 867  01a3 00            	dc.b	0
- 868  01a4 7c            	dc.b	124
- 869  01a5 48            	dc.b	72
- 870  01a6 00            	dc.b	0
- 871  01a7 00            	dc.b	0
- 872  01a8 00            	dc.b	0
- 873  01a9 78            	dc.b	120
- 874  01aa 40            	dc.b	64
- 875  01ab 78            	dc.b	120
- 876  01ac 00            	dc.b	0
- 877  01ad 00            	dc.b	0
- 878  01ae 38            	dc.b	56
- 879  01af 40            	dc.b	64
- 880  01b0 38            	dc.b	56
- 881  01b1 00            	dc.b	0
- 882  01b2 00            	dc.b	0
- 883  01b3 38            	dc.b	56
- 884  01b4 60            	dc.b	96
- 885  01b5 18            	dc.b	24
- 886  01b6 60            	dc.b	96
- 887  01b7 38            	dc.b	56
- 888  01b8 48            	dc.b	72
- 889  01b9 30            	dc.b	48
- 890  01ba 48            	dc.b	72
- 891  01bb 00            	dc.b	0
- 892  01bc 00            	dc.b	0
- 893  01bd 98            	dc.b	152
- 894  01be 60            	dc.b	96
- 895  01bf 18            	dc.b	24
- 896  01c0 00            	dc.b	0
- 897  01c1 00            	dc.b	0
- 898  01c2 48            	dc.b	72
- 899  01c3 68            	dc.b	104
- 900  01c4 58            	dc.b	88
- 901  01c5 00            	dc.b	0
- 902  01c6 00            	dc.b	0
- 903  01c7 10            	dc.b	16
- 904  01c8 ef            	dc.b	239
- 905  01c9 81            	dc.b	129
- 906  01ca 00            	dc.b	0
- 907  01cb 00            	dc.b	0
- 908  01cc 00            	dc.b	0
- 909  01cd ff            	dc.b	255
- 910  01ce 00            	dc.b	0
- 911  01cf 00            	dc.b	0
- 912  01d0 00            	dc.b	0
- 913  01d1 81            	dc.b	129
- 914  01d2 ef            	dc.b	239
- 915  01d3 10            	dc.b	16
- 916  01d4 00            	dc.b	0
- 917  01d5 00            	dc.b	0
- 918  01d6 10            	dc.b	16
- 919  01d7 10            	dc.b	16
- 920  01d8 20            	dc.b	32
- 921  01d9 20            	dc.b	32
- 922  01da 00            	dc.b	0
- 987                     ; 7 void LCD_init() {
- 988                     	switch	.text
- 989  0073               _LCD_init:
- 993                     ; 8     LCD_gpio_init();
- 995  0073 ad8b          	call	L3_LCD_gpio_init
- 997                     ; 9     LCD_CE_clear();
- 999  0075 adb0          	call	L76_LCD_CE_clear
-1001                     ; 10     LCD_RST_clear();
-1003  0077 adb8          	call	L311_LCD_RST_clear
-1005                     ; 12     LCD_RST_set();
-1007  0079 adb1          	call	L101_LCD_RST_set
-1009                     ; 13     LCD_CE_set();
-1011  007b ad9e          	call	L74_LCD_CE_set
-1013                     ; 14     LCD_cmd(0x21); // extended commands
-1015  007d a621          	ld	a,#33
-1016  007f ad17          	call	_LCD_cmd
-1018                     ; 15     LCD_cmd(0xc0); // contrast Vop=6.4V
-1020  0081 a6c0          	ld	a,#192
-1021  0083 ad13          	call	_LCD_cmd
-1023                     ; 16     LCD_cmd(0x04); // temperature coefficient
-1025  0085 a604          	ld	a,#4
-1026  0087 ad0f          	call	_LCD_cmd
-1028                     ; 17     LCD_cmd(0x13); // bias = 1:48
-1030  0089 a613          	ld	a,#19
-1031  008b ad0b          	call	_LCD_cmd
-1033                     ; 19     LCD_cmd(0x20); // standard commands
-1035  008d a620          	ld	a,#32
-1036  008f ad07          	call	_LCD_cmd
-1038                     ; 20     LCD_cmd(0x0C); // normal mode
-1040  0091 a60c          	ld	a,#12
-1041  0093 ad03          	call	_LCD_cmd
-1043                     ; 22     LCD_clear();
-1045  0095 ad20          	call	_LCD_clear
-1047                     ; 23 }
-1050  0097 81            	ret
-1088                     ; 25 void LCD_cmd(uint8_t cmd) {
-1089                     	switch	.text
-1090  0098               _LCD_cmd:
-1092  0098 88            	push	a
-1093       00000000      OFST:	set	0
-1096                     ; 26     LCD_CE_clear();
-1098  0099 ad8c          	call	L76_LCD_CE_clear
-1100                     ; 27     LCD_DC_clear();
-1102  009b cd0016        	call	L53_LCD_DC_clear
-1104                     ; 28     LCD_SPI_write(cmd);
-1106  009e 7b01          	ld	a,(OFST+1,sp)
-1107  00a0 ad94          	call	L521_LCD_SPI_write
-1109                     ; 29     LCD_CE_set();
-1111  00a2 cd001b        	call	L74_LCD_CE_set
-1113                     ; 30 }
-1116  00a5 84            	pop	a
-1117  00a6 81            	ret
-1155                     ; 32 void LCD_write(uint8_t data) {
-1156                     	switch	.text
-1157  00a7               _LCD_write:
-1159  00a7 88            	push	a
-1160       00000000      OFST:	set	0
-1163                     ; 33     LCD_CE_clear();
-1165  00a8 cd0027        	call	L76_LCD_CE_clear
-1167                     ; 34     LCD_DC_set();
-1169  00ab cd0011        	call	L32_LCD_DC_set
-1171                     ; 35     LCD_SPI_write(data);
-1173  00ae 7b01          	ld	a,(OFST+1,sp)
-1174  00b0 ad84          	call	L521_LCD_SPI_write
-1176                     ; 36     LCD_CE_set();
-1178  00b2 cd001b        	call	L74_LCD_CE_set
-1180                     ; 37 }
-1183  00b5 84            	pop	a
-1184  00b6 81            	ret
-1220                     ; 39 void LCD_clear() {
-1221                     	switch	.text
-1222  00b7               _LCD_clear:
-1224  00b7 89            	pushw	x
-1225       00000002      OFST:	set	2
-1228                     ; 40     uint16_t i = 84 * 6;
-1230  00b8 ae01f8        	ldw	x,#504
-1231  00bb 1f01          	ldw	(OFST-1,sp),x
-1233                     ; 41     LCD_goto(0, 0);
-1235  00bd 5f            	clrw	x
-1236  00be ad16          	call	_LCD_goto
-1239  00c0 2003          	jra	L513
-1240  00c2               L313:
-1241                     ; 43         LCD_write(0);
-1243  00c2 4f            	clr	a
-1244  00c3 ade2          	call	_LCD_write
-1246  00c5               L513:
-1247                     ; 42     while (i-- > 0)
-1249  00c5 1e01          	ldw	x,(OFST-1,sp)
-1250  00c7 1d0001        	subw	x,#1
-1251  00ca 1f01          	ldw	(OFST-1,sp),x
-1252  00cc 1c0001        	addw	x,#1
-1254  00cf a30000        	cpw	x,#0
-1255  00d2 26ee          	jrne	L313
-1256                     ; 44 }
-1259  00d4 85            	popw	x
-1260  00d5 81            	ret
-1304                     ; 46 void LCD_goto(uint8_t col, uint8_t row) {
-1305                     	switch	.text
-1306  00d6               _LCD_goto:
-1308  00d6 89            	pushw	x
-1309       00000000      OFST:	set	0
-1312                     ; 47     LCD_cmd(0x80 | col);
-1314  00d7 9e            	ld	a,xh
-1315  00d8 aa80          	or	a,#128
-1316  00da adbc          	call	_LCD_cmd
-1318                     ; 48     LCD_cmd(0x40 | row);
-1320  00dc 7b02          	ld	a,(OFST+2,sp)
-1321  00de aa40          	or	a,#64
-1322  00e0 adb6          	call	_LCD_cmd
-1324                     ; 49 }
-1327  00e2 85            	popw	x
-1328  00e3 81            	ret
-1383                     ; 51 void LCD_putc(char c) {
-1384                     	switch	.text
-1385  00e4               _LCD_putc:
-1387  00e4 88            	push	a
-1388  00e5 5203          	subw	sp,#3
-1389       00000003      OFST:	set	3
-1392                     ; 52     if (c == ' ') {
-1394  00e7 a120          	cp	a,#32
-1395  00e9 2608          	jrne	L173
-1396                     ; 53         LCD_write(0);
-1398  00eb 4f            	clr	a
-1399  00ec adb9          	call	_LCD_write
-1401                     ; 54         LCD_write(0);
-1403  00ee 4f            	clr	a
-1404  00ef adb6          	call	_LCD_write
-1407  00f1 202c          	jra	L373
-1408  00f3               L173:
-1409                     ; 56         const char *ptr = &font[(c - 32) * FONT_WIDTH];
-1411  00f3 7b04          	ld	a,(OFST+1,sp)
-1412  00f5 97            	ld	xl,a
-1413  00f6 a605          	ld	a,#5
-1414  00f8 42            	mul	x,a
-1415  00f9 1d00a0        	subw	x,#160
-1416  00fc 1c0000        	addw	x,#_font
-1417  00ff 1f02          	ldw	(OFST-1,sp),x
-1419                     ; 58         for (i = 0; i < FONT_WIDTH; i++, ptr++)
-1421  0101 0f01          	clr	(OFST-2,sp)
-1423  0103               L573:
-1424                     ; 59             if (*ptr)
-1426  0103 1e02          	ldw	x,(OFST-1,sp)
-1427  0105 7d            	tnz	(x)
-1428  0106 2705          	jreq	L304
-1429                     ; 60                 LCD_write(*ptr);
-1431  0108 1e02          	ldw	x,(OFST-1,sp)
-1432  010a f6            	ld	a,(x)
-1433  010b ad9a          	call	_LCD_write
-1435  010d               L304:
-1436                     ; 58         for (i = 0; i < FONT_WIDTH; i++, ptr++)
-1438  010d 0c01          	inc	(OFST-2,sp)
-1440  010f 1e02          	ldw	x,(OFST-1,sp)
-1441  0111 1c0001        	addw	x,#1
-1442  0114 1f02          	ldw	(OFST-1,sp),x
-1446  0116 7b01          	ld	a,(OFST-2,sp)
-1447  0118 a105          	cp	a,#5
-1448  011a 25e7          	jrult	L573
-1449                     ; 61         LCD_write(0);
-1451  011c 4f            	clr	a
-1452  011d ad88          	call	_LCD_write
-1454  011f               L373:
-1455                     ; 63 }
-1458  011f 5b04          	addw	sp,#4
-1459  0121 81            	ret
-1472                     	xdef	_font
-1473                     	xref	_SPI_write
-1474                     	xdef	_LCD_write
-1475                     	xdef	_LCD_putc
-1476                     	xdef	_LCD_goto
-1477                     	xdef	_LCD_cmd
-1478                     	xdef	_LCD_clear
-1479                     	xdef	_LCD_init
-1498                     	xref	c_lcmp
-1499                     	xref	c_smul
-1500                     	xref	c_ltor
-1501                     	xref	c_lgadc
-1502                     	xref	c_rtol
-1503                     	xref	c_itolx
-1504                     	end
+ 379                     ; 64 static void LCD_delay_ms(int ms) {
+ 380                     	switch	.text
+ 381  003a               L541_LCD_delay_ms:
+ 383  003a 5208          	subw	sp,#8
+ 384       00000008      OFST:	set	8
+ 387                     ; 65     delay_ms(ms);
+ 390  003c cd0000        	call	c_itolx
+ 392  003f 96            	ldw	x,sp
+ 393  0040 1c0001        	addw	x,#OFST-7
+ 394  0043 cd0000        	call	c_rtol
+ 397                     ; 13     for (i = 0; i < ((F_CPU / 18 / 1000UL) * ms); i++) {
+ 399  0046 ae0000        	ldw	x,#0
+ 400  0049 1f07          	ldw	(OFST-1,sp),x
+ 401  004b ae0000        	ldw	x,#0
+ 402  004e 1f05          	ldw	(OFST-3,sp),x
+ 405  0050 200a          	jra	L302
+ 406  0052               L771:
+ 407                     ; 14         _asm("nop");
+ 410  0052 9d            nop
+ 412                     ; 13     for (i = 0; i < ((F_CPU / 18 / 1000UL) * ms); i++) {
+ 414  0053 96            	ldw	x,sp
+ 415  0054 1c0005        	addw	x,#OFST-3
+ 416  0057 a601          	ld	a,#1
+ 417  0059 cd0000        	call	c_lgadc
+ 420  005c               L302:
+ 423  005c 96            	ldw	x,sp
+ 424  005d 1c0001        	addw	x,#OFST-7
+ 425  0060 cd0000        	call	c_ltor
+ 427  0063 a66f          	ld	a,#111
+ 428  0065 cd0000        	call	c_smul
+ 430  0068 96            	ldw	x,sp
+ 431  0069 1c0005        	addw	x,#OFST-3
+ 432  006c cd0000        	call	c_lcmp
+ 434  006f 22e1          	jrugt	L771
+ 435                     ; 66 }
+ 438  0071 5b08          	addw	sp,#8
+ 439  0073 81            	ret
+ 452                     .const:	section	.text
+ 453  0000               _font:
+ 454  0000 00            	dc.b	0
+ 455  0001 00            	dc.b	0
+ 456  0002 00            	dc.b	0
+ 457  0003 00            	dc.b	0
+ 458  0004 00            	dc.b	0
+ 459  0005 00            	dc.b	0
+ 460  0006 5e            	dc.b	94
+ 461  0007 00            	dc.b	0
+ 462  0008 00            	dc.b	0
+ 463  0009 00            	dc.b	0
+ 464  000a 06            	dc.b	6
+ 465  000b 06            	dc.b	6
+ 466  000c 00            	dc.b	0
+ 467  000d 00            	dc.b	0
+ 468  000e 00            	dc.b	0
+ 469  000f 28            	dc.b	40
+ 470  0010 fe            	dc.b	254
+ 471  0011 28            	dc.b	40
+ 472  0012 fe            	dc.b	254
+ 473  0013 28            	dc.b	40
+ 474  0014 08            	dc.b	8
+ 475  0015 54            	dc.b	84
+ 476  0016 fe            	dc.b	254
+ 477  0017 54            	dc.b	84
+ 478  0018 20            	dc.b	32
+ 479  0019 40            	dc.b	64
+ 480  001a 2c            	dc.b	44
+ 481  001b 54            	dc.b	84
+ 482  001c 68            	dc.b	104
+ 483  001d 04            	dc.b	4
+ 484  001e 70            	dc.b	112
+ 485  001f 4e            	dc.b	78
+ 486  0020 7a            	dc.b	122
+ 487  0021 26            	dc.b	38
+ 488  0022 40            	dc.b	64
+ 489  0023 06            	dc.b	6
+ 490  0024 00            	dc.b	0
+ 491  0025 00            	dc.b	0
+ 492  0026 00            	dc.b	0
+ 493  0027 00            	dc.b	0
+ 494  0028 00            	dc.b	0
+ 495  0029 7e            	dc.b	126
+ 496  002a 81            	dc.b	129
+ 497  002b 00            	dc.b	0
+ 498  002c 00            	dc.b	0
+ 499  002d 81            	dc.b	129
+ 500  002e 7e            	dc.b	126
+ 501  002f 00            	dc.b	0
+ 502  0030 00            	dc.b	0
+ 503  0031 00            	dc.b	0
+ 504  0032 08            	dc.b	8
+ 505  0033 04            	dc.b	4
+ 506  0034 02            	dc.b	2
+ 507  0035 04            	dc.b	4
+ 508  0036 08            	dc.b	8
+ 509  0037 10            	dc.b	16
+ 510  0038 10            	dc.b	16
+ 511  0039 7c            	dc.b	124
+ 512  003a 10            	dc.b	16
+ 513  003b 10            	dc.b	16
+ 514  003c 00            	dc.b	0
+ 515  003d c0            	dc.b	192
+ 516  003e 00            	dc.b	0
+ 517  003f 00            	dc.b	0
+ 518  0040 00            	dc.b	0
+ 519  0041 20            	dc.b	32
+ 520  0042 20            	dc.b	32
+ 521  0043 00            	dc.b	0
+ 522  0044 00            	dc.b	0
+ 523  0045 00            	dc.b	0
+ 524  0046 00            	dc.b	0
+ 525  0047 40            	dc.b	64
+ 526  0048 00            	dc.b	0
+ 527  0049 00            	dc.b	0
+ 528  004a 00            	dc.b	0
+ 529  004b 70            	dc.b	112
+ 530  004c 0e            	dc.b	14
+ 531  004d 00            	dc.b	0
+ 532  004e 00            	dc.b	0
+ 533  004f 00            	dc.b	0
+ 534  0050 3c            	dc.b	60
+ 535  0051 42            	dc.b	66
+ 536  0052 42            	dc.b	66
+ 537  0053 3c            	dc.b	60
+ 538  0054 00            	dc.b	0
+ 539  0055 44            	dc.b	68
+ 540  0056 7e            	dc.b	126
+ 541  0057 40            	dc.b	64
+ 542  0058 00            	dc.b	0
+ 543  0059 00            	dc.b	0
+ 544  005a 62            	dc.b	98
+ 545  005b 52            	dc.b	82
+ 546  005c 4e            	dc.b	78
+ 547  005d 00            	dc.b	0
+ 548  005e 00            	dc.b	0
+ 549  005f 62            	dc.b	98
+ 550  0060 4a            	dc.b	74
+ 551  0061 7e            	dc.b	126
+ 552  0062 00            	dc.b	0
+ 553  0063 00            	dc.b	0
+ 554  0064 18            	dc.b	24
+ 555  0065 14            	dc.b	20
+ 556  0066 7e            	dc.b	126
+ 557  0067 10            	dc.b	16
+ 558  0068 00            	dc.b	0
+ 559  0069 4e            	dc.b	78
+ 560  006a 4a            	dc.b	74
+ 561  006b 7a            	dc.b	122
+ 562  006c 00            	dc.b	0
+ 563  006d 00            	dc.b	0
+ 564  006e 7e            	dc.b	126
+ 565  006f 52            	dc.b	82
+ 566  0070 72            	dc.b	114
+ 567  0071 00            	dc.b	0
+ 568  0072 00            	dc.b	0
+ 569  0073 02            	dc.b	2
+ 570  0074 62            	dc.b	98
+ 571  0075 1a            	dc.b	26
+ 572  0076 06            	dc.b	6
+ 573  0077 00            	dc.b	0
+ 574  0078 76            	dc.b	118
+ 575  0079 4a            	dc.b	74
+ 576  007a 76            	dc.b	118
+ 577  007b 00            	dc.b	0
+ 578  007c 00            	dc.b	0
+ 579  007d 4c            	dc.b	76
+ 580  007e 52            	dc.b	82
+ 581  007f 52            	dc.b	82
+ 582  0080 3c            	dc.b	60
+ 583  0081 00            	dc.b	0
+ 584  0082 00            	dc.b	0
+ 585  0083 48            	dc.b	72
+ 586  0084 00            	dc.b	0
+ 587  0085 00            	dc.b	0
+ 588  0086 00            	dc.b	0
+ 589  0087 00            	dc.b	0
+ 590  0088 c8            	dc.b	200
+ 591  0089 00            	dc.b	0
+ 592  008a 00            	dc.b	0
+ 593  008b 00            	dc.b	0
+ 594  008c 10            	dc.b	16
+ 595  008d 28            	dc.b	40
+ 596  008e 28            	dc.b	40
+ 597  008f 44            	dc.b	68
+ 598  0090 00            	dc.b	0
+ 599  0091 28            	dc.b	40
+ 600  0092 28            	dc.b	40
+ 601  0093 28            	dc.b	40
+ 602  0094 28            	dc.b	40
+ 603  0095 00            	dc.b	0
+ 604  0096 44            	dc.b	68
+ 605  0097 28            	dc.b	40
+ 606  0098 28            	dc.b	40
+ 607  0099 10            	dc.b	16
+ 608  009a 00            	dc.b	0
+ 609  009b 04            	dc.b	4
+ 610  009c 52            	dc.b	82
+ 611  009d 0a            	dc.b	10
+ 612  009e 0e            	dc.b	14
+ 613  009f 00            	dc.b	0
+ 614  00a0 7c            	dc.b	124
+ 615  00a1 82            	dc.b	130
+ 616  00a2 ba            	dc.b	186
+ 617  00a3 aa            	dc.b	170
+ 618  00a4 be            	dc.b	190
+ 619  00a5 7c            	dc.b	124
+ 620  00a6 12            	dc.b	18
+ 621  00a7 12            	dc.b	18
+ 622  00a8 7c            	dc.b	124
+ 623  00a9 00            	dc.b	0
+ 624  00aa 7e            	dc.b	126
+ 625  00ab 4a            	dc.b	74
+ 626  00ac 4a            	dc.b	74
+ 627  00ad 34            	dc.b	52
+ 628  00ae 00            	dc.b	0
+ 629  00af 3c            	dc.b	60
+ 630  00b0 42            	dc.b	66
+ 631  00b1 42            	dc.b	66
+ 632  00b2 42            	dc.b	66
+ 633  00b3 24            	dc.b	36
+ 634  00b4 7e            	dc.b	126
+ 635  00b5 42            	dc.b	66
+ 636  00b6 42            	dc.b	66
+ 637  00b7 42            	dc.b	66
+ 638  00b8 3c            	dc.b	60
+ 639  00b9 7e            	dc.b	126
+ 640  00ba 4a            	dc.b	74
+ 641  00bb 4a            	dc.b	74
+ 642  00bc 4a            	dc.b	74
+ 643  00bd 00            	dc.b	0
+ 644  00be 7e            	dc.b	126
+ 645  00bf 0a            	dc.b	10
+ 646  00c0 0a            	dc.b	10
+ 647  00c1 0a            	dc.b	10
+ 648  00c2 00            	dc.b	0
+ 649  00c3 3c            	dc.b	60
+ 650  00c4 42            	dc.b	66
+ 651  00c5 42            	dc.b	66
+ 652  00c6 52            	dc.b	82
+ 653  00c7 34            	dc.b	52
+ 654  00c8 7e            	dc.b	126
+ 655  00c9 08            	dc.b	8
+ 656  00ca 08            	dc.b	8
+ 657  00cb 08            	dc.b	8
+ 658  00cc 7e            	dc.b	126
+ 659  00cd 42            	dc.b	66
+ 660  00ce 7e            	dc.b	126
+ 661  00cf 42            	dc.b	66
+ 662  00d0 00            	dc.b	0
+ 663  00d1 00            	dc.b	0
+ 664  00d2 60            	dc.b	96
+ 665  00d3 42            	dc.b	66
+ 666  00d4 7e            	dc.b	126
+ 667  00d5 00            	dc.b	0
+ 668  00d6 00            	dc.b	0
+ 669  00d7 7e            	dc.b	126
+ 670  00d8 08            	dc.b	8
+ 671  00d9 18            	dc.b	24
+ 672  00da 24            	dc.b	36
+ 673  00db 42            	dc.b	66
+ 674  00dc 7e            	dc.b	126
+ 675  00dd 40            	dc.b	64
+ 676  00de 40            	dc.b	64
+ 677  00df 40            	dc.b	64
+ 678  00e0 00            	dc.b	0
+ 679  00e1 7e            	dc.b	126
+ 680  00e2 04            	dc.b	4
+ 681  00e3 08            	dc.b	8
+ 682  00e4 04            	dc.b	4
+ 683  00e5 7e            	dc.b	126
+ 684  00e6 7e            	dc.b	126
+ 685  00e7 04            	dc.b	4
+ 686  00e8 18            	dc.b	24
+ 687  00e9 20            	dc.b	32
+ 688  00ea 7e            	dc.b	126
+ 689  00eb 3c            	dc.b	60
+ 690  00ec 42            	dc.b	66
+ 691  00ed 42            	dc.b	66
+ 692  00ee 42            	dc.b	66
+ 693  00ef 3c            	dc.b	60
+ 694  00f0 7e            	dc.b	126
+ 695  00f1 12            	dc.b	18
+ 696  00f2 12            	dc.b	18
+ 697  00f3 0c            	dc.b	12
+ 698  00f4 00            	dc.b	0
+ 699  00f5 3c            	dc.b	60
+ 700  00f6 42            	dc.b	66
+ 701  00f7 c2            	dc.b	194
+ 702  00f8 c2            	dc.b	194
+ 703  00f9 bc            	dc.b	188
+ 704  00fa 7e            	dc.b	126
+ 705  00fb 12            	dc.b	18
+ 706  00fc 12            	dc.b	18
+ 707  00fd 32            	dc.b	50
+ 708  00fe 4c            	dc.b	76
+ 709  00ff 4c            	dc.b	76
+ 710  0100 52            	dc.b	82
+ 711  0101 52            	dc.b	82
+ 712  0102 22            	dc.b	34
+ 713  0103 00            	dc.b	0
+ 714  0104 02            	dc.b	2
+ 715  0105 02            	dc.b	2
+ 716  0106 7e            	dc.b	126
+ 717  0107 02            	dc.b	2
+ 718  0108 02            	dc.b	2
+ 719  0109 3e            	dc.b	62
+ 720  010a 40            	dc.b	64
+ 721  010b 40            	dc.b	64
+ 722  010c 40            	dc.b	64
+ 723  010d 3e            	dc.b	62
+ 724  010e 06            	dc.b	6
+ 725  010f 38            	dc.b	56
+ 726  0110 40            	dc.b	64
+ 727  0111 38            	dc.b	56
+ 728  0112 06            	dc.b	6
+ 729  0113 3e            	dc.b	62
+ 730  0114 60            	dc.b	96
+ 731  0115 18            	dc.b	24
+ 732  0116 60            	dc.b	96
+ 733  0117 3e            	dc.b	62
+ 734  0118 42            	dc.b	66
+ 735  0119 24            	dc.b	36
+ 736  011a 18            	dc.b	24
+ 737  011b 24            	dc.b	36
+ 738  011c 42            	dc.b	66
+ 739  011d 02            	dc.b	2
+ 740  011e 0c            	dc.b	12
+ 741  011f 70            	dc.b	112
+ 742  0120 0c            	dc.b	12
+ 743  0121 02            	dc.b	2
+ 744  0122 62            	dc.b	98
+ 745  0123 52            	dc.b	82
+ 746  0124 4a            	dc.b	74
+ 747  0125 46            	dc.b	70
+ 748  0126 00            	dc.b	0
+ 749  0127 00            	dc.b	0
+ 750  0128 ff            	dc.b	255
+ 751  0129 81            	dc.b	129
+ 752  012a 00            	dc.b	0
+ 753  012b 00            	dc.b	0
+ 754  012c 0e            	dc.b	14
+ 755  012d 70            	dc.b	112
+ 756  012e 00            	dc.b	0
+ 757  012f 00            	dc.b	0
+ 758  0130 00            	dc.b	0
+ 759  0131 81            	dc.b	129
+ 760  0132 ff            	dc.b	255
+ 761  0133 00            	dc.b	0
+ 762  0134 00            	dc.b	0
+ 763  0135 00            	dc.b	0
+ 764  0136 0c            	dc.b	12
+ 765  0137 02            	dc.b	2
+ 766  0138 0c            	dc.b	12
+ 767  0139 00            	dc.b	0
+ 768  013a 00            	dc.b	0
+ 769  013b 80            	dc.b	128
+ 770  013c 80            	dc.b	128
+ 771  013d 80            	dc.b	128
+ 772  013e 80            	dc.b	128
+ 773  013f 80            	dc.b	128
+ 774  0140 01            	dc.b	1
+ 775  0141 02            	dc.b	2
+ 776  0142 00            	dc.b	0
+ 777  0143 00            	dc.b	0
+ 778  0144 00            	dc.b	0
+ 779  0145 68            	dc.b	104
+ 780  0146 58            	dc.b	88
+ 781  0147 78            	dc.b	120
+ 782  0148 40            	dc.b	64
+ 783  0149 00            	dc.b	0
+ 784  014a 7e            	dc.b	126
+ 785  014b 48            	dc.b	72
+ 786  014c 30            	dc.b	48
+ 787  014d 00            	dc.b	0
+ 788  014e 00            	dc.b	0
+ 789  014f 78            	dc.b	120
+ 790  0150 48            	dc.b	72
+ 791  0151 48            	dc.b	72
+ 792  0152 00            	dc.b	0
+ 793  0153 00            	dc.b	0
+ 794  0154 78            	dc.b	120
+ 795  0155 48            	dc.b	72
+ 796  0156 7e            	dc.b	126
+ 797  0157 00            	dc.b	0
+ 798  0158 00            	dc.b	0
+ 799  0159 30            	dc.b	48
+ 800  015a 68            	dc.b	104
+ 801  015b 50            	dc.b	80
+ 802  015c 00            	dc.b	0
+ 803  015d 00            	dc.b	0
+ 804  015e 08            	dc.b	8
+ 805  015f 7c            	dc.b	124
+ 806  0160 0a            	dc.b	10
+ 807  0161 00            	dc.b	0
+ 808  0162 00            	dc.b	0
+ 809  0163 b8            	dc.b	184
+ 810  0164 a8            	dc.b	168
+ 811  0165 f8            	dc.b	248
+ 812  0166 00            	dc.b	0
+ 813  0167 00            	dc.b	0
+ 814  0168 7e            	dc.b	126
+ 815  0169 08            	dc.b	8
+ 816  016a 70            	dc.b	112
+ 817  016b 00            	dc.b	0
+ 818  016c 00            	dc.b	0
+ 819  016d 7a            	dc.b	122
+ 820  016e 00            	dc.b	0
+ 821  016f 00            	dc.b	0
+ 822  0170 00            	dc.b	0
+ 823  0171 00            	dc.b	0
+ 824  0172 40            	dc.b	64
+ 825  0173 7a            	dc.b	122
+ 826  0174 00            	dc.b	0
+ 827  0175 00            	dc.b	0
+ 828  0176 00            	dc.b	0
+ 829  0177 7e            	dc.b	126
+ 830  0178 30            	dc.b	48
+ 831  0179 48            	dc.b	72
+ 832  017a 00            	dc.b	0
+ 833  017b 00            	dc.b	0
+ 834  017c 7e            	dc.b	126
+ 835  017d 00            	dc.b	0
+ 836  017e 00            	dc.b	0
+ 837  017f 00            	dc.b	0
+ 838  0180 00            	dc.b	0
+ 839  0181 78            	dc.b	120
+ 840  0182 08            	dc.b	8
+ 841  0183 70            	dc.b	112
+ 842  0184 08            	dc.b	8
+ 843  0185 78            	dc.b	120
+ 844  0186 78            	dc.b	120
+ 845  0187 08            	dc.b	8
+ 846  0188 70            	dc.b	112
+ 847  0189 00            	dc.b	0
+ 848  018a 00            	dc.b	0
+ 849  018b 30            	dc.b	48
+ 850  018c 48            	dc.b	72
+ 851  018d 48            	dc.b	72
+ 852  018e 30            	dc.b	48
+ 853  018f 00            	dc.b	0
+ 854  0190 f8            	dc.b	248
+ 855  0191 48            	dc.b	72
+ 856  0192 30            	dc.b	48
+ 857  0193 00            	dc.b	0
+ 858  0194 00            	dc.b	0
+ 859  0195 38            	dc.b	56
+ 860  0196 28            	dc.b	40
+ 861  0197 f8            	dc.b	248
+ 862  0198 00            	dc.b	0
+ 863  0199 00            	dc.b	0
+ 864  019a 78            	dc.b	120
+ 865  019b 08            	dc.b	8
+ 866  019c 08            	dc.b	8
+ 867  019d 00            	dc.b	0
+ 868  019e 00            	dc.b	0
+ 869  019f 58            	dc.b	88
+ 870  01a0 58            	dc.b	88
+ 871  01a1 68            	dc.b	104
+ 872  01a2 00            	dc.b	0
+ 873  01a3 00            	dc.b	0
+ 874  01a4 7c            	dc.b	124
+ 875  01a5 48            	dc.b	72
+ 876  01a6 00            	dc.b	0
+ 877  01a7 00            	dc.b	0
+ 878  01a8 00            	dc.b	0
+ 879  01a9 78            	dc.b	120
+ 880  01aa 40            	dc.b	64
+ 881  01ab 78            	dc.b	120
+ 882  01ac 00            	dc.b	0
+ 883  01ad 00            	dc.b	0
+ 884  01ae 38            	dc.b	56
+ 885  01af 40            	dc.b	64
+ 886  01b0 38            	dc.b	56
+ 887  01b1 00            	dc.b	0
+ 888  01b2 00            	dc.b	0
+ 889  01b3 38            	dc.b	56
+ 890  01b4 60            	dc.b	96
+ 891  01b5 18            	dc.b	24
+ 892  01b6 60            	dc.b	96
+ 893  01b7 38            	dc.b	56
+ 894  01b8 48            	dc.b	72
+ 895  01b9 30            	dc.b	48
+ 896  01ba 48            	dc.b	72
+ 897  01bb 00            	dc.b	0
+ 898  01bc 00            	dc.b	0
+ 899  01bd 98            	dc.b	152
+ 900  01be 60            	dc.b	96
+ 901  01bf 18            	dc.b	24
+ 902  01c0 00            	dc.b	0
+ 903  01c1 00            	dc.b	0
+ 904  01c2 48            	dc.b	72
+ 905  01c3 68            	dc.b	104
+ 906  01c4 58            	dc.b	88
+ 907  01c5 00            	dc.b	0
+ 908  01c6 00            	dc.b	0
+ 909  01c7 10            	dc.b	16
+ 910  01c8 ef            	dc.b	239
+ 911  01c9 81            	dc.b	129
+ 912  01ca 00            	dc.b	0
+ 913  01cb 00            	dc.b	0
+ 914  01cc 00            	dc.b	0
+ 915  01cd ff            	dc.b	255
+ 916  01ce 00            	dc.b	0
+ 917  01cf 00            	dc.b	0
+ 918  01d0 00            	dc.b	0
+ 919  01d1 81            	dc.b	129
+ 920  01d2 ef            	dc.b	239
+ 921  01d3 10            	dc.b	16
+ 922  01d4 00            	dc.b	0
+ 923  01d5 00            	dc.b	0
+ 924  01d6 10            	dc.b	16
+ 925  01d7 10            	dc.b	16
+ 926  01d8 20            	dc.b	32
+ 927  01d9 20            	dc.b	32
+ 928  01da 00            	dc.b	0
+ 959                     	switch	.const
+ 960  01db               _leaf_Bitmap:
+ 961  01db 00            	dc.b	0
+ 962  01dc 00            	dc.b	0
+ 963  01dd 00            	dc.b	0
+ 964  01de 00            	dc.b	0
+ 965  01df 00            	dc.b	0
+ 966  01e0 00            	dc.b	0
+ 967  01e1 00            	dc.b	0
+ 968  01e2 00            	dc.b	0
+ 969  01e3 00            	dc.b	0
+ 970  01e4 00            	dc.b	0
+ 971  01e5 00            	dc.b	0
+ 972  01e6 00            	dc.b	0
+ 973  01e7 00            	dc.b	0
+ 974  01e8 00            	dc.b	0
+ 975  01e9 00            	dc.b	0
+ 976  01ea 00            	dc.b	0
+ 977  01eb 00            	dc.b	0
+ 978  01ec 00            	dc.b	0
+ 979  01ed 00            	dc.b	0
+ 980  01ee 00            	dc.b	0
+ 981  01ef 00            	dc.b	0
+ 982  01f0 00            	dc.b	0
+ 983  01f1 00            	dc.b	0
+ 984  01f2 00            	dc.b	0
+ 985  01f3 00            	dc.b	0
+ 986  01f4 00            	dc.b	0
+ 987  01f5 00            	dc.b	0
+ 988  01f6 00            	dc.b	0
+ 989  01f7 00            	dc.b	0
+ 990  01f8 00            	dc.b	0
+ 991  01f9 00            	dc.b	0
+ 992  01fa 00            	dc.b	0
+ 993  01fb 00            	dc.b	0
+ 994  01fc 00            	dc.b	0
+ 995  01fd 00            	dc.b	0
+ 996  01fe 00            	dc.b	0
+ 997  01ff 00            	dc.b	0
+ 998  0200 00            	dc.b	0
+ 999  0201 00            	dc.b	0
+1000  0202 00            	dc.b	0
+1001  0203 00            	dc.b	0
+1002  0204 00            	dc.b	0
+1003  0205 00            	dc.b	0
+1004  0206 00            	dc.b	0
+1005  0207 00            	dc.b	0
+1006  0208 00            	dc.b	0
+1007  0209 00            	dc.b	0
+1008  020a 00            	dc.b	0
+1009  020b 00            	dc.b	0
+1010  020c 00            	dc.b	0
+1011  020d 00            	dc.b	0
+1012  020e 00            	dc.b	0
+1013  020f 00            	dc.b	0
+1014  0210 00            	dc.b	0
+1015  0211 00            	dc.b	0
+1016  0212 00            	dc.b	0
+1017  0213 00            	dc.b	0
+1018  0214 00            	dc.b	0
+1019  0215 00            	dc.b	0
+1020  0216 00            	dc.b	0
+1021  0217 00            	dc.b	0
+1022  0218 00            	dc.b	0
+1023  0219 00            	dc.b	0
+1024  021a 00            	dc.b	0
+1025  021b 00            	dc.b	0
+1026  021c 00            	dc.b	0
+1027  021d 00            	dc.b	0
+1028  021e 00            	dc.b	0
+1029  021f 00            	dc.b	0
+1030  0220 00            	dc.b	0
+1031  0221 00            	dc.b	0
+1032  0222 00            	dc.b	0
+1033  0223 00            	dc.b	0
+1034  0224 00            	dc.b	0
+1035  0225 00            	dc.b	0
+1036  0226 00            	dc.b	0
+1037  0227 00            	dc.b	0
+1038  0228 00            	dc.b	0
+1039  0229 00            	dc.b	0
+1040  022a 00            	dc.b	0
+1041  022b 00            	dc.b	0
+1042  022c 00            	dc.b	0
+1043  022d 00            	dc.b	0
+1044  022e 00            	dc.b	0
+1045  022f 00            	dc.b	0
+1046  0230 00            	dc.b	0
+1047  0231 00            	dc.b	0
+1048  0232 00            	dc.b	0
+1049  0233 00            	dc.b	0
+1050  0234 00            	dc.b	0
+1051  0235 00            	dc.b	0
+1052  0236 00            	dc.b	0
+1053  0237 00            	dc.b	0
+1054  0238 00            	dc.b	0
+1055  0239 00            	dc.b	0
+1056  023a 00            	dc.b	0
+1057  023b 00            	dc.b	0
+1058  023c 00            	dc.b	0
+1059  023d 00            	dc.b	0
+1060  023e 00            	dc.b	0
+1061  023f 00            	dc.b	0
+1062  0240 00            	dc.b	0
+1063  0241 00            	dc.b	0
+1064  0242 00            	dc.b	0
+1065  0243 00            	dc.b	0
+1066  0244 00            	dc.b	0
+1067  0245 00            	dc.b	0
+1068  0246 00            	dc.b	0
+1069  0247 00            	dc.b	0
+1070  0248 00            	dc.b	0
+1071  0249 00            	dc.b	0
+1072  024a 00            	dc.b	0
+1073  024b 00            	dc.b	0
+1074  024c 00            	dc.b	0
+1075  024d 00            	dc.b	0
+1076  024e 00            	dc.b	0
+1077  024f 00            	dc.b	0
+1078  0250 00            	dc.b	0
+1079  0251 00            	dc.b	0
+1080  0252 00            	dc.b	0
+1081  0253 00            	dc.b	0
+1082  0254 00            	dc.b	0
+1083  0255 00            	dc.b	0
+1084  0256 80            	dc.b	128
+1085  0257 80            	dc.b	128
+1086  0258 80            	dc.b	128
+1087  0259 80            	dc.b	128
+1088  025a 80            	dc.b	128
+1089  025b 80            	dc.b	128
+1090  025c 80            	dc.b	128
+1091  025d 80            	dc.b	128
+1092  025e 80            	dc.b	128
+1093  025f 80            	dc.b	128
+1094  0260 80            	dc.b	128
+1095  0261 80            	dc.b	128
+1096  0262 80            	dc.b	128
+1097  0263 80            	dc.b	128
+1098  0264 80            	dc.b	128
+1099  0265 80            	dc.b	128
+1100  0266 80            	dc.b	128
+1101  0267 80            	dc.b	128
+1102  0268 40            	dc.b	64
+1103  0269 40            	dc.b	64
+1104  026a 40            	dc.b	64
+1105  026b 40            	dc.b	64
+1106  026c 40            	dc.b	64
+1107  026d 40            	dc.b	64
+1108  026e 20            	dc.b	32
+1109  026f 20            	dc.b	32
+1110  0270 30            	dc.b	48
+1111  0271 9f            	dc.b	159
+1112  0272 fe            	dc.b	254
+1113  0273 10            	dc.b	16
+1114  0274 00            	dc.b	0
+1115  0275 00            	dc.b	0
+1116  0276 00            	dc.b	0
+1117  0277 00            	dc.b	0
+1118  0278 00            	dc.b	0
+1119  0279 00            	dc.b	0
+1120  027a 00            	dc.b	0
+1121  027b 00            	dc.b	0
+1122  027c 00            	dc.b	0
+1123  027d 00            	dc.b	0
+1124  027e 00            	dc.b	0
+1125  027f 00            	dc.b	0
+1126  0280 00            	dc.b	0
+1127  0281 00            	dc.b	0
+1128  0282 00            	dc.b	0
+1129  0283 00            	dc.b	0
+1130  0284 00            	dc.b	0
+1131  0285 00            	dc.b	0
+1132  0286 00            	dc.b	0
+1133  0287 00            	dc.b	0
+1134  0288 00            	dc.b	0
+1135  0289 00            	dc.b	0
+1136  028a 00            	dc.b	0
+1137  028b 00            	dc.b	0
+1138  028c 00            	dc.b	0
+1139  028d 00            	dc.b	0
+1140  028e 00            	dc.b	0
+1141  028f 00            	dc.b	0
+1142  0290 00            	dc.b	0
+1143  0291 00            	dc.b	0
+1144  0292 00            	dc.b	0
+1145  0293 00            	dc.b	0
+1146  0294 00            	dc.b	0
+1147  0295 00            	dc.b	0
+1148  0296 00            	dc.b	0
+1149  0297 00            	dc.b	0
+1150  0298 80            	dc.b	128
+1151  0299 c0            	dc.b	192
+1152  029a 60            	dc.b	96
+1153  029b 30            	dc.b	48
+1154  029c 10            	dc.b	16
+1155  029d 08            	dc.b	8
+1156  029e 08            	dc.b	8
+1157  029f 04            	dc.b	4
+1158  02a0 84            	dc.b	132
+1159  02a1 84            	dc.b	132
+1160  02a2 c2            	dc.b	194
+1161  02a3 c2            	dc.b	194
+1162  02a4 e2            	dc.b	226
+1163  02a5 61            	dc.b	97
+1164  02a6 61            	dc.b	97
+1165  02a7 71            	dc.b	113
+1166  02a8 31            	dc.b	49
+1167  02a9 31            	dc.b	49
+1168  02aa 30            	dc.b	48
+1169  02ab 31            	dc.b	49
+1170  02ac 10            	dc.b	16
+1171  02ad 10            	dc.b	16
+1172  02ae 10            	dc.b	16
+1173  02af 18            	dc.b	24
+1174  02b0 10            	dc.b	16
+1175  02b1 18            	dc.b	24
+1176  02b2 08            	dc.b	8
+1177  02b3 08            	dc.b	8
+1178  02b4 08            	dc.b	8
+1179  02b5 08            	dc.b	8
+1180  02b6 08            	dc.b	8
+1181  02b7 08            	dc.b	8
+1182  02b8 08            	dc.b	8
+1183  02b9 04            	dc.b	4
+1184  02ba 04            	dc.b	4
+1185  02bb 04            	dc.b	4
+1186  02bc 00            	dc.b	0
+1187  02bd 02            	dc.b	2
+1188  02be 00            	dc.b	0
+1189  02bf 00            	dc.b	0
+1190  02c0 c0            	dc.b	192
+1191  02c1 60            	dc.b	96
+1192  02c2 30            	dc.b	48
+1193  02c3 1c            	dc.b	28
+1194  02c4 06            	dc.b	6
+1195  02c5 03            	dc.b	3
+1196  02c6 00            	dc.b	0
+1197  02c7 00            	dc.b	0
+1198  02c8 00            	dc.b	0
+1199  02c9 00            	dc.b	0
+1200  02ca 00            	dc.b	0
+1201  02cb 00            	dc.b	0
+1202  02cc 00            	dc.b	0
+1203  02cd 00            	dc.b	0
+1204  02ce 00            	dc.b	0
+1205  02cf 00            	dc.b	0
+1206  02d0 00            	dc.b	0
+1207  02d1 00            	dc.b	0
+1208  02d2 00            	dc.b	0
+1209  02d3 00            	dc.b	0
+1210  02d4 00            	dc.b	0
+1211  02d5 00            	dc.b	0
+1212  02d6 00            	dc.b	0
+1213  02d7 00            	dc.b	0
+1214  02d8 00            	dc.b	0
+1215  02d9 00            	dc.b	0
+1216  02da 00            	dc.b	0
+1217  02db 00            	dc.b	0
+1218  02dc 00            	dc.b	0
+1219  02dd 00            	dc.b	0
+1220  02de 00            	dc.b	0
+1221  02df 00            	dc.b	0
+1222  02e0 00            	dc.b	0
+1223  02e1 00            	dc.b	0
+1224  02e2 00            	dc.b	0
+1225  02e3 00            	dc.b	0
+1226  02e4 00            	dc.b	0
+1227  02e5 00            	dc.b	0
+1228  02e6 00            	dc.b	0
+1229  02e7 00            	dc.b	0
+1230  02e8 00            	dc.b	0
+1231  02e9 00            	dc.b	0
+1232  02ea 00            	dc.b	0
+1233  02eb 1e            	dc.b	30
+1234  02ec 37            	dc.b	55
+1235  02ed 60            	dc.b	96
+1236  02ee f0            	dc.b	240
+1237  02ef 78            	dc.b	120
+1238  02f0 3c            	dc.b	60
+1239  02f1 1e            	dc.b	30
+1240  02f2 0e            	dc.b	14
+1241  02f3 07            	dc.b	7
+1242  02f4 03            	dc.b	3
+1243  02f5 01            	dc.b	1
+1244  02f6 01            	dc.b	1
+1245  02f7 00            	dc.b	0
+1246  02f8 00            	dc.b	0
+1247  02f9 00            	dc.b	0
+1248  02fa 00            	dc.b	0
+1249  02fb 00            	dc.b	0
+1250  02fc 00            	dc.b	0
+1251  02fd 00            	dc.b	0
+1252  02fe 00            	dc.b	0
+1253  02ff 00            	dc.b	0
+1254  0300 00            	dc.b	0
+1255  0301 00            	dc.b	0
+1256  0302 00            	dc.b	0
+1257  0303 00            	dc.b	0
+1258  0304 00            	dc.b	0
+1259  0305 00            	dc.b	0
+1260  0306 80            	dc.b	128
+1261  0307 80            	dc.b	128
+1262  0308 80            	dc.b	128
+1263  0309 40            	dc.b	64
+1264  030a 40            	dc.b	64
+1265  030b 20            	dc.b	32
+1266  030c 20            	dc.b	32
+1267  030d 30            	dc.b	48
+1268  030e 10            	dc.b	16
+1269  030f 08            	dc.b	8
+1270  0310 0c            	dc.b	12
+1271  0311 06            	dc.b	6
+1272  0312 02            	dc.b	2
+1273  0313 01            	dc.b	1
+1274  0314 00            	dc.b	0
+1275  0315 00            	dc.b	0
+1276  0316 00            	dc.b	0
+1277  0317 00            	dc.b	0
+1278  0318 00            	dc.b	0
+1279  0319 00            	dc.b	0
+1280  031a 00            	dc.b	0
+1281  031b 00            	dc.b	0
+1282  031c 00            	dc.b	0
+1283  031d 00            	dc.b	0
+1284  031e 00            	dc.b	0
+1285  031f 00            	dc.b	0
+1286  0320 00            	dc.b	0
+1287  0321 00            	dc.b	0
+1288  0322 00            	dc.b	0
+1289  0323 00            	dc.b	0
+1290  0324 00            	dc.b	0
+1291  0325 00            	dc.b	0
+1292  0326 00            	dc.b	0
+1293  0327 00            	dc.b	0
+1294  0328 00            	dc.b	0
+1295  0329 00            	dc.b	0
+1296  032a 00            	dc.b	0
+1297  032b 00            	dc.b	0
+1298  032c 00            	dc.b	0
+1299  032d 00            	dc.b	0
+1300  032e 00            	dc.b	0
+1301  032f 00            	dc.b	0
+1302  0330 00            	dc.b	0
+1303  0331 00            	dc.b	0
+1304  0332 00            	dc.b	0
+1305  0333 00            	dc.b	0
+1306  0334 00            	dc.b	0
+1307  0335 00            	dc.b	0
+1308  0336 00            	dc.b	0
+1309  0337 00            	dc.b	0
+1310  0338 00            	dc.b	0
+1311  0339 00            	dc.b	0
+1312  033a 00            	dc.b	0
+1313  033b 18            	dc.b	24
+1314  033c 38            	dc.b	56
+1315  033d 28            	dc.b	40
+1316  033e 44            	dc.b	68
+1317  033f 26            	dc.b	38
+1318  0340 33            	dc.b	51
+1319  0341 11            	dc.b	17
+1320  0342 18            	dc.b	24
+1321  0343 0c            	dc.b	12
+1322  0344 04            	dc.b	4
+1323  0345 02            	dc.b	2
+1324  0346 02            	dc.b	2
+1325  0347 02            	dc.b	2
+1326  0348 04            	dc.b	4
+1327  0349 04            	dc.b	4
+1328  034a 04            	dc.b	4
+1329  034b 04            	dc.b	4
+1330  034c 04            	dc.b	4
+1331  034d 04            	dc.b	4
+1332  034e 04            	dc.b	4
+1333  034f 04            	dc.b	4
+1334  0350 04            	dc.b	4
+1335  0351 04            	dc.b	4
+1336  0352 04            	dc.b	4
+1337  0353 02            	dc.b	2
+1338  0354 02            	dc.b	2
+1339  0355 02            	dc.b	2
+1340  0356 02            	dc.b	2
+1341  0357 02            	dc.b	2
+1342  0358 01            	dc.b	1
+1343  0359 01            	dc.b	1
+1344  035a 01            	dc.b	1
+1345  035b 00            	dc.b	0
+1346  035c 00            	dc.b	0
+1347  035d 00            	dc.b	0
+1348  035e 00            	dc.b	0
+1349  035f 00            	dc.b	0
+1350  0360 00            	dc.b	0
+1351  0361 00            	dc.b	0
+1352  0362 00            	dc.b	0
+1353  0363 00            	dc.b	0
+1354  0364 00            	dc.b	0
+1355  0365 00            	dc.b	0
+1356  0366 00            	dc.b	0
+1357  0367 00            	dc.b	0
+1358  0368 00            	dc.b	0
+1359  0369 00            	dc.b	0
+1360  036a 00            	dc.b	0
+1361  036b 00            	dc.b	0
+1362  036c 00            	dc.b	0
+1363  036d 00            	dc.b	0
+1364  036e 00            	dc.b	0
+1365  036f 00            	dc.b	0
+1366  0370 00            	dc.b	0
+1367  0371 00            	dc.b	0
+1368  0372 00            	dc.b	0
+1369  0373 00            	dc.b	0
+1370  0374 00            	dc.b	0
+1371  0375 00            	dc.b	0
+1372  0376 00            	dc.b	0
+1373  0377 00            	dc.b	0
+1374  0378 00            	dc.b	0
+1375  0379 00            	dc.b	0
+1376  037a 00            	dc.b	0
+1377  037b 00            	dc.b	0
+1378  037c 00            	dc.b	0
+1379  037d 00            	dc.b	0
+1380  037e 00            	dc.b	0
+1381  037f 00            	dc.b	0
+1382  0380 00            	dc.b	0
+1383  0381 00            	dc.b	0
+1384  0382 00            	dc.b	0
+1385  0383 00            	dc.b	0
+1386  0384 00            	dc.b	0
+1387  0385 00            	dc.b	0
+1388  0386 00            	dc.b	0
+1389  0387 00            	dc.b	0
+1390  0388 00            	dc.b	0
+1391  0389 00            	dc.b	0
+1392  038a 00            	dc.b	0
+1393  038b 00            	dc.b	0
+1394  038c 00            	dc.b	0
+1395  038d 00            	dc.b	0
+1396  038e 00            	dc.b	0
+1397  038f 00            	dc.b	0
+1398  0390 00            	dc.b	0
+1399  0391 00            	dc.b	0
+1400  0392 00            	dc.b	0
+1401  0393 00            	dc.b	0
+1402  0394 00            	dc.b	0
+1403  0395 00            	dc.b	0
+1404  0396 00            	dc.b	0
+1405  0397 00            	dc.b	0
+1406  0398 00            	dc.b	0
+1407  0399 00            	dc.b	0
+1408  039a 00            	dc.b	0
+1409  039b 00            	dc.b	0
+1410  039c 00            	dc.b	0
+1411  039d 00            	dc.b	0
+1412  039e 00            	dc.b	0
+1413  039f 00            	dc.b	0
+1414  03a0 00            	dc.b	0
+1415  03a1 00            	dc.b	0
+1416  03a2 00            	dc.b	0
+1417  03a3 00            	dc.b	0
+1418  03a4 00            	dc.b	0
+1419  03a5 00            	dc.b	0
+1420  03a6 00            	dc.b	0
+1421  03a7 00            	dc.b	0
+1422  03a8 00            	dc.b	0
+1423  03a9 00            	dc.b	0
+1424  03aa 00            	dc.b	0
+1425  03ab 00            	dc.b	0
+1426  03ac 00            	dc.b	0
+1427  03ad 00            	dc.b	0
+1428  03ae 00            	dc.b	0
+1429  03af 00            	dc.b	0
+1430  03b0 00            	dc.b	0
+1431  03b1 00            	dc.b	0
+1432  03b2 00            	dc.b	0
+1433  03b3 00            	dc.b	0
+1434  03b4 00            	dc.b	0
+1435  03b5 00            	dc.b	0
+1436  03b6 00            	dc.b	0
+1437  03b7 00            	dc.b	0
+1438  03b8 00            	dc.b	0
+1439  03b9 00            	dc.b	0
+1440  03ba 00            	dc.b	0
+1441  03bb 00            	dc.b	0
+1442  03bc 00            	dc.b	0
+1443  03bd 00            	dc.b	0
+1444  03be 00            	dc.b	0
+1445  03bf 00            	dc.b	0
+1446  03c0 00            	dc.b	0
+1447  03c1 00            	dc.b	0
+1448  03c2 00            	dc.b	0
+1449  03c3 00            	dc.b	0
+1450  03c4 00            	dc.b	0
+1451  03c5 00            	dc.b	0
+1452  03c6 00            	dc.b	0
+1453  03c7 00            	dc.b	0
+1454  03c8 00            	dc.b	0
+1455  03c9 00            	dc.b	0
+1456  03ca 00            	dc.b	0
+1457  03cb 00            	dc.b	0
+1458  03cc 00            	dc.b	0
+1459  03cd 00            	dc.b	0
+1460  03ce 00            	dc.b	0
+1461  03cf 00            	dc.b	0
+1462  03d0 00            	dc.b	0
+1463  03d1 00            	dc.b	0
+1464  03d2 00            	dc.b	0
+1495                     	switch	.const
+1496  03d3               _welcomeMSG:
+1497  03d3 477265656e68  	dc.b	"Greenhouse Data Lo"
+1498  03e5 6767657200    	dc.b	"gger",0
+1535                     ; 15 extern void LCD_init()
+1535                     ; 16 {
+1536                     	switch	.text
+1537  0074               _LCD_init:
+1541                     ; 18     LCD_gpio_init();
+1543  0074 ad8a          	call	L3_LCD_gpio_init
+1545                     ; 21     LCD_CE_clear();
+1547  0076 adaf          	call	L76_LCD_CE_clear
+1549                     ; 22     LCD_RST_clear();
+1551  0078 adb7          	call	L311_LCD_RST_clear
+1553                     ; 24     LCD_delay_ms(50);
+1555  007a ae0032        	ldw	x,#50
+1556  007d adbb          	call	L541_LCD_delay_ms
+1558                     ; 26     LCD_RST_set();
+1560  007f adab          	call	L101_LCD_RST_set
+1562                     ; 27     LCD_CE_set();
+1564  0081 ad98          	call	L74_LCD_CE_set
+1566                     ; 29     LCD_cmd(0x21); // extended commands
+1568  0083 a621          	ld	a,#33
+1569  0085 cd0296        	call	_LCD_cmd
+1571                     ; 30     LCD_cmd(0xc0); // contrast Vop=6.4V
+1573  0088 a6c0          	ld	a,#192
+1574  008a cd0296        	call	_LCD_cmd
+1576                     ; 31     LCD_cmd(0x04); // temperature coefficient
+1578  008d a604          	ld	a,#4
+1579  008f cd0296        	call	_LCD_cmd
+1581                     ; 32     LCD_cmd(0x13); // bias = 1:48
+1583  0092 a613          	ld	a,#19
+1584  0094 cd0296        	call	_LCD_cmd
+1586                     ; 34     LCD_cmd(0x20); // standard commands
+1588  0097 a620          	ld	a,#32
+1589  0099 cd0296        	call	_LCD_cmd
+1591                     ; 35     LCD_cmd(0x0C); // normal mode
+1593  009c a60c          	ld	a,#12
+1594  009e cd0296        	call	_LCD_cmd
+1596                     ; 37     LCD_clear();
+1598  00a1 cd02b8        	call	_LCD_clear
+1600                     ; 44 }
+1603  00a4 81            	ret
+1631                     ; 46 void LCD_welcome()
+1631                     ; 47 {
+1632                     	switch	.text
+1633  00a5               _LCD_welcome:
+1637                     ; 48     LCD_goto(0, 2);
+1639  00a5 ae0002        	ldw	x,#2
+1640  00a8 cd02d7        	call	_LCD_goto
+1642                     ; 54     LCD_draw_logo(leaf_Bitmap);
+1644  00ab ae01db        	ldw	x,#_leaf_Bitmap
+1645  00ae cd034e        	call	_LCD_draw_logo
+1647                     ; 55     LCD_delay_ms(3000);
+1649  00b1 ae0bb8        	ldw	x,#3000
+1650  00b4 ad84          	call	L541_LCD_delay_ms
+1652                     ; 56     LCD_clear();
+1654  00b6 cd02b8        	call	_LCD_clear
+1656                     ; 57 }
+1659  00b9 81            	ret
+1906                     ; 59 LCD_showdate(RTC_DateTypeDef SDate)
+1906                     ; 60 {
+1907                     	switch	.text
+1908  00ba               _LCD_showdate:
+1910  00ba 5234          	subw	sp,#52
+1911       00000034      OFST:	set	52
+1914                     ; 63     int i = sprintf(displayDate, "20%02d-%02d-%02d", (int)SDate.RTC_Year, (int)SDate.RTC_Month, (int)SDate.RTC_Date);
+1916  00bc 7b39          	ld	a,(OFST+5,sp)
+1917  00be 5f            	clrw	x
+1918  00bf 97            	ld	xl,a
+1919  00c0 89            	pushw	x
+1920  00c1 7b3a          	ld	a,(OFST+6,sp)
+1921  00c3 5f            	clrw	x
+1922  00c4 97            	ld	xl,a
+1923  00c5 89            	pushw	x
+1924  00c6 7b3e          	ld	a,(OFST+10,sp)
+1925  00c8 5f            	clrw	x
+1926  00c9 97            	ld	xl,a
+1927  00ca 89            	pushw	x
+1928  00cb ae0437        	ldw	x,#L114
+1929  00ce 89            	pushw	x
+1930  00cf 96            	ldw	x,sp
+1931  00d0 1c0009        	addw	x,#OFST-43
+1932  00d3 cd0000        	call	_sprintf
+1934  00d6 5b08          	addw	sp,#8
+1935  00d8 1f33          	ldw	(OFST-1,sp),x
+1937                     ; 65     LCD_writemsg(displayDate, i + 1, 0, 0);
+1939  00da 4b00          	push	#0
+1940  00dc 4b00          	push	#0
+1941  00de 7b36          	ld	a,(OFST+2,sp)
+1942  00e0 4c            	inc	a
+1943  00e1 88            	push	a
+1944  00e2 96            	ldw	x,sp
+1945  00e3 1c0004        	addw	x,#OFST-48
+1946  00e6 cd0323        	call	_LCD_writemsg
+1948  00e9 5b03          	addw	sp,#3
+1949                     ; 66 }
+1952  00eb 5b34          	addw	sp,#52
+1953  00ed 81            	ret
+2067                     ; 68 LCD_showtime(RTC_TimeTypeDef STime)
+2067                     ; 69 {
+2068                     	switch	.text
+2069  00ee               _LCD_showtime:
+2071  00ee 520c          	subw	sp,#12
+2072       0000000c      OFST:	set	12
+2075                     ; 71     int i = sprintf(displayTime, "%02d:%02d", (int)STime.RTC_Hours, (int)STime.RTC_Minutes);
+2077  00f0 7b10          	ld	a,(OFST+4,sp)
+2078  00f2 5f            	clrw	x
+2079  00f3 97            	ld	xl,a
+2080  00f4 89            	pushw	x
+2081  00f5 7b11          	ld	a,(OFST+5,sp)
+2082  00f7 5f            	clrw	x
+2083  00f8 97            	ld	xl,a
+2084  00f9 89            	pushw	x
+2085  00fa ae042d        	ldw	x,#L764
+2086  00fd 89            	pushw	x
+2087  00fe 96            	ldw	x,sp
+2088  00ff 1c0007        	addw	x,#OFST-5
+2089  0102 cd0000        	call	_sprintf
+2091  0105 5b06          	addw	sp,#6
+2092  0107 1f0b          	ldw	(OFST-1,sp),x
+2094                     ; 73     LCD_writemsg(displayTime, i + 1, 45, 0);
+2096  0109 4b00          	push	#0
+2097  010b 4b2d          	push	#45
+2098  010d 7b0e          	ld	a,(OFST+2,sp)
+2099  010f 4c            	inc	a
+2100  0110 88            	push	a
+2101  0111 96            	ldw	x,sp
+2102  0112 1c0004        	addw	x,#OFST-8
+2103  0115 cd0323        	call	_LCD_writemsg
+2105  0118 5b03          	addw	sp,#3
+2106                     ; 74 }
+2109  011a 5b0c          	addw	sp,#12
+2110  011c 81            	ret
+2215                     ; 76 void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, uint8_t temperature, uint8_t humidity)
+2215                     ; 77 {
+2216                     	switch	.text
+2217  011d               _LCD_homescreen:
+2219  011d 5240          	subw	sp,#64
+2220       00000040      OFST:	set	64
+2223                     ; 80     int i = sprintf(tempMsg, "temperature: %02d", (int)temperature);
+2225  011f 7b4b          	ld	a,(OFST+11,sp)
+2226  0121 5f            	clrw	x
+2227  0122 97            	ld	xl,a
+2228  0123 89            	pushw	x
+2229  0124 ae041b        	ldw	x,#L345
+2230  0127 89            	pushw	x
+2231  0128 96            	ldw	x,sp
+2232  0129 1c0007        	addw	x,#OFST-57
+2233  012c cd0000        	call	_sprintf
+2235  012f 5b04          	addw	sp,#4
+2236  0131 1f3f          	ldw	(OFST-1,sp),x
+2238                     ; 82     int j = sprintf(humMsg, "humidity: %02d %%", (int)humidity);
+2240  0133 7b4c          	ld	a,(OFST+12,sp)
+2241  0135 5f            	clrw	x
+2242  0136 97            	ld	xl,a
+2243  0137 89            	pushw	x
+2244  0138 ae0409        	ldw	x,#L545
+2245  013b 89            	pushw	x
+2246  013c 96            	ldw	x,sp
+2247  013d 1c0025        	addw	x,#OFST-27
+2248  0140 cd0000        	call	_sprintf
+2250  0143 5b04          	addw	sp,#4
+2251                     ; 84     LCD_showdate(SDate);
+2253  0145 7b46          	ld	a,(OFST+6,sp)
+2254  0147 88            	push	a
+2255  0148 7b46          	ld	a,(OFST+6,sp)
+2256  014a 88            	push	a
+2257  014b 7b46          	ld	a,(OFST+6,sp)
+2258  014d 88            	push	a
+2259  014e 7b46          	ld	a,(OFST+6,sp)
+2260  0150 88            	push	a
+2261  0151 cd00ba        	call	_LCD_showdate
+2263  0154 5b04          	addw	sp,#4
+2264                     ; 85     LCD_showtime(STime);
+2266  0156 7b4a          	ld	a,(OFST+10,sp)
+2267  0158 88            	push	a
+2268  0159 7b4a          	ld	a,(OFST+10,sp)
+2269  015b 88            	push	a
+2270  015c 7b4a          	ld	a,(OFST+10,sp)
+2271  015e 88            	push	a
+2272  015f 7b4a          	ld	a,(OFST+10,sp)
+2273  0161 88            	push	a
+2274  0162 ad8a          	call	_LCD_showtime
+2276  0164 5b04          	addw	sp,#4
+2277                     ; 87     LCD_writemsg(tempMsg, i + 1, 0, 2);
+2279  0166 4b02          	push	#2
+2280  0168 4b00          	push	#0
+2281  016a 7b42          	ld	a,(OFST+2,sp)
+2282  016c 4c            	inc	a
+2283  016d 88            	push	a
+2284  016e 96            	ldw	x,sp
+2285  016f 1c0006        	addw	x,#OFST-58
+2286  0172 cd0323        	call	_LCD_writemsg
+2288  0175 5b03          	addw	sp,#3
+2289                     ; 88     LCD_writemsg(humMsg, i + 1, 0, 3);
+2291  0177 4b03          	push	#3
+2292  0179 4b00          	push	#0
+2293  017b 7b42          	ld	a,(OFST+2,sp)
+2294  017d 4c            	inc	a
+2295  017e 88            	push	a
+2296  017f 96            	ldw	x,sp
+2297  0180 1c0024        	addw	x,#OFST-28
+2298  0183 cd0323        	call	_LCD_writemsg
+2300  0186 5b03          	addw	sp,#3
+2301                     ; 89 }
+2304  0188 5b40          	addw	sp,#64
+2305  018a 81            	ret
+2308                     	bsct
+2309  0000               L745_menuMsg:
+2310  0000 4d656e7500    	dc.b	"Menu",0
+2311  0005               L155_op1:
+2312  0005 312e20446169  	dc.b	"1. Daily Min/Max",0
+2313  0016               L355_op2:
+2314  0016 322e2053656e  	dc.b	"2. Send Data",0
+2315  0023               L555_op3:
+2316  0023 332e20536574  	dc.b	"3. Settings",0
+2380                     ; 91 void LCD_menu()
+2380                     ; 92 {
+2381                     	switch	.text
+2382  018b               _LCD_menu:
+2386                     ; 98     LCD_writemsg(menuMsg, sizeof(menuMsg), 0, 0);
+2388  018b 4b00          	push	#0
+2389  018d 4b00          	push	#0
+2390  018f 4b05          	push	#5
+2391  0191 ae0000        	ldw	x,#L745_menuMsg
+2392  0194 cd0323        	call	_LCD_writemsg
+2394  0197 5b03          	addw	sp,#3
+2395                     ; 99     LCD_writemsg(op1, sizeof(op1), 1, 1);
+2397  0199 4b01          	push	#1
+2398  019b 4b01          	push	#1
+2399  019d 4b11          	push	#17
+2400  019f ae0005        	ldw	x,#L155_op1
+2401  01a2 cd0323        	call	_LCD_writemsg
+2403  01a5 5b03          	addw	sp,#3
+2404                     ; 100     LCD_writemsg(op2, sizeof(op2), 1, 2);
+2406  01a7 4b02          	push	#2
+2407  01a9 4b01          	push	#1
+2408  01ab 4b0d          	push	#13
+2409  01ad ae0016        	ldw	x,#L355_op2
+2410  01b0 cd0323        	call	_LCD_writemsg
+2412  01b3 5b03          	addw	sp,#3
+2413                     ; 101     LCD_writemsg(op3, sizeof(op3), 1, 3);
+2415  01b5 4b03          	push	#3
+2416  01b7 4b01          	push	#1
+2417  01b9 4b0c          	push	#12
+2418  01bb ae0023        	ldw	x,#L555_op3
+2419  01be cd0323        	call	_LCD_writemsg
+2421  01c1 5b03          	addw	sp,#3
+2422                     ; 102 }
+2425  01c3 81            	ret
+2428                     	bsct
+2429  002f               L116_tempHeader:
+2430  002f 54656d706572  	dc.b	"Temperature",0
+2431  003b               L316_humidityHeader:
+2432  003b 48756d696469  	dc.b	"Humidity",0
+2589                     ; 104 void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity)
+2589                     ; 105 {
+2590                     	switch	.text
+2591  01c4               _LCD_min_max:
+2593  01c4 89            	pushw	x
+2594  01c5 5280          	subw	sp,#128
+2595       00000080      OFST:	set	128
+2598                     ; 116     int i = sprintf(minTempMsg, "Min: %02d", (int)minTemperature);
+2600  01c7 9e            	ld	a,xh
+2601  01c8 5f            	clrw	x
+2602  01c9 97            	ld	xl,a
+2603  01ca 89            	pushw	x
+2604  01cb ae03ff        	ldw	x,#L717
+2605  01ce 89            	pushw	x
+2606  01cf 96            	ldw	x,sp
+2607  01d0 1c0005        	addw	x,#OFST-123
+2608  01d3 cd0000        	call	_sprintf
+2610  01d6 5b04          	addw	sp,#4
+2611  01d8 1f79          	ldw	(OFST-7,sp),x
+2613                     ; 117     int j = sprintf(maxTempMsg, "Max: %02d", (int)maxTemperature);
+2615  01da 7b82          	ld	a,(OFST+2,sp)
+2616  01dc 5f            	clrw	x
+2617  01dd 97            	ld	xl,a
+2618  01de 89            	pushw	x
+2619  01df ae03f5        	ldw	x,#L127
+2620  01e2 89            	pushw	x
+2621  01e3 96            	ldw	x,sp
+2622  01e4 1c0023        	addw	x,#OFST-93
+2623  01e7 cd0000        	call	_sprintf
+2625  01ea 5b04          	addw	sp,#4
+2626  01ec 1f7b          	ldw	(OFST-5,sp),x
+2628                     ; 118     int k = sprintf(minHumMsg, "Min: %02d", (int)minHumidity);
+2630  01ee 7b85          	ld	a,(OFST+5,sp)
+2631  01f0 5f            	clrw	x
+2632  01f1 97            	ld	xl,a
+2633  01f2 89            	pushw	x
+2634  01f3 ae03ff        	ldw	x,#L717
+2635  01f6 89            	pushw	x
+2636  01f7 96            	ldw	x,sp
+2637  01f8 1c0041        	addw	x,#OFST-63
+2638  01fb cd0000        	call	_sprintf
+2640  01fe 5b04          	addw	sp,#4
+2641  0200 1f7d          	ldw	(OFST-3,sp),x
+2643                     ; 119     int l = sprintf(maxHumMsg, "Max: %02d ", (int)maxHumidity);
+2645  0202 7b86          	ld	a,(OFST+6,sp)
+2646  0204 5f            	clrw	x
+2647  0205 97            	ld	xl,a
+2648  0206 89            	pushw	x
+2649  0207 ae03ea        	ldw	x,#L327
+2650  020a 89            	pushw	x
+2651  020b 96            	ldw	x,sp
+2652  020c 1c005f        	addw	x,#OFST-33
+2653  020f cd0000        	call	_sprintf
+2655  0212 5b04          	addw	sp,#4
+2656  0214 1f7f          	ldw	(OFST-1,sp),x
+2658                     ; 121     LCD_writemsg(tempHeader, sizeof(tempHeader), 20, 0);
+2660  0216 4b00          	push	#0
+2661  0218 4b14          	push	#20
+2662  021a 4b0c          	push	#12
+2663  021c ae002f        	ldw	x,#L116_tempHeader
+2664  021f cd0323        	call	_LCD_writemsg
+2666  0222 5b03          	addw	sp,#3
+2667                     ; 122     LCD_writemsg(minTempMsg, i + 1, 1, 1);
+2669  0224 4b01          	push	#1
+2670  0226 4b01          	push	#1
+2671  0228 7b7c          	ld	a,(OFST-4,sp)
+2672  022a 4c            	inc	a
+2673  022b 88            	push	a
+2674  022c 96            	ldw	x,sp
+2675  022d 1c0004        	addw	x,#OFST-124
+2676  0230 cd0323        	call	_LCD_writemsg
+2678  0233 5b03          	addw	sp,#3
+2679                     ; 123     LCD_writemsg(maxTempMsg, j + 1, 30, 1);
+2681  0235 4b01          	push	#1
+2682  0237 4b1e          	push	#30
+2683  0239 7b7e          	ld	a,(OFST-2,sp)
+2684  023b 4c            	inc	a
+2685  023c 88            	push	a
+2686  023d 96            	ldw	x,sp
+2687  023e 1c0022        	addw	x,#OFST-94
+2688  0241 cd0323        	call	_LCD_writemsg
+2690  0244 5b03          	addw	sp,#3
+2691                     ; 125     LCD_writemsg(humidityHeader, sizeof(humidityHeader), 20, 4);
+2693  0246 4b04          	push	#4
+2694  0248 4b14          	push	#20
+2695  024a 4b09          	push	#9
+2696  024c ae003b        	ldw	x,#L316_humidityHeader
+2697  024f cd0323        	call	_LCD_writemsg
+2699  0252 5b03          	addw	sp,#3
+2700                     ; 126     LCD_writemsg(minHumMsg, k + 1, 1, 5);
+2702  0254 4b05          	push	#5
+2703  0256 4b01          	push	#1
+2704  0258 7b80          	ld	a,(OFST+0,sp)
+2705  025a 4c            	inc	a
+2706  025b 88            	push	a
+2707  025c 96            	ldw	x,sp
+2708  025d 1c0040        	addw	x,#OFST-64
+2709  0260 cd0323        	call	_LCD_writemsg
+2711  0263 5b03          	addw	sp,#3
+2712                     ; 127     LCD_writemsg(maxHumMsg, l + 1, 30, 5);
+2714  0265 4b05          	push	#5
+2715  0267 4b1e          	push	#30
+2716  0269 7b82          	ld	a,(OFST+2,sp)
+2717  026b 4c            	inc	a
+2718  026c 88            	push	a
+2719  026d 96            	ldw	x,sp
+2720  026e 1c005e        	addw	x,#OFST-34
+2721  0271 cd0323        	call	_LCD_writemsg
+2723  0274 5b03          	addw	sp,#3
+2724                     ; 128 }
+2727  0276 5b82          	addw	sp,#130
+2728  0278 81            	ret
+2731                     	bsct
+2732  0044               L527_settingsHeader:
+2733  0044 507265737320  	dc.b	"Press OK",0
+2734  004d               L727_settingsHeader2:
+2735  004d 746f20636861  	dc.b	"to change settings",0
+2780                     ; 130 void LCD_display_settings()
+2780                     ; 131 {
+2781                     	switch	.text
+2782  0279               _LCD_display_settings:
+2786                     ; 134     LCD_writemsg(settingsHeader, sizeof(settingsHeader), 20, 1);
+2788  0279 4b01          	push	#1
+2789  027b 4b14          	push	#20
+2790  027d 4b09          	push	#9
+2791  027f ae0044        	ldw	x,#L527_settingsHeader
+2792  0282 cd0323        	call	_LCD_writemsg
+2794  0285 5b03          	addw	sp,#3
+2795                     ; 135     LCD_writemsg(settingsHeader2, sizeof(settingsHeader2), 10, 2);
+2797  0287 4b02          	push	#2
+2798  0289 4b0a          	push	#10
+2799  028b 4b13          	push	#19
+2800  028d ae004d        	ldw	x,#L727_settingsHeader2
+2801  0290 cd0323        	call	_LCD_writemsg
+2803  0293 5b03          	addw	sp,#3
+2804                     ; 136 }
+2807  0295 81            	ret
+2845                     ; 138 void LCD_cmd(uint8_t cmd)
+2845                     ; 139 {
+2846                     	switch	.text
+2847  0296               _LCD_cmd:
+2849  0296 88            	push	a
+2850       00000000      OFST:	set	0
+2853                     ; 140     LCD_CE_clear();
+2855  0297 cd0027        	call	L76_LCD_CE_clear
+2857                     ; 141     LCD_DC_clear();
+2859  029a cd0016        	call	L53_LCD_DC_clear
+2861                     ; 142     LCD_SPI_write(cmd);
+2863  029d 7b01          	ld	a,(OFST+1,sp)
+2864  029f cd0036        	call	L521_LCD_SPI_write
+2866                     ; 143     LCD_CE_set();
+2868  02a2 cd001b        	call	L74_LCD_CE_set
+2870                     ; 144 }
+2873  02a5 84            	pop	a
+2874  02a6 81            	ret
+2912                     ; 146 void LCD_write(uint8_t data)
+2912                     ; 147 {
+2913                     	switch	.text
+2914  02a7               _LCD_write:
+2916  02a7 88            	push	a
+2917       00000000      OFST:	set	0
+2920                     ; 148     LCD_CE_clear();
+2922  02a8 cd0027        	call	L76_LCD_CE_clear
+2924                     ; 149     LCD_DC_set();
+2926  02ab cd0011        	call	L32_LCD_DC_set
+2928                     ; 150     LCD_SPI_write(data);
+2930  02ae 7b01          	ld	a,(OFST+1,sp)
+2931  02b0 cd0036        	call	L521_LCD_SPI_write
+2933                     ; 151     LCD_CE_set();
+2935  02b3 cd001b        	call	L74_LCD_CE_set
+2937                     ; 152 }
+2940  02b6 84            	pop	a
+2941  02b7 81            	ret
+2977                     ; 154 void LCD_clear()
+2977                     ; 155 {
+2978                     	switch	.text
+2979  02b8               _LCD_clear:
+2981  02b8 89            	pushw	x
+2982       00000002      OFST:	set	2
+2985                     ; 156     uint16_t i = 84 * 6;
+2987  02b9 ae01f8        	ldw	x,#504
+2988  02bc 1f01          	ldw	(OFST-1,sp),x
+2990                     ; 157     LCD_goto(0, 0);
+2992  02be 5f            	clrw	x
+2993  02bf ad16          	call	_LCD_goto
+2996  02c1 2003          	jra	L7201
+2997  02c3               L5201:
+2998                     ; 159         LCD_write(0);
+3000  02c3 4f            	clr	a
+3001  02c4 ade1          	call	_LCD_write
+3003  02c6               L7201:
+3004                     ; 158     while (i-- > 0)
+3006  02c6 1e01          	ldw	x,(OFST-1,sp)
+3007  02c8 1d0001        	subw	x,#1
+3008  02cb 1f01          	ldw	(OFST-1,sp),x
+3009  02cd 1c0001        	addw	x,#1
+3011  02d0 a30000        	cpw	x,#0
+3012  02d3 26ee          	jrne	L5201
+3013                     ; 160 }
+3016  02d5 85            	popw	x
+3017  02d6 81            	ret
+3061                     ; 162 void LCD_goto(uint8_t col, uint8_t row)
+3061                     ; 163 {
+3062                     	switch	.text
+3063  02d7               _LCD_goto:
+3065  02d7 89            	pushw	x
+3066       00000000      OFST:	set	0
+3069                     ; 164     LCD_cmd(0x80 | col);
+3071  02d8 9e            	ld	a,xh
+3072  02d9 aa80          	or	a,#128
+3073  02db adb9          	call	_LCD_cmd
+3075                     ; 165     LCD_cmd(0x40 | row);
+3077  02dd 7b02          	ld	a,(OFST+2,sp)
+3078  02df aa40          	or	a,#64
+3079  02e1 adb3          	call	_LCD_cmd
+3081                     ; 166 }
+3084  02e3 85            	popw	x
+3085  02e4 81            	ret
+3140                     ; 168 void LCD_putc(char c)
+3140                     ; 169 {
+3141                     	switch	.text
+3142  02e5               _LCD_putc:
+3144  02e5 88            	push	a
+3145  02e6 5203          	subw	sp,#3
+3146       00000003      OFST:	set	3
+3149                     ; 170     if (c == ' ')
+3151  02e8 a120          	cp	a,#32
+3152  02ea 2608          	jrne	L3011
+3153                     ; 172         LCD_write(0);
+3155  02ec 4f            	clr	a
+3156  02ed adb8          	call	_LCD_write
+3158                     ; 173         LCD_write(0);
+3160  02ef 4f            	clr	a
+3161  02f0 adb5          	call	_LCD_write
+3164  02f2 202c          	jra	L5011
+3165  02f4               L3011:
+3166                     ; 177         const char *ptr = &font[(c - 32) * FONT_WIDTH];
+3168  02f4 7b04          	ld	a,(OFST+1,sp)
+3169  02f6 97            	ld	xl,a
+3170  02f7 a605          	ld	a,#5
+3171  02f9 42            	mul	x,a
+3172  02fa 1d00a0        	subw	x,#160
+3173  02fd 1c0000        	addw	x,#_font
+3174  0300 1f02          	ldw	(OFST-1,sp),x
+3176                     ; 179         for (i = 0; i < FONT_WIDTH; i++, ptr++)
+3178  0302 0f01          	clr	(OFST-2,sp)
+3180  0304               L7011:
+3181                     ; 180             if (*ptr)
+3183  0304 1e02          	ldw	x,(OFST-1,sp)
+3184  0306 7d            	tnz	(x)
+3185  0307 2705          	jreq	L5111
+3186                     ; 181                 LCD_write(*ptr);
+3188  0309 1e02          	ldw	x,(OFST-1,sp)
+3189  030b f6            	ld	a,(x)
+3190  030c ad99          	call	_LCD_write
+3192  030e               L5111:
+3193                     ; 179         for (i = 0; i < FONT_WIDTH; i++, ptr++)
+3195  030e 0c01          	inc	(OFST-2,sp)
+3197  0310 1e02          	ldw	x,(OFST-1,sp)
+3198  0312 1c0001        	addw	x,#1
+3199  0315 1f02          	ldw	(OFST-1,sp),x
+3203  0317 7b01          	ld	a,(OFST-2,sp)
+3204  0319 a105          	cp	a,#5
+3205  031b 25e7          	jrult	L7011
+3206                     ; 182         LCD_write(0);
+3208  031d 4f            	clr	a
+3209  031e ad87          	call	_LCD_write
+3211  0320               L5011:
+3212                     ; 184 }
+3215  0320 5b04          	addw	sp,#4
+3216  0322 81            	ret
+3289                     ; 186 void LCD_writemsg(char *msg, uint8_t msgSize, uint8_t col, uint8_t row)
+3289                     ; 187 {
+3290                     	switch	.text
+3291  0323               _LCD_writemsg:
+3293  0323 89            	pushw	x
+3294  0324 89            	pushw	x
+3295       00000002      OFST:	set	2
+3298                     ; 188     LCD_goto(col, row);
+3300  0325 7b09          	ld	a,(OFST+7,sp)
+3301  0327 97            	ld	xl,a
+3302  0328 7b08          	ld	a,(OFST+6,sp)
+3303  032a 95            	ld	xh,a
+3304  032b adaa          	call	_LCD_goto
+3306                     ; 191         for (i = 0; i < msgSize - 1; i++)
+3308  032d 5f            	clrw	x
+3309  032e 1f01          	ldw	(OFST-1,sp),x
+3312  0330 200f          	jra	L1611
+3313  0332               L5511:
+3314                     ; 192             LCD_putc(msg[i]);
+3316  0332 1e01          	ldw	x,(OFST-1,sp)
+3317  0334 72fb03        	addw	x,(OFST+1,sp)
+3318  0337 f6            	ld	a,(x)
+3319  0338 adab          	call	_LCD_putc
+3321                     ; 191         for (i = 0; i < msgSize - 1; i++)
+3323  033a 1e01          	ldw	x,(OFST-1,sp)
+3324  033c 1c0001        	addw	x,#1
+3325  033f 1f01          	ldw	(OFST-1,sp),x
+3327  0341               L1611:
+3330  0341 9c            	rvf
+3331  0342 7b07          	ld	a,(OFST+5,sp)
+3332  0344 5f            	clrw	x
+3333  0345 97            	ld	xl,a
+3334  0346 5a            	decw	x
+3335  0347 1301          	cpw	x,(OFST-1,sp)
+3336  0349 2ce7          	jrsgt	L5511
+3337                     ; 195 }
+3340  034b 5b04          	addw	sp,#4
+3341  034d 81            	ret
+3387                     ; 197 void LCD_draw_logo(const unsigned char *logo)
+3387                     ; 198 {
+3388                     	switch	.text
+3389  034e               _LCD_draw_logo:
+3391  034e 89            	pushw	x
+3392  034f 89            	pushw	x
+3393       00000002      OFST:	set	2
+3396                     ; 199     uint16_t i = 84 * 6;
+3398  0350 ae01f8        	ldw	x,#504
+3399  0353 1f01          	ldw	(OFST-1,sp),x
+3401                     ; 200     LCD_goto(0, 0);
+3403  0355 5f            	clrw	x
+3404  0356 cd02d7        	call	_LCD_goto
+3407  0359 200e          	jra	L1121
+3408  035b               L7021:
+3409                     ; 202         LCD_write(*(logo++));
+3411  035b 1e03          	ldw	x,(OFST+1,sp)
+3412  035d 1c0001        	addw	x,#1
+3413  0360 1f03          	ldw	(OFST+1,sp),x
+3414  0362 1d0001        	subw	x,#1
+3415  0365 f6            	ld	a,(x)
+3416  0366 cd02a7        	call	_LCD_write
+3418  0369               L1121:
+3419                     ; 201     while (i-- > 0)
+3421  0369 1e01          	ldw	x,(OFST-1,sp)
+3422  036b 1d0001        	subw	x,#1
+3423  036e 1f01          	ldw	(OFST-1,sp),x
+3424  0370 1c0001        	addw	x,#1
+3426  0373 a30000        	cpw	x,#0
+3427  0376 26e3          	jrne	L7021
+3428                     ; 203 }
+3431  0378 5b04          	addw	sp,#4
+3432  037a 81            	ret
+3457                     	xdef	_LCD_showtime
+3458                     	xdef	_LCD_showdate
+3459                     	xdef	_welcomeMSG
+3460                     	xdef	_leaf_Bitmap
+3461                     	xref	_sprintf
+3462                     	xdef	_font
+3463                     	xref	_SPI_write
+3464                     	xdef	_LCD_draw_logo
+3465                     	xdef	_LCD_display_settings
+3466                     	xdef	_LCD_menu
+3467                     	xdef	_LCD_min_max
+3468                     	xdef	_LCD_homescreen
+3469                     	xdef	_LCD_welcome
+3470                     	xdef	_LCD_writemsg
+3471                     	xdef	_LCD_write
+3472                     	xdef	_LCD_putc
+3473                     	xdef	_LCD_goto
+3474                     	xdef	_LCD_cmd
+3475                     	xdef	_LCD_clear
+3476                     	xdef	_LCD_init
+3477                     	switch	.const
+3478  03ea               L327:
+3479  03ea 4d61783a2025  	dc.b	"Max: %02d ",0
+3480  03f5               L127:
+3481  03f5 4d61783a2025  	dc.b	"Max: %02d",0
+3482  03ff               L717:
+3483  03ff 4d696e3a2025  	dc.b	"Min: %02d",0
+3484  0409               L545:
+3485  0409 68756d696469  	dc.b	"humidity: %02d %%",0
+3486  041b               L345:
+3487  041b 74656d706572  	dc.b	"temperature: %02d",0
+3488  042d               L764:
+3489  042d 253032643a25  	dc.b	"%02d:%02d",0
+3490  0437               L114:
+3491  0437 323025303264  	dc.b	"20%02d-%02d-%02d",0
+3511                     	xref	c_lcmp
+3512                     	xref	c_smul
+3513                     	xref	c_ltor
+3514                     	xref	c_lgadc
+3515                     	xref	c_rtol
+3516                     	xref	c_itolx
+3517                     	end

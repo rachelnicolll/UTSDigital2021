@@ -77,7 +77,11 @@ String.103.0=.\;src;inc;
 
 [Root.Config.0.Settings.2]
 String.2.0=
+<<<<<<< HEAD
 String.6.0=2021,6,23,9,33,9
+=======
+String.6.0=2021,6,22,15,13,34
+>>>>>>> SPI
 String.100.0=STM8L152C6
 
 [Root.Config.0.Settings.3]
@@ -105,7 +109,11 @@ String.3.0=clnk -customMapFile -customMapFile-m $(OutputPath)$(TargetSName).map 
 String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
 String.4.0=$(OutputPath)$(TargetFName)
 String.5.0=$(OutputPath)$(TargetSName).map $(OutputPath)$(TargetSName).st7 $(OutputPath)$(TargetSName).s19
+<<<<<<< HEAD
 String.6.0=2021,6,23,9,33,9
+=======
+String.6.0=2021,6,22,15,13,34
+>>>>>>> SPI
 String.100.0=
 String.101.0=crtsi.st7
 String.102.0=+seg .const -b 0x8080 -m 0x7f80 -n .const -it 
@@ -158,7 +166,11 @@ String.103.0=.\;src;inc;
 
 [Root.Config.1.Settings.2]
 String.2.0=
+<<<<<<< HEAD
 String.6.0=2021,6,23,9,33,9
+=======
+String.6.0=2021,6,22,15,13,34
+>>>>>>> SPI
 String.100.0=STM8L152C6
 
 [Root.Config.1.Settings.3]
@@ -185,7 +197,11 @@ String.3.0=clnk -fakeRunConv -fakeInteger -fakeSemiAutoGen $(ToolsetLibOpts) -o 
 String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
 String.4.0=$(OutputPath)$(TargetFName)
 String.5.0=$(OutputPath)$(TargetSName).map $(OutputPath)$(TargetSName).st7 $(OutputPath)$(TargetSName).s19
+<<<<<<< HEAD
 String.6.0=2021,6,23,9,33,9
+=======
+String.6.0=2021,6,22,15,13,34
+>>>>>>> SPI
 String.101.0=crtsi.st7
 String.102.0=+seg .const -b 0x8080 -m 0x7f80 -n .const -it 
 String.102.1=+seg .text -a .const -n .text 
@@ -216,7 +232,11 @@ String.6.0=2021,6,13,21,27,16
 [Root.Source Files]
 ElemType=Folder
 PathName=Source Files
+<<<<<<< HEAD
 Child=Root.Source Files.src\file.c
+=======
+Child=Root.Source Files.src\rtc.c
+>>>>>>> SPI
 Next=Root.Include Files
 Config.0=Root.Source Files.Config.0
 Config.1=Root.Source Files.Config.1
@@ -287,6 +307,7 @@ String.4.0=
 String.5.0=
 String.6.0=2021,6,13,21,27,16
 
+<<<<<<< HEAD
 [Root.Source Files.src\file.c]
 ElemType=File
 PathName=src\file.c
@@ -305,6 +326,16 @@ Next=Root.Source Files.src\fifo.c
 [Root.Source Files.src\fifo.c]
 ElemType=File
 PathName=src\fifo.c
+=======
+[Root.Source Files.src\rtc.c]
+ElemType=File
+PathName=src\rtc.c
+Next=Root.Source Files.src\buttons.c
+
+[Root.Source Files.src\buttons.c]
+ElemType=File
+PathName=src\buttons.c
+>>>>>>> SPI
 Next=Root.Source Files.main.c
 
 [Root.Source Files.main.c]
@@ -474,7 +505,11 @@ PathName=stm8_interrupt_vector.c
 [Root.Include Files]
 ElemType=Folder
 PathName=Include Files
+<<<<<<< HEAD
 Child=Root.Include Files.inc\file.h
+=======
+Child=Root.Include Files.inc\rtc.h
+>>>>>>> SPI
 Config.0=Root.Include Files.Config.0
 Config.1=Root.Include Files.Config.1
 
@@ -544,6 +579,7 @@ String.4.0=
 String.5.0=
 String.6.0=2021,6,13,21,27,16
 
+<<<<<<< HEAD
 [Root.Include Files.inc\file.h]
 ElemType=File
 PathName=inc\file.h
@@ -562,6 +598,16 @@ Next=Root.Include Files.inc\fifo.h
 [Root.Include Files.inc\fifo.h]
 ElemType=File
 PathName=inc\fifo.h
+=======
+[Root.Include Files.inc\rtc.h]
+ElemType=File
+PathName=inc\rtc.h
+Next=Root.Include Files.inc\buttons.h
+
+[Root.Include Files.inc\buttons.h]
+ElemType=File
+PathName=inc\buttons.h
+>>>>>>> SPI
 Next=Root.Include Files.inc\delay.h
 
 [Root.Include Files.inc\delay.h]

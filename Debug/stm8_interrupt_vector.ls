@@ -1,111 +1,176 @@
    1                     ; C Compiler for STM8 (COSMIC Software)
    2                     ; Parser V4.12.4 - 04 Feb 2021
    3                     ; Generator (Limited) V4.5.2 - 04 Feb 2021
-  43                     ; 12 @far @interrupt void NonHandledInterrupt (void)
-  43                     ; 13 {
+  43                     ; 26 @far @interrupt void NonHandledInterrupt(void)
+  43                     ; 27 {
   44                     	switch	.text
   45  0000               f_NonHandledInterrupt:
-  49                     ; 17 	return;
+  49                     ; 31 	return;
   52  0000 80            	iret
-  54                     .const:	section	.text
-  55  0000               __vectab:
-  56  0000 82            	dc.b	130
-  58  0001 00            	dc.b	page(__stext)
-  59  0002 0000          	dc.w	__stext
-  60  0004 82            	dc.b	130
-  62  0005 00            	dc.b	page(f_NonHandledInterrupt)
-  63  0006 0000          	dc.w	f_NonHandledInterrupt
-  64  0008 82            	dc.b	130
-  66  0009 00            	dc.b	page(f_NonHandledInterrupt)
-  67  000a 0000          	dc.w	f_NonHandledInterrupt
-  68  000c 82            	dc.b	130
-  70  000d 00            	dc.b	page(f_NonHandledInterrupt)
-  71  000e 0000          	dc.w	f_NonHandledInterrupt
-  72  0010 82            	dc.b	130
-  74  0011 00            	dc.b	page(f_NonHandledInterrupt)
-  75  0012 0000          	dc.w	f_NonHandledInterrupt
-  76  0014 82            	dc.b	130
-  78  0015 00            	dc.b	page(f_NonHandledInterrupt)
-  79  0016 0000          	dc.w	f_NonHandledInterrupt
-  80  0018 82            	dc.b	130
-  82  0019 00            	dc.b	page(f_NonHandledInterrupt)
-  83  001a 0000          	dc.w	f_NonHandledInterrupt
-  84  001c 82            	dc.b	130
-  86  001d 00            	dc.b	page(f_NonHandledInterrupt)
-  87  001e 0000          	dc.w	f_NonHandledInterrupt
-  88  0020 82            	dc.b	130
-  90  0021 00            	dc.b	page(f_NonHandledInterrupt)
-  91  0022 0000          	dc.w	f_NonHandledInterrupt
-  92  0024 82            	dc.b	130
-  94  0025 00            	dc.b	page(f_NonHandledInterrupt)
-  95  0026 0000          	dc.w	f_NonHandledInterrupt
-  96  0028 82            	dc.b	130
-  98  0029 00            	dc.b	page(f_NonHandledInterrupt)
-  99  002a 0000          	dc.w	f_NonHandledInterrupt
- 100  002c 82            	dc.b	130
- 102  002d 00            	dc.b	page(f_NonHandledInterrupt)
- 103  002e 0000          	dc.w	f_NonHandledInterrupt
- 104  0030 82            	dc.b	130
- 106  0031 00            	dc.b	page(f_NonHandledInterrupt)
- 107  0032 0000          	dc.w	f_NonHandledInterrupt
- 108  0034 82            	dc.b	130
- 110  0035 00            	dc.b	page(f_NonHandledInterrupt)
- 111  0036 0000          	dc.w	f_NonHandledInterrupt
- 112  0038 82            	dc.b	130
- 114  0039 00            	dc.b	page(f_NonHandledInterrupt)
- 115  003a 0000          	dc.w	f_NonHandledInterrupt
- 116  003c 82            	dc.b	130
- 118  003d 00            	dc.b	page(f_NonHandledInterrupt)
- 119  003e 0000          	dc.w	f_NonHandledInterrupt
- 120  0040 82            	dc.b	130
- 122  0041 00            	dc.b	page(f_NonHandledInterrupt)
- 123  0042 0000          	dc.w	f_NonHandledInterrupt
- 124  0044 82            	dc.b	130
- 126  0045 00            	dc.b	page(f_NonHandledInterrupt)
- 127  0046 0000          	dc.w	f_NonHandledInterrupt
- 128  0048 82            	dc.b	130
- 130  0049 00            	dc.b	page(f_NonHandledInterrupt)
- 131  004a 0000          	dc.w	f_NonHandledInterrupt
- 132  004c 82            	dc.b	130
- 134  004d 00            	dc.b	page(f_NonHandledInterrupt)
- 135  004e 0000          	dc.w	f_NonHandledInterrupt
- 136  0050 82            	dc.b	130
- 138  0051 00            	dc.b	page(f_NonHandledInterrupt)
- 139  0052 0000          	dc.w	f_NonHandledInterrupt
- 140  0054 82            	dc.b	130
- 142  0055 00            	dc.b	page(f_NonHandledInterrupt)
- 143  0056 0000          	dc.w	f_NonHandledInterrupt
- 144  0058 82            	dc.b	130
- 146  0059 00            	dc.b	page(f_NonHandledInterrupt)
- 147  005a 0000          	dc.w	f_NonHandledInterrupt
- 148  005c 82            	dc.b	130
- 150  005d 00            	dc.b	page(f_NonHandledInterrupt)
- 151  005e 0000          	dc.w	f_NonHandledInterrupt
- 152  0060 82            	dc.b	130
- 154  0061 00            	dc.b	page(f_NonHandledInterrupt)
- 155  0062 0000          	dc.w	f_NonHandledInterrupt
- 156  0064 82            	dc.b	130
- 158  0065 00            	dc.b	page(f_NonHandledInterrupt)
- 159  0066 0000          	dc.w	f_NonHandledInterrupt
- 160  0068 82            	dc.b	130
- 162  0069 00            	dc.b	page(f_NonHandledInterrupt)
- 163  006a 0000          	dc.w	f_NonHandledInterrupt
- 164  006c 82            	dc.b	130
- 166  006d 00            	dc.b	page(f_NonHandledInterrupt)
- 167  006e 0000          	dc.w	f_NonHandledInterrupt
- 168  0070 82            	dc.b	130
- 170  0071 00            	dc.b	page(f_NonHandledInterrupt)
- 171  0072 0000          	dc.w	f_NonHandledInterrupt
- 172  0074 82            	dc.b	130
- 174  0075 00            	dc.b	page(f_NonHandledInterrupt)
- 175  0076 0000          	dc.w	f_NonHandledInterrupt
- 176  0078 82            	dc.b	130
- 178  0079 00            	dc.b	page(f_NonHandledInterrupt)
- 179  007a 0000          	dc.w	f_NonHandledInterrupt
- 180  007c 82            	dc.b	130
- 182  007d 00            	dc.b	page(f_NonHandledInterrupt)
- 183  007e 0000          	dc.w	f_NonHandledInterrupt
- 234                     	xdef	__vectab
- 235                     	xref	__stext
- 236                     	xdef	f_NonHandledInterrupt
- 255                     	end
+  75                     ; 34 @far @interrupt void EXTID4_IRQHandler(void)
+  75                     ; 35 {
+  76                     	switch	.text
+  77  0001               f_EXTID4_IRQHandler:
+  81                     ; 37 	if (EXTI->SR1 == 0x10 )//&& GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_4) == ON)
+  83  0001 c650a3        	ld	a,20643
+  84  0004 a110          	cp	a,#16
+  85  0006 2604          	jrne	L13
+  86                     ; 38 		EXTI->SR1 |= 0x10;
+  88  0008 721850a3      	bset	20643,#4
+  89  000c               L13:
+  90                     ; 40 	buttonPressed = UP;
+  92  000c 35050000      	mov	_buttonPressed,#5
+  93                     ; 41 	return;
+  96  0010 80            	iret
+ 119                     ; 44 @far @interrupt void EXTID1_IRQHandler(void)
+ 119                     ; 45 {
+ 120                     	switch	.text
+ 121  0011               f_EXTID1_IRQHandler:
+ 125                     ; 47 	if (EXTI->SR1 == 0x02) // && GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_1) == ON)
+ 127  0011 c650a3        	ld	a,20643
+ 128  0014 a102          	cp	a,#2
+ 129  0016 2604          	jrne	L34
+ 130                     ; 48 		EXTI->SR1 |= 0x02;
+ 132  0018 721250a3      	bset	20643,#1
+ 133  001c               L34:
+ 134                     ; 50 	buttonPressed = DOWN;
+ 136  001c 35040000      	mov	_buttonPressed,#4
+ 137                     ; 51 	return;
+ 140  0020 80            	iret
+ 163                     ; 54 @far @interrupt void EXTID2_IRQHandler(void)
+ 163                     ; 55 {
+ 164                     	switch	.text
+ 165  0021               f_EXTID2_IRQHandler:
+ 169                     ; 57 	if (EXTI->SR1 == 0x04) // && GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_2) == ON)
+ 171  0021 c650a3        	ld	a,20643
+ 172  0024 a104          	cp	a,#4
+ 173  0026 2604          	jrne	L55
+ 174                     ; 58 		EXTI->SR1 |= 0x04;
+ 176  0028 721450a3      	bset	20643,#2
+ 177  002c               L55:
+ 178                     ; 60 	buttonPressed = OK;
+ 180  002c 35030000      	mov	_buttonPressed,#3
+ 181                     ; 61 	return;
+ 184  0030 80            	iret
+ 207                     ; 64 @far @interrupt void EXTID3_IRQHandler(void)
+ 207                     ; 65 {
+ 208                     	switch	.text
+ 209  0031               f_EXTID3_IRQHandler:
+ 213                     ; 67 	if (EXTI->SR1 == 0x08) // && GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_3) == ON)
+ 215  0031 c650a3        	ld	a,20643
+ 216  0034 a108          	cp	a,#8
+ 217  0036 2604          	jrne	L76
+ 218                     ; 68 		EXTI->SR1 |= 0x08;
+ 220  0038 721650a3      	bset	20643,#3
+ 221  003c               L76:
+ 222                     ; 70 	buttonPressed = BACK;
+ 224  003c 35020000      	mov	_buttonPressed,#2
+ 225                     ; 71 	return;
+ 228  0040 80            	iret
+ 230                     .const:	section	.text
+ 231  0000               __vectab:
+ 232  0000 82            	dc.b	130
+ 234  0001 00            	dc.b	page(__stext)
+ 235  0002 0000          	dc.w	__stext
+ 236  0004 82            	dc.b	130
+ 238  0005 00            	dc.b	page(f_NonHandledInterrupt)
+ 239  0006 0000          	dc.w	f_NonHandledInterrupt
+ 240  0008 82            	dc.b	130
+ 242  0009 00            	dc.b	page(f_NonHandledInterrupt)
+ 243  000a 0000          	dc.w	f_NonHandledInterrupt
+ 244  000c 82            	dc.b	130
+ 246  000d 00            	dc.b	page(f_NonHandledInterrupt)
+ 247  000e 0000          	dc.w	f_NonHandledInterrupt
+ 248  0010 82            	dc.b	130
+ 250  0011 00            	dc.b	page(f_NonHandledInterrupt)
+ 251  0012 0000          	dc.w	f_NonHandledInterrupt
+ 252  0014 82            	dc.b	130
+ 254  0015 00            	dc.b	page(f_NonHandledInterrupt)
+ 255  0016 0000          	dc.w	f_NonHandledInterrupt
+ 256  0018 82            	dc.b	130
+ 258  0019 00            	dc.b	page(f_NonHandledInterrupt)
+ 259  001a 0000          	dc.w	f_NonHandledInterrupt
+ 260  001c 82            	dc.b	130
+ 262  001d 00            	dc.b	page(f_NonHandledInterrupt)
+ 263  001e 0000          	dc.w	f_NonHandledInterrupt
+ 264  0020 82            	dc.b	130
+ 266  0021 00            	dc.b	page(f_NonHandledInterrupt)
+ 267  0022 0000          	dc.w	f_NonHandledInterrupt
+ 268  0024 82            	dc.b	130
+ 270  0025 00            	dc.b	page(f_NonHandledInterrupt)
+ 271  0026 0000          	dc.w	f_NonHandledInterrupt
+ 272  0028 82            	dc.b	130
+ 274  0029 00            	dc.b	page(f_NonHandledInterrupt)
+ 275  002a 0000          	dc.w	f_NonHandledInterrupt
+ 276  002c 82            	dc.b	130
+ 278  002d 11            	dc.b	page(f_EXTID1_IRQHandler)
+ 279  002e 0011          	dc.w	f_EXTID1_IRQHandler
+ 280  0030 82            	dc.b	130
+ 282  0031 21            	dc.b	page(f_EXTID2_IRQHandler)
+ 283  0032 0021          	dc.w	f_EXTID2_IRQHandler
+ 284  0034 82            	dc.b	130
+ 286  0035 31            	dc.b	page(f_EXTID3_IRQHandler)
+ 287  0036 0031          	dc.w	f_EXTID3_IRQHandler
+ 288  0038 82            	dc.b	130
+ 290  0039 01            	dc.b	page(f_EXTID4_IRQHandler)
+ 291  003a 0001          	dc.w	f_EXTID4_IRQHandler
+ 292  003c 82            	dc.b	130
+ 294  003d 00            	dc.b	page(f_NonHandledInterrupt)
+ 295  003e 0000          	dc.w	f_NonHandledInterrupt
+ 296  0040 82            	dc.b	130
+ 298  0041 00            	dc.b	page(f_NonHandledInterrupt)
+ 299  0042 0000          	dc.w	f_NonHandledInterrupt
+ 300  0044 82            	dc.b	130
+ 302  0045 00            	dc.b	page(f_NonHandledInterrupt)
+ 303  0046 0000          	dc.w	f_NonHandledInterrupt
+ 304  0048 82            	dc.b	130
+ 306  0049 00            	dc.b	page(f_NonHandledInterrupt)
+ 307  004a 0000          	dc.w	f_NonHandledInterrupt
+ 308  004c 82            	dc.b	130
+ 310  004d 00            	dc.b	page(f_NonHandledInterrupt)
+ 311  004e 0000          	dc.w	f_NonHandledInterrupt
+ 312  0050 82            	dc.b	130
+ 314  0051 00            	dc.b	page(f_NonHandledInterrupt)
+ 315  0052 0000          	dc.w	f_NonHandledInterrupt
+ 316  0054 82            	dc.b	130
+ 318  0055 00            	dc.b	page(f_NonHandledInterrupt)
+ 319  0056 0000          	dc.w	f_NonHandledInterrupt
+ 320  0058 82            	dc.b	130
+ 322  0059 00            	dc.b	page(f_NonHandledInterrupt)
+ 323  005a 0000          	dc.w	f_NonHandledInterrupt
+ 324  005c 82            	dc.b	130
+ 326  005d 00            	dc.b	page(f_NonHandledInterrupt)
+ 327  005e 0000          	dc.w	f_NonHandledInterrupt
+ 328  0060 82            	dc.b	130
+ 330  0061 00            	dc.b	page(f_NonHandledInterrupt)
+ 331  0062 0000          	dc.w	f_NonHandledInterrupt
+ 332  0064 82            	dc.b	130
+ 334  0065 00            	dc.b	page(f_NonHandledInterrupt)
+ 335  0066 0000          	dc.w	f_NonHandledInterrupt
+ 336  0068 82            	dc.b	130
+ 338  0069 00            	dc.b	page(f_NonHandledInterrupt)
+ 339  006a 0000          	dc.w	f_NonHandledInterrupt
+ 340  006c 82            	dc.b	130
+ 342  006d 00            	dc.b	page(f_NonHandledInterrupt)
+ 343  006e 0000          	dc.w	f_NonHandledInterrupt
+ 344  0070 82            	dc.b	130
+ 346  0071 00            	dc.b	page(f_NonHandledInterrupt)
+ 347  0072 0000          	dc.w	f_NonHandledInterrupt
+ 348  0074 82            	dc.b	130
+ 350  0075 00            	dc.b	page(f_NonHandledInterrupt)
+ 351  0076 0000          	dc.w	f_NonHandledInterrupt
+ 352  0078 82            	dc.b	130
+ 354  0079 00            	dc.b	page(f_NonHandledInterrupt)
+ 355  007a 0000          	dc.w	f_NonHandledInterrupt
+ 356  007c 82            	dc.b	130
+ 358  007d 00            	dc.b	page(f_NonHandledInterrupt)
+ 359  007e 0000          	dc.w	f_NonHandledInterrupt
+ 410                     	xdef	__vectab
+ 411                     	xref	__stext
+ 412                     	xdef	f_EXTID3_IRQHandler
+ 413                     	xdef	f_EXTID2_IRQHandler
+ 414                     	xdef	f_EXTID1_IRQHandler
+ 415                     	xdef	f_EXTID4_IRQHandler
+ 416                     	xdef	f_NonHandledInterrupt
+ 417                     	xref.b	_buttonPressed
+ 436                     	end

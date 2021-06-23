@@ -2,7 +2,15 @@
     "files.associations": {
         "cstdint": "c",
         "stm8l15x_spi.h": "c",
+<<<<<<< HEAD
         "cstdio": "c"
     },
     "EIDE.SerialPortMonitor.BaudRate": 9600
+=======
+        "buttons.h": "c",
+        "stm8l15x_exti.h": "c",
+        "stm8l15x_itc.h": "c",
+        "stm8l15x_rtc.h": "c"
+    }
+>>>>>>> SPI
 }
