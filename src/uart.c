@@ -6,9 +6,8 @@
 #include <stm8l15x_usart.h>
 #include <stm8l15x_gpio.h>
 #include <uart.h>
-#include <stm8l15x_gpio.h>
 #include <stdio.h>
-#include <math.h>
+
 
 int welcome = 0; //counter to ensure uart only transmits welcome message once
 
@@ -77,6 +76,10 @@ void ftoa(float n, char* res, int afterpoint)
     // convert integer part to string
     int i = intToStr(ipart, res, 0);
   
+		//Counter for power of
+		int j;
+		int power = 1;
+		
     // check for display option after point
     if (afterpoint != 0) {
         res[i] = '.'; // add dot
@@ -84,7 +87,10 @@ void ftoa(float n, char* res, int afterpoint)
         // Get the value of fraction part upto given no.
         // of points after dot. The third parameter 
         // is needed to handle cases like 233.007
-        fpart = fpart * pow(10, afterpoint);
+				for (j = 0; j<= afterpoint; j++)
+					power = power * 10; 
+				
+        fpart = fpart * power;
   
         intToStr((int)fpart, res + i + 1, afterpoint);
     }
@@ -132,30 +138,34 @@ void UART_Poll(void)
 	}
 }
 
-void UART_2PC(uint16_t nbReadings, float readingResults[])
+void UART_2PC(uint16_t nbReadings, float tempResults[],float humResults[])
 {
 	BitStatus val; //cofirms on CBUS3 if USB-UART is awake
 	int i;
-	float n;
+	float t, h;
 	char readyuTx;
 	val = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0);
 	if (val == SET && welcome == 0)
 	{
 		printf("Welcome to the Greenhouse Datalogger\n");
+		printf("Transmitting Data...\n");
 		welcome++;
 	}
-	printf("Transmitting Data...\n");
+	
 	for (i = 0; i < nbReadings; i++)
 	{
-		n = readingResults[i];
-		UART_SendReading(n);
+		t = tempResults[i];
+		h = humResults[i];
+		UART_SendReading(t, h);
 	}
 }
 
-void UART_SendReading(float n)
+void UART_SendReading(float t, float h)
 {
 		//I2C Reads from EEPROM - stores temperature value in temporary float n
-		char buff[8];
-		ftoa(n, buff, 1);
-		printf("$%s;\n", buff);
+		char tempBuff[8];
+		char humBuff[8];
+		ftoa(t, tempBuff, 1);
+		ftoa(h, humBuff, 1);
+		printf("$%s %s;\n", tempBuff, humBuff);
 }
