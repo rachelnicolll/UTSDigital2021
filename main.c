@@ -8,6 +8,7 @@
 #include <LCD.h>
 #include <delay.h>
 #include <RTC.h>
+#include <uart.h>
 #include <buttons.h>
 #include <stm8l15x_gpio.h>
 #include <stm8l15x_clk.h>
@@ -18,6 +19,10 @@ const char pressMSG[] = "PRESSED ME!";
 const char settingMsg[] = "Editable!";
 const char sendDataMsg[] = "Plug me in!";
 bool editMode = FALSE;
+
+float tempResults[] = {21.2, 23.3, 24.1, 22.3, 22.5, 21.8, 28.7, 26.7};
+float humResults[] = {62.4, 62.3, 63.2, 61.3, 62.5, 61.8, 68.7, 66.7};
+float nbReadings = sizeof(tempResults)/sizeof(tempResults[0]);
 
 // HMI varables
 uint8_t buttonPressed;
@@ -50,26 +55,6 @@ void main(void)
 	CLK->PCKENR2 |= 0xff; // Enable clock to timer
 	CLK->PCKENR1 |= 0xff; // Enable all clocks
 
-	// Configure timer
-	// 1000 ticks per second
-	// TIM1->PSCRH = 0x3e; // 0011 1110
-	// TIM1->PSCRL = 0x80; // 0111 0000
-	// Enable timer
-	// TIM1->CR1 = TIM1_CR1_CEN;
-
-	// // Configure LED pins
-	// GPIOB->DDR |= 0x03;
-	// GPIOB->CR1 |= 0x03;
-
-	// Configure UART Pins
-	GPIOC->DDR = 0x08; // Put TX line on 0b0000 1000
-	GPIOC->CR1 = 0x08; // 0b0000 1000
-
-	// Enable and Configure UART
-	USART1->CR2 = USART_CR2_TEN;	  // Allow TX and RX
-	USART1->CR3 &= ~(USART_CR3_STOP); // 1 stop bit
-	USART1->BRR2 = 0x03;
-	USART1->BRR1 = 0x68; // 9600 baud
 
 	// Initialise spi
 	SPI_init();
@@ -79,6 +64,8 @@ void main(void)
 	BTN_init();
 	// Initialise LCD
 	LCD_init();
+	// Initialise USART
+	UART_init();
 	// Initialise HMI to first state
 	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
 	for (;;)
@@ -91,6 +78,13 @@ void main(void)
 			RTC_GetTime(RTC_Format_BIN, &SRTC_TimeRead);
 			//Read Date
 			RTC_GetDate(RTC_Format_BIN, &SRTC_DateRead);
+		}
+		
+		if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5))
+		{
+			//do uart things
+			UART_Poll();
+			UART_2PC(nbReadings, tempResults, humResults);
 		}
 		switch (HMIStatePtr->outState)
 		{
@@ -202,38 +196,5 @@ void main(void)
 			buttonPressed = NO;
 			break;
 		}
-
-		// Transmit data
-		// while (!(USART1->SR & USART_SR_TXE))
-		// 	;
-		// USART1->DR = 'A';
-
-		// Chip_select();
-		// {
-		// 	uint8_t i;
-		// 	for (i = 0xAA; i < 0xFA; i += 0x10)
-		// 		SPI_write(i);
-		// }
-		// If (state == 1)
-		// {
-		// 	LCD_clear();
-		// 	{
-		// 		int i;
-		// 		for (i = 0; i < sizeof(pressMSG) - 1; i++)
-		// 			LCD_putc(pressMSG[i]);
-		// 	}
-		// 	delay_ms(1000);
-		// 	state = FALSE;
-		// }
-
-		// SPI_write(0xFF);
-		// Chip_deselect();
-
-		// GPIOB->ODR &= ~0x01;
-		// If (clock() % 1000 <= 500)
-		// 	GPIOB->ODR |= 0x01;
-		// GPIOC->ODR &= 0x01;
-		// If (clock() % 2000 <= 1000)
-		// 	GPIOC->ODR |= 0x02;
 	}
 }
