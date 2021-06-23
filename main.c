@@ -2,8 +2,10 @@
 * UART Communication
 */
 #include <stdint.h>
-#include <stm8l15x.h>
 #include <stdio.h>
+#include "uart.h"
+#include "led_blink.h"
+#include "stm8l15x.h"
 #include <spi.h>
 #include <LCD.h>
 #include <delay.h>
@@ -18,28 +20,16 @@ const char pressMSG[] = "PRESSED ME!";
 const char settingMsg[] = "Editable!";
 const char sendDataMsg[] = "Plug me in!";
 bool editMode = FALSE;
+float tempResults[] = {21.2, 23.3, 24.1, 22.3, 22.5, 21.8, 28.7, 26.7};
+float humResults[] = {62.4, 62.3, 63.2, 61.3, 62.5, 61.8, 68.7, 66.7};
+float nbReadings = sizeof(tempResults)/sizeof(tempResults[0]);
 
-// HMI varables
-uint8_t buttonPressed;
-TState *HMIStatePtr;
-TState HMIFSM[6] =
-	{
-		{DISPLAY_DORMANT, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_WELCOME]},
-		{DISPLAY_WELCOME, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
-		{DISPLAY_HOME, &HMIFSM[DISPLAY_SETTINGS], &HMIFSM[DISPLAY_MIN_MAX]},
-		{DISPLAY_MIN_MAX, &HMIFSM[DISPLAY_HOME], &HMIFSM[DISPLAY_SETTINGS]},
-		{DISPLAY_SETTINGS, &HMIFSM[DISPLAY_MIN_MAX], &HMIFSM[DISPLAY_HOME]},
-		{DISPLAY_SEND_DATA, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SEND_DATA]},
-};
-
-// RTC variable declaration
-RTC_TimeTypeDef SRTC_TimeRead;
-RTC_DateTypeDef SRTC_DateRead;
+#define CS_PIN 1
 
 unsigned int clock(void)
 {
 	return ((unsigned int)(TIM1->CNTRH) << 8 | TIM1->CNTRL);
-}
+} 
 
 void main(void)
 {
@@ -81,7 +71,9 @@ void main(void)
 	LCD_init();
 	// Initialise HMI to first state
 	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
-	for (;;)
+	led_blink_init();
+	UART_init();
+	for(;;)
 	{
 		// get temp and humidity readings, pass them into flash and also lcd dispaly
 		// read time and date every 1 second
@@ -202,38 +194,8 @@ void main(void)
 			buttonPressed = NO;
 			break;
 		}
-
-		// Transmit data
-		// while (!(USART1->SR & USART_SR_TXE))
-		// 	;
-		// USART1->DR = 'A';
-
-		// Chip_select();
-		// {
-		// 	uint8_t i;
-		// 	for (i = 0xAA; i < 0xFA; i += 0x10)
-		// 		SPI_write(i);
-		// }
-		// If (state == 1)
-		// {
-		// 	LCD_clear();
-		// 	{
-		// 		int i;
-		// 		for (i = 0; i < sizeof(pressMSG) - 1; i++)
-		// 			LCD_putc(pressMSG[i]);
-		// 	}
-		// 	delay_ms(1000);
-		// 	state = FALSE;
-		// }
-
-		// SPI_write(0xFF);
-		// Chip_deselect();
-
-		// GPIOB->ODR &= ~0x01;
-		// If (clock() % 1000 <= 500)
-		// 	GPIOB->ODR |= 0x01;
-		// GPIOC->ODR &= 0x01;
-		// If (clock() % 2000 <= 1000)
-		// 	GPIOC->ODR |= 0x02;
+		//led_blink();
+		UART_Poll();
+		UART_2PC(nbReadings, tempResults, humResults);
 	}
 }
