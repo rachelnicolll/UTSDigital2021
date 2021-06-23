@@ -10,6 +10,7 @@ typedef void @far (*interrupt_handler_t)(void);
 
 extern bool state;
 extern uint8_t buttonPressed;
+
 struct interrupt_vector
 {
 	unsigned char interrupt_instruction;
@@ -23,6 +24,7 @@ struct interrupt_vector
 
 #define ON 1
 #define OFF 0
+
 @far @interrupt void NonHandledInterrupt(void)
 {
 	/* in order to detect unexpected events during development, 

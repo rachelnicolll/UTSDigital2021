@@ -18,15 +18,15 @@ void UART_init()
 	//Configure GPIO Pins
 	GPIOC->DDR |= 0x08;					 // Put TX line on (0b0000 1000)
 	GPIOC->CR1 |= 0x08;					 // USART Wakeup method (0b0000 1000)
-	GPIOB->DDR &= 0xfe;					 //ensure GPIOB pin 0 is input mode (0b1111 1110)
-	GPIOB->CR1 |= GPIO_Mode_In_FL_No_IT; //Set GPIO mode to be input floating, no external interrupt
+	// GPIOB->DDR &= 0xfe;					 //ensure GPIOB pin 0 is input mode (0b1111 1110)
+	// GPIOB->CR1 |= GPIO_Mode_In_FL_No_IT; //Set GPIO mode to be input floating, no external interrupt
 	//Configure UART Pins
 	USART1->CR2 |= USART_CR2_TEN | USART_CR2_REN;
 	USART1->CR3 &= ~(USART_CR3_STOP);					 // 1 stop bit (0b0011 0000)
 	USART1->BRR2 = 0x03;								 //setting
 	USART1->BRR1 = 0x68;								 // 9600 baud
-	//Initialise GPIOB Pin 0 to sense of the USB is plugged in or not. SLEEP#
-	GPIO_Init(GPIOB, GPIO_Pin_0, GPIO_Mode_In_FL_No_IT); 
+	//Initialise GPIOC Pin 5 to sense of the USB is plugged in or not. SLEEP#
+	GPIO_Init(GPIOC, GPIO_Pin_5, GPIO_Mode_In_FL_No_IT); 
 }
 
 // Reverses a string 'str' of length 'len'
@@ -144,7 +144,7 @@ void UART_2PC(uint16_t nbReadings, float tempResults[],float humResults[])
 	int i;
 	float t, h;
 	char readyuTx;
-	val = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0);
+	val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5);
 	if (val == SET && welcome == 0)
 	{
 		printf("Welcome to the Greenhouse Datalogger\n");

@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "uart.h"
-#include "led_blink.h"
 #include "stm8l15x.h"
 #include <spi.h>
 #include <LCD.h>
@@ -15,16 +14,32 @@
 #include <stm8l15x_clk.h>
 #include <stm8l15x_spi.h>
 
-const char op[] = "hehe!";
-const char pressMSG[] = "PRESSED ME!";
+
 const char settingMsg[] = "Editable!";
 const char sendDataMsg[] = "Plug me in!";
-bool editMode = FALSE;
+
 float tempResults[] = {21.2, 23.3, 24.1, 22.3, 22.5, 21.8, 28.7, 26.7};
 float humResults[] = {62.4, 62.3, 63.2, 61.3, 62.5, 61.8, 68.7, 66.7};
 float nbReadings = sizeof(tempResults)/sizeof(tempResults[0]);
 
-//int readingResults[] = {22, 2, 25, 22, 22, 22, 22, 2, 32, 22};
+// HMI varables
+bool editMode = FALSE;
+uint8_t buttonPressed;
+TState *HMIStatePtr;
+TState HMIFSM[6] =
+	{
+		{DISPLAY_DORMANT, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_WELCOME]},
+		{DISPLAY_WELCOME, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_HOME]},
+		{DISPLAY_HOME, &HMIFSM[DISPLAY_SETTINGS], &HMIFSM[DISPLAY_MIN_MAX]},
+		{DISPLAY_MIN_MAX, &HMIFSM[DISPLAY_HOME], &HMIFSM[DISPLAY_SETTINGS]},
+		{DISPLAY_SETTINGS, &HMIFSM[DISPLAY_MIN_MAX], &HMIFSM[DISPLAY_HOME]},
+		{DISPLAY_SEND_DATA, &HMIFSM[DISPLAY_DORMANT], &HMIFSM[DISPLAY_SEND_DATA]},
+};
+
+// RTC variable declaration
+RTC_TimeTypeDef SRTC_TimeRead;
+RTC_DateTypeDef SRTC_DateRead;
+
 unsigned int clock(void)
 {
 	return ((unsigned int)(TIM1->CNTRH) << 8 | TIM1->CNTRL);
@@ -34,31 +49,6 @@ void main(void)
 {
 	// Initialise local variables
 	uint8_t cursorPos = 0;
-
-	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
-	CLK->PCKENR2 |= 0xff; // Enable clock to timer
-	CLK->PCKENR1 |= 0xff; // Enable all clocks
-
-	// Configure timer
-	// 1000 ticks per second
-	// TIM1->PSCRH = 0x3e; // 0011 1110
-	// TIM1->PSCRL = 0x80; // 0111 0000
-	// Enable timer
-	// TIM1->CR1 = TIM1_CR1_CEN;
-
-	// // Configure LED pins
-	// GPIOB->DDR |= 0x03;
-	// GPIOB->CR1 |= 0x03;
-
-	// Configure UART Pins
-	GPIOC->DDR = 0x08; // Put TX line on 0b0000 1000
-	GPIOC->CR1 = 0x08; // 0b0000 1000
-
-	// Enable and Configure UART
-	USART1->CR2 = USART_CR2_TEN;	  // Allow TX and RX
-	USART1->CR3 &= ~(USART_CR3_STOP); // 1 stop bit
-	USART1->BRR2 = 0x03;
-	USART1->BRR1 = 0x68; // 9600 baud
 
 	// Initialise spi
 	SPI_init();
@@ -70,8 +60,9 @@ void main(void)
 	LCD_init();
 	// Initialise HMI to first state
 	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
-	led_blink_init();
-	UART_init();
+	// Initialise UART
+	// UART_init();
+	
 	for(;;)
 	{
 		// get temp and humidity readings, pass them into flash and also lcd dispaly
@@ -194,7 +185,7 @@ void main(void)
 			break;
 		}
 		//led_blink();
-		UART_Poll();
-		UART_2PC(nbReadings, tempResults, humResults);
+		// UART_Poll();
+		// UART_2PC(nbReadings, tempResults, humResults);
 	}
 }

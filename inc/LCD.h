@@ -3,6 +3,11 @@
 
 #include <stdint.h>
 #include <stm8l15x_conf.h>
+#include <LCD_config.h>
+
+#include <string.h>
+#include <stdio.h>
+
 
 #define TOP_SCREEN 0
 #define BOTTOM_SCREEN 5
@@ -57,4 +62,5 @@ void LCD_menu();
 void LCD_display_settings();
 
 void LCD_draw_logo(const unsigned char *logo);
+
 #endif /* LCD_H */

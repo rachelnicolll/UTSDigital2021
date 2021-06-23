@@ -13,7 +13,7 @@
 /*
  * LCD connection:
  *
- * 1 RST -> PB4
+ * 1 RST -> PB0
  * 2 CE  -> PB3
  * 3 DC  -> PB2
  * 4 DIN -> PA3
