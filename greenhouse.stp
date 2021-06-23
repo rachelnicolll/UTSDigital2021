@@ -61,7 +61,7 @@ String.100.2=STM8 Cosmic
 String.100.3=ST7 Metrowerks V1.1
 String.100.4=Raisonance
 String.101.0=STM8 Cosmic
-String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers
+String.102.0=C:\Program Files (x86)\COSMIC
 String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
@@ -77,8 +77,8 @@ String.103.0=.\;src;inc;
 
 [Root.Config.0.Settings.2]
 String.2.0=
-String.6.0=2021,6,13,21,27,16
-String.100.0=STM8L151K6
+String.6.0=2021,6,23,9,33,9
+String.100.0=STM8L152C6
 
 [Root.Config.0.Settings.3]
 String.2.0=Compiling $(InputFile)...
@@ -101,22 +101,22 @@ String.8.0=
 
 [Root.Config.0.Settings.6]
 String.2.0=Running Linker
-String.3.0=clnk -customMapFile -customMapFile-m $(OutputPath)$(TargetSName).map -fakeRunConv  -fakeInteger  -fakeSemiAutoGen  $(ToolsetLibOpts)  -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c    -fakeStartupcrtsi0.sm8 
+String.3.0=clnk -customMapFile -customMapFile-m $(OutputPath)$(TargetSName).map -fakeRunConv -fakeInteger -fakeSemiAutoGen $(ToolsetLibOpts) -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c -fakeStartupcrtsi0.sm8 
 String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
 String.4.0=$(OutputPath)$(TargetFName)
 String.5.0=$(OutputPath)$(TargetSName).map $(OutputPath)$(TargetSName).st7 $(OutputPath)$(TargetSName).s19
-String.6.0=2021,6,13,21,27,16
+String.6.0=2021,6,23,9,33,9
 String.100.0=
 String.101.0=crtsi.st7
-String.102.0=+seg .const -b 0x8080 -m 0x7f80  -n .const -it 
-String.102.1=+seg .text -a .const  -n .text 
-String.102.2=+seg .eeprom -b 0x1000 -m 0x400  -n .eeprom 
-String.102.3=+seg .bsct -b 0x0 -m 0x100  -n .bsct 
-String.102.4=+seg .ubsct -a .bsct  -n .ubsct 
-String.102.5=+seg .bit -a .ubsct  -n .bit -id 
-String.102.6=+seg .share -a .bit  -n .share -is 
-String.102.7=+seg .data -b 0x100 -m 0x4ff  -n .data 
-String.102.8=+seg .bss -a .data  -n .bss 
+String.102.0=+seg .const -b 0x8080 -m 0x7f80 -n .const -it 
+String.102.1=+seg .text -a .const -n .text 
+String.102.2=+seg .eeprom -b 0x1000 -m 0x400 -n .eeprom 
+String.102.3=+seg .bsct -b 0x0 -m 0x100 -n .bsct 
+String.102.4=+seg .ubsct -a .bsct -n .ubsct 
+String.102.5=+seg .bit -a .ubsct -n .bit -id 
+String.102.6=+seg .share -a .bit -n .share -is 
+String.102.7=+seg .data -b 0x100 -m 0x4ff -n .data 
+String.102.8=+seg .bss -a .data -n .bss
 String.103.0=Code,Constants[0x8080-0xffff]=.const,.text
 String.103.1=Eeprom[0x1000-0x13ff]=.eeprom
 String.103.2=Zero Page[0x0-0xff]=.bsct,.ubsct,.bit,.share
@@ -142,7 +142,7 @@ String.100.2=STM8 Cosmic
 String.100.3=ST7 Metrowerks V1.1
 String.100.4=Raisonance
 String.101.0=STM8 Cosmic
-String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers
+String.102.0=C:\Program Files (x86)\COSMIC
 String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
@@ -158,12 +158,12 @@ String.103.0=.\;src;inc;
 
 [Root.Config.1.Settings.2]
 String.2.0=
-String.6.0=2021,6,13,21,27,16
-String.100.0=STM8L151K6
+String.6.0=2021,6,23,9,33,9
+String.100.0=STM8L152C6
 
 [Root.Config.1.Settings.3]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -iinc  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -iinc +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2021,6,13,21,27,16
@@ -181,21 +181,21 @@ String.6.0=2021,6,13,21,27,16
 
 [Root.Config.1.Settings.6]
 String.2.0=Running Linker
-String.3.0=clnk -fakeRunConv  -fakeInteger  -fakeSemiAutoGen  $(ToolsetLibOpts)  -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c    -fakeStartupcrtsi0.sm8 
+String.3.0=clnk -fakeRunConv -fakeInteger -fakeSemiAutoGen $(ToolsetLibOpts) -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c -fakeStartupcrtsi0.sm8 
 String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
 String.4.0=$(OutputPath)$(TargetFName)
 String.5.0=$(OutputPath)$(TargetSName).map $(OutputPath)$(TargetSName).st7 $(OutputPath)$(TargetSName).s19
-String.6.0=2021,6,13,21,27,16
+String.6.0=2021,6,23,9,33,9
 String.101.0=crtsi.st7
-String.102.0=+seg .const -b 0x8080 -m 0x7f80  -n .const -it 
-String.102.1=+seg .text -a .const  -n .text 
-String.102.2=+seg .eeprom -b 0x1000 -m 0x400  -n .eeprom 
-String.102.3=+seg .bsct -b 0x0 -m 0x100  -n .bsct 
-String.102.4=+seg .ubsct -a .bsct  -n .ubsct 
-String.102.5=+seg .bit -a .ubsct  -n .bit -id 
-String.102.6=+seg .share -a .bit  -n .share -is 
-String.102.7=+seg .data -b 0x100 -m 0x4ff  -n .data 
-String.102.8=+seg .bss -a .data  -n .bss 
+String.102.0=+seg .const -b 0x8080 -m 0x7f80 -n .const -it 
+String.102.1=+seg .text -a .const -n .text 
+String.102.2=+seg .eeprom -b 0x1000 -m 0x400 -n .eeprom 
+String.102.3=+seg .bsct -b 0x0 -m 0x100 -n .bsct 
+String.102.4=+seg .ubsct -a .bsct -n .ubsct 
+String.102.5=+seg .bit -a .ubsct -n .bit -id 
+String.102.6=+seg .share -a .bit -n .share -is 
+String.102.7=+seg .data -b 0x100 -m 0x4ff -n .data 
+String.102.8=+seg .bss -a .data -n .bss
 String.103.0=Code,Constants[0x8080-0xffff]=.const,.text
 String.103.1=Eeprom[0x1000-0x13ff]=.eeprom
 String.103.2=Zero Page[0x0-0xff]=.bsct,.ubsct,.bit,.share
@@ -216,7 +216,7 @@ String.6.0=2021,6,13,21,27,16
 [Root.Source Files]
 ElemType=Folder
 PathName=Source Files
-Child=Root.Source Files.main.c
+Child=Root.Source Files.src\file.c
 Next=Root.Include Files
 Config.0=Root.Source Files.Config.0
 Config.1=Root.Source Files.Config.1
@@ -268,7 +268,7 @@ Int.1=0
 
 [Root.Source Files.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -iinc  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -iinc +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2021,6,13,21,27,16
@@ -286,6 +286,26 @@ String.3.0=
 String.4.0=
 String.5.0=
 String.6.0=2021,6,13,21,27,16
+
+[Root.Source Files.src\file.c]
+ElemType=File
+PathName=src\file.c
+Next=Root.Source Files.src\uart.c
+
+[Root.Source Files.src\uart.c]
+ElemType=File
+PathName=src\uart.c
+Next=Root.Source Files.src\led_blink.c
+
+[Root.Source Files.src\led_blink.c]
+ElemType=File
+PathName=src\led_blink.c
+Next=Root.Source Files.src\fifo.c
+
+[Root.Source Files.src\fifo.c]
+ElemType=File
+PathName=src\fifo.c
+Next=Root.Source Files.main.c
 
 [Root.Source Files.main.c]
 ElemType=File
@@ -454,7 +474,7 @@ PathName=stm8_interrupt_vector.c
 [Root.Include Files]
 ElemType=Folder
 PathName=Include Files
-Child=Root.Include Files.inc\delay.h
+Child=Root.Include Files.inc\file.h
 Config.0=Root.Include Files.Config.0
 Config.1=Root.Include Files.Config.1
 
@@ -505,7 +525,7 @@ Int.1=0
 
 [Root.Include Files.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -iinc  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -iinc +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2021,6,13,21,27,16
@@ -523,6 +543,26 @@ String.3.0=
 String.4.0=
 String.5.0=
 String.6.0=2021,6,13,21,27,16
+
+[Root.Include Files.inc\file.h]
+ElemType=File
+PathName=inc\file.h
+Next=Root.Include Files.inc\uart.h
+
+[Root.Include Files.inc\uart.h]
+ElemType=File
+PathName=inc\uart.h
+Next=Root.Include Files.inc\led_blink.h
+
+[Root.Include Files.inc\led_blink.h]
+ElemType=File
+PathName=inc\led_blink.h
+Next=Root.Include Files.inc\fifo.h
+
+[Root.Include Files.inc\fifo.h]
+ElemType=File
+PathName=inc\fifo.h
+Next=Root.Include Files.inc\delay.h
 
 [Root.Include Files.inc\delay.h]
 ElemType=File

@@ -50,6 +50,10 @@ crtsi0.sm8
 
 # Object files list - section reserved for STVD
 #<BEGIN OBJECT_FILES>
+Debug\file.o
+Debug\uart.o
+Debug\led_blink.o
+Debug\fifo.o
 Debug\main.o
 Debug\delay.o
 Debug\lcd.o

@@ -557,7 +557,7 @@ Note:
   */
 
 /**
-  * @brief  Enables or disables the USART’s Half Duplex communication.
+  * @brief  Enables or disables the USARTï¿½s Half Duplex communication.
   * @param  USARTx: where x can be 1 to select the specified USART peripheral.
   * @param  NewState new state of the USART Communication.
     *         This parameter can be: ENABLE or DISABLE.
@@ -740,7 +740,7 @@ Note:
   */
 	
 /**
-  * @brief  Configures the USART’s IrDA interface.
+  * @brief  Configures the USARTï¿½s IrDA interface.
   * @param  USARTx: where x can be 1 to select the specified USART peripheral.
   * @param  USART_IrDAMode specifies the IrDA mode.
   *           This parameter can be one of the following values:
@@ -763,7 +763,7 @@ void USART_IrDAConfig(USART_TypeDef* USARTx, USART_IrDAMode_TypeDef USART_IrDAMo
 }
 
 /**
-  * @brief  Enables or disables the USART’s IrDA interface.
+  * @brief  Enables or disables the USARTï¿½s IrDA interface.
   * @param  USARTx: where x can be 1 to select the specified USART peripheral.
   * @param  NewState new state of the IrDA mode.
     *         This parameter can be: ENABLE or DISABLE.
@@ -1160,7 +1160,7 @@ ITStatus USART_GetITStatus(USART_TypeDef* USARTx, USART_IT_TypeDef USART_IT)
 }
 
 /**
-  * @brief  Clears the USARTx’s interrupt pending bits.
+  * @brief  Clears the USARTxï¿½s interrupt pending bits.
   * @param  USARTx: where x can be 1 to select the specified USART peripheral.
   * @param  USART_IT: specifies the interrupt pending bit to clear.
   *         This parameter can be one of the following values:
