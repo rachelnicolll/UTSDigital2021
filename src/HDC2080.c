@@ -111,7 +111,7 @@ uint16_t HDC2080_humRead(HDC2080_Handle sensor)
  */
 float HDC2080_humToFloatRelative(uint16_t x)
 {
-    return ((float)x * (100.0f / 65536.0f));
+    return ((float)x * (100.0 / 65536.0));
 }
 
 /*

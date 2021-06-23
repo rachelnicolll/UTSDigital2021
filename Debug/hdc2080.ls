@@ -288,7 +288,7 @@
  816                     ; 113 {
  817                     	switch	.text
  818  0190               _HDC2080_humToFloatRelative:
- 822                     ; 114     return ((float)x * (100.0f / 65536.0f));
+ 822                     ; 114     return ((float)x * (100.0 / 65536.0));
  824  0190 cd0000        	call	c_uitof
  826  0193 ae001c        	ldw	x,#L572
  827  0196 cd0000        	call	c_fmul

@@ -4,8 +4,8 @@ DumpRWOnFly2=0
 DumpRWOnFly3=0
 DumpRWOnFly4=0
 <<<<<<< HEAD
-WatchVariables1=ReadingResult!0;TempReadingResult!0;HumReadingResult!0;
-FormatWatch1=0
+WatchVariables1=ReadingResult!3;TempReadingResult!3;HumReadingResult!3;TempIntResult!3;HumIntResult!3;rxBuf!3;dataToRead!3;rxBuf[1]!3;
+FormatWatch1=3
 =======
 WatchVariables1=dataToRead!2;tmp!2;ReadingResult!2;flag1!2;flag2!2;I2C_Event!2;lastevent!2;numReadBytes!2;
 FormatWatch1=2
