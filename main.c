@@ -15,8 +15,10 @@
 
 const HDC2080_Handle HDC2080 = &HDC2080_state;
 
-uint16_t RawResult;
-float ReadingResult;
+uint16_t TempRawResult;
+float TempReadingResult;
+uint16_t HumRawResult;
+float HumReadingResult;
 
 void main(void)
 {
@@ -32,8 +34,11 @@ void main(void)
 	delay_ms(4);
 	for(;;)
 	{
-		RawResult = HDC2080_tempRead(HDC2080);
-		ReadingResult = HDC2080_tempToFloatCelsius(RawResult);	
-		delay_ms(1000);
+		TempRawResult = HDC2080_tempRead(HDC2080);
+		TempReadingResult = HDC2080_tempToFloatCelsius(TempRawResult);	
+		delay_ms(5000);
+		HumRawResult = HDC2080_humRead(HDC2080);
+		HumReadingResult = HDC2080_humToFloatRelative(HumRawResult);
+		delay_ms(5000);		
 	}
 }

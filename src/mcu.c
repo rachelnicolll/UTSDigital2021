@@ -6,11 +6,9 @@
 #include <stm8l15x_conf.h>
 #include <mcu.h>
 #include <delay.h>
-#include <HDC2080.h>
 
 #define OUTPUT_CLOCK_FREQ_I2C 50000UL
-uint8_t SensorAddr = 0x80; // (0 - write), (1 - read)
-int errCnt = 0;
+
 /*
  *  Include MCU Specific Header Files Here
  */
@@ -33,8 +31,8 @@ void mcu_i2cInit(uint8_t busId)
     I2C_Cmd(I2C1, ENABLE);
 
     //Initialise I2C GPIO
-    GPIO_Init(GPIOC, GPIO_Pin_0, GPIO_Mode_Out_OD_HiZ_Slow);
-    GPIO_Init(GPIOC, GPIO_Pin_1, GPIO_Mode_Out_OD_HiZ_Slow);
+    GPIO_Init(GPIOC, GPIO_Pin_0, GPIO_Mode_Out_OD_HiZ_Fast);
+    GPIO_Init(GPIOC, GPIO_Pin_1, GPIO_Mode_Out_OD_HiZ_Fast);
 
     I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY);
     I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT);
@@ -75,26 +73,13 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
 
         //I2C1->CR2 |= I2C_CR2_SWRST;
         while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY))
-        {
-            errCnt++;
-            if (errCnt == 50)
-            {
-                mcu_errorHandle();
-                errCnt = 0;
-            }
-        }
+            ;
 
         I2C_GenerateSTART(I2C1, ENABLE);
 
         // poll SB
         while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
-        {
-            if (errCnt == 50)
-            {
-                mcu_errorHandle();
-                errCnt = 0;
-            }
-        }
+            ;
 
         // Wait til START condition is correctly released
 
@@ -103,14 +88,7 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
 
         // Then the master has to wait that a slave acknowledges his address.
         while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
-        {
-            errCnt++;
-            if (errCnt == 50)
-            {
-                mcu_errorHandle();
-                errCnt = 0;
-            }
-        }
+            ;
 
         //start loop
         while (numWriteBytes)
@@ -120,14 +98,7 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
 
             //successfully transmitted
             while (I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED) != SUCCESS)
-            {
-                errCnt++;
-                if (errCnt == 50)
-                {
-                    mcu_errorHandle();
-                    errCnt = 0;
-                }
-            }
+                ;
 
             numWriteBytes--;
             dataToWrite++;
@@ -152,6 +123,7 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
         // check master mode sleected
         while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
             ;
+
         // send address
         I2C_Send7bitAddress(I2C1, slaveDevAddr, I2C_Direction_Receiver);
 
@@ -168,15 +140,15 @@ int8_t mcu_i2cTransfer(uint8_t busId, uint8_t i2cAddr,
             while (numReadBytes-- > 1)
             {
                 I2C1->CR2 |= I2C_CR2_ACK;
-                while (!(I2C1->SR1 & I2C_SR1_RXNE));
-                *(dataToRead++) = I2C1->DR;
+                while (!(I2C1->SR1 & (I2C_SR1_RXNE | I2C_SR1_BTF)));
+                *(dataToRead++) = (uint8_t) I2C1->DR;
             }
 
             I2C1->CR2 &=~ I2C_CR2_ACK;
             I2C_GenerateSTOP(I2C1, ENABLE);
                     while (I2C_GetFlagStatus(I2C1, I2C_FLAG_STOPF))
             ;
-            *(dataToRead) = I2C1->DR;
+            *(dataToRead) = (uint8_t) I2C1->DR;
 
             //--
             // while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED | I2C_FLAG_BTF))
@@ -243,17 +215,3 @@ void mcu_msWait(unsigned long msWait)
     delay_ms(msWait);
 }
 /********* MCU SPECIFIC DELAY CODE ENDS HERE************/
-
-void mcu_errorHandle()
-{
-    I2C_Cmd(I2C1, DISABLE);
-    CLK_PeripheralClockConfig(CLK_PCKENR1_I2C1, DISABLE);
-    //Initialise I2C GPIO
-    GPIO_Init(GPIOC, GPIO_Pin_1, GPIO_Mode_In_FL_No_IT);
-    CLK_PeripheralClockConfig(CLK_PCKENR1_I2C1, ENABLE);
-		I2C_Init(I2C1, OUTPUT_CLOCK_FREQ_I2C, 0xFE, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
-
-    GPIO_Init(GPIOC, GPIO_Pin_0, GPIO_Mode_Out_OD_HiZ_Slow);
-    GPIO_Init(GPIOC, GPIO_Pin_1, GPIO_Mode_Out_OD_HiZ_Slow);
-
-}
