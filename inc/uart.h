@@ -26,7 +26,7 @@ unsigned char UART_RX(void);
 
 void UART_Poll(void);
 
-void UART_2PC(uint16_t nbReadings, float tempBuff[], float humBuff[]);
+void UART_2PC(float tempResults, float humResults);
 
 /*_Bool UART_InChar(uint8_t *const dataPtr);
 

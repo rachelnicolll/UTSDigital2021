@@ -30,7 +30,7 @@ typedef struct State
 
 //FSM for the HMI
 extern TState* HMIStatePtr;
-extern TState HMIFSM[6];
+extern TState HMIFSM[5];
 
 
 /*

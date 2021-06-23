@@ -73,7 +73,7 @@ LCD_showtime(RTC_TimeTypeDef STime)
     LCD_writemsg(displayTime, i + 1, 45, 0);
 }
 
-void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, uint8_t temperature, uint8_t humidity)
+void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, int32_t temperature, int32_t humidity)
 {
 
     char tempMsg[30];
@@ -85,7 +85,7 @@ void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, uint8_t temper
     LCD_showtime(STime);
 
     LCD_writemsg(tempMsg, i + 1, 0, 2);
-    LCD_writemsg(humMsg, i + 1, 0, 3);
+    LCD_writemsg(humMsg, j + 1, 0, 3);
 }
 
 void LCD_menu()
