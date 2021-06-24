@@ -28,6 +28,8 @@ void UART_Poll(void);
 
 void UART_2PC(float tempResults, float humResults);
 
+void UART_SendReading(float t, float h);
+
 /*_Bool UART_InChar(uint8_t *const dataPtr);
 
 _Bool UART_OutChar(const uint8_t data);*/

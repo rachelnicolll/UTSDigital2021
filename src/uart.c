@@ -150,8 +150,6 @@ void UART_2PC(float tempResults, float humResults)
 		printf("Transmitting Data...\n");
 		welcome++;
 	}
-
-	UART_SendReading(tempResults, humResults);
 }
 
 void UART_SendReading(float t, float h)
@@ -162,4 +160,6 @@ void UART_SendReading(float t, float h)
 	ftoa(t, tempBuff, 1);
 	ftoa(h, humBuff, 1);
 	printf("$%s %s;\n", tempBuff, humBuff);
+	// printf("$%d %d;\n", t, h);
+	
 }

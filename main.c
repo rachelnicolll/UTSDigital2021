@@ -15,11 +15,12 @@
 #include <stm8l15x_gpio.h>
 #include <stm8l15x_clk.h>
 #include <stm8l15x_spi.h>
+#include <EEPROM.h>
 
 const char settingMsg[] = "Editable!";
 
 bool editMode = FALSE;
-
+bool FINISH_READ_FLAG = FALSE;
 float tempResults = 21.2;
 float humResults = 66.7;
 
@@ -42,13 +43,16 @@ RTC_DateTypeDef SRTC_DateRead;
 // Temp reading
 const HDC2080_Handle HDC2080 = &HDC2080_state;
 
+//EEPROM Struct
+//EEPROM_Data EEPROM_SREAD = &EEPROM_datax;
+
 uint16_t TempRawResult;
 float TempReadingResult;
 uint32_t TempIntResult;
 uint16_t HumRawResult;
 float HumReadingResult;
 uint32_t HumIntResult;
-
+bool LCD_Mode = TRUE;
 unsigned int clock(void)
 {
 	return ((unsigned int)(TIM1->CNTRH) << 8 | TIM1->CNTRL);
@@ -60,7 +64,9 @@ void main(void)
 	uint8_t cursorPos = 0;
 	bool toggleReading = TRUE;
 	uint8_t value = 5;
-	
+	uint8_t rxBuf[2] = {0};
+	uint8_t txBuf[2] = {0};
+
 	CLK->CKDIVR = 0x00;	  // Set the frequency to 16 MHz
 	CLK->PCKENR2 |= 0xff; // Enable clock to timer
 	CLK->PCKENR1 |= 0xff; // Enable all clocks
@@ -71,7 +77,7 @@ void main(void)
 	TIM1->PSCRL = 0x80; // 0111 0000
 	// Enable timer
 	TIM1->CR1 = TIM1_CR1_CEN;
-
+	disableInterrupts();
 	// Initailise sensor
 	delay_ms(4);
 	//mcu_i2cInit(0x00);
@@ -89,6 +95,7 @@ void main(void)
 	UART_init();
 	// Initialise HMI to first state
 	HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
+	enableInterrupts();
 
 	//Read Time
 	RTC_GetTime(RTC_Format_BIN, &SRTC_TimeRead);
@@ -104,8 +111,6 @@ void main(void)
 	HumRawResult = HDC2080_humRead(HDC2080);
 	HumReadingResult = HDC2080_humToFloatRelative(HumRawResult);
 	HumIntResult = HDC2080_humToIntRelative(HumRawResult);
-	//delay_ms(5000);
-	//mcu_i2cTransfer(0, 0x50, &value, 1, NULL, 0);
 	enableInterrupts();
 
 	for (;;)
@@ -128,81 +133,60 @@ void main(void)
 				TempIntResult = HDC2080_tempToIntCelsius(TempRawResult);
 				toggleReading = !toggleReading;
 			}
-			//delay_ms(5000);
 			else
 			{
-
 				HumRawResult = HDC2080_humRead(HDC2080);
 				HumReadingResult = HDC2080_humToFloatRelative(HumRawResult);
 				HumIntResult = HDC2080_humToIntRelative(HumRawResult);
 				toggleReading = !toggleReading;
 			}
-			// TempIntResult = 21;
-			//delay_ms(5000);
+			//EEPROM_writePage(TempIntResult, HumIntResult);
 			enableInterrupts();
+			// while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5))
+			// {
+			// 	if (FINISH_READ_FLAG == FALSE)
+			// 	{
+			// 		disableInterrupts();
+			// 		EEPROM_readPage();
+			// 		FINISH_READ_FLAG == TRUE;
+			// 		enableInterrupts();
+			// 	}
+			// }
+			// if (!GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5))
+			// 	FINISH_READ_FLAG = FALSE;
 		}
 
 		if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5))
 		{
-			//do uart things
-			UART_Poll();
-			UART_2PC(tempResults, humResults);
+			LCD_Mode = FALSE;
+			UART_SendReading(TempReadingResult, HumReadingResult);
 		}
+		else
+			LCD_Mode = TRUE;
 
-		switch (HMIStatePtr->outState)
+		if (LCD_Mode)
 		{
-		case DISPLAY_DORMANT:
-			LCD_clear();
-			// If button press, wake up
-			if (buttonPressed != 0)
+
+			switch (HMIStatePtr->outState)
+			{
+			case DISPLAY_DORMANT:
+				LCD_clear();
+				// If button press, wake up
+				if (buttonPressed != 0)
+					HMIStatePtr = HMIStatePtr->next;
+				buttonPressed = NO;
+				// Wake up
+				break;
+			case DISPLAY_WELCOME:
+				LCD_welcome();
 				HMIStatePtr = HMIStatePtr->next;
-			buttonPressed = NO;
-			// Wake up
-			break;
-		case DISPLAY_WELCOME:
-			LCD_welcome();
-			HMIStatePtr = HMIStatePtr->next;
-			// disable buttons?
-			break;
-		case DISPLAY_HOME:
+				// disable buttons?
+				break;
+			case DISPLAY_HOME:
 
-			// Showing temp and humidity and menu option
-			LCD_homescreen(SRTC_DateRead, SRTC_TimeRead, TempIntResult, HumIntResult);
-			// If button is pressed, increment cursor pos
-			if (buttonPressed == DOWN)
-			{
-				HMIStatePtr = HMIStatePtr->next;
-				LCD_clear();
-			}
-			else if (buttonPressed == UP)
-			{
-				HMIStatePtr = HMIStatePtr->previous;
-				LCD_clear();
-			}
-			buttonPressed = NO;
-			break;
-
-		case DISPLAY_MIN_MAX:
-			LCD_min_max(12, 14, 8, 90);
-			if (buttonPressed == DOWN)
-			{
-				HMIStatePtr = HMIStatePtr->next;
-				LCD_clear();
-			}
-			else if (buttonPressed == UP)
-			{
-				HMIStatePtr = HMIStatePtr->previous;
-				LCD_clear();
-			}
-
-			buttonPressed = NO;
-			break;
-		case DISPLAY_SETTINGS:
-			// Show settings to change frequency. Need to press ok to engage with screen
-
-			if (editMode == FALSE)
-			{
-				LCD_display_settings();
+				// Showing temp and humidity and menu option
+				LCD_homescreen(SRTC_DateRead, SRTC_TimeRead, TempIntResult, HumIntResult);
+				// If button is pressed, increment cursor pos
 				if (buttonPressed == DOWN)
 				{
 					HMIStatePtr = HMIStatePtr->next;
@@ -213,34 +197,69 @@ void main(void)
 					HMIStatePtr = HMIStatePtr->previous;
 					LCD_clear();
 				}
-				if (buttonPressed == OK)
-				{
-					editMode = !editMode;
-					LCD_clear();
-				}
-			}
-			else // Edit mode is true
-			{
-				// Configure settings
-				LCD_writemsg(settingMsg, sizeof(settingMsg), 20, 3);
+				buttonPressed = NO;
+				break;
 
+			case DISPLAY_MIN_MAX:
+				LCD_min_max(12, 14, 8, 90);
 				if (buttonPressed == DOWN)
 				{
-					// Decrement minutes
+					HMIStatePtr = HMIStatePtr->next;
+					LCD_clear();
 				}
 				else if (buttonPressed == UP)
 				{
-					// Increment minutes
-				}
-				if (buttonPressed == OK)
-				{
-					editMode = !editMode;
+					HMIStatePtr = HMIStatePtr->previous;
 					LCD_clear();
 				}
-			}
 
-			buttonPressed = NO;
-			break;
+				buttonPressed = NO;
+				break;
+			case DISPLAY_SETTINGS:
+				// Show settings to change frequency. Need to press ok to engage with screen
+
+				if (editMode == FALSE)
+				{
+					LCD_display_settings();
+					if (buttonPressed == DOWN)
+					{
+						HMIStatePtr = HMIStatePtr->next;
+						LCD_clear();
+					}
+					else if (buttonPressed == UP)
+					{
+						HMIStatePtr = HMIStatePtr->previous;
+						LCD_clear();
+					}
+					if (buttonPressed == OK)
+					{
+						editMode = !editMode;
+						LCD_clear();
+					}
+				}
+				else // Edit mode is true
+				{
+					// Configure settings
+					LCD_writemsg(settingMsg, sizeof(settingMsg), 20, 3);
+
+					if (buttonPressed == DOWN)
+					{
+						// Decrement minutes
+					}
+					else if (buttonPressed == UP)
+					{
+						// Increment minutes
+					}
+					if (buttonPressed == OK)
+					{
+						editMode = !editMode;
+						LCD_clear();
+					}
+				}
+
+				buttonPressed = NO;
+				break;
+			}
 		}
 	}
 }

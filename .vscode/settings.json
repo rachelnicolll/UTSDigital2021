@@ -6,6 +6,8 @@
         "stm8l15x_exti.h": "c",
         "stm8l15x_itc.h": "c",
         "stm8l15x_rtc.h": "c",
-        "lcd.h": "c"
+        "lcd.h": "c",
+        "2464.C": "cpp",
+        "stdint.h": "c"
     }
 }

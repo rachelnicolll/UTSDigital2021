@@ -324,126 +324,114 @@
  879                     ; 139 }
  882  01b1 84            	pop	a
  883  01b2 81            	ret
- 886                     	xref	_UART_SendReading
- 961                     ; 141 void UART_2PC(float tempResults, float humResults)
- 961                     ; 142 {
- 962                     	switch	.text
- 963  01b3               _UART_2PC:
- 965  01b3 88            	push	a
- 966       00000001      OFST:	set	1
- 969                     ; 146 	val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5);
- 971  01b4 4b20          	push	#32
- 972  01b6 ae500a        	ldw	x,#20490
- 973  01b9 cd0000        	call	_GPIO_ReadInputDataBit
- 975  01bc 5b01          	addw	sp,#1
- 976  01be 6b01          	ld	(OFST+0,sp),a
- 978                     ; 147 	if (val == SET && welcome == 0)
- 980  01c0 7b01          	ld	a,(OFST+0,sp)
- 981  01c2 a101          	cp	a,#1
- 982  01c4 2617          	jrne	L314
- 984  01c6 be00          	ldw	x,_welcome
- 985  01c8 2613          	jrne	L314
- 986                     ; 149 		printf("Welcome to the Greenhouse Datalogger\n");
- 988  01ca ae001f        	ldw	x,#L514
- 989  01cd cd0000        	call	_printf
- 991                     ; 150 		printf("Transmitting Data...\n");
- 993  01d0 ae0009        	ldw	x,#L714
- 994  01d3 cd0000        	call	_printf
- 996                     ; 151 		welcome++;
- 998  01d6 be00          	ldw	x,_welcome
- 999  01d8 1c0001        	addw	x,#1
-1000  01db bf00          	ldw	_welcome,x
-1001  01dd               L314:
-1002                     ; 154 	UART_SendReading(tempResults, humResults);
-1004  01dd 1e0a          	ldw	x,(OFST+9,sp)
-1005  01df 89            	pushw	x
-1006  01e0 1e0a          	ldw	x,(OFST+9,sp)
-1007  01e2 89            	pushw	x
-1008  01e3 1e0a          	ldw	x,(OFST+9,sp)
-1009  01e5 89            	pushw	x
-1010  01e6 1e0a          	ldw	x,(OFST+9,sp)
-1011  01e8 89            	pushw	x
-1012  01e9 ad04          	call	_UART_SendReading
-1014  01eb 5b08          	addw	sp,#8
-1015                     ; 155 }
-1018  01ed 84            	pop	a
-1019  01ee 81            	ret
-1084                     ; 157 void UART_SendReading(float t, float h)
-1084                     ; 158 {
-1085                     	switch	.text
-1086  01ef               _UART_SendReading:
-1088  01ef 5210          	subw	sp,#16
-1089       00000010      OFST:	set	16
-1092                     ; 162 	ftoa(t, tempBuff, 1);
-1094  01f1 ae0001        	ldw	x,#1
-1095  01f4 89            	pushw	x
-1096  01f5 96            	ldw	x,sp
-1097  01f6 1c0003        	addw	x,#OFST-13
-1098  01f9 89            	pushw	x
-1099  01fa 1e19          	ldw	x,(OFST+9,sp)
-1100  01fc 89            	pushw	x
-1101  01fd 1e19          	ldw	x,(OFST+9,sp)
-1102  01ff 89            	pushw	x
-1103  0200 cd00d1        	call	_ftoa
-1105  0203 5b08          	addw	sp,#8
-1106                     ; 163 	ftoa(h, humBuff, 1);
-1108  0205 ae0001        	ldw	x,#1
-1109  0208 89            	pushw	x
-1110  0209 96            	ldw	x,sp
-1111  020a 1c000b        	addw	x,#OFST-5
-1112  020d 89            	pushw	x
-1113  020e 1e1d          	ldw	x,(OFST+13,sp)
-1114  0210 89            	pushw	x
-1115  0211 1e1d          	ldw	x,(OFST+13,sp)
-1116  0213 89            	pushw	x
-1117  0214 cd00d1        	call	_ftoa
-1119  0217 5b08          	addw	sp,#8
-1120                     ; 164 	printf("$%s %s;\n", tempBuff, humBuff);
-1122  0219 96            	ldw	x,sp
-1123  021a 1c0009        	addw	x,#OFST-7
-1124  021d 89            	pushw	x
-1125  021e 96            	ldw	x,sp
-1126  021f 1c0003        	addw	x,#OFST-13
-1127  0222 89            	pushw	x
-1128  0223 ae0000        	ldw	x,#L354
-1129  0226 cd0000        	call	_printf
-1131  0229 5b04          	addw	sp,#4
-1132                     ; 165 }
-1135  022b 5b10          	addw	sp,#16
-1136  022d 81            	ret
-1160                     	xdef	_UART_SendReading
-1161                     	xdef	_welcome
-1162                     	xdef	_putchar
-1163                     	xref	_printf
-1164                     	xdef	_getchar
-1165                     	xdef	_UART_2PC
-1166                     	xdef	_UART_Poll
-1167                     	xdef	_UART_RX
-1168                     	xdef	_UART_TX
-1169                     	xdef	_ftoa
-1170                     	xdef	_intToStr
-1171                     	xdef	_reverse
-1172                     	xdef	_UART_init
-1173                     	xref	_GPIO_ReadInputDataBit
-1174                     	xref	_GPIO_Init
-1175                     .const:	section	.text
-1176  0000               L354:
-1177  0000 242573202573  	dc.b	"$%s %s;",10,0
-1178  0009               L714:
-1179  0009 5472616e736d  	dc.b	"Transmitting Data."
-1180  001b 2e2e0a00      	dc.b	"..",10,0
-1181  001f               L514:
-1182  001f 57656c636f6d  	dc.b	"Welcome to the Gre"
-1183  0031 656e686f7573  	dc.b	"enhouse Datalogger"
-1184  0043 0a00          	dc.b	10,0
-1185                     	xref.b	c_x
-1205                     	xref	c_fgmul
-1206                     	xref	c_bmulx
-1207                     	xref	c_fsub
-1208                     	xref	c_rtol
-1209                     	xref	c_itof
-1210                     	xref	c_ftoi
-1211                     	xref	c_ltor
-1212                     	xref	c_sdivx
-1213                     	xref	c_smodx
-1214                     	end
+ 950                     ; 141 void UART_2PC(float tempResults, float humResults)
+ 950                     ; 142 {
+ 951                     	switch	.text
+ 952  01b3               _UART_2PC:
+ 954  01b3 88            	push	a
+ 955       00000001      OFST:	set	1
+ 958                     ; 146 	val = GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5);
+ 960  01b4 4b20          	push	#32
+ 961  01b6 ae500a        	ldw	x,#20490
+ 962  01b9 cd0000        	call	_GPIO_ReadInputDataBit
+ 964  01bc 5b01          	addw	sp,#1
+ 965  01be 6b01          	ld	(OFST+0,sp),a
+ 967                     ; 147 	if (val == SET && welcome == 0)
+ 969  01c0 7b01          	ld	a,(OFST+0,sp)
+ 970  01c2 a101          	cp	a,#1
+ 971  01c4 2617          	jrne	L704
+ 973  01c6 be00          	ldw	x,_welcome
+ 974  01c8 2613          	jrne	L704
+ 975                     ; 149 		printf("Welcome to the Greenhouse Datalogger\n");
+ 977  01ca ae001f        	ldw	x,#L114
+ 978  01cd cd0000        	call	_printf
+ 980                     ; 150 		printf("Transmitting Data...\n");
+ 982  01d0 ae0009        	ldw	x,#L314
+ 983  01d3 cd0000        	call	_printf
+ 985                     ; 151 		welcome++;
+ 987  01d6 be00          	ldw	x,_welcome
+ 988  01d8 1c0001        	addw	x,#1
+ 989  01db bf00          	ldw	_welcome,x
+ 990  01dd               L704:
+ 991                     ; 153 }
+ 994  01dd 84            	pop	a
+ 995  01de 81            	ret
+1060                     ; 155 void UART_SendReading(float t, float h)
+1060                     ; 156 {
+1061                     	switch	.text
+1062  01df               _UART_SendReading:
+1064  01df 5210          	subw	sp,#16
+1065       00000010      OFST:	set	16
+1068                     ; 160 	ftoa(t, tempBuff, 1);
+1070  01e1 ae0001        	ldw	x,#1
+1071  01e4 89            	pushw	x
+1072  01e5 96            	ldw	x,sp
+1073  01e6 1c0003        	addw	x,#OFST-13
+1074  01e9 89            	pushw	x
+1075  01ea 1e19          	ldw	x,(OFST+9,sp)
+1076  01ec 89            	pushw	x
+1077  01ed 1e19          	ldw	x,(OFST+9,sp)
+1078  01ef 89            	pushw	x
+1079  01f0 cd00d1        	call	_ftoa
+1081  01f3 5b08          	addw	sp,#8
+1082                     ; 161 	ftoa(h, humBuff, 1);
+1084  01f5 ae0001        	ldw	x,#1
+1085  01f8 89            	pushw	x
+1086  01f9 96            	ldw	x,sp
+1087  01fa 1c000b        	addw	x,#OFST-5
+1088  01fd 89            	pushw	x
+1089  01fe 1e1d          	ldw	x,(OFST+13,sp)
+1090  0200 89            	pushw	x
+1091  0201 1e1d          	ldw	x,(OFST+13,sp)
+1092  0203 89            	pushw	x
+1093  0204 cd00d1        	call	_ftoa
+1095  0207 5b08          	addw	sp,#8
+1096                     ; 162 	printf("$%s %s;\n", tempBuff, humBuff);
+1098  0209 96            	ldw	x,sp
+1099  020a 1c0009        	addw	x,#OFST-7
+1100  020d 89            	pushw	x
+1101  020e 96            	ldw	x,sp
+1102  020f 1c0003        	addw	x,#OFST-13
+1103  0212 89            	pushw	x
+1104  0213 ae0000        	ldw	x,#L744
+1105  0216 cd0000        	call	_printf
+1107  0219 5b04          	addw	sp,#4
+1108                     ; 165 }
+1111  021b 5b10          	addw	sp,#16
+1112  021d 81            	ret
+1136                     	xdef	_welcome
+1137                     	xdef	_putchar
+1138                     	xref	_printf
+1139                     	xdef	_getchar
+1140                     	xdef	_UART_SendReading
+1141                     	xdef	_UART_2PC
+1142                     	xdef	_UART_Poll
+1143                     	xdef	_UART_RX
+1144                     	xdef	_UART_TX
+1145                     	xdef	_ftoa
+1146                     	xdef	_intToStr
+1147                     	xdef	_reverse
+1148                     	xdef	_UART_init
+1149                     	xref	_GPIO_ReadInputDataBit
+1150                     	xref	_GPIO_Init
+1151                     .const:	section	.text
+1152  0000               L744:
+1153  0000 242573202573  	dc.b	"$%s %s;",10,0
+1154  0009               L314:
+1155  0009 5472616e736d  	dc.b	"Transmitting Data."
+1156  001b 2e2e0a00      	dc.b	"..",10,0
+1157  001f               L114:
+1158  001f 57656c636f6d  	dc.b	"Welcome to the Gre"
+1159  0031 656e686f7573  	dc.b	"enhouse Datalogger"
+1160  0043 0a00          	dc.b	10,0
+1161                     	xref.b	c_x
+1181                     	xref	c_fgmul
+1182                     	xref	c_bmulx
+1183                     	xref	c_fsub
+1184                     	xref	c_rtol
+1185                     	xref	c_itof
+1186                     	xref	c_ftoi
+1187                     	xref	c_ltor
+1188                     	xref	c_sdivx
+1189                     	xref	c_smodx
+1190                     	end
