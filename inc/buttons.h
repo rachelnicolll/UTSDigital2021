@@ -16,9 +16,7 @@ typedef enum
   DISPLAY_DORMANT,
   DISPLAY_WELCOME,
   DISPLAY_HOME,
-  DISPLAY_MIN_MAX,
-  DISPLAY_SETTINGS,
-  DISPLAY_SEND_DATA 
+  DISPLAY_MIN_MAX
 } THMIDisplayStates;
 
 typedef struct State
@@ -30,7 +28,7 @@ typedef struct State
 
 //FSM for the HMI
 extern TState* HMIStatePtr;
-extern TState HMIFSM[5];
+extern TState HMIFSM[4];
 
 
 /*

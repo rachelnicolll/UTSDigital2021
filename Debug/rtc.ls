@@ -55,27 +55,27 @@
  147  002a cd0000        	call	_RTC_ExitInitMode
  149                     ; 49 }
  152  002d 81            	ret
- 381                     ; 54 void RTC_read_date(RTC_DateTypeDef* RTC_DateStruct)
- 381                     ; 55 {
+ 381                     ; 55 void RTC_read_date(RTC_DateTypeDef* RTC_DateStruct)
+ 381                     ; 56 {
  382                     	switch	.text
  383  002e               _RTC_read_date:
- 387                     ; 56     RTC_GetDate(RTC_Format_BIN, RTC_DateStruct);  
+ 387                     ; 57     RTC_GetDate(RTC_Format_BIN, RTC_DateStruct);  
  389  002e 89            	pushw	x
  390  002f 4f            	clr	a
  391  0030 cd0000        	call	_RTC_GetDate
  393  0033 85            	popw	x
- 394                     ; 57 }
+ 394                     ; 58 }
  397  0034 81            	ret
- 493                     ; 61 void RTC_read_time(RTC_TimeTypeDef* RTC_TimeStruct)
- 493                     ; 62 {
+ 493                     ; 62 void RTC_read_time(RTC_TimeTypeDef* RTC_TimeStruct)
+ 493                     ; 63 {
  494                     	switch	.text
  495  0035               _RTC_read_time:
- 499                     ; 63     RTC_GetTime(RTC_Format_BIN, RTC_TimeStruct);
+ 499                     ; 64     RTC_GetTime(RTC_Format_BIN, RTC_TimeStruct);
  501  0035 89            	pushw	x
  502  0036 4f            	clr	a
  503  0037 cd0000        	call	_RTC_GetTime
  505  003a 85            	popw	x
- 506                     ; 64 }
+ 506                     ; 65 }
  509  003b 81            	ret
  605                     	xdef	_RTC_read_time
  606                     	xdef	_RTC_read_date

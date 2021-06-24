@@ -35,24 +35,15 @@ extern void LCD_init()
     LCD_cmd(0x0C); // normal mode
 
     LCD_clear();
-    // LCD_welcome();
-    // LCD_homescreen("18", "70");
-    // 	LCD_clear();
-    // 	LCD_delay_ms(2000);
-    // 	LCD_menu();
-    // LCD_clear();
+
 }
 
 void LCD_welcome()
 {
     LCD_goto(0, 2);
-    // {
-    //     int i;
-    //     for (i = 0; i < sizeof(welcomeMSG) - 1; i++)
-    //         LCD_putc(welcomeMSG[i]);
-    // }
+    // draw leaf
     LCD_draw_logo(leaf_Bitmap);
-    LCD_delay_ms(3000);
+    LCD_delay_ms(2000);
     LCD_clear();
 }
 
@@ -101,39 +92,28 @@ void LCD_menu()
     LCD_writemsg(op3, sizeof(op3), 1, 3);
 }
 
-void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity)
+void LCD_min_max(float maxTemperature, float maxHumidity)
 {
     static char tempHeader[] = "Temperature";
     static char humidityHeader[] = "Humidity";
-    // static char minHeader[] = "Min: ";
-    // static char maxHeader[] = "Max: ";
 
-    char minTempMsg[30];
     char maxTempMsg[30];
-    char minHumMsg[30];
+ 
     char maxHumMsg[30];
-
-    int i = sprintf(minTempMsg, "Min: %02d", (int)minTemperature);
+  
     int j = sprintf(maxTempMsg, "Max: %02d", (int)maxTemperature);
-    int k = sprintf(minHumMsg, "Min: %02d", (int)minHumidity);
+
     int l = sprintf(maxHumMsg, "Max: %02d ", (int)maxHumidity);
 
     LCD_writemsg(tempHeader, sizeof(tempHeader), 20, 0);
-    LCD_writemsg(minTempMsg, i + 1, 1, 1);
-    LCD_writemsg(maxTempMsg, j + 1, 30, 1);
+
+    LCD_writemsg(maxTempMsg, j + 1, 22, 1);
 
     LCD_writemsg(humidityHeader, sizeof(humidityHeader), 20, 4);
-    LCD_writemsg(minHumMsg, k + 1, 1, 5);
-    LCD_writemsg(maxHumMsg, l + 1, 30, 5);
+
+    LCD_writemsg(maxHumMsg, l + 1, 22, 5);
 }
 
-void LCD_display_settings()
-{
-    static char settingsHeader[] = "Press OK";
-    static char settingsHeader2[] = "to change settings";
-    LCD_writemsg(settingsHeader, sizeof(settingsHeader), 20, 1);
-    LCD_writemsg(settingsHeader2, sizeof(settingsHeader2), 10, 2);
-}
 
 void LCD_cmd(uint8_t cmd)
 {

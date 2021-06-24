@@ -176,6 +176,15 @@ static HDC2080_State HDC2080_state = {
     3
 };
 
+typedef struct
+{
+
+    uint8_t tempMax; /*!< Daily maximum*/
+
+    uint8_t humMax; /*!< Daily maximum */
+    
+} HDC2080_MaxReading;
+
 /*
  *  ======== HDC2080_Handle ========
  *  First argument to all HDC2080 methods
@@ -315,6 +324,12 @@ extern int32_t HDC2080_tempToIntCelsius(uint16_t raw);
  *              of milli-degrees Celsius
  */
 extern int32_t HDC2080_tempToMilliCelsius(uint16_t raw);
+
+/*
+ *  ======== HDC2080_tempRead ========
+ *  Read temperature register
+ */
+HDC2080_MaxReading HDC2080_maxReads(HDC2080_Handle sensor);
 
 /* support C++ sources */
 #ifdef __cplusplus
