@@ -19,12 +19,10 @@
 
 const char settingMsg[] = "Editable!";
 
-bool editMode = FALSE;
 bool FINISH_READ_FLAG = FALSE;
 float tempResults = 21.2;
 float humResults = 66.7;
 
-const char settingMsg[] = "Editable!";
 // HMI varables
 HDC2080_MaxReading MaxReadings;
 uint8_t buttonPressed;
@@ -171,65 +169,71 @@ void main(void)
 			LCD_Mode = TRUE;
 
 		if (LCD_Mode)
-		// DISPLAY CONTROLLER - if statechanged == TRUE, update display
-
-		if (buttonPressed == BACK)
 		{
-			LCD_clear();
-			LCD_writemsg("Sleeping...", sizeof("Sleeping..."), 10, 3);
-			HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
-			buttonPressed = NO;
-		}
+			// DISPLAY CONTROLLER - if statechanged == TRUE, update display
 
-		switch (HMIStatePtr->outState)
-		{
-		case DISPLAY_DORMANT:
-			LCD_clear();
-			// If button press, wake up
-			if (buttonPressed != 0)
-				HMIStatePtr = HMIStatePtr->next;
-			buttonPressed = NO;
-			// Wake up
-			break;
+			if (buttonPressed == BACK)
+			{
+				LCD_clear();
+				LCD_writemsg("Sleeping...", sizeof("Sleeping..."), 10, 3);
+				HMIStatePtr = &HMIFSM[DISPLAY_DORMANT];
+				buttonPressed = NO;
+			}
 
-		case DISPLAY_WELCOME:
-			LCD_welcome();
-			HMIStatePtr = HMIStatePtr->next;
-			// disable buttons?
-			break;
-
-		case DISPLAY_HOME:
-			// Showing temp and humidity and menu option
-			LCD_homescreen(SRTC_DateRead, SRTC_TimeRead, TempIntResult, HumIntResult);
-			// If button is pressed, increment cursor pos
-			if (buttonPressed == DOWN)
+			switch (HMIStatePtr->outState)
 			{
 			case DISPLAY_DORMANT:
 				LCD_clear();
-			}
-			else if (buttonPressed == UP)
-			{
-				HMIStatePtr = HMIStatePtr->previous;
-				LCD_clear();
-			}
-			buttonPressed = NO;
-			break;
+				// If button press, wake up
+				if (buttonPressed != 0)
+					HMIStatePtr = HMIStatePtr->next;
+				buttonPressed = NO;
+				// Wake up
+				break;
 
-		case DISPLAY_MIN_MAX:
-			//get max
-			MaxReadings = HDC2080_maxReads(HDC2080);
-			LCD_min_max(HDC2080_tempToFloatCelsius((uint16_t)maxReadings.tempMax), HDC2080_humToIntRelative((uint16_t)maxReadings.humMax));
-
-			if (buttonPressed == DOWN)
-			{
+			case DISPLAY_WELCOME:
+				LCD_welcome();
 				HMIStatePtr = HMIStatePtr->next;
 				// disable buttons?
 				break;
+
 			case DISPLAY_HOME:
+				// Showing temp and humidity and menu option
+				LCD_homescreen(SRTC_DateRead, SRTC_TimeRead, TempIntResult, HumIntResult);
+				// If button is pressed, increment cursor pos
+				if (buttonPressed == DOWN)
+				{
+					HMIStatePtr = HMIStatePtr->next;
+					LCD_clear();
+				}
+				else if (buttonPressed == UP)
+				{
+					HMIStatePtr = HMIStatePtr->previous;
+					LCD_clear();
+				}
+				buttonPressed = NO;
+				break;
 
-			buttonPressed = NO;
+			case DISPLAY_MIN_MAX:
+				//get max
+				MaxReadings = HDC2080_maxReads(HDC2080);
+				LCD_min_max(HDC2080_tempToFloatCelsius((uint16_t)maxReadings.tempMax), HDC2080_humToIntRelative((uint16_t)maxReadings.humMax));
 
-			break;
+				if (buttonPressed == DOWN)
+				{
+					HMIStatePtr = HMIStatePtr->next;
+					LCD_clear();
+				}
+				else if (buttonPressed == UP)
+				{
+					HMIStatePtr = HMIStatePtr->previous;
+					LCD_clear();
+				}
+
+				buttonPressed = NO;
+
+				break;
+			}
 		}
 	}
 }

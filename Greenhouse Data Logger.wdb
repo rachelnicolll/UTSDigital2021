@@ -5,8 +5,8 @@ ptn_Child2=ToolBarMgr
 
 [WorkState_v1_2.DockState]
 Bars=35
-ScreenCX=2317
-ScreenCY=1992
+ScreenCX=4920
+ScreenCY=1080
 ptn_Child1=Bar-0
 ptn_Child2=Bar-1
 ptn_Child3=Bar-2
@@ -45,11 +45,7 @@ ptn_Child35=Bar-34
 
 [WorkState_v1_2.DockState.Bar-0]
 BarID=59419
-<<<<<<< HEAD
-Bars=63
-=======
-Bars=81
->>>>>>> i2c_th_LCD
+Bars=69
 Bar#0=0
 Bar#1=59647
 Bar#2=0
@@ -113,27 +109,12 @@ Bar#59=0
 Bar#60=0
 Bar#61=0
 Bar#62=0
-<<<<<<< HEAD
-=======
 Bar#63=0
 Bar#64=0
 Bar#65=0
 Bar#66=0
 Bar#67=0
 Bar#68=0
-Bar#69=0
-Bar#70=0
-Bar#71=0
-Bar#72=0
-Bar#73=0
-Bar#74=0
-Bar#75=0
-Bar#76=0
-Bar#77=0
-Bar#78=0
-Bar#79=0
-Bar#80=0
->>>>>>> i2c_th_LCD
 Style=0
 ExStyle=0
 PrevFloating=False
@@ -162,13 +143,13 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
-MRUFloatYPos=919
+MRUFloatXPos=-1
+MRUFloatYPos=876
 Style=12110
 ExStyle=0
 PrevFloating=False
@@ -192,11 +173,7 @@ ResourceID=0
 
 [WorkState_v1_2.DockState.Bar-2]
 BarID=59422
-<<<<<<< HEAD
 Bars=12
-=======
-Bars=11
->>>>>>> i2c_th_LCD
 Bar#0=0
 Bar#1=8003
 Bar#2=8002
@@ -208,10 +185,7 @@ Bar#7=5721
 Bar#8=0
 Bar#9=32769
 Bar#10=0
-<<<<<<< HEAD
 Bar#11=0
-=======
->>>>>>> i2c_th_LCD
 Style=0
 ExStyle=0
 PrevFloating=False
@@ -240,13 +214,13 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
-MRUFloatYPos=919
+MRUFloatXPos=-1
+MRUFloatYPos=876
 Style=36686
 ExStyle=0
 PrevFloating=False
@@ -270,11 +244,7 @@ ResourceID=0
 
 [WorkState_v1_2.DockState.Bar-4]
 BarID=59420
-<<<<<<< HEAD
-Bars=32
-=======
-Bars=41
->>>>>>> i2c_th_LCD
+Bars=35
 Bar#0=0
 Bar#1=5708
 Bar#2=5720
@@ -307,18 +277,9 @@ Bar#28=0
 Bar#29=0
 Bar#30=0
 Bar#31=0
-<<<<<<< HEAD
-=======
 Bar#32=0
 Bar#33=0
 Bar#34=0
-Bar#35=0
-Bar#36=0
-Bar#37=0
-Bar#38=0
-Bar#39=0
-Bar#40=0
->>>>>>> i2c_th_LCD
 Style=0
 ExStyle=0
 PrevFloating=False
@@ -347,12 +308,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
+MRUFloatXPos=-1
 MRUFloatYPos=0
 Style=8014
 ExStyle=0
@@ -377,11 +338,7 @@ ResourceID=0
 
 [WorkState_v1_2.DockState.Bar-6]
 BarID=59421
-<<<<<<< HEAD
-Bars=102
-=======
-Bars=138
->>>>>>> i2c_th_LCD
+Bars=114
 Bar#0=0
 Bar#1=0
 Bar#2=5701
@@ -484,8 +441,6 @@ Bar#98=0
 Bar#99=0
 Bar#100=0
 Bar#101=0
-<<<<<<< HEAD
-=======
 Bar#102=0
 Bar#103=0
 Bar#104=0
@@ -498,31 +453,6 @@ Bar#110=0
 Bar#111=0
 Bar#112=0
 Bar#113=0
-Bar#114=0
-Bar#115=0
-Bar#116=0
-Bar#117=0
-Bar#118=0
-Bar#119=0
-Bar#120=0
-Bar#121=0
-Bar#122=0
-Bar#123=0
-Bar#124=0
-Bar#125=0
-Bar#126=0
-Bar#127=0
-Bar#128=0
-Bar#129=0
-Bar#130=0
-Bar#131=0
-Bar#132=0
-Bar#133=0
-Bar#134=0
-Bar#135=0
-Bar#136=0
-Bar#137=0
->>>>>>> i2c_th_LCD
 Style=0
 ExStyle=0
 PrevFloating=False
@@ -551,13 +481,13 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
-MRUFloatYPos=919
+MRUFloatXPos=-1
+MRUFloatYPos=876
 Style=20302
 ExStyle=0
 PrevFloating=False
@@ -586,17 +516,11 @@ MRUWidth=291
 Docking=True
 MRUDockID=59419
 MRUDockLeftPos=8
-<<<<<<< HEAD
 MRUDockTopPos=31
 MRUDockRightPos=1508
 MRUDockBottomPos=60
-=======
-MRUDockTopPos=-1
-MRUDockRightPos=1376
-MRUDockBottomPos=28
->>>>>>> i2c_th_LCD
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12220
 ExStyle=131980
@@ -608,11 +532,7 @@ LastAlignedDocking=0
 PctWidth=1000000
 MRUFloatCX=308
 MRUFloatCY=50
-<<<<<<< HEAD
 MRUHorzDockCX=1500
-=======
-MRUHorzDockCX=1368
->>>>>>> i2c_th_LCD
 MRUHorzDockCY=29
 MRUVertDockCX=76
 MRUVertDockCY=553
@@ -630,16 +550,15 @@ Buttons=BAAAAAAIAACAAAAAAIAADAAAAAAIAAEAAAAAAIAAFAAAAAAIAAGAAAAAAIAAHAAAAAAIAAIA
 
 [WorkState_v1_2.DockState.Bar-9]
 BarID=59392
-XPos=0
 YPos=28
 Docking=True
 MRUDockID=0
 MRUDockLeftPos=8
-MRUDockTopPos=28
+MRUDockTopPos=31
 MRUDockRightPos=156
-MRUDockBottomPos=58
+MRUDockBottomPos=61
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12212
 ExStyle=131852
@@ -669,17 +588,17 @@ Buttons=AABOAAAAAAGPDBAAAAAAAIIBAAAAAAAAAAAAAAAADABOAAAAAAAAAAAAAAAAHABOAAAAAA
 
 [WorkState_v1_2.DockState.Bar-10]
 BarID=59396
-XPos=161
+XPos=342
 YPos=28
 MRUWidth=566
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=161
-MRUDockTopPos=28
-MRUDockRightPos=744
-MRUDockBottomPos=58
+MRUDockLeftPos=342
+MRUDockTopPos=31
+MRUDockRightPos=925
+MRUDockBottomPos=61
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12212
 ExStyle=131852
@@ -710,18 +629,17 @@ Buttons=LCBOAAAAAAMCBOAAAAAAAAAAAAAAAADCBOAAAAAACCBOAAAAAAFCBOAAAAAAAAAAAAAAAAEC
 [WorkState_v1_2.DockState.Bar-11]
 BarID=59397
 Visible=False
-XPos=-6
-YPos=-2
+XPos=-13
 MRUWidth=246
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=2091
-MRUDockTopPos=116
-MRUDockRightPos=2354
-MRUDockBottomPos=146
+MRUDockLeftPos=4440
+MRUDockTopPos=63
+MRUDockRightPos=4703
+MRUDockBottomPos=93
 MRUFloatStyle=8192
-MRUFloatXPos=2091
-MRUFloatYPos=114
+MRUFloatXPos=4440
+MRUFloatYPos=62
 Style=12213
 ExStyle=131852
 PrevFloating=False
@@ -746,21 +664,21 @@ ptn_Child1=ToolBarInfoEx
 
 [WorkState_v1_2.DockState.Bar-11.ToolBarInfoEx]
 Title=View
-Buttons=IFGBAAAAAAJFGBAAAAAAAAAAAAAAAAFEGBAAAAAACEPBAAAAAAMBJIAAAAAAMEGBAAAAAAAAAAAAAAAAOEGBAAAAAAKEGBAAAAAALEGBAAAAAAPEGBAAAAAADEPBAAAAAA
+Buttons=IFGBAAAAAAJFGBAAAAAAAAAAAAAAAAFEGBAAAAAAIEGBAAAAAAMBJIAAAAAAMEGBAAAAAAAAAAAAAAAAOEGBAAAAAAKEGBAAAAAALEGBAAAAAAPEGBAAAAAA
 
 [WorkState_v1_2.DockState.Bar-12]
 BarID=59398
-XPos=402
+XPos=569
 YPos=58
 MRUWidth=339
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=402
+MRUDockLeftPos=569
 MRUDockTopPos=58
-MRUDockRightPos=758
+MRUDockRightPos=925
 MRUDockBottomPos=88
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12212
 ExStyle=131852
@@ -800,7 +718,7 @@ MRUDockTopPos=58
 MRUDockRightPos=410
 MRUDockBottomPos=88
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12212
 ExStyle=131852
@@ -830,17 +748,17 @@ Buttons=HKAIAAAAAAIKAIAAAAAAAAAAAAAAAAADKBAAAAAAAAAAAAAAAAGPKBAAAAAAEPKBAAAAAAFP
 
 [WorkState_v1_2.DockState.Bar-14]
 BarID=59400
-XPos=744
+XPos=925
 YPos=28
 MRUWidth=23
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=744
+MRUDockLeftPos=925
 MRUDockTopPos=28
-MRUDockRightPos=876
+MRUDockRightPos=965
 MRUDockBottomPos=58
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12212
 ExStyle=131852
@@ -852,7 +770,7 @@ LastAlignedDocking=0
 PctWidth=184352
 MRUFloatCX=40
 MRUFloatCY=30
-MRUHorzDockCX=132
+MRUHorzDockCX=40
 MRUHorzDockCY=30
 MRUVertDockCX=31
 MRUVertDockCY=39
@@ -866,21 +784,21 @@ ptn_Child1=ToolBarInfoEx
 
 [WorkState_v1_2.DockState.Bar-14.ToolBarInfoEx]
 Title=Debug instrument
-Buttons=JPAIAAAAAAAFPBAAAAAANEPBAAAAAABFPBAAAAAACFPBAAAAAA
+Buttons=JPAIAAAAAA
 
 [WorkState_v1_2.DockState.Bar-15]
 BarID=59401
-XPos=758
+XPos=925
 YPos=58
 MRUWidth=77
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=758
+MRUDockLeftPos=925
 MRUDockTopPos=58
-MRUDockRightPos=829
+MRUDockRightPos=996
 MRUDockBottomPos=88
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12212
 ExStyle=131852
@@ -911,18 +829,17 @@ Buttons=AHHBAAAAAABHHBAAAAAAAAAAAAAAAA
 [WorkState_v1_2.DockState.Bar-16]
 BarID=59402
 Visible=False
-XPos=-6
-YPos=-2
+XPos=-13
 MRUWidth=115
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=2091
-MRUDockTopPos=116
-MRUDockRightPos=2223
-MRUDockBottomPos=146
+MRUDockLeftPos=4440
+MRUDockTopPos=63
+MRUDockRightPos=4572
+MRUDockBottomPos=93
 MRUFloatStyle=8192
-MRUFloatXPos=2091
-MRUFloatYPos=378
+MRUFloatXPos=4440
+MRUFloatYPos=205
 Style=12213
 ExStyle=131852
 PrevFloating=False
@@ -952,17 +869,16 @@ Buttons=OHIBAAAAAAPHIBAAAAAACDBOAAAAAADDBOAAAAAAEDBOAAAAAA
 [WorkState_v1_2.DockState.Bar-17]
 BarID=59403
 Visible=False
-XPos=-6
-YPos=-2
+XPos=-13
 MRUWidth=115
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=873
-MRUDockTopPos=63
-MRUDockRightPos=1005
-MRUDockBottomPos=93
+MRUDockLeftPos=1853
+MRUDockTopPos=34
+MRUDockRightPos=1985
+MRUDockBottomPos=64
 MRUFloatStyle=8196
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=12213
 ExStyle=131852
@@ -998,15 +914,10 @@ Docking=True
 MRUDockID=0
 MRUDockLeftPos=1
 MRUDockTopPos=-2
-<<<<<<< HEAD
 MRUDockRightPos=375
 MRUDockBottomPos=553
-=======
-MRUDockRightPos=377
-MRUDockBottomPos=465
->>>>>>> i2c_th_LCD
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=8068
 ExStyle=69393
@@ -1020,13 +931,8 @@ MRUFloatCX=300
 MRUFloatCY=180
 MRUHorzDockCX=300
 MRUHorzDockCY=180
-<<<<<<< HEAD
 MRUVertDockCX=374
 MRUVertDockCY=555
-=======
-MRUVertDockCX=376
-MRUVertDockCY=467
->>>>>>> i2c_th_LCD
 MRUDockingState=0
 DockingStyle=61440
 TypeID=0
@@ -1041,17 +947,11 @@ YPos=5
 Docking=True
 MRUDockID=0
 MRUDockLeftPos=8
-<<<<<<< HEAD
 MRUDockTopPos=31
 MRUDockRightPos=1507
 MRUDockBottomPos=299
-=======
-MRUDockTopPos=5
-MRUDockRightPos=1375
-MRUDockBottomPos=273
->>>>>>> i2c_th_LCD
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=36756
 ExStyle=69393
@@ -1063,11 +963,7 @@ LastAlignedDocking=0
 PctWidth=1000000
 MRUFloatCX=300
 MRUFloatCY=180
-<<<<<<< HEAD
 MRUHorzDockCX=1499
-=======
-MRUHorzDockCX=1367
->>>>>>> i2c_th_LCD
 MRUHorzDockCY=268
 MRUVertDockCX=300
 MRUVertDockCY=180
@@ -1080,20 +976,17 @@ ResourceID=0
 
 [WorkState_v1_2.DockState.Bar-20]
 BarID=5701
-XPos=5
-YPos=-2
+Visible=False
+XPos=0
+YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=5
-MRUDockTopPos=-2
-MRUDockRightPos=155
-<<<<<<< HEAD
-MRUDockBottomPos=553
-=======
-MRUDockBottomPos=465
->>>>>>> i2c_th_LCD
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=20356
 ExStyle=69393
@@ -1108,11 +1001,7 @@ MRUFloatCY=180
 MRUHorzDockCX=300
 MRUHorzDockCY=180
 MRUVertDockCX=150
-<<<<<<< HEAD
-MRUVertDockCY=555
-=======
-MRUVertDockCY=467
->>>>>>> i2c_th_LCD
+MRUVertDockCY=180
 MRUDockingState=0
 DockingStyle=61440
 TypeID=0
@@ -1127,12 +1016,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=36612
 ExStyle=69393
@@ -1162,12 +1051,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
+MRUFloatXPos=-1
 MRUFloatYPos=0
 Style=20356
 ExStyle=69393
@@ -1197,12 +1086,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
+MRUFloatXPos=-1
 MRUFloatYPos=0
 Style=20356
 ExStyle=69393
@@ -1232,12 +1121,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
+MRUFloatXPos=-1
 MRUFloatYPos=0
 Style=20356
 ExStyle=69393
@@ -1267,12 +1156,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=0
+MRUFloatXPos=-1
 MRUFloatYPos=0
 Style=20356
 ExStyle=69393
@@ -1302,12 +1191,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=8068
 ExStyle=69393
@@ -1337,19 +1226,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-<<<<<<< HEAD
 MRUDockLeftPos=27
 MRUDockTopPos=34
 MRUDockRightPos=27
 MRUDockBottomPos=34
-=======
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
->>>>>>> i2c_th_LCD
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=36740
 ExStyle=69393
@@ -1379,12 +1261,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=36612
 ExStyle=69393
@@ -1414,12 +1296,12 @@ XPos=0
 YPos=0
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=13
-MRUDockTopPos=63
-MRUDockRightPos=13
-MRUDockBottomPos=63
+MRUDockLeftPos=27
+MRUDockTopPos=34
+MRUDockRightPos=27
+MRUDockBottomPos=34
 MRUFloatStyle=4
-MRUFloatXPos=-1
+MRUFloatXPos=-3
 MRUFloatYPos=0
 Style=36612
 ExStyle=69393
@@ -1443,96 +1325,11 @@ WindowName=Local Variables
 ResourceID=0
 
 [WorkState_v1_2.DockState.Bar-30]
-BarID=8002
-Visible=False
-XPos=0
-YPos=0
-Docking=True
-MRUDockID=0
-MRUDockLeftPos=8
-<<<<<<< HEAD
-MRUDockTopPos=31
-MRUDockRightPos=1953853564
-MRUDockBottomPos=1752457583
-=======
-MRUDockTopPos=0
-MRUDockRightPos=1953853564
-MRUDockBottomPos=1752457552
->>>>>>> i2c_th_LCD
-MRUFloatStyle=4
-MRUFloatXPos=-2147483648
-MRUFloatYPos=919
-Style=36740
-ExStyle=69393
-PrevFloating=False
-MDIChild=False
-AutoHide=False
-AutoHidePinned=False
-LastAlignedDocking=0
-PctWidth=500000
-MRUFloatCX=300
-MRUFloatCY=180
-MRUHorzDockCX=300
-MRUHorzDockCY=150
-MRUVertDockCX=300
-MRUVertDockCY=180
-MRUDockingState=0
-DockingStyle=61440
-TypeID=0
-ClassName=CAddedControlBar
-WindowName=Core Registers
-ResourceID=0
-
-[WorkState_v1_2.DockState.Bar-31]
-BarID=8003
-Visible=False
-XPos=0
-YPos=0
-Docking=True
-MRUDockID=0
-MRUDockLeftPos=8
-<<<<<<< HEAD
-MRUDockTopPos=31
-MRUDockRightPos=1970304125
-MRUDockBottomPos=1952534675
-MRUFloatStyle=4
-MRUFloatXPos=-2147483648
-MRUFloatYPos=1087
-=======
-MRUDockTopPos=0
-MRUDockRightPos=1970304125
-MRUDockBottomPos=1952534644
-MRUFloatStyle=4
-MRUFloatXPos=-2147483648
-MRUFloatYPos=919
->>>>>>> i2c_th_LCD
-Style=36740
-ExStyle=69393
-PrevFloating=False
-MDIChild=False
-AutoHide=False
-AutoHidePinned=False
-LastAlignedDocking=0
-PctWidth=666665
-MRUFloatCX=300
-MRUFloatCY=180
-MRUHorzDockCX=300
-MRUHorzDockCY=150
-MRUVertDockCX=300
-MRUVertDockCY=180
-MRUDockingState=0
-DockingStyle=61440
-TypeID=0
-ClassName=CAddedControlBar
-WindowName=Peripheral Registers
-ResourceID=0
-
-[WorkState_v1_2.DockState.Bar-32]
 BarID=59423
 Horz=True
 Floating=True
-XPos=896
-YPos=159
+XPos=1903
+YPos=86
 Bars=3
 Bar#0=0
 Bar#1=59403
@@ -1558,12 +1355,12 @@ ClassName=
 WindowName=
 ResourceID=0
 
-[WorkState_v1_2.DockState.Bar-33]
+[WorkState_v1_2.DockState.Bar-31]
 BarID=59423
 Horz=True
 Floating=True
-XPos=2091
-YPos=424
+XPos=4440
+YPos=230
 Bars=3
 Bar#0=0
 Bar#1=59402
@@ -1589,12 +1386,12 @@ ClassName=
 WindowName=
 ResourceID=0
 
-[WorkState_v1_2.DockState.Bar-34]
+[WorkState_v1_2.DockState.Bar-32]
 BarID=59423
 Horz=True
 Floating=True
-XPos=2091
-YPos=159
+XPos=4440
+YPos=86
 Bars=3
 Bar#0=0
 Bar#1=59397
@@ -1618,6 +1415,76 @@ DockingStyle=0
 TypeID=0
 ClassName=
 WindowName=
+ResourceID=0
+
+[WorkState_v1_2.DockState.Bar-33]
+BarID=8002
+Visible=False
+XPos=0
+YPos=0
+Docking=True
+MRUDockID=0
+MRUDockLeftPos=0
+MRUDockTopPos=0
+MRUDockRightPos=1818838560
+MRUDockBottomPos=673215333
+MRUFloatStyle=4
+MRUFloatXPos=-2147483648
+MRUFloatYPos=1547913549
+Style=36740
+ExStyle=69393
+PrevFloating=False
+MDIChild=False
+AutoHide=False
+AutoHidePinned=False
+LastAlignedDocking=0
+PctWidth=500000
+MRUFloatCX=300
+MRUFloatCY=180
+MRUHorzDockCX=300
+MRUHorzDockCY=150
+MRUVertDockCX=300
+MRUVertDockCY=180
+MRUDockingState=0
+DockingStyle=61440
+TypeID=0
+ClassName=CAddedControlBar
+WindowName=Core Registers
+ResourceID=0
+
+[WorkState_v1_2.DockState.Bar-34]
+BarID=8003
+Visible=False
+XPos=0
+YPos=0
+Docking=True
+MRUDockID=0
+MRUDockLeftPos=0
+MRUDockTopPos=0
+MRUDockRightPos=1935434606
+MRUDockBottomPos=1815637364
+MRUFloatStyle=4
+MRUFloatXPos=-2147483648
+MRUFloatYPos=543698548
+Style=36740
+ExStyle=69393
+PrevFloating=False
+MDIChild=False
+AutoHide=False
+AutoHidePinned=False
+LastAlignedDocking=0
+PctWidth=666666
+MRUFloatCX=300
+MRUFloatCY=180
+MRUHorzDockCX=300
+MRUHorzDockCY=150
+MRUVertDockCX=300
+MRUVertDockCY=180
+MRUDockingState=0
+DockingStyle=61440
+TypeID=0
+ClassName=CAddedControlBar
+WindowName=Peripheral Registers
 ResourceID=0
 
 [WorkState_v1_2.ToolBarMgr]
