@@ -3,7 +3,11 @@ DumpRWOnFly1=0
 DumpRWOnFly2=0
 DumpRWOnFly3=0
 DumpRWOnFly4=0
+<<<<<<< HEAD
 WatchVariables1=txBuf!1;rxBuf!1;numWriteBytes!1;numReadBytes!1;txBuf!1;txBuf[0]!1;txBuf[1]!1;dataToRead!0;dataToWrite!0;
+=======
+WatchVariables1=
+>>>>>>> i2c_th_LCD
 FormatWatch1=0
 FormatViewType1=1
 FormatViewAddress1=1
@@ -26,7 +30,7 @@ WatchRWOnFlyTab4=0
 FormatLocals=0
 FormatParameters=0
 [DebugState_v1-Debug.AddOn.St7Registers]
-ActiveTab=2
+ActiveTab=1
 [DebugState_v1-Debug.AddOn.St7PeripheralRegister]
 DisplayFormat=1
 ShowPeriphAddress=0

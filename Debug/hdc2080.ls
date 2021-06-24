@@ -290,7 +290,7 @@
  818  0190               _HDC2080_humToFloatRelative:
  822                     ; 114     return ((float)x * (100.0 / 65536.0));
  824  0190 cd0000        	call	c_uitof
- 826  0193 ae001c        	ldw	x,#L572
+ 826  0193 ae001e        	ldw	x,#L572
  827  0196 cd0000        	call	c_fmul
  831  0199 81            	ret
  866                     	switch	.const
@@ -408,9 +408,9 @@
 1149  022e               _HDC2080_tempToFloatCelsius:
 1153                     ; 176     return ((float)x * (165.0 / 65536.0) - 40.0);
 1155  022e cd0000        	call	c_uitof
-1157  0231 ae0018        	ldw	x,#L714
+1157  0231 ae001a        	ldw	x,#L714
 1158  0234 cd0000        	call	c_fmul
-1160  0237 ae0014        	ldw	x,#L724
+1160  0237 ae0016        	ldw	x,#L724
 1161  023a cd0000        	call	c_fsub
 1165  023d 81            	ret
 1209                     	switch	.const
@@ -455,41 +455,88 @@
 1300  0272 ae0010        	ldw	x,#L63
 1301  0275 cd0000        	call	c_lsub
 1305  0278 81            	ret
-1318                     	xref	_mcu_msWait
-1319                     	xref	_mcu_i2cTransfer
-1320                     	xref	_mcu_i2cInit
-1321                     	xdef	_HDC2080_tempToMilliCelsius
-1322                     	xdef	_HDC2080_tempToIntCelsius
-1323                     	xdef	_HDC2080_tempToFloatCelsius
-1324                     	xdef	_HDC2080_tempRead
-1325                     	xdef	_HDC2080_humToPermille
-1326                     	xdef	_HDC2080_humToIntRelative
-1327                     	xdef	_HDC2080_humToFloatRelative
-1328                     	xdef	_HDC2080_humRead
-1329                     	xdef	_HDC2080_read
-1330                     	xdef	_HDC2080_config
-1331                     	switch	.const
-1332  0014               L724:
-1333  0014 42200000      	dc.w	16928,0
-1334  0018               L714:
-1335  0018 3b250000      	dc.w	15141,0
-1336  001c               L572:
-1337  001c 3ac80000      	dc.w	15048,0
-1338                     	xref.b	c_lreg
-1339                     	xref.b	c_x
-1340                     	xref.b	c_y
-1360                     	xref	c_lsub
-1361                     	xref	c_umul
-1362                     	xref	c_lsbc
-1363                     	xref	c_ltor
-1364                     	xref	c_lrsh
-1365                     	xref	c_fsub
-1366                     	xref	c_lursh
-1367                     	xref	c_ladd
-1368                     	xref	c_cmulx
-1369                     	xref	c_fmul
-1370                     	xref	c_uitof
-1371                     	xref	c_rtol
-1372                     	xref	c_uitolx
-1373                     	xref	c_xymov
-1374                     	end
+1308                     	switch	.const
+1309  0014               L374_rxBuf:
+1310  0014 00            	dc.b	0
+1311  0015 00            	ds.b	1
+1399                     ; 208 HDC2080_MaxReading HDC2080_maxReads(HDC2080_Handle sensor)
+1399                     ; 209 {
+1400                     	switch	.text
+1401  0279               _HDC2080_maxReads:
+1403  0279 89            	pushw	x
+1404  027a 5205          	subw	sp,#5
+1405       00000005      OFST:	set	5
+1408                     ; 211     uint8_t rxBuf[2] = {0};
+1410  027c c60014        	ld	a,L374_rxBuf
+1411  027f 6b04          	ld	(OFST-1,sp),a
+1412  0281 c60015        	ld	a,L374_rxBuf+1
+1413  0284 6b05          	ld	(OFST+0,sp),a
+1414                     ; 216     txBuf[0] = HDC2080_TEMP_MAX;
+1416  0286 a605          	ld	a,#5
+1417  0288 6b01          	ld	(OFST-4,sp),a
+1419                     ; 217     mcu_i2cTransfer(sensor->busId, sensor->devAddr, txBuf, 1, rxBuf, 2);
+1421  028a 4b02          	push	#2
+1422  028c 96            	ldw	x,sp
+1423  028d 1c0005        	addw	x,#OFST+0
+1424  0290 89            	pushw	x
+1425  0291 4b01          	push	#1
+1426  0293 96            	ldw	x,sp
+1427  0294 1c0005        	addw	x,#OFST+0
+1428  0297 89            	pushw	x
+1429  0298 1e0c          	ldw	x,(OFST+7,sp)
+1430  029a e60a          	ld	a,(10,x)
+1431  029c 97            	ld	xl,a
+1432  029d 160c          	ldw	y,(OFST+7,sp)
+1433  029f 90e609        	ld	a,(9,y)
+1434  02a2 95            	ld	xh,a
+1435  02a3 cd0000        	call	_mcu_i2cTransfer
+1437  02a6 5b06          	addw	sp,#6
+1438                     ; 219     results.tempMax = (uint8_t)rxBuf[0];
+1440  02a8 7b04          	ld	a,(OFST-1,sp)
+1441  02aa 6b02          	ld	(OFST-3,sp),a
+1443                     ; 220     results.humMax = (uint8_t)rxBuf[1];
+1445  02ac 7b05          	ld	a,(OFST+0,sp)
+1446  02ae 6b03          	ld	(OFST-2,sp),a
+1448                     ; 222     return (results);
+1450  02b0 1e02          	ldw	x,(OFST-3,sp)
+1453  02b2 5b07          	addw	sp,#7
+1454  02b4 81            	ret
+1467                     	xref	_mcu_msWait
+1468                     	xref	_mcu_i2cTransfer
+1469                     	xref	_mcu_i2cInit
+1470                     	xdef	_HDC2080_maxReads
+1471                     	xdef	_HDC2080_tempToMilliCelsius
+1472                     	xdef	_HDC2080_tempToIntCelsius
+1473                     	xdef	_HDC2080_tempToFloatCelsius
+1474                     	xdef	_HDC2080_tempRead
+1475                     	xdef	_HDC2080_humToPermille
+1476                     	xdef	_HDC2080_humToIntRelative
+1477                     	xdef	_HDC2080_humToFloatRelative
+1478                     	xdef	_HDC2080_humRead
+1479                     	xdef	_HDC2080_read
+1480                     	xdef	_HDC2080_config
+1481                     	switch	.const
+1482  0016               L724:
+1483  0016 42200000      	dc.w	16928,0
+1484  001a               L714:
+1485  001a 3b250000      	dc.w	15141,0
+1486  001e               L572:
+1487  001e 3ac80000      	dc.w	15048,0
+1488                     	xref.b	c_lreg
+1489                     	xref.b	c_x
+1490                     	xref.b	c_y
+1510                     	xref	c_lsub
+1511                     	xref	c_umul
+1512                     	xref	c_lsbc
+1513                     	xref	c_ltor
+1514                     	xref	c_lrsh
+1515                     	xref	c_fsub
+1516                     	xref	c_lursh
+1517                     	xref	c_ladd
+1518                     	xref	c_cmulx
+1519                     	xref	c_fmul
+1520                     	xref	c_uitof
+1521                     	xref	c_rtol
+1522                     	xref	c_uitolx
+1523                     	xref	c_xymov
+1524                     	end

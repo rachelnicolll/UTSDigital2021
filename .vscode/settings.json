@@ -7,7 +7,11 @@
         "stm8l15x_itc.h": "c",
         "stm8l15x_rtc.h": "c",
         "lcd.h": "c",
+<<<<<<< HEAD
         "2464.C": "cpp",
         "stdint.h": "c"
+=======
+        "lcd_config.h": "c"
+>>>>>>> i2c_th_LCD
     }
 }

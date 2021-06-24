@@ -50,7 +50,7 @@ void LCD_welcome();
 
 void LCD_homescreen(RTC_DateTypeDef SDate, RTC_TimeTypeDef STime, int32_t temperature, int32_t humidity);
 
-void LCD_min_max(uint8_t minTemperature, uint8_t maxTemperature, uint8_t minHumidity, uint8_t maxHumidity);
+void LCD_min_max(float maxTemperature, float maxHumidity);
 
 void LCD_menu();
 

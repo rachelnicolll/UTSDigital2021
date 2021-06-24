@@ -200,3 +200,24 @@ int32_t HDC2080_tempToMilliCelsius(uint16_t x)
     /* Scale conversion for milli-degrees and truncate rather than round */
     return ((20625 * (int32_t)x) >> 13) - 40000;
 }
+
+/*
+ *  ======== HDC2080_tempRead ========
+ *  Read temperature register
+ */
+HDC2080_MaxReading HDC2080_maxReads(HDC2080_Handle sensor)
+{
+    uint8_t txBuf[1];
+    uint8_t rxBuf[2] = {0};
+    HDC2080_MaxReading results;
+
+
+    /* Read temperature registers, LOW and HIGH */
+    txBuf[0] = HDC2080_TEMP_MAX;
+    mcu_i2cTransfer(sensor->busId, sensor->devAddr, txBuf, 1, rxBuf, 2);
+
+    results.tempMax = (uint8_t)rxBuf[0];
+    results.humMax = (uint8_t)rxBuf[1];
+
+    return (results);
+}

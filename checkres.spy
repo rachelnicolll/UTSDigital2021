@@ -3,7 +3,13 @@
 ; ** Copyright STMicroelectronics (c) 1999, all rights reserved **
 ;  Level 1
 ;  Date  06/24/21
+<<<<<<< HEAD
 ;  Time  16:40:41
 ;
 <.\confmenu.cpp:170-16:40:41> 
+=======
+;  Time  21:39:30
+;
+<.\confmenu.cpp:170-21:39:30> 
+>>>>>>> i2c_th_LCD
 Error: resource handle has not been restored in .\mainfrm.cpp:3205

@@ -9,6 +9,7 @@
 typedef void @far (*interrupt_handler_t)(void);
 
 extern bool state;
+extern bool LCDUpdated;
 extern uint8_t buttonPressed;
 struct interrupt_vector
 {
@@ -38,6 +39,7 @@ struct interrupt_vector
 		EXTI->SR1 |= 0x10;
 
 	buttonPressed = UP;
+	LCDUpdated = TRUE;
 	return;
 }
 
@@ -48,6 +50,7 @@ struct interrupt_vector
 		EXTI->SR1 |= 0x02;
 
 	buttonPressed = DOWN;
+	LCDUpdated = TRUE;
 	return;
 }
 
@@ -58,6 +61,7 @@ struct interrupt_vector
 		EXTI->SR1 |= 0x04;
 
 	buttonPressed = OK;
+	LCDUpdated = TRUE;
 	return;
 }
 
@@ -68,6 +72,7 @@ struct interrupt_vector
 		EXTI->SR1 |= 0x08;
 
 	buttonPressed = BACK;
+	LCDUpdated = TRUE;
 	return;
 }
 
